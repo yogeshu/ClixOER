@@ -1,0 +1,133 @@
+{% load i18n %}
+{% load ndf_tags %}
+{% load get_latest_git_hash from  simple_filters %}
+
+{% block body_content %}
+
+
+<style type="text/css">
+ .footer-clix1{
+    /*color: #eeeeee;*/
+    /*border-top: 1px solid red;*/
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 60px;  /* footer height */
+    display: block;
+    margin-top: 20px; /* space between content and footer */
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    z-index: -1;
+    width: 100%!important;
+}
+
+
+
+</style>
+
+<footer class="footer">
+<div class="" style="margin-top:-50px;">
+<hr>
+<div style="background-color:#71355808; margin-top:-20px;">
+     <div class="small-12 medium-12 large-12 columns">
+          <div class="row" style="width:100%;">
+                <div class="small-3 columns">
+                        <a href="http://tatatrusts.org/" target="_blank">
+                            <img src="/static/ndf/images/footer-svg/tata_trusts.svg" style="margin-top: 50px;height: 100px;stroke-width: 4%;"/>
+                        </a>
+                </div>
+                <div class="small-3 columns">
+                        <p style="font-size: 13px;margin-top: 5px;font-weight: 500;margin-left: 176px; font-family: cambria;">Led By</p>
+                    <a href="http://www.tiss.edu/" target="_blank">
+                        <img src="/static/ndf/images/footer-svg/tiss.svg" style="height: 125px;width: 223px;    margin-top: -20px;stroke-width:4%;" />
+                    </a>
+                </div>
+                <div class="small-3 columns">
+                    <a href="http://www.mit.edu" target="_blank">
+                        <img src="/static/ndf/images/footer-svg/mit.svg" style="margin-top:80px; stroke-width:4%;"/>
+                    </a>
+                </div>
+                <div class="small-3 columns nav-legal" style="margin-top:15px;">
+                        <ol>
+                            <li>
+                                <a href="{% url 'site_about' %}" style="font-size: 14px!important; " target="_blank">About</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'site_credits' %}" target="_blank" style="font-size: 14px!important; ">Credits</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'site_termsofuse' %}" style="font-size: 14px!important; " target="_blank">Terms of Service</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'site_privacypolicy' %}" style="font-size: 14px!important; " target="_blank">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'site_contact' %}" style="font-size: 14px!important; " target="_blank">Contact Us</a>
+                            </li>
+                        </ol>
+                </div>
+          </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="small-12 medium-12 large-12 columns" style="margin-bottom:10px;">
+          <div class="row" style="width:100%;">
+                <div class="small-2 columns" style="margin-top: 25px;margin-left: 21px;">
+                    <a style="color: black;font-size: 13px;font-family: cambria;">In collaboration with</a>
+                </div>
+                <div class="small-2 columns" style="margin-left:-23px;">
+                        <img width="120px" height="250px" src="/static/ndf/images/logos/cg-logo-updated.jpg" style="height:80px; width: 80px;stroke-width: 4%;"/>
+                </div>
+                <div class="small-2 columns" style="margin-left:-56px;">
+                        <img width="120px" height="250px" src="/static/ndf/images/logos/Mizoramseal.png" style=" stroke-width:4%;"/>
+                </div>
+                <div class="small-2 columns">
+                        <img width="120px" height="250px" src="/static/ndf/images/logos/rajasthan-government-logo.png" style=" stroke-width:4%;"/>
+                </div>
+                <div class="small-2 columns">
+                        <img width="120px" height="200px" src="/static/ndf/images/logos/Telangana_State_Emblem_2000x2000.png" style="height:80px; width: 80px; stroke-width:4%;"/>
+                </div>
+          </div>
+    </div>
+    
+    <div class="row">
+    <hr>
+        <div class="small-6 columns">
+            <p style="font-size: 12px;margin-top: -10px;">© 2018 Tata Institute of Social Sciences</p>
+
+        </div>
+        <div class="small-6 columns coyright-links " style="margin-left:-75px">
+                {% get_latest_git_hash as git_commit_hash %}  
+              <a href="https://gitlab.com/gnowledge/gstudio/tree/{{git_commit_hash}}" style="font-size: 13px!important;  margin-left: 348px;" target="_blank">Powered by gStudio</a><a href="http://www.hbcse.tifr.res.in/" target="_blank">
+                <img src="/static/ndf/images/logos/tifr.png" style="height: 25px;margin-left: 387px;" /></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-6 columns coyright-links">
+            <p style="font-size: 11px; margin-top:-17px;">Except where otherwise noted, content on this site is licensed under a Creative Commons Attribution 4.0 International license <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"> <img src="/static/ndf/images/80x15cclogo.png" /></a></p>
+
+        </div>
+        <!--<div class="small-6 columns coyright-links">
+                
+                <a style="margin-left: 85px; font-size:15px;">Government of Chattisgarh</a>   <a style="font-size:15px;">Government of Mizoram</a>   <a style="margin-left: 85px; font-size:15px;"> Government of Rajasthan</a>
+                <a style="font-size:15px;">Government of Telangana</a>-->
+                <!--<img width="100px" height="250px" src="/static/ndf/images/logos/Chhatisgarhseal.png"  /></a>
+                <img width="100px" height="250px" src="/static/ndf/images/logos/Mizoramseal.png"  /></a>
+                <img width="100px" height="250px" src="/static/ndf/images/logos/rajasthanseal.png"  /></a>
+                <img width="100px" height="250px" src="/static/ndf/images/logos/Telanganaseal.png"  /></a>-->
+        <!--</div>-->
+    </div>
+</div>
+        
+<br> 
+</div>
+</footer>
+
+{% endblock body_content %}

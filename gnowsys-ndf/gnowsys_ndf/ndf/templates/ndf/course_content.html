@@ -1,0 +1,278 @@
+<div class="course-content">
+    <button class="accordion-overview">Overview</button>
+    <div class="panel">
+         <div class="about-course  rows">            
+            <div class="medium-3  large-12 columns rows">
+              <div class="left">
+              </div>
+              <div class="left">
+                <h5>Description</h5> <br>
+                  <div class="course-highlight">
+                    <span>
+                      {{group_object.content|default:'No description added yet.'|safe}}  
+                    </span>
+                  </div>
+              </div>
+            </div>
+            
+            <br>
+
+            <div class="medium-3 large-3 columns rows">
+              <div class="left">
+                <i class="icon-wid fa fa-user"></i>
+              </div>
+              <div class="left">
+                <h5>No. of Students</h5>
+                  <div class="course-highlight">
+                    <span>
+                      {{group_object.author_set|length}}  
+                    </span>
+                  </div>
+              </div>
+            </div> 
+            <div class="medium-3  large-3 columns rows">
+              <div class="left">
+                <i class="icon-wid fa fa-list"></i>
+              </div>
+              <div class="left">
+                <h5>No. of {% firstof group_object.project_config.tab_name 'Lessons' %}</h5>
+                  <div class="course-highlight">
+                    <span>
+                      {{group_object.collection_set|length}}
+                    </span>
+                  </div>
+              </div>
+            </div>
+            <br/>
+        </div>
+      </div>
+       
+        {% comment %}
+        {% if show_analytics_notifications %}
+          <div class="medium-3 rows">
+            <div class="left">
+              <i class="icon-wid fa fa-list"></i>
+            </div>
+            <div class="left module_text">
+              <h5>No. of {% firstof group_object.project_config.tab_name 'Lessons' %}</h5>
+              <div class="course-highlight">
+                 <span>{{group_object.collection_set|length}}</span>
+              </div>
+            </div>
+          </div>
+          <br/>
+          <br/>
+        
+          {% if 'Group' not in  group_obj.member_of_names_list %}
+            <div class="medium-3 rows">
+              <div class="left">
+                <i class="icon-wid fa fa-clock-o"></i>
+              </div>
+              <div class="left">
+                <h5>  Course Duration</h5>
+                <div class="course-highlight">
+                  <span>{{weeks_count}} week{{weeks_count|pluralize}}</span>
+                </div>
+              </div>
+            </div>
+            <br/>
+          {% endif %}
+        {% endif %}
+
+      {% if educationallevel_val %}
+        <div class="about-course">
+          <div class="medium-3 rows">
+              <div class="left">
+                <i class="icon-wid fi-results-demographics"></i>
+              </div>
+              <div class="left">
+                <h5>Grade</h5>
+                <div class="course-highlight">
+                   <span> {{educationallevel_val}}</span>
+                </div>
+              </div>
+            </div>
+            <br/>
+
+           
+            
+            <br/>
+            
+        </div>
+       
+      {% endif %}
+
+      {% if educationalsubject_val %}
+          <div class="about-course">
+            <div class="medium-3 rows">
+              <div class="left">
+                <i class="icon-wid fa fa-book"></i>
+              </div>
+              <div class="left">
+                <h5>Subject</h5>
+                <div class="course-highlight">
+                    <span>{{educationalsubject_val}}</span>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <br/>
+          </div>
+      {% endif %}
+
+      <div class="about-course">
+        <div class="medium-3 rows">
+            <div class="left">
+              <i class="icon-wid fa fa-calendar"></i>
+            </div>
+            <div class="left">
+              <h5>Created On</h5>
+              <div class="course-highlight">
+                  <span> {{group_obj.created_at}}</span>
+              </div>
+            </div>
+        </div>
+          <br/>
+          <br/>
+      </div>
+    {% endcomment %}
+
+    <div id="tree1">
+    </div>
+</div>
+
+<script type="text/javascript">
+    iconMapping = {
+        'COMPLETED': 'fas fa-eye green',
+        'INPROGRESS': 'fas fa-eye orange',
+        'DEFAULT': 'fas fa-eye grey',
+    }
+
+    var acc = document.getElementsByClassName("accordion-overview");
+    var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    });
+}
+
+
+
+    $(function(){
+        // var data = [
+        //     {
+        //         label: 'Let us learn together',
+        //         id: 1,
+        //         type: 'unit-name',
+        //         children: [
+        //             {
+        //                 label: 'Let us Begin!',
+        //                 id: 2,
+        //                 type: 'activity-group',
+        //                 children: [{
+        //                     label: 'About the Course',
+        //                     id: 3,
+        //                     type: 'activity-name',
+        //                 }]
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         label: 'Module 1: Introduction and Indic Typing',
+        //         id: 4,
+        //         type: 'unit-name',
+        //         children: [
+        //             { label: 'child3', id: 5, type: 'activity-group'}
+        //         ]
+        //     },
+        //     {
+        //         label: 'Module 2: Analysing with Spreadsheets',
+        //         id: 6,
+        //         type: 'unit-name',
+        //         children: [
+        //             { label: 'child3', id: 7, type: 'activity-group' }
+        //         ]
+        //     }
+        // ];
+        var visited_nodes = {{visited_nodes|safe}}
+        var visited_nodes_ids  = Object.keys(visited_nodes)
+        var course_data = {{unit_structure|safe}};
+        console.log(course_data)
+        $('#tree1').tree({
+            data: course_data,
+            autoOpen: false,
+            saveState: true,
+            useContextMenu: false,
+            closedIcon: $('<i class="fa fa-plus" aria-hidden="true"></i>'),
+            openedIcon: $('<i class="fa fa-minus" aria-hidden="true"></i>'),
+            onCreateLi: function(node, $li){
+                $li.addClass('course-tree-node course-'+node.type);
+                // console.log(node);
+                // alert(node.parent.id + "node.parent")
+                // alert(node.parent + "node")
+                activity_ids = []
+                var isLessonComplete;
+                if (node.type == "unit-name"){
+                    if (node.children.length > 0){
+                        for (child = 0; child < node.children.length; child++) { 
+                            $.each(node.children[child], function(child_key, child_val){
+                                if (child_key === 'id'){
+                                    activity_ids.push(child_val)
+                                }
+                                $li.children('div').addClass('jqtree-toggler-lesson')
+                            })
+                        }
+                        isLessonComplete = activity_ids.every(function(val) {
+                            return visited_nodes_ids.indexOf(val) >= 0;
+                        });
+                        if (isLessonComplete){
+                                $li.find('.jqtree-title').prepend('<i title="Lesson is Completed" class="course-status-icon fa '+iconMapping['COMPLETED']+'"</i> ')
+                        }
+                        else{
+                            isLessonComplete = activity_ids.some(function(val) { return     visited_nodes_ids.indexOf(val) >= 0; });
+                            // Partial complete
+                            if (isLessonComplete){
+                                    $li.find('.jqtree-title').prepend('<i title="Lesson is In-progress" class="course-status-icon fa '+iconMapping['INPROGRESS']+'"</i> ')
+                            }
+                            else{
+                                $li.find('.jqtree-title').prepend('<i title="Lesson is In-progress" class="course-status-icon fa '+iconMapping['DEFAULT']+'"</i> ')
+                            }
+                        }
+                    }
+                }
+
+                else if (node.type == "activity-group"){
+                    url = '/{{group_name}}/course/activity_player/' + node.parent.id + '/' + node.id
+                    $li.find('.jqtree-title').html('<a href="'+url+'" id='+node.id +' class="redirect_to_unitplayer"><span>' + $li.find('.jqtree-title').html() + ' </a></span>')
+                    if(visited_nodes_ids.indexOf(node.id) != -1){
+                        if (visited_nodes[node.id] > 1){
+                        title_attr = "You visited this activity "+visited_nodes[node.id]+" times"
+                        }
+                        else{
+                        title_attr = "You visited this activity "+visited_nodes[node.id]+" time"
+                            
+                        }
+                        $li.find('.jqtree-title').prepend('<i title="'+title_attr+'" class="course-status-icon fa '+iconMapping['COMPLETED']+'"</i>')
+                    }
+                    else{
+                      title_attr = "You have not visited this activity"
+                      $li.find('.jqtree-title').prepend('<i title="'+title_attr+'" class="course-status-icon fa '+iconMapping['DEFAULT']+'"</i>')
+
+                    }
+                }
+
+            }
+        });
+    })
+
+    $(document).on('click', '.jqtree-toggler-lesson', function(){
+        $(this).find('.jqtree-toggler').click()
+    })
+</script>

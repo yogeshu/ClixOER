@@ -1,0 +1,25 @@
+{% extends "error_base.html" %}
+
+{% block error_title %} 403 - Forbidden {% endblock %}
+
+{% block error_body_text %}
+	<br/>
+	<!-- <h2>Sorry, the group you are trying to access is Private!</h2> -->
+	<h2>Permission Denied!</h2>
+	<br/>
+	<h4>
+		<small>
+			{% if site.SITE_NAME == "NROER" %}
+				Please check the URL or navigate back to:
+				<blockquote>
+					<a href="{% url 'repository' 'home' %}"> Repository </a> | 
+					<a href="{% url 'nroer_groups' 'home' 'Partners' %}"> Partners </a> | 
+					<a href="{% url 'nroer_groups' 'home' 'Groups' %}"> Groups </a>
+				</blockquote>
+			{% else %}
+				You do not have permission to retrieve the URL or link you requested.<br/>
+				<a href="javascript:window.history.back();"><i class="fi-play inverse-icon"> </i> Go Back</a>  &nbsp; | &nbsp; <a href="/welcome?True"> <i class="fi-home"> </i> Homepage</a>
+			{% endif %}
+		</small>
+	</h4>
+{% endblock %}
