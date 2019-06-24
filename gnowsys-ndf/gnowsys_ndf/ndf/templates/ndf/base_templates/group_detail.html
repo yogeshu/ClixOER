@@ -1,0 +1,212 @@
+{% extends "ndf/gbase.html" %}
+{% load i18n %}
+{% load check_is_gstaff rewind_cursor cast_to_node get_relation_value from ndf_tags %}
+{% load get_dict_from_list_of_dicts  from simple_filters %}
+
+{% block title %}  {% firstof node.altnames node.name %}{% endblock %}
+
+{% block body_content %}
+{% check_is_gstaff group_id request.user as is_gstaff %}
+
+{% comment %}
+{% include 'ndf/explore_secondary_header.html' %}
+{% endcomment %}
+
+{% cast_to_node modules_sort_list as modules_node_sort_list %}
+
+{% rewind_cursor modules_under_group as modules_under_group %}
+
+{% include 'ndf/widget_photo_upload.html' with url_name='group_detail' widget_for="group_banner" is_banner=True  no_update_btn=True if_module=True no_img=True %}
+
+<script type="text/javascript" src="/static/ndf/bower_components/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/static/ndf/bower_components/ckeditor/config.js"></script>
+<script type="text/javascript" src="/static/ndf/bower_components/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+
+
+<div class="mod-detail-container small-12 medium-12 columns">
+	<div class="large-2 medium-3 small-3 columns thumbnail_style" style="height: 650px;
+    margin-top: -18px;">
+		<div class="module_card" style="width: auto;">
+		    <div class="card_banner" style="display: block; width: 100%; display: cursor: default;">
+		        {% get_relation_value node.pk 'has_banner_pic' as grel_dict %}
+				{% get_dict_from_list_of_dicts node.attribute_set as node_attrs %}
+		        {% if not grel_dict.cursor and grel_dict.grel_node and grel_dict.grel_node.if_file.thumbnail.relurl %}
+		            <img  src="{{MEDIA_URL}}{{grel_dict.grel_node.if_file.mid.relurl}}" alt="" />
+		        {% else %}
+		            <img  src="/static/ndf/images/module-card.png"/>
+		        {% endif %}
+		    </div>
+		</div>
+        <label class="inner">{% trans "Subject:" %} </label> <span class="inner">{{node_attrs.educationalsubject}}</span><br>
+        <label class="inner">{% trans "Class / Grade: " %}</label> <span class="inner">{% for each_attr in node_attrs.educationallevel %}{{each_attr|slice:"5:"}}{% if not forloop.last %}, {%endif %} {% endfor %}</span>
+	</div>
+ 
+	<div class="small-9 medium-9 large-10 columns module-partition">
+	<div class="small-12 columns">
+			 <div class="small-9 columns" style="margin-left: -14px; width: 90%">
+				<h4 class="mcard-title"> {% firstof node.atlnames node.name %}</h4>
+					<div class="small-3 columns">
+			 <div>
+				{% if is_gstaff and request.author.agency_type != 'Teacher' %}
+					<span  style="margin-top: -30px;margin-right:-900px!important" data-dropdown="course-settings-drop" aria-controls="course-settings-drop" aria-expanded="false" class="orange-button right" data-options="align:left">
+	                    {% trans "Actions" %} <i class="fa fa-chevron-down"></i>
+		            </span>
+		            <ul id="course-settings-drop" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1" >
+		                
+		                <li><a href="{% url 'edit_group_page' group_id node.pk %}">{% trans "Edit" %}</a></li>
+		                
+		                {% comment %}
+		                <li><a title="Edit Content" class="edit_res_unit">{% trans " Edit Content" %}</a></li>
+		                {% endcomment %}
+
+		                <li><a href="{% url 'all_translations' group_id node.pk %}" target="_blank">{% trans "Alternate Language" %}</a></li>
+		                
+		            </ul>
+				{% endif %}
+		       </div>
+		       </div>
+		   
+				<br/>
+				<br/>
+			  <label  style="margin-left: auto;">{% trans "Description: " %}</label> 
+				 <div class="class="row group-detail-content">{{descrp|default:'No description added yet.'|safe}}
+				</div> 
+			<u><a class="show-more hide">Show more</a></u>
+ 		</div>
+	</div>
+	{% comment %}
+
+			<!-- <div class="row group-detail-content">
+            {% include "ndf/node_ajax_content.html" with node=node expand_content=True  no_discussion=True hide_breadcrumbs=True %}
+        	 </div> -->
+	{% endcomment %}
+
+	<div class="small-12 columns">
+	        <div class="unit_under_mod_lbl">
+	          <span>
+	            <i class=""></i> Modules</span>
+	        </div>
+		</div>
+		<div class="lms_explore_back">
+			<div class="small-12 columns exp-module-container">
+				<ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-2">
+					{% for each_node in modules_node_sort_list%}
+		    			<li class="card-image-wrapper" >
+							{% include "ndf/horizontal_card.html" with node=each_node url_name="module_detail_url" first_arg=group_id second_arg=each_node.pk third_arg=title %}
+						</li>
+					{% empty %}
+						<br/><h3>{% trans "No data to display" %}</h3>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	
+</div>
+</div>
+
+<script type="text/javascript">
+    //ready function
+    $(document).ready(function() {
+        var course_about_panel = $('.group-detail-content')
+        if(course_about_panel.height() > 130 ){
+          $(".show-more").removeClass("hide")
+          $(".group-detail-content").addClass("short-mtext")
+        }
+    })
+
+    $(document).on('click',".edit_res_unit",function(){
+		$.ajax({
+		  url: "{% url 'inline_edit_grp' group_id%}",
+
+		  type: "POST",
+
+		  data: {
+		    "node_id": "{{node.pk}}",
+		    'csrfmiddlewaretoken': "{{csrf_token}}",
+		    "node_content": $(".group-detail-content .content_val").html(),
+		    "type": "edit",
+		  },
+		  dataType: "html",
+
+		  success: function(data){
+		    $(".group-detail-content").html(data);
+		    $(".edit_res_unit").text("Save Content")
+		                  .addClass("save_res_unit")
+		                  .removeClass("edit_res_unit")
+		  },
+		});//end of ajax
+    });
+
+
+
+    $(document).on('click',".save_res_unit",function(){
+        var content_val = CKEDITOR.instances['ckeditor_textarea'].getData();
+        // console.log(content_val)
+        $.ajax({
+          url: "{% url 'inline_edit_grp' group_id %}",
+
+          data: {
+            "content_val": content_val,
+            "node_id": "{{node.pk}}",
+            "custom_redirect": "group_detail_url",
+            'csrfmiddlewaretoken': "{{csrf_token}}",
+            "type": "save"
+
+          },
+
+          type: "POST",
+
+          dataType: "html",
+
+          success: function(data){
+            $(".node_details").html(data);
+            $(".save_res_unit").text("Edit Content")
+                          .addClass("edit_res_unit")
+                          .removeClass("save_res_unit")
+            location.reload()
+          },
+        });//end of ajax
+
+    });
+
+    //Show more/less Course Description
+    $(document).on('click','.show-more',function(){
+      if($(".group-detail-content").hasClass("short-mtext")){
+        $(".group-detail-content").removeClass("short-mtext")
+        $(".group-detail-content").addClass("full-mtext")
+        $(this).text("Show Less")
+      }
+      else if($(".group-detail-content").hasClass("full-mtext")){
+        $(".group-detail-content").removeClass("full-mtext")
+        $(".group-detail-content").addClass("short-mtext")
+        $(this).text("Show More")
+      }
+    })
+
+
+	// $(document).on('click', '#save_units_order_list', function(e){
+	// 	getSelValuesHiddenElement('unit_list', 'sort-unit-reveal')
+	// 	unit_list_ids = $("input[name=unit_list]").val()
+	// 	$.ajax({
+	// 		type: "POST",
+
+	// 		url: "{% url 'unit_order_list' group_id node.pk %}",
+	// 		datatype: "html",
+	// 		data:{
+	// 			'csrfmiddlewaretoken': "{{csrf_token}}",
+	// 			'unit_list': unit_list_ids,
+	// 		},
+	// 		success: function(data) {
+	// 			data = JSON.parse(data)
+	// 			if (!data['success']){
+	// 				alert("Something went wrong. Please try again later.")
+	// 			}
+	// 			$('#sort-unit-reveal').foundation('reveal', 'close');
+	// 			location.reload()
+	// 		}
+	// 	});
+
+	// })
+
+</script>
+{% endblock %}

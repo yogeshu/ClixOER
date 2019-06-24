@@ -1,0 +1,324 @@
+{% extends "base.html" %}
+<link href="../static/multislider.js">
+{% block content %}
+
+
+
+
+
+<section  data-spy="scroll"  data-offset="15" data-target="#myScrollspy" class="fixed">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 col-md-2" id="myScrollspy">
+                <div class="list-group scroll-x">
+                    <a class="list-group-item list-group-item-action active" href="#section1">Moduels</a>
+                    <a class="list-group-item list-group-item-action" href="#section2">How to Use</a>
+                    <a class="list-group-item list-group-item-action" href="#section3">Design and devolopement</a>
+                    <a class="list-group-item list-group-item-action" href="#section4"> Team Testimonials</a>                     
+                    <a class="list-group-item list-group-item-action" href="#section5">Team cards</a>
+                    <a class="list-group-item list-group-item-action" href="#section7">Feedback form </a>
+
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <div id="section1">
+                    {% include "module_cards.html" %}
+                </div>
+                <nav>
+
+               {% include "pagination.html" %}
+        
+                <div class="section14 py-2">
+                  {% include "icon_slider.html" %}
+
+<div class="container" style="margin-top:50px;">
+  <div class="row">
+       <div class="col-5">
+          <h1>Our Team</h1>
+       </div>
+       <div class="col-7">
+          <p style="max-width: 450px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ex velit, pellentesque quis condimentum at, tincidunt ac risus. Vestibulum ante ipsum primis in faucibus.</p>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-11">
+      <div class="carousel-team-card" data-flickity='{ "groupCells": 3, "wrapAround": true }'>
+        <div class="carousel-team-card-cell">
+            <div class="col-6 col-md-4  col-sm-10 soul-card" >
+                <div class=" card our-team">
+                    <div class="pic">
+                        <img src="http://picsum.photos/id/1/100/100">
+                    </div>
+                    <h3 class="title">Williamson</h3>edit
+                    <span class="post">Teacher </span>
+                  <p class="bio"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis architecto, illo ducimus explicabo quae optio repudiandae dignissimos fuga autem et repellat repellendus veritatis, incidunt eius porro! Aliquam beatae ab praesentium. </p>
+                    <ul class="social">
+                        <li><a href="#" class="fab fa-facebook"></a></li>
+                        <li><a href="#" class="fab fa-twitter"></a></li>
+                        <li><a href="#" class="fab fa-google-plus"></a></li>
+                        <li><a href="#" class="fab fa-linkedin"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-team-card-cell">
+            <div class="col-6 col-md-4  col-sm-10 ">
+                <div class=" card our-team">
+                    <div class="pic">
+                        <img src="http://picsum.photos/id/1/100/100">
+                    </div>
+                    <h3 class="title">Williamson</h3>edit
+                    <span class="post">Teacher </span>
+                  <p class="bio"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis architecto, illo ducimus explicabo quae optio repudiandae dignissimos fuga autem et repellat repellendus veritatis, incidunt eius porro! Aliquam beatae ab praesentium. </p>
+                    <ul class="social">
+                        <li><a href="#" class="fab fa-facebook"></a></li>
+                        <li><a href="#" class="fab fa-twitter"></a></li>
+                        <li><a href="#" class="fab fa-google-plus"></a></li>
+                        <li><a href="#" class="fab fa-linkedin"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-team-card-cell">
+            <div class="col-6 col-md-4  col-sm-10 ">
+                <div class=" card our-team">
+                    <div class="pic">
+                        <img src="http://picsum.photos/id/1/100/100">
+                    </div>
+                    <h3 class="title">Williamson</h3>edit
+                    <span class="post">Teacher </span>
+                  <p class="bio"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis architecto, illo ducimus explicabo quae optio repudiandae dignissimos fuga autem et repellat repellendus veritatis, incidunt eius porro! Aliquam beatae ab praesentium. </p>
+                    <ul class="social">
+                        <li><a href="#" class="fab fa-facebook"></a></li>
+                        <li><a href="#" class="fab fa-twitter"></a></li>
+                        <li><a href="#" class="fab fa-google-plus"></a></li>
+                        <li><a href="#" class="fab fa-linkedin"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-team-card-cell">
+            <div class="col-6 col-md-4  col-sm-10 ">
+                <div class=" card our-team">
+                    <div class="pic">
+                        <img src="http://picsum.photos/id/1/100/100">
+                    </div>
+                    <h3 class="title">Williamson</h3>edit
+                    <span class="post">Teacher </span>
+                  <p class="bio"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis architecto, illo ducimus explicabo quae optio repudiandae dignissimos fuga autem et repellat repellendus veritatis, incidunt eius porro! Aliquam beatae ab praesentium. </p>
+                    <ul class="social">
+                        <li><a href="#" class="fab fa-facebook"></a></li>
+                        <li><a href="#" class="fab fa-twitter"></a></li>
+                        <li><a href="#" class="fab fa-google-plus"></a></li>
+                        <li><a href="#" class="fab fa-linkedin"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-team-card-cell">
+            <div class="col-6 col-md-4  col-sm-10 ">
+                <div class=" card our-team">
+                    <div class="pic">
+                        <img src="http://picsum.photos/id/1/100/100">
+                    </div>
+                    <h3 class="title">Williamson</h3>edit
+                    <span class="post">Teacher </span>
+                  <p class="bio"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis architecto, illo ducimus explicabo quae optio repudiandae dignissimos fuga autem et repellat repellendus veritatis, incidunt eius porro! Aliquam beatae ab praesentium. </p>
+                    <ul class="social">
+                        <li><a href="#" class="fab fa-facebook"></a></li>
+                        <li><a href="#" class="fab fa-twitter"></a></li>
+                        <li><a href="#" class="fab fa-google-plus"></a></li>
+                        <li><a href="#" class="fab fa-linkedin"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-team-card-cell">
+            <div class="col-6 col-md-4 col-sm-10 ">
+                <div class=" card our-team">
+                    <div class="pic">
+                        <img src="http://picsum.photos/id/1/100/100">
+                    </div>
+                    <h3 class="title">Williamson</h3>edit
+                    <span class="post">Teacher </span>
+                  <p class="bio"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis architecto, illo ducimus explicabo quae optio repudiandae dignissimos fuga autem et repellat repellendus veritatis, incidunt eius porro! Aliquam beatae ab praesentium. </p>
+                    <ul class="social">
+                        <li><a href="#" class="fab fa-facebook"></a></li>
+                        <li><a href="#" class="fab fa-twitter"></a></li>
+                        <li><a href="#" class="fab fa-google-plus"></a></li>
+                        <li><a href="#" class="fab fa-linkedin"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                </div>
+               
+
+
+
+         
+                <div id="section4">
+
+                   
+                    <!------ Include the above in your HEAD tag ---------->
+                    </div>
+                    
+               
+        
+                <div id="section3">
+                   <section class="container p-t-3">
+      <div class="row">
+          <div class="col-lg-12 py-5" >
+              <h1 class="text-center mt-4 ">Team Profile Views (math)</h1>
+          </div>
+      </div>
+
+
+  </section>
+  <div class="row">
+      <div class="col-11">
+        <div class="carousel-team-card" data-flickity='{ "groupCells": 3, "wrapAround": true }'>
+          <div class="carousel-team-card-cell">
+              <div class="card profile-card-3">
+                  <div class="background-block">
+                      <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="profile-sample1" class="background"/>
+                  </div>
+                  <div class="profile-thumb-block">
+                      <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile-image" class="profile"/>
+                  </div>
+                  <div class="card-content">
+                    <p> lorem lorem lorem lorem code </p>
+                      <h2>Justin Mccoy<small>Designer</small></h3>
+                    <button class="btn btn-primary"> hello </button>
+                      </div>
+                  </div>
+          </div>
+          <div class="carousel-team-card-cell">
+              <div class="card profile-card-3">
+                  <div class="background-block">
+                      <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="profile-sample1" class="background"/>
+                  </div>
+                  <div class="profile-thumb-block">
+                      <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile-image" class="profile"/>
+                  </div>
+                  <div class="card-content">
+                    <p> lorem lorem lorem lorem code </p>
+                      <h2>Justin Mccoy<small>Designer</small></h3>
+                    <button class="btn btn-primary"> hello </button>
+                      </div>
+                  </div>
+          </div>
+          <div class="carousel-team-card-cell">
+              <div class="card profile-card-3">
+                  <div class="background-block">
+                      <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="profile-sample1" class="background"/>
+                  </div>
+                  <div class="profile-thumb-block">
+                      <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile-image" class="profile"/>
+                  </div>
+                  <div class="card-content">
+                    <p> lorem lorem lorem lorem code </p>
+                      <h2>Justin Mccoy<small>Designer</small></h3>
+                    <button class="btn btn-primary"> hello </button>
+                      </div>
+                  </div>
+          </div>
+          <div class="carousel-team-card-cell">
+              <div class="card profile-card-3">
+                  <div class="background-block">
+                      <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="profile-sample1" class="background"/>
+                  </div>
+                  <div class="profile-thumb-block">
+                      <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile-image" class="profile"/>
+                  </div>
+                  <div class="card-content">
+                    <p> lorem lorem lorem lorem code </p>
+                      <h2>Justin Mccoy<small>Designer</small></h3>
+                    <button class="btn btn-primary"> hello </button>
+                      </div>
+                  </div>
+          </div>
+          <div class="carousel-team-card-cell">
+              <div class="card profile-card-3">
+                  <div class="background-block">
+                      <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="profile-sample1" class="background"/>
+                  </div>
+                  <div class="profile-thumb-block">
+                      <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile-image" class="profile"/>
+                  </div>
+                  <div class="card-content">
+                    <p> lorem lorem lorem lorem code </p>
+                      <h2>Justin Mccoy<small>Designer</small></h3>
+                    <button class="btn btn-primary"> hello </button>
+                      </div>
+                  </div>
+          </div>
+          <div class="carousel-team-card-cell">
+              <div class="card profile-card-3">
+                  <div class="background-block">
+                      <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="profile-sample1" class="background"/>
+                  </div>
+                  <div class="profile-thumb-block">
+                      <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="profile-image" class="profile"/>
+                  </div>
+                  <div class="card-content">
+                    <p> lorem lorem lorem lorem code </p>
+                      <h2>Justin Mccoy<small>Designer</small></h3>
+                    <button class="btn btn-primary"> hello </button>
+                      </div>
+                  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+         
+ 
+
+
+{% include "oer_testimonials.html" %}
+
+
+  </section>
+
+
+    
+
+
+
+
+
+   
+
+
+
+<script>
+
+$('#basicSlider').multislider({
+        continuous: true,
+        duration: 2000
+      });
+      $('#mixedSlider').multislider({
+        duration: 750,
+        interval: 3000
+      });
+
+
+
+
+</script>
+</script>
+<link rel="stylesheet" href="https://npmcdn.com/flickity@2/dist/flickity.css">
+<script src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
+
+
+</body>
+</html>
+        
+{% endblock %}
