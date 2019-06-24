@@ -1,0 +1,734 @@
+{% load i18n %}
+{% block head %}
+  <script src="/static/ndf/bower_components/handlebars/handlebars.js"></script>
+  <script src="/static/ndf/js/gstudio-functions.js"></script>
+  <script src="/static/ndf/js/buddy-icons.js"></script>
+{% endblock head %}
+
+{% block body_content %}
+  <!-- RHS Buddy Panel -->
+  <div class="buddy_panel" id="sample_buddy_panel">
+        <div class="add_buddy_icon">
+            <a href="#" data-reveal-id="add_buddy_modal" title="Add Buddy">
+
+              <!-- Add-Buddy-Button -->
+              <svg viewBox="0 0 35 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <defs>
+                      <rect id="path-1" x="0" y="0" width="35" height="35" rx="5"></rect>
+                      <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="35" height="35" fill="white">
+                          <use xlink:href="#path-1"></use>
+                      </mask>
+                  </defs>
+                  <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="Add-Buddy-Button">
+                          <g>
+                              <use id="Rectangle-5" stroke="#ffc14e" mask="url(#mask-2)" stroke-width="2" xlink:href="#path-1"></use>
+                              <path d="M16.5775,23.0685 C16.4624994,22.9534994 16.405,22.8193341 16.405,22.666 L16.405,18.503 L12.357,18.503 C12.2036659,18.503 12.0695006,18.4455006 11.9545,18.3305 C11.8394994,18.2154994 11.782,18.0813341 11.782,17.928 L11.782,16.157 C11.782,15.9883325 11.8356661,15.8465006 11.943,15.7315 C12.0503339,15.6164994 12.1883325,15.559 12.357,15.559 L16.405,15.559 L16.405,11.534 C16.405,11.3653325 16.4624994,11.2273339 16.5775,11.12 C16.6925006,11.0126661 16.8266659,10.959 16.98,10.959 L18.958,10.959 C19.1266675,10.959 19.2684994,11.0126661 19.3835,11.12 C19.4985006,11.2273339 19.556,11.3653325 19.556,11.534 L19.556,15.559 L23.558,15.559 C23.7266675,15.559 23.8684994,15.6164994 23.9835,15.7315 C24.0985006,15.8465006 24.156,15.9883325 24.156,16.157 L24.156,17.928 C24.156,18.0966675 24.0985006,18.2346661 23.9835,18.342 C23.8684994,18.4493339 23.7266675,18.503 23.558,18.503 L19.556,18.503 L19.556,22.666 C19.556,22.8346675 19.4985006,22.9726661 19.3835,23.08 C19.2684994,23.1873339 19.1266675,23.241 18.958,23.241 L16.98,23.241 C16.8266659,23.241 16.6925006,23.1835006 16.5775,23.0685 Z" id="+" fill="#ffc14e"></path>
+                          </g>
+                      </g>
+                  </g>
+              </svg>
+              <!-- END of Add-Buddy-Button -->
+
+            </a>
+        </div>
+    </div>
+    <!-- END of RHS Buddy Panel -->
+
+
+    <!--Modal for Adding Buddy.-->
+    <div class="reveal-modal add_buddy_modal" id="add_buddy_modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <div class="modal_header">
+            <div class="modal_title">{% trans "Add a buddy" %} </div>
+            <div class="modal_meta"> {% trans "Multiple users can be logged into the platform. Just specify your color and animal and click add to join the session." %}</div>
+                <button type="button" class="text_button close_add_buddy_modal" style="margin-left:818px;">{% trans "Cancel" %}</button>
+                <button type="button" class="blue_round_button add_buddy_submit">{% trans "Add" %}</button>
+            <div class="sample_buddy buddy_icon">
+                <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" viewBox="0 0 100 100" version="1.1">
+                    <g transform="translate(-381.42857,-570.93361)">
+                    </g>
+                </svg>
+            </div>
+
+        </div>
+        <div class="modal_body">
+            <div class="add_buddy_step_1">
+                <div class="step_title">
+                    <span class="step_number">{% trans "Step 1" %} </span>
+                    <span>{% trans "Select your color" %}</span>
+                </div>
+                <div class="step_body">
+
+                </div>
+            </div>
+            <div class="add_buddy_step_2">
+                <div class="step_title">
+                    <span class="step_number">{% trans "Step 2" %}</span>
+                    <span >{% trans "Select your animal/flower/fruit" %}</span>
+                </div>
+                <div class="step_body">
+                </div>
+            </div>
+        </div>
+        <div class="modal_footer">
+            <div class="left">
+                <a href="#" type="button" class="removeBuddy">
+                    <i class="fa fa-trash-o"></i>
+                </a>
+            </div>
+            <div class="right">
+                <button type="button" class="text_button close_add_buddy_modal">{% trans "Cancel" %}</button>
+                <button type="button" class="blue_round_button add_buddy_submit">{% trans "Add" %}</button>
+            </div>
+        </div>
+    </div>
+    <!-- END of Modal for Adding Buddy.-->
+
+    <div class="reveal-modal delete_buddy_modal small" id="delete_buddy_modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <div>{% trans "Are you sure you want to delete the buddy?" %}</div>
+        <div class="right">
+            <button type="button" class="text_button close_delete_buddy_modal">{% trans "Cancel" %}</button>
+            <button type="button" class="blue_round_button delete_buddy_submit">{% trans "Delete" %}</button>
+        </div>
+    </div>
+
+
+    <div class="reveal-modal progrees_report_buddy_modal large" id="progrees_report_buddy_modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <div id="progress_report_content">
+          <h2 class="text-center">{% trans "Progress Report" %}</h2>
+          <p>
+            {% trans "Please go to any unit to see your progress report." %} 
+          </p>
+          <button type="button" class="right blue_round_button close_progrees_report_buddy_modal">{% trans "OK" %}</button>
+        </div>
+    </div>
+    <!-- Handle bar templates -->
+    {% verbatim %}
+      
+    <script id="online_buddy_template" type="text/x-handlebars-template">
+        <!-- 
+        // {
+        //   id: buddy.id,
+        //   isActive: buddy.isActive,
+        //   isEditable: buddy.isEditable,
+        //   isDeletable: buddy.isDeletable,
+        //   animalObj: animalsKeyIdMap[buddy.animalId],
+        //   colorObj: colorsKeyIdMap[buddy.colorId]
+        // }
+        //
+        -->
+
+        {{#each onlineBuddies}}
+            {{#if this.isActive}}
+
+            <div class="buddy_icon {{ifInline this.isDeletable 'buddy_deleteable' ''}}" data={{this.id}} title={{this.uname}} data-uname={{this.uname}}>
+            {{else}}
+            <div class="buddy_icon buddy_active {{ifInline this.isDeletable 'buddy_deleteable' ''}}" title={{this.uname}} data={{this.id}} data-uname={{this.uname}}>
+            {{/if}}
+                {{#if this.isDeletable}}
+                    <i class="fa fa-trash-o buddy_delete" data-reveal-id="delete_buddy_modal"></i>
+                {{/if}}
+                {{svgWithColor this.animalObj.svg this.colorObj.code}}
+            </div>
+        {{/each}}
+    </script>
+    <script id="buddy_animal_selector" type="text/x-handlebars-template">
+        {{#each animals}}
+            <div class="buddy_animal" data="{{this.id}}">
+                {{svg this.svg}}
+                <div class="buddy_animal_name">{{this.name}}</div>
+            </div>
+        {{/each}}
+    </script>
+    <script id="buddy_color_selector" type="text/x-handlebars-template">
+        {{#each colors}}
+        <div class="buddy_color_option" data="{{this.id}}">
+            <div class="color_sample" style="background-color: {{this.code}}"></div>
+            <div class="color_name">{{this.color}}</div>
+        </div>
+        {{/each}}
+    </script>
+    {% endverbatim %}
+    <script type="text/javascript">
+        $(function(){
+            $(document).foundation();
+
+            // Handle bar enhancements
+            Handlebars.registerHelper('svg', function(svg) {
+                return new Handlebars.SafeString(svg);
+            });
+
+            Handlebars.registerHelper('ifInline', function(condition, trueCase, falseCase) {
+                let returnVal = condition ? trueCase : falseCase;
+                return new Handlebars.SafeString(returnVal);
+            });
+
+            Handlebars.registerHelper('svgWithColor', function(svg, color) {
+                svg = $(svg).css('fill', color);
+                return new Handlebars.SafeString(svg[0].outerHTML);
+            });
+
+            /**
+             * Array of the online buddies
+             * AnimalId: Integer
+             * ColorId: String
+             * @type {Array}
+             */
+            // var onlineBuddies = [
+            //     {
+            //       id: 1,
+            //       animalId: 1,
+            //       colorId: 1,
+            //       isActive: true,
+            //       isEditable: false,
+            //       isDeletable: true,
+            //     },
+            //     {
+            //       id: 2,
+            //       animalId: 1,
+            //       colorId: 6,
+            //       isActive: false,
+            //       isEditable: false, //Implementation removed.
+            //       isDeletable: true,
+            //     }
+            // ];
+
+            
+
+
+
+            var colorsKeyIdMap = {};
+            $.each(colorsList, function(index, colorObj) {
+                colorsKeyIdMap[colorObj.id] = colorObj;
+            });
+
+            var colorsKeyNameMap = {};
+            $.each(colorsList, function(index, colorObj) {
+                colorsKeyNameMap[colorObj.color] = colorObj;
+            });
+
+            var animalsKeyIdMap = {};
+            $.each(animalList, function(index, animalObj) {
+                animalsKeyIdMap[animalObj.id] = animalObj;
+            });
+
+            var animalsKeyNameMap = {};
+            $.each(animalList, function(index, animalObj) {
+                animalsKeyNameMap[animalObj.name] = animalObj;
+            });
+
+            onlineBuddies = []
+
+            function addInOnlineBuddies(authId, animalName, colorName) {
+              var animalObj = animalsKeyNameMap[animalName];
+              var colorObj = colorsKeyNameMap[colorName]
+
+              if (animalName && colorName){
+                onlineBuddies.push({
+                                    // id: animalObj.id,
+                                    id: authId,
+                                    authId: authId,
+                                    animalId: animalObj.id,
+                                    animalName: animalName,
+                                    colorId: colorObj.id,
+                                    colorName: colorName,
+                                    isActive: false,
+                                    isEditable: false, //Implementation removed.
+                                    isDeletable: true,
+                                  })
+              }
+              updateBuddyObjectMap(onlineBuddies)
+            }
+
+              {% if request.session.buddies_authid_name_dict %}
+                buddies_authid_name_dict_js = {{request.session.buddies_authid_name_dict|safe}};
+              {% else %}
+                buddies_authid_name_dict_js = {};
+              {% endif %}
+
+              {% if request.session.buddies_username_id_dict %}
+                buddies_username_id_dict_js = {{request.session.buddies_username_id_dict|safe}};
+              {% else %}
+                buddies_username_id_dict_js = {};
+              {% endif %}
+
+            // console.log(buddies_authid_name_dict_js)
+            for (buddyAuthId in buddies_authid_name_dict_js){
+              var buddyName = buddies_authid_name_dict_js[buddyAuthId];
+              var buddyNameSplit = buddyName.split('-');
+              var buddyColorName = buddyNameSplit[0];
+              var buddyAnimalName = buddyNameSplit[1];
+              // var buddyInstCodeName = buddyNameSplit[2];
+              // var animalSVGObj = animalsKeyNameMap[buddyAnimalName];
+              // var colorObj = colorsKeyNameMap[buddyColorName]
+
+              addInOnlineBuddies(buddyAuthId, buddyAnimalName, buddyColorName)
+              // if (buddyAnimalName && buddyColorName){
+
+              //   onlineBuddies.push({
+              //                       // id: animalSVGObj.id,
+              //                       id: buddyAuthId,
+              //                       authId: buddyAuthId,
+              //                       animalId: animalSVGObj.id,
+              //                       animalName: buddyAnimalName,
+              //                       colorId: colorObj.id,
+              //                       colorName: buddyColorName,
+              //                       isActive: false,
+              //                       isEditable: false, //Implementation removed.
+              //                       isDeletable: true,
+              //                     })
+              // }
+            }
+            // console.log(onlineBuddies)
+            onlineBuddiesMap = {};
+            /**
+             * Creates a Object with id as buddy id and object as value.
+             * This is useful for quick access of the buddy info by id.
+             */
+            function updateBuddyObjectMap(buddyList) {
+                onlineBuddiesMap = {};
+                $.each(buddyList, function(index, buddyObj) {
+                    onlineBuddiesMap[buddyObj.id] = buddyObj;
+                });
+            }
+
+            /**
+             * Function to update the buddy panel with
+             * udpate list of joined buddies
+             */
+            function updateBuddyPanel(activeBuddiesList) {
+                // Creates a list of objects with id replaced by equivalent objects.
+                var activeBuddyMap = activeBuddiesList.map(function(buddy){
+                    return {
+                      id: buddy.id,
+                      isActive: buddy.isActive,
+                      isEditable: buddy.isEditable,
+                      isDeletable: buddy.isDeletable,
+                      animalObj: animalsKeyNameMap[buddy.animalName],
+                      colorObj: colorsKeyNameMap[buddy.colorName],
+                      uname: buddy.colorName + "-" + buddy.animalName
+                    }
+                });
+
+                var activeBuddySource   = $("#online_buddy_template").html();
+                var activeBuddyTemplate = Handlebars.compile(activeBuddySource);
+                var context = {onlineBuddies: activeBuddyMap};
+                $('.buddy_panel .buddy_icon').remove();
+                $('.buddy_panel').prepend(activeBuddyTemplate(context));
+                updateBuddyObjectMap(activeBuddiesList)
+            }
+
+            updateBuddyPanel(onlineBuddies);
+            //console.log(activeBuddyTemplate(context));
+
+            // Populating the colors from the list of colors
+            var colorTemplateSource   = $("#buddy_color_selector").html();
+            var colorTemplate = Handlebars.compile(colorTemplateSource);
+            var context = {colors: colorsList};
+            $('.add_buddy_step_1 .step_body').append(colorTemplate(context));
+
+            // Populating the animals from the list of animals
+            var animalTemplateSource   = $("#buddy_animal_selector").html();
+            var animalTemplate = Handlebars.compile(animalTemplateSource);
+            var context = {animals: animalList};
+            var animalHtml = animalTemplate(context);
+            $('.add_buddy_step_2 .step_body').append(animalHtml);
+
+            // Modal Actions
+            $('.add_buddy_modal').on('click', '.close_add_buddy_modal', function() {
+                $('#add_buddy_modal').foundation('reveal', 'close');
+            });
+
+            $('.delete_buddy_modal').on('click', '.close_delete_buddy_modal', function() {
+                $('#delete_buddy_modal').foundation('reveal', 'close');
+            });
+
+            $('.progrees_report_buddy_modal').on('click', '.close_progrees_report_buddy_modal', function() {
+                $('#progrees_report_buddy_modal').foundation('reveal', 'close');
+            });
+
+            var currentSelectedAnimal = {};
+            var currentSelectedColor = {};
+            var currentSelectedBuddy = {};
+            var buddyClickedForDeletion = {};
+            var isEditMode = false;
+
+            /**
+             * Utility function to udpate variables and modal states on selection of color
+             */
+            function selectColor(id) {
+                $('.add_buddy_step_1 .selected').removeClass('selected');
+                $('.sample_buddy svg').css('background-color', '#fff');
+                if (id) {
+                    currentSelectedBuddy.colorId = id;
+                    currentSelectedColor = $.grep(colorsList, function(colorObj){return colorObj.id === id})[0];
+                    if (currentSelectedAnimal.id) {
+                        $('.sample_buddy path').css('fill', currentSelectedColor.code);
+                    } else {
+                        $('.sample_buddy svg').css('background-color', currentSelectedColor.code);
+                    }
+                    $('.add_buddy_step_1').find('[data=' + id + ']').addClass('selected');
+                }
+            }
+
+            /**
+             * Utility function to udpate variables and modal states on selection of animal
+             */
+            function selectAnimal(id) {
+                $('.add_buddy_step_2 .selected').removeClass('selected');
+                if (id) {
+                    currentSelectedBuddy.animalId = id;
+                    currentSelectedAnimal = $.grep(animalList, function(animalObj){return animalObj.id === id})[0];
+                    $('.sample_buddy').empty();
+                    $('.sample_buddy').html(currentSelectedAnimal.svg);
+                    if (currentSelectedColor.id) {
+                        $('.sample_buddy path').css('fill', currentSelectedColor.code);
+                    }
+                    $('.add_buddy_step_2').find('[data=' + id + ']').addClass('selected');
+                }
+                // console.log(currentSelectedBuddy)
+                // console.log(getDuplicateBuddies(currentSelectedBuddy))
+            }
+
+            function getDuplicateBuddies(selectedBuddy) {
+                let duplicateBuddies = onlineBuddies.filter(function(buddy){
+                    return (buddy.animalId === selectedBuddy.animalId && buddy.colorId === selectedBuddy.colorId);
+                });
+                return duplicateBuddies;
+            }
+
+            function resetBuddyModal() {
+                isEditMode = false;
+                currentSelectedBuddy = {};
+                currentSelectedAnimal = {};
+                currentSelectedColor = {};
+                selectAnimal();
+                selectColor();
+                $('.sample_buddy svg').empty();
+                $('.add_buddy_submit').html('Add');
+            }
+
+            function removeDuplicateSelectedBuddy (currentSelectedBuddy) {
+              if (getDuplicateBuddies(currentSelectedBuddy).length) {
+                  alert('You can not select already added buddy.\n\nYou may choose another :)');
+                  resetBuddyModal()
+                };
+            }
+            /**
+             * When a user selects a color we update the current* variables.
+             * We also update the sample logo on top right corner.
+             */
+            $('.add_buddy_step_1').on('click', '.buddy_color_option', function() {
+                selectColor(parseInt($(this).attr('data')));
+                removeDuplicateSelectedBuddy (currentSelectedBuddy)
+            });
+
+            /**
+             * When a user selects a animal we update the current* variables.
+             * We also update the sample logo on top right corner.
+             */
+            $('.add_buddy_step_2').on('click', '.buddy_animal', function() {
+                selectAnimal(parseInt($(this).attr('data')));
+                removeDuplicateSelectedBuddy (currentSelectedBuddy)
+            });
+
+            // Create the buddy logo
+            $('.add_buddy_icon').on('click', function() {
+                // at modal opening time
+                resetBuddyModal()
+            });
+
+            /**
+             * Function to handle on click of the buddy
+             */
+            $('.buddy_panel').on('click', '.buddy_icon', function(event) {
+                currentSelectedBuddy = onlineBuddiesMap[parseInt($(this).attr('data'))];
+                // Do the required ajax call and update the onlineBuddiesMap
+                // to set the selected buddy as active
+                if(!event.target.className.length){
+                  var clickedBuddyName = this.getAttribute('title');
+                  clickedBuddyUsername = clickedBuddyName + '-' + getCookieValue('institute_id');
+                  clickedBuddyUserId = buddies_username_id_dict_js[clickedBuddyUsername]
+                  console.log('Clicked on the buddy icon ' + clickedBuddyUsername);
+                  $('#progrees_report_buddy_modal').foundation('reveal', 'open');
+                }
+                console.log('Clicked on the buddy icon' + currentSelectedBuddy);
+            });
+            /**
+             *  Editing the Buddy logo
+             *  On Clicking on any existing buddy modal opens up in the edit mode.
+             *  You can invoke your custom action here to disable the edit of a buddy
+             *  if (check if buddy editable) {
+             *      //true
+             *  } else {
+             *      return false;
+             *  }
+             */
+            $('.buddy_panel').on('click', '.buddy_icon .buddy_edit', function(e) {
+                e.stopPropagation();
+                isEditMode = true;
+                currentSelectedBuddy = onlineBuddiesMap[parseInt($(this).closest('.buddy_icon').attr('data'))];
+                selectAnimal(currentSelectedBuddy.animalId);
+                selectColor(currentSelectedBuddy.colorId);
+                $('.add_buddy_submit').html('Update');
+                $('#add_buddy_modal').foundation('reveal', 'open');
+            });
+
+            /**
+             * Handles the buddy delete event.
+             */
+            $('.buddy_panel').on('click', '.buddy_icon .buddy_delete', function(e) {
+                //e.stopPropagation();
+                buddyClickedForDeletion = onlineBuddiesMap[$(this).closest('.buddy_icon').attr('data')];
+            })
+
+            var buddyIdCount = 3;
+            /**
+             * On submitting the buddy form you can take actions based on the mode.
+             */
+            
+
+            function saveBuddies (selectedBuddiesArr) {
+                                      
+              $.ajax({
+                url: "{% url 'update_buddies' group_id|default:'home' %}",
+                type: 'POST',
+                data: {
+                  selected_buddies_list: JSON.stringify(selectedBuddiesArr),
+                  csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (data) {
+                  // console.log(data);
+                  var resultData = JSON.parse(data)
+                  var buddyOidNameObj = resultData['buddies'];
+                  var alreadyActiveIdNameObj = resultData['already_active'];
+
+                  displayMsg = buddyUserNames = alreadyActiveUserNames = '';
+
+                  for(var eachUserName in buddyOidNameObj){
+                    // console.log(buddyOidNameObj[eachUserName]);
+                    buddyUserNames += '\n- ' + buddyOidNameObj[eachUserName]
+                  }
+
+                  for(var eachUserName in alreadyActiveIdNameObj){
+                    // console.log(alreadyActiveIdNameObj[eachUserName]);
+                    alreadyActiveUserNames += '\n- ' + alreadyActiveIdNameObj[eachUserName]
+                  }
+                  // console.log(alreadyActiveUserNames);
+
+                  if (alreadyActiveUserNames)
+                  {
+                    displayMsg += 'Following can not be your buddies (because they are already active on site, either as a buddy or as a logged in user):\n'
+                    displayMsg += alreadyActiveUserNames;
+                  }
+
+                  if (buddyUserNames)
+                  {
+                    displayMsg += '\n\nCurrently, following are your buddies:\n'
+                    displayMsg += buddyUserNames;
+                  }
+                  else
+                  {
+                    displayMsg += '\n\nCurrently, you have NO buddies:\n'
+                  };
+
+                  //alert(displayMsg);
+                  location.reload();
+                  // addInOnlineBuddies(authId, buddyAnimalName, buddyColorName)
+                  updateBuddyPanel(onlineBuddies);
+                }
+              });
+            }
+
+
+            function getAuthIdSaveBuddy(colorName, animalName){
+              var buddyInstCodeName = "{{site.INSTITUTE_ID}}";
+              var buddyName = colorName.trim() + "-" + animalName.trim() + "-" + buddyInstCodeName;
+              var auth_id = 0;
+              $.ajax({
+                url: "{% url 'get_buddy_auth_id_from_name' group_id|default:'home' %}",
+                type: 'GET',
+                data: {selected_buddy_username: buddyName},
+                success: function (data) {
+                  var dataObj = JSON.parse(data);
+                  if (dataObj['success']){
+                    addInOnlineBuddies(dataObj['auth_id'], animalName, colorName)
+                    saveBuddies(Object.keys(onlineBuddiesMap));
+                  }
+                  else{
+                    alert('This buddy seems to be online with somebody.');
+                  }
+                }
+              })
+            }
+
+
+
+            $('.add_buddy_submit').on('click', function(e) {
+                e.preventDefault();
+                if (!currentSelectedColor.id) {
+                    alert('Please select a valid color.');
+                    return;
+                }
+                if (!currentSelectedAnimal.id) {
+                    alert('Please select a valid animal.');
+                    return;
+                }
+                if (isEditMode) {
+                    //Checking for duplicate buddy
+                    var duplicateBuddy = getDuplicateBuddies(currentSelectedBuddy);
+                    if (duplicateBuddy.length) {
+                      if (duplicateBuddy.length === 1 && duplicateBuddy[0].id === currentSelectedBuddy.id) {
+                          //Case where the buddy was not changed.
+                          return false;
+                      } else if (duplicateBuddy.length > 1) {
+                        return false;
+                      }
+                    }
+                    /**
+                     * Send a api request to update the selected buddy.
+                     * Selected buddy's udpated data is in currentSelectedBuddy
+                     *
+                     * $.put('/api/to/update', function(data, error) {
+                     *    if (!error) {
+                     *        // Continue updating the onlineBuddies List as shown below
+                     *    } else {
+                     *        alert(error);
+                     *        console.log('Could not update the buddy logo.');
+                     *    }
+                     * })
+                     */
+
+                    onlineBuddies = onlineBuddies.map(function(buddy) {
+                        if (buddy.id === currentSelectedBuddy.id) {
+                            return currentSelectedBuddy;
+                        } else {
+                            return buddy;
+                        }
+                    });
+                } else {
+                    /**
+                     * Send a api request to add a new buddy
+                     * New Buddy information is in the currentSelectedBuddy
+                     * $.post('/api/to/add', function(data, error) {
+                     *    if (!error) {
+                     *        // Continue updating the onlineBuddies List as shown below
+                     *    } else {
+                     *        alert(error);
+                     *        console.log('Could not add a new buddy.');
+                     *    }
+                     * })
+                     *
+                     */
+                    if (getDuplicateBuddies(currentSelectedBuddy).length === 0) {
+
+                        var buddyColorName = colorsKeyIdMap[currentSelectedColor.id].color;
+                        var buddyAnimalName = animalsKeyIdMap[currentSelectedAnimal.id].name;
+                        getAuthIdSaveBuddy(buddyColorName, buddyAnimalName)
+
+                        $('#add_buddy_modal').foundation('reveal', 'close');
+                        // You can do a submit or ajax call from here
+                        // console.log(onlineBuddies)
+                    } else {
+                        alert('Buddy already exist with this animal and color.');
+                    }
+                }
+            });
+
+            // Deletes the buddy from online buddies list
+            function deleteBuddy(buddyToDelete) {
+                onlineBuddies = onlineBuddies.filter(function(buddy){
+                  return buddy.id !== buddyToDelete.id;
+                });
+                updateBuddyPanel(onlineBuddies);
+                saveBuddies(Object.keys(onlineBuddiesMap));
+            }
+
+            /*
+            * Handles the event of delete from the delete icon on buddy icon.
+             */
+            $('.delete_buddy_submit').on('click', function() {
+                /**
+                 * Do the ajax call to delete the user selectedUser
+                 * and update the onlineBuddy list
+                 */
+                deleteBuddy(buddyClickedForDeletion);
+                $('#delete_buddy_modal').foundation('reveal', 'close');
+
+            });
+
+            /*
+            * Handles the event of delete from the delete button in edit buddy modal footer.
+             */
+            $('.add_buddy_modal .removeBuddy').on('click', function(){
+                /**
+                 * Place to remove the buddy and update the onlineBuddies list.
+                 * $.delete('/api/to/remove/buddy', function(data, error){
+                 *    if (!error) {
+                 *        // Continue updating the onlineBuddies List as shown below
+                 *    } else {
+                 *        alert(error);
+                 *    }
+                 * })
+                 */
+                deleteBuddy(currentSelectedBuddy);
+                $('#add_buddy_modal').foundation('reveal', 'close');
+            })
+
+            function show_my_performance(){
+              $('#progress_report_content').addClass('hide');
+              $.blockUI();
+              $.ajax({
+                url: "/" + '{{group_id}}' + "/course/course_analytics/" + clickedBuddyUserId,
+                type: "GET",
+                data: {"data_unit_id": "{{group_id}}"},
+                dataType: "html",
+                global: false,
+                success: function(data){
+                  $.unblockUI();
+                  $('#progress_report_content').html('<H3>Loading...</H3>');
+                  $('#progress_report_content').removeClass('hide');
+                  $('#progress_report_content').html(data);
+                },
+              });
+            }
+
+            /**
+             * The delete button should be shown or hidden on depending upon the mode.
+             */
+            $(document).on('open.fndtn.reveal', '[data-reveal]', function () {
+                var modal = $(this);
+                if ($(this).attr('id') === 'add_buddy_modal') {
+                    if (isEditMode) {
+                        $('.add_buddy_modal .removeBuddy').show();
+                    } else {
+                        $('.add_buddy_modal .removeBuddy').hide();
+                    }
+                }
+                else if (($(this).attr('id') === 'progrees_report_buddy_modal') && isInGroup()) {
+                    show_my_performance();
+                }
+            });
+
+            var triggerAction = function(event) {
+                if (event.pageX > ($(document).width() - 20) && !$('.buddy_panel').hasClass('visible')) {
+                    $('.buddy_panel').animate({"right":"0px"}, "slow").addClass('visible');
+                } else if (event.pageX < ($(document).width() - 80) && $('.buddy_panel').hasClass('visible')) {
+                    $('.buddy_panel').animate({"right":"-70px"}, "slow").removeClass('visible');
+                }
+            };
+
+            /**
+             * If you want the buddy panel to slide in on mouse move the trigger
+             * function makeBuddyPanelVisibleOnMouse as shown below
+             */
+            function makeBuddyPanelVisibleOnMouse() {
+                $('.buddy_panel').animate({"right":"-70px"}, "slow").removeClass('visible');
+                $(document).mousemove(triggerAction);
+            }
+
+            //makeBuddyPanelVisibleOnMouse();
+        });
+    </script>
+{% endblock body_content %}
+

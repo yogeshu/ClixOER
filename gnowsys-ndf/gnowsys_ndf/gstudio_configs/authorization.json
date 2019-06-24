@@ -1,0 +1,38 @@
+{
+	"superuser": {
+		"create": 1,
+		"read": 1,
+		"update": 1,
+		"delete": 1,
+		},
+	"creator": {
+		"create": 1,
+		"read": 1,
+		"update": 1,
+		"delete": 1,
+		},
+	"group_admin": {
+		"create": 1,
+		"read": 1,
+		"update": 1,
+		"delete": 1,
+		},
+	"group_member": {
+			"create": 1,
+			"read": 1,
+			"update": 0,
+			"delete": 0,
+		},
+	"authenticated_user": {
+			"create": 0,
+			"read": 1,
+			"update": 0,
+			"delete": 0,
+		},
+	"anonymous_user": {
+			"create": 0,
+			"read": 1,
+			"update": 0,
+			"delete": 0,
+		}
+}
