@@ -4,27 +4,38 @@
                 <h1>Our Team</h1>
              </div>
              <div class="col-7">
-                <p style="max-width: 450px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ex velit, pellentesque quis condimentum at, tincidunt ac risus. Vestibulum ante ipsum primis in faucibus.</p>
+                <p style="max-width: 450px;">The English Team at TISS designs and creates the CLIx English course for students and the English Teacher Professional Development (TPD) courses for teachers</p>
             </div>
         </div>
         <div class="row">
           <div class="col-11">
             <div class="carousel-team-card" data-flickity='{ "groupCells": 3, "wrapAround": true }'>
+              {% for slide in slider %}
+             
               <div class="carousel-team-card-cell our-team">
                 <div class="carousel-card-team">
                   <div class="card-team-img">
-                    <img src="https://cdn.pixabay.com/photo/2018/02/26/21/04/owl-3184032__340.jpg" alt="" />
+                    <img src="data:image/jpeg;base64,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" alt="" />
                   </div>
                   <div class="card-team-name">
-                    <h5>Name</h5>
-                    <span>Position</span>
+                    <h5>{{  slide.slide_name }} </h5>
+                    <span>{{ slide.slider_position }}</span>
                   </div>
                   <div class="card-team-content bio">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et nisi id arcu bibendum efficitur. Pellentesque maximus ac libero non iaculis.</p>
+                   
+                    <p>{{ slide.slider_bio}} I have worked as a teacher, teacher educator and curriculum designer in the public and private sector over the last few years. Prior to CLIx, I worked with St. Andrew’s College, Muktangan (NGO), consulted with TISS-NUSSD and Tata Trusts. I serve as an honorary board member for Sharon Education Society, Mumbai.
+                    </p>
+                    <ul class="social" >
+                        <!-- <li><a href="{{ slide.slide_co }}" class="fab fa-facebook"></a></li> -->
+                        <li><a href="#" class="fab fa-twitter"></a></li>
+                        <!-- <li><a href="#" class="fab fa-google-plus"></a></li> -->
+                        <li><a href="#" class="fab fa-linkedin"></a></li>
+                    </ul>
                   </div>
                 </div>
               </div>
-              <div class="carousel-team-card-cell our-team ">
+              {% endfor %}
+              <!-- <div class="carousel-team-card-cell our-team ">
                 <div class="carousel-card-team">
                   <div class="card-team-img">
                     <img src="https://cdn.pixabay.com/photo/2018/02/26/21/04/owl-3184032__340.jpg" alt="" />
@@ -116,7 +127,7 @@
                   <div class="card-team-content bio">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et nisi id arcu bibendum efficitur. Pellentesque maximus ac libero non iaculis.</p>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
