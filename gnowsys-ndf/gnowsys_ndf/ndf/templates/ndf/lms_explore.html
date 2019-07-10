@@ -6,10 +6,11 @@
   </div>
   <div class="small-12 columns exp-module-container">
   <ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-2" >
+      
       {% for each_obj in modules_node_sort_list %}
+      
       <li class="card-image-wrapper">
-        {{group_id}}
-        {% include "ndf/horizontal_card.html" with node=each_obj url_name="module_detail_url" first_arg=group_id second_arg=each_obj.pk third_arg=title %}
+        {% include "ndf/horizontal_card.html" with node=each_obj url_name="module_detail_url" first_arg=group_id second_arg=each_obj.id third_arg=title %}
         }
       </li>
       {% empty %}
@@ -27,7 +28,7 @@
         <ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-4">
         {% for each_obj in units_cur %}
           <li class="card-image-wrapper">
-            {% include "ndf/card_group.html" with node=each_obj url_name="course_content" first_arg=each_obj.pk is_performace=False %}
+            {% include "ndf/card_group.html" with node=each_obj url_name="course_content" first_arg=each_obj.id is_performace=False %}
           </li>
         {% endfor %}
         </ul>

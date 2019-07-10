@@ -236,3 +236,16 @@ if settings.DEBUG:
             'document_root': settings.STATIC_ROOT,
         }),
 )
+
+urlpatterns += patterns('gnowsys_ndf.ndf.views.es_queries',
+                        url(r'^(?P<group_id>[^/]+)/module/(?P<node_id>[\w-]+)/(?P<title>[^/]+)/?$', 'module_detail', name='module_detail'),
+                        url(r'^(?P<group_id>[^/]+)/course/save_course_page/$', 'save_course_page', name='save_course_page'),
+                        url(r'^(?P<group_id>[^/]+)/course/content/$', 'course_content', name='course_content'),
+                        url(r'^(?P<group_id>[^/]+)/course/activities/$', 'course_pages', name='course_pages'),
+                        url(r'^(?P<group_id>[^/]+)/course/activities/page-no=(?P<page_no>\d+)/$', 'course_pages', name='course_pages_paged'),
+                        url(r'^(?P<group_id>[^/]+)/course/activity/detail/(?P<page_id>[\w-]+)$', 'course_pages', name='view_course_page'),
+                        url(r'^(?P<group_id>[^/]+)/course/activity/create$', 'create_edit_course_page', name='create_course_page'),
+                        url(r'^(?P<group_id>[^/]+)/unit/lessons/$', 'unit_detail', name='unit_detail'),
+                        url(r'^(?P<group_id>[^/]+)/unit//lesson/create/?$', 'lesson_create_edit', name='lesson_create_edit'),
+                        url(r'^(?P<group_id>[^/]+)/ajax/get_group_resources/(?P<res_type>[\w-]+)$', 'get_group_resources', name='get_group_resources'),
+                       )

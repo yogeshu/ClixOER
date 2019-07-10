@@ -3,9 +3,7 @@
 {% check_is_gstaff group_id request.user as is_gstaff %}
 {% user_groups request.user.is_superuser request.user.id as user_grp_count %}
 {% get_gstudio_workspace_instance as is_workspace_instance %}
-{% if modules_is_cur %}
-	{% rewind_cursor all_modules as all_modules %}
-{% endif %}
+
 
 <nav class="top-bar-second" data-topbar role="navigation" id="top-bar-second">
 	<div class="small-12 medium-12 columns explore-type">

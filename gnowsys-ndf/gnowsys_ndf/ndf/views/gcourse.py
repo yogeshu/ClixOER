@@ -3519,7 +3519,6 @@ def save_course_page(request, group_id):
             page_obj = node_collection.collection.GSystem()
             page_obj.fill_gstystem_values(request=request)
             page_obj.member_of = [page_gst_id]
-            page_obj.group_set = [group_id]
             page_obj.altnames = unicode(alt_name)
             if is_info_page == "Info":
                 info_page_gst_name, info_page_gst_id = GSystemType.get_gst_name_id('Info page')

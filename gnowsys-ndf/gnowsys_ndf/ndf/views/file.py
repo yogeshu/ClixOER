@@ -1029,7 +1029,7 @@ def save_file(files,title, userid, group_id, content_org, tags, img_type=None, l
     else:
         try:
             files.seek(0)
-            filetype = magic.from_buffer(files.read(100000), mime='true')  # Gusing filetype by python-magic
+            filetype = magic.from_buffer(files.read(1024), mime='true')  # Gusing filetype by python-magic
             # print "\nfiletype : ", filetype, "\n"
             filetype1 = mimetypes.guess_type(files.name)[0]
             if filetype1:

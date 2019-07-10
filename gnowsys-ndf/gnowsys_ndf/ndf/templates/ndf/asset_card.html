@@ -9,7 +9,7 @@
         <a href="{% url url_name first_arg second_arg  %}" title="{{each_asset.name}}">
    {% endif %}
     {% if not no_asset %}
-        {% get_relation_value each_asset.pk 'has_assetcontent' as grel_asstcontent %}
+        {% get_relation_value each_asset.id 'has_assetcontent' as grel_asstcontent %}
     {% endif %}
       <div class="small-12 medium-3 large-3 columns ">
         <div class="asset_tile">

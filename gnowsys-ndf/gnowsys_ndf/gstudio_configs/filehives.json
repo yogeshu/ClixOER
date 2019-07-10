@@ -3,7 +3,7 @@
 		"index.mapping.total_fields.limit": 10000, 
 		"number_of_shards": 5,
 		"number_of_replicas": 2,
-	        "index.mapping.ignore_malformed": true,
+        	"index.mapping.ignore_malformed": true,
 		"analysis": {
 			"analyzer": {
 				"trigram": {
@@ -28,7 +28,7 @@
 		}
 	},
 	"mappings": {
-		"node": {		
+		"filehive": {		
 			"properties": {
 				"type":{
 					"type":"keyword"
@@ -61,6 +61,33 @@
 					}
 				},
 				"tags": {
+					"type": "text",
+					"fields": {
+						"trigram": {
+							"type": "text",
+							"analyzer": "trigram"
+						}
+					}
+				},
+				"subject": {
+					"type": "text",
+					"fields": {
+						"trigram": {
+							"type": "text",
+							"analyzer": "trigram"
+						}
+					}
+				},
+				"attribute_type": {
+					"type": "text",
+					"fields": {
+						"trigram": {
+							"type": "text",
+							"analyzer": "trigram"
+						}
+					}
+				},
+				"relation_type": {
 					"type": "text",
 					"fields": {
 						"trigram": {

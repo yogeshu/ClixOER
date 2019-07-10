@@ -289,18 +289,18 @@ def explore_courses(request):
     q= eval("Q('bool', must=[Q('match', member_of = str(gst_module_id)), Q('match',status='PUBLISHED')])")
     all_modules = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute()
 
-    if modules_sort_list:
-        context_variable.update({'modules_sort_list': modules_sort_list})
-    else:
-        context_variable.update({'modules_sort_list': list(all_modules)})
+    # if modules_sort_list:
+    #     context_variable.update({'modules_sort_list': modules_sort_list})
+    # else:
+    context_variable.update({'modules_sort_list': list(all_modules)})
         # modules_cur = map(Node,modules_sort_list)
         # context_variable.update({'modules_is_cur': False})
         # modules_node_sort_list = cast_to_node(modules_sort_list)
 
     # all_modules.rewind()
     
-    module_unit_ids = [val for each_module in all_modules for val in each_module.collection_set ]
-    
+    module_unit_ids = [str(val) for each_module in all_modules for val in each_module.collection_set ]
+    print "all_modules:",all_modules[0].id
     print "in explore_courses", module_unit_ids,"\n"
     print group_id
     primary_lang_tuple = get_language_tuple(GSTUDIO_PRIMARY_COURSE_LANGUAGE)
@@ -328,15 +328,13 @@ def explore_courses(request):
 
     '''
 
-    q1 = Q('bool',must = [Q('match',member_of = str(ce_gst[0].id)),Q('match',status = 'PUBLISHED'), Q('bool',should = [Q('match',created_by = request.user.id), \
-Q('match',group_admin = request.user.id),Q('match',author_set = request.user.id),Q('bool',must = [Q('match',group_type = 'PUBLIC'),Q('match',language = primary_lang_tuple)])])],minimum_should_match = 1)
+    q1 = Q('bool',must = [Q('match',type = 'Group'),Q('match',member_of = str(announced_unit_gst[0].id)),Q('match',status = 'PUBLISHED'),\
+        Q('match',group_type = 'PUBLIC'),Q('match',language = 'en')])
+    q2 =  Q('bool',should = [Q('match',created_by = request.user.id),Q('match',group_admin = request.user.id),Q('match',author_set = request.user.id)],minimum_should_match = 1)
+    q3 = Q('bool',must_not = [Q('terms',name = GSTUDIO_DEFAULT_GROUPS_LIST),Q('terms',id = module_unit_ids)])
+    print "q:",q1   
 
-    q2 = Q('bool',must = [Q('match',member_of = str(announced_unit_gst[0].id)),Q('match',status = 'PUBLISHED'), Q('bool',should = [Q('match',created_by = request.user.id), \
-Q('match',group_admin = request.user.id),Q('match',author_set = request.user.id),Q('bool',must = [Q('match',group_type = 'PUBLIC'),Q('match',language = primary_lang_tuple)])])],minimum_should_match = 1)
-
-    q = Q('bool',must = [q1,q2,Q('match',type = 'Group'),Q('bool',must_not = [Q('terms',name = GSTUDIO_DEFAULT_GROUPS_LIST)]),Q('bool',must_not = [Q('terms',id = module_unit_ids)])])
-    print "q",q
-    base_unit_cur = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute()
+    base_unit_cur = (Search(using=es,index = index,doc_type=doc_type).query(q1)).execute()
 
 
     # base_unit_cur = node_collection.find({
@@ -382,7 +380,7 @@ Q('match',group_admin = request.user.id),Q('match',author_set = request.user.id)
     # # base_unit_page_cur = paginator.Paginator(base_unit_cur, page_no, GSTUDIO_NO_OF_OBJS_PP)
     print "llist",base_unit_cur
     for eachunit in base_unit_cur:
-        print eachunit.type,str(eachunit.name)
+        print eachunit.type,str(eachunit.name),type(eachunit)
     context_variable.update({'all_modules': all_modules, 'units_cur': base_unit_cur})
     return render_to_response(
         # "ndf/explore.html", changed as per new Clix UI

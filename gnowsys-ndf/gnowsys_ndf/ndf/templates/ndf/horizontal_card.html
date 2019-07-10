@@ -12,7 +12,7 @@
 
 <div class="module_card">
     <div class="card_banner">
-        {% get_relation_value node.pk 'has_banner_pic' as grel_dict %}
+        {% get_relation_value node.id 'has_banner_pic' as grel_dict %}
         {% if not grel_dict.cursor and grel_dict.grel_node and grel_dict.grel_node.if_file.thumbnail.relurl %}
             <img  src="{{MEDIA_URL}}{{grel_dict.grel_node.if_file.mid.relurl}}" alt="" />
         {% else %}
@@ -62,7 +62,7 @@
             aretert
             {% if request.user.is_authenticated %}
                 qrqwrqwr
-                {% include 'ndf/widget_enroll.html' with groupid=node.pk module_enrollment='True' %}
+                {% include 'ndf/widget_enroll.html' with groupid=node.id module_enrollment='True' %}
             {% endif %}
             {% endif %}
         </div>
