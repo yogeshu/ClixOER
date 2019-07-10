@@ -1971,7 +1971,7 @@ def get_group_resources(request, group_id, res_type="Page"):
         # res_cur = node_collection.find(res_query).sort('last_update', -1)
 
     except Exception as get_group_resources_err:
-      print "\n Error occurred in get_group_resources(). Error: {0}".format(str(get_group_resources_err))
+      print "\n Error occurred. Error: {0}".format(str(get_group_resources_err))
       pass
 
     variable = RequestContext(request, {'cursor': res_cur, 'groupid': group_id, 'group_id': group_id, 'card_class': card_class })
