@@ -1,13 +1,18 @@
 <div class="col">
-    <h2>
-        <a href="" data-target="#sidebar" data-toggle="collapse" class="d-md-none text-center "><i class="fa fa-bars"></i></a>
-    </h2>
-    <main>
+  <h2>
+    <a
+      href=""
+      data-target="#sidebar"
+      data-toggle="collapse"
+      class="d-md-none text-center "
+      ><i class="fa fa-bars"></i
+    ></a>
+  </h2>
+  <main>
     <div class="col-md-sm-lg-10 ml-5 py-2 content-module">
-        <div class="container" id="jar">
-            <div class="row">
-                
-<!-- <div class="card col-md-offset-2 shadow mb-3 border-rounded content" style="max-width: 400px; ">
+      <div class="container" id="jar">
+        <div class="row" style="margin-top: 100px;">
+          <!-- <div class="card col-md-offset-2 shadow mb-3 border-rounded content" style="max-width: 400px; ">
                       <div class="row no-gutters ">
                         <div class="col-4 col-md-3 col-sm-8 mx-auto">
                           <img src="
@@ -30,70 +35,119 @@
                         </div>
                       </div>
                     </div> -->
-{% for dest in destus %}
-                    <div class="card col-md-offset-2 shadow mb-3 border-rounded content" style="max-width: 400px; ">
-                        
-                      <div class="row no-gutters ">
-                            <div class='element'>
-                                <span class='vert-flag'>clix</span>
-                              </div>
-                              
-                          <div class="col-md-3 col-sm-6 mx-auto">
-                              <a href="module_details">
+          {% for dest in destus %}
+          <div
+            class="card col-md-offset-2 shadow mb-3 border-rounded content"
+            style="max-width: 400px; "
+          >
+            <div class="row no-gutters ">
+              <div class="element">
+                <span class="vert-flag"
+                  ><img
+                    src="https://demo-clix.tiss.edu/static/ndf/images/favicon/clix-favicon.png"
+                /></span>
+              </div>
 
-                              <img src="
-                                  https://via.placeholder.com/300.png/09f/fff     
+              <div class="col-md-5 col-sm-6 mx-auto">
+                <a href="module_details">
+                  <img
+                    src="
+                              https://picsum.photos/id/607/200/200     
                                       
-                                      " class="card-img border-rounded mx-2 my-4" alt="..."> </a>
-                                    </div>
-                          <div class="col-md-8 col-sm-12">
-                            <div class="card-body c-body">
-                              <div class="card-header c-header"> {{ dest.course_title}} <br/> </div>
+                                      "
+                    class="card-img border-rounded mx-2 my-4"
+                    alt="..."
+                  />
+                </a>
+              </div>
+              <div class="col-md-7 col-sm-12 pl-1">
+                <div class="card-body c-body">
+                  <div class="card-header c-header">
+                    {{ dest.course_title }} <br />
+                  </div>
 
-                              <h5 class="card-title"><span class="badge badge-secondary"><i class="fas fa-flask fa-sm"></i>  </span>
-                      <span class="badge badge-secondary"><i class="fas fa-user-graduate"></i>8th</span>
-                      </h5>
-                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                              <di class="card-footer c-footer">
-                                <a href="your link here">  <i class="fas fa-rocket mr-3  fa-lg" ></i></a><a href="your link here"><i class="fas fa-cloud-download-alt mr-3 fa-lg"></i></a> <a href="your link here"><i class="fas fa-share-alt mr-3 fa-lg"></i></a>
-                                <a href="#exampleModalCenter"> <i  data-toggle="modal" data-target="#exampleModalCenter" class="fas fa-eye mr-3 fa-lg"></i> </a>
-                              </di>
-                            </div>
-                          </div>
+                  <h6 class="card-title mt-2">
+                    <span class="badge badge-secondary"
+                      ><i class="fas fa-language fa-sm"></i> English
+                    </span>
+                    <span class="badge badge-secondary"
+                      ><i class="fas fa-user-graduate fa-sm"></i>8th</span
+                    >
+                  </h6>
+                  <p class="card-text" style="font-size:10px;">
+                    Communicative English from CLIx focuses on building
+                    listening and speaking skills of learners for functional
+                    use. This contains 40 hours of content which is designed at
+                    the A1/B1 CEFR levels.
+                    <br />
+                  </p>
+                  <div class="card-footer c-footer text-center">
+                    <a href="your link here">
+                      <i class="fas fa-rocket   fa-lg"></i></a
+                    >
+                    <a href="your link here"
+                      ><i class="fas fa-cloud-download-alt  fa-lg">
+                        <span
+                          class="badge "
+                          style="font-size:8px; background: #F0578F; color: #fff;"
+                          >3</span
+                        >
+                      </i></a
+                    >
+                    <div class="dropdown show" style="display:inline-block;">
+                        <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-share-alt  fa-lg"></i
+                              >
+                              <span
+                        class="badge"
+                        style="font-size:8px; background: #F0578F; color: #fff;"
+                        >3</span
+                      >
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                       </div>
+                    <!-- <a href="your link here"
+                      ><i class="fas fa-share-alt mr-1 fa-lg"></i
+                      ><span
+                        class="badge"
+                        style="font-size:8px; background: #F0578F; color: #fff;"
+                        >3</span
+                      ></a
+                    > -->
+                    <a href="#exampleModalCenter">
+                      <i
+                        data-toggle="modal"
+                        data-target="#exampleModalCenter"
+                        class="fas fa-eye mr-4 fa-lg"
+                      ></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <!-- Button trigger modal -->
 
-                      
-                     <!-- Button trigger modal -->
-
-  <!-- Modal -->
-  {% include "Emodule_preview.html" %}
-                     {% endfor %}
-                     
-
-
-
-
-                    
-                 
-
-</div>
-</div>
-</div>
-</main>
+          <!-- Modal -->
+          {% include "Emodule_preview.html" %} {% endfor %}
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
 
 <script>
-
-
-function getPageList(totalPages, page, maxLength) {
+  function getPageList(totalPages, page, maxLength) {
     if (maxLength < 5) throw "maxLength must be at least 5";
-
     function range(start, end) {
       return Array.from(Array(end - start + 1), (_, i) => i + start);
     }
-
     var sideWidth = maxLength < 9 ? 1 : 2;
     var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
     var rightWidth = (maxLength - sideWidth * 2 - 2) >> 1;
@@ -122,7 +176,6 @@ function getPageList(totalPages, page, maxLength) {
       .concat([0])
       .concat(range(totalPages - sideWidth + 1, totalPages));
   }
-
   $(function() {
     // Number of items and limits the number of items per page
     var numberOfItems = $("#jar .content").length;
@@ -134,7 +187,6 @@ function getPageList(totalPages, page, maxLength) {
     // Must be at least 5:
     var paginationSize = 7;
     var currentPage;
-
     function showPage(whichPage) {
       if (whichPage < 1 || whichPage > totalPages) return false;
       currentPage = whichPage;
@@ -143,7 +195,9 @@ function getPageList(totalPages, page, maxLength) {
         .slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage)
         .show();
       // Replace the navigation items (not prev/next):
-      $(".pagination li").slice(1, -1).remove();
+      $(".pagination li")
+        .slice(1, -1)
+        .remove();
       getPageList(totalPages, currentPage, paginationSize).forEach(item => {
         $("<li>")
           .addClass(
@@ -153,7 +207,6 @@ function getPageList(totalPages, page, maxLength) {
           )
           .append(
             $("<a>")
-
               .addClass("page-link")
               .attr({
                 href: "javascript:void(0)"
@@ -164,40 +217,45 @@ function getPageList(totalPages, page, maxLength) {
       });
       return true;
     }
-
     // Include the prev/next buttons:
     $(".pagination").append(
-      $("<li>").addClass("page-item").attr({ id: "previous-page" }).append(
-        $("<a>")
-          .addClass("page-link")
-          .attr({
-            href: "javascript:void(0)"
-          })
-          .text("Prev")
-      ),
-      $("<li>").addClass("page-item").attr({ id: "next-page" }).append(
-        $("<a>")
-          .addClass("page-link")
-          .attr({
-            href: "javascript:void(0)"
-          })
-          .text("Next")
-      )
+      $("<li>")
+        .addClass("page-item")
+        .attr({ id: "previous-page" })
+        .append(
+          $("<a>")
+            .addClass("page-link")
+            .attr({
+              href: "javascript:void(0)"
+            })
+            .text("Prev")
+        ),
+      $("<li>")
+        .addClass("page-item")
+        .attr({ id: "next-page" })
+        .append(
+          $("<a>")
+            .addClass("page-link")
+            .attr({
+              href: "javascript:void(0)"
+            })
+            .text("Next")
+        )
     );
     // Show the page links
     $("#jar").show();
     showPage(1);
-
     // Use event delegation, as these items are recreated later
-    $(
-      document
-    ).on("click", ".pagination li.current-page:not(.active)", function() {
-      return showPage(+$(this).text());
-    });
+    $(document).on(
+      "click",
+      ".pagination li.current-page:not(.active)",
+      function() {
+        return showPage(+$(this).text());
+      }
+    );
     $("#next-page").on("click", function() {
       return showPage(currentPage + 1);
     });
-
     $("#previous-page").on("click", function() {
       return showPage(currentPage - 1);
     });
@@ -205,9 +263,7 @@ function getPageList(totalPages, page, maxLength) {
       $("html,body").animate({ scrollTop: 0 }, 0);
     });
   });
-
-  $('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
-          
+  $("#myModal").on("shown.bs.modal", function() {
+    $("#myInput").trigger("focus");
+  });
 </script>
