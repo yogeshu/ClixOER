@@ -62,6 +62,10 @@ q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='Jsmol
 GST_JSMOL = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute()
 # GST_JSMOL = node_collection.one({"_type":"GSystemType","name":"Jsmol"})
 
+q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='Module')])")
+gst_module = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute()
+
+
 ##############################################################################
 
 @get_execution_time
@@ -161,77 +165,9 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 
 	allfiles2 = allfiles1.execute()
 
-	files_new = allfiles1[0:24]
-
-
-	if int(page_no)==1:
-		files_new=allfiles1[0:24]
-	else:
-		temp=( int(page_no) - 1) * 24
-		files_new=allfiles1[temp:temp+24]
-
-	
-	# files = node_collection.find({
-	# 								# 'member_of': {'$in': [GST_FILE._id, GST_PAGE._id]},
-	# 								'member_of': {'$in': [GST_FILE._id,GST_JSMOL._id]},
-	# 								# '_type': 'File',
-	# 								# 'fs_file_ids': {'$ne': []},
-	# 								'group_set': {'$all': [ObjectId(group_id)]},
-	# 								'$and': query_dict,
-	# 								'$or': [
-	# 										{ 'access_policy': u"PUBLIC" },
-	# 										{ '$and': [
-	# 													{'access_policy': u"PRIVATE"},
-	# 													{'created_by': request.user.id}
-	# 												]
-	# 										}
-	# 									]
-	# 								}).sort("last_update", -1)
-
-	# print "files.count : ", files.count()
-
-  	# pageCollection=node_collection.find({'member_of':GST_PAGE._id, 'group_set': ObjectId(group_id),
-  	# 									'$or': [
-			# 									{ 'access_policy': u"PUBLIC" },
-			# 									{ '$and': [
-			# 												{'access_policy': u"PRIVATE"},
-			# 												{'created_by': request.user.id}
-			# 											]
-			# 									}
-			# 								],
-			# 							'type_of': {'$in': [wiki_page._id]}
-			# 							}).sort("last_update", -1)
-
-
 	educationaluse_stats = {}
 
 
-	if files_new:
-		eu_list = []  # count
-		#for each in files1_temp:
-		#	eu_list += [i.get("educationaluse") for i in each.attribute_set if i.has_key("educationaluse")]
-
-		#files1_temp.rewind()
-
-		if set(eu_list):
-			if len(set(eu_list)) > 1:
-				educationaluse_stats = dict((x, eu_list.count(x)) for x in set(eu_list))
-
-			elif len(set(eu_list)) == 1:
-				educationaluse_stats = { eu_list[0]: eu_list.count(eu_list[0])}
-				educationaluse_stats["all"] = files.count()
-
-		paginator = Paginator(files_new, 24)
-
-
-		#page_no = request.GET.get('page_no')
-		try:
-			result_pages = paginator.page(page_no)
-		except PageNotAnInteger:
-			result_pages = paginator.page(1)
-		except EmptyPage:
-			result_pages = paginator.page(paginator.num_pages)
-	
 	q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('exists',field = 'collection_set')])
 	collection_pages_cur = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
@@ -244,12 +180,6 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	paginator = Paginator(collection_pages_cur, 24)
 
 
-	try:
-		results = paginator.page(page_no)
-	except PageNotAnInteger:
-		results = paginator.page(1)
-	except EmptyPage:
-		results = paginator.page(paginator.num_pages)
 
 	coll_page_count = collection_pages_cur.count() if collection_pages_cur else 0
 
@@ -290,6 +220,50 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 
 	alldocs2 = alldocs1.execute()
 
+	q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED')])
+
+	all_modules = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+
+	all_modules2 = all_modules.execute()
+
+	files_new = all_modules2[0:24]
+
+	if int(page_no)==1:
+		files_new=all_modules2[0:24]
+	else:
+		temp=( int(page_no) - 1) * 24
+		files_new=all_modules2[temp:temp+24]
+
+	if files_new:
+		eu_list = []  
+		if set(eu_list):
+			if len(set(eu_list)) > 1:
+				educationaluse_stats = dict((x, eu_list.count(x)) for x in set(eu_list))
+
+			elif len(set(eu_list)) == 1:
+				educationaluse_stats = { eu_list[0]: eu_list.count(eu_list[0])}
+				educationaluse_stats["all"] = files.count()
+
+		paginator = Paginator(files_new, 24)
+
+
+		#page_no = request.GET.get('page_no')
+		try:
+			result_pages = paginator.page(page_no)
+		except PageNotAnInteger:
+			result_pages = paginator.page(1)
+		except EmptyPage:
+			result_pages = paginator.page(paginator.num_pages)
+			
+	try:
+		results = paginator.page(page_no)
+	except PageNotAnInteger:
+		results = paginator.page(1)
+	except EmptyPage:
+		results = paginator.page(paginator.num_pages)
+
+
+	
 	coll_page_count = collection_pages_cur.count() if collection_pages_cur else 0
 	print "coll_page_count",coll_page_count
 	# collection_pages = paginator.Paginator(collection_pages_cur, page_no, no_of_objs_pp)
