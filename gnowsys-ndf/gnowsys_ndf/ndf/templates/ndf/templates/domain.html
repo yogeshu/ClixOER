@@ -7,18 +7,18 @@
     <div class="row">
       <nav class="col-12 col-sm-12 col-md-2" id="verticalScrollspy">
         <ul class="nav flex-column nav-pills nav-scroll">
-          <li class="nav-item "><a class="nav-link active" href="#dogs">Modules</a></li>
-          <li class="nav-item"><a class="nav-link" href="#cats">How to Use</a></li>
-          <li class="nav-item"><a class="nav-link" href="#team">Team Cards</a></li>
-          <li class="nav-item"><a class="nav-link" href="#penguins">Design and devolopement </a></li>
-          <li class="nav-item"><a class="nav-link" href="#alpacas">Testimonials </a></li>
-          <li class="nav-item"><a class="nav-link" href="#rabbits">Feedback</a></li>
+          <li class="nav-item "><a class="nav-link active" href="#dogs"> <i class="fas fa-puzzle-piece"></i> Modules</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cats"><i class="far fa-question-circle"></i> How to Use</a></li>
+          <li class="nav-item"><a class="nav-link" href="#team"><i class="fas fa-users"></i>Team Details</a></li>
+          <li class="nav-item"><a class="nav-link" href="#penguins"><i class="fas fa-seedling"></i>  Design And  <span class="ml-3 py-1"> Developement </span> </a></li>
+          <li class="nav-item"><a class="nav-link" href="#alpacas"><i class="fas fa-comment-alt"></i> Testimonials </a></li>
+          <li class="nav-item"><a class="nav-link" href="#rabbits"><i class="fas fa-comments"></i> Feedback</a></li>
         </ul>
       </nav>
       <div class="col-12 col-md-10 col-lg-10">
         <div data-spy="scroll" data-target="#verticalScrollspy">
-          <div id="dogs" class="container-fluid" >
-            
+          <div id="dogs" class="container-fluid">
+           
 
              {% include "module_cards.html" %}
              {% include "pagination.html" %}
@@ -28,10 +28,9 @@
             {% include "icon_slider.html" %}
           </div>
           <div id="team" class="container-fluid">
-        {% include "domain_team_cards.html"  %}
+        {% include "domain_team_cards.html"  with slider=slider%}
           </div>
           <div id="penguins" class="container-fluid">
-            <h1>Penguins</h1>
            {% include "devlopementanwork.html" %} 
          
           </div>
@@ -40,7 +39,6 @@
 {% include "oer_testimonials.html" %}
           </div>
           <div id="rabbits" class="container-fluid">
-            <h1>Rabbits</h1>
 {% include "contactForm.html" %}           
           </div>
         </div>
