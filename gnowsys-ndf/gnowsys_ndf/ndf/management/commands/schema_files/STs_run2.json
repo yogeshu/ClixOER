@@ -494,5 +494,13 @@
         "collection_set": "[]", 
         "relation_type_set": "[]", 
         "type_of": "[]"
+    }, 
+    {
+        "attribute_type_set": "[\"educationalsubject\", \"educationallevel\"]", 
+        "name": "testimony", 
+        "member_of": "[\"GAPP\"]", 
+        "collection_set": "[]", 
+        "relation_type_set": "[]", 
+        "type_of": "[]"
     }
 ]

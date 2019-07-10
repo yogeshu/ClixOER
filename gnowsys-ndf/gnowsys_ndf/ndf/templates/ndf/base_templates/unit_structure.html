@@ -839,7 +839,7 @@ This will not be used because now only existing activities will be added.
           addLesson()
           - to add lesson of unit.
           */
-
+          console.log("inside addLesson")
           if (!lessonName) {
             alert('Name can not be empty. Please provide one.');
             return;
@@ -855,7 +855,7 @@ This will not be used because now only existing activities will be added.
               "name": lessonName,
               "lesson_id": lessonId,
               "lesson_desc": lesson_desc,
-              "unit_id": "{{unit_obj.pk}}",
+              "unit_id": "{{unit_obj.id}}",
               "sel_lesson_lang":sel_lesson_lang
           },
           url: "{% url 'lesson_create_edit' group_id %}",
@@ -931,6 +931,7 @@ This will not be used because now only existing activities will be added.
         }
 
         function getActivityPages() {
+            console.log('in getActivityPages')
             var lessonId = $("#select-activity-page").attr("data-lesson-id");
             url_to_fetch_resources = "{% url 'get_group_resources' group_id 'Page' %}"
             data =  {'except_collection_set_of_id': lessonId}

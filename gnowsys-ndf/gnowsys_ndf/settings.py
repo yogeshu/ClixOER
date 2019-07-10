@@ -1076,11 +1076,11 @@ GLITE_RCS_REPO_DIRNAME = "glite-rcs-repo"
 GLITE_RCS_REPO_DIR = os.path.join('/data/', RCS_REPO_DIRNAME)
 
 GSTUDIO_ELASTIC_SEARCH_INDEX = {
- # "Filehives": ["Filehive"],
+  "Filehives": ["Filehive"],
   "Triples": ["Triple"],
   # "Buddies": ["Buddy"],
   # "Benchmarks": ["Benchmark"],
-   # "Nodes": ["Node"],
+  "Nodes": ["Node"],
   # "Counters": ["Counter"]
 }
 

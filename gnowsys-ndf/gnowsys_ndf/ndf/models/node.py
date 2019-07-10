@@ -1,6 +1,8 @@
 from base_imports import *
 from history_manager import HistoryManager
+# 
 from gnowsys_ndf.ndf.gstudio_es.es import *
+# from gnowsys_ndf.ndf.views.es_queries import save_to_es
 from gnowsys_ndf.settings import GSTUDIO_ELASTIC_SEARCH,GSTUDIO_ELASTIC_SEARCH_IN_NODE_CLASS,GSTUDIO_SITE_NAME
 #from gnowsys_ndf.ndf.models.models_utils import NodeJSONEncoder,CustomNodeJSONEncoder
 
@@ -640,7 +642,7 @@ class Node(DjangoDocument):
         # if Add-Buddy feature is enabled:
         #   - Get all user id's of active buddies with currently logged in user.
         #   - Check if each of buddy-user-id does not exists in contributors of node object, add it.
-        if GSTUDIO_BUDDY_LOGIN:
+        '''if GSTUDIO_BUDDY_LOGIN:
             from buddy import Buddy
             buddy_contributors = Buddy.get_buddy_userids_list_within_datetime(
                                                     self.created_by,
@@ -651,7 +653,7 @@ class Node(DjangoDocument):
             if buddy_contributors:
                 for each_bcontrib in buddy_contributors:
                     if each_bcontrib not in self.contributors:
-                        self.contributors.append(each_bcontrib)
+                        self.contributors.append(each_bcontrib)'''
 
         super(Node, self).save(*args, **kwargs)
 
@@ -677,6 +679,8 @@ class Node(DjangoDocument):
         # ToReduce() collection class and searched whether the ID of
         # this document is present or not.  If the id is not present
         # then add that id.If it is present then do not add that id
+
+        ''' COMMENTING THE LOGIC OF RCS_REPO
 
         old_doc = node_collection.collection.ToReduceDocs.find_one({'required_for':to_reduce_doc_requirement,'doc_id':self._id})
 
@@ -752,7 +756,7 @@ class Node(DjangoDocument):
      ########################## ES ##################################
         if GSTUDIO_ELASTIC_SEARCH_IN_NODE_CLASS == True:
             print "inside elastic search save"
-            esearch.save_to_es(self)
+            save_to_es(self)'''
 
 
     # User-Defined Functions

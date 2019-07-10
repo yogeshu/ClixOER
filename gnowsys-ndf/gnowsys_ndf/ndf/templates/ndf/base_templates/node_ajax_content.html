@@ -4,6 +4,7 @@
 
 {% get_download_filename node as download_filename %}
 {% get_schema node as schema %}
+{% get_memberof_name node.id as member_name %}
 {% get_group_name groupid as group_name_tag %}
 {% get_gstudio_twitter_via as twitter_via %}
 {% check_is_gstaff groupid request.user as is_gstaff %}
@@ -78,7 +79,7 @@ Still keeping for future ref (if needed).
   <ul class="breadcrumbs">
     {% for e in breadcrumbs_list %}
       <li>
-      {% if node.pk != e.0 %}
+      {% if node.id != e.0 %}
         <a class="current" id="{{e.0}}" style="color:black;">{{e.1}}</a>
       {% else %}
         {{e.1}}
@@ -89,9 +90,9 @@ Still keeping for future ref (if needed).
 
   {% endif %}
 
-  {% check_group node.pk as is_group %}
+  {% check_group node.id as is_group %}
   {% if is_group %}
-    {% if node.edit_policy == "EDITABLE_MODERATED" and "Group" not in node.member_of_names_list %}
+    {% if node.edit_policy == "EDITABLE_MODERATED" and "Group" not in member_name %}
       <div class="row">
       {% if files_cur.count > 0  %}
             <h4> {{files_cur.count}} {% trans "Resource" %}{{ files_cur.count|pluralize }} {% trans " awaiting for moderation: " %}</h4>
@@ -106,7 +107,7 @@ Still keeping for future ref (if needed).
   {% if node.status == 'MODERATION' %}
     <h4><small>
       {% trans 'Note: Following Resource is Under Moderation -' %}
-      <a href="{% url 'moderation_status' group_id node.pk %}">{% trans 'Check the current status of Moderation' %}</a>
+      <a href="{% url 'moderation_status' group_id node.id %}">{% trans 'Check the current status of Moderation' %}</a>
     </small></h4>
   {% endif %}
 
@@ -167,58 +168,9 @@ Still keeping for future ref (if needed).
 
         <div class="{{ group_policy }} {{ node.status|lower }} content active commentable-section" id="view-page" data-section-id="1">
 
-          <div class="{{node.pk}}-collection-set" data-cs="{{node.collection_set|safe}}"></div>
+          <div class="{{node.id}}-collection-set" data-cs="{{node.collection_set|safe}}"></div>
 
-        {% comment %}
-          <div class="row">
-        {% endcomment %}
-
-            {% comment %}
-              <!--
-              <div class="small-4 columns">
-                {% if node.prior_node|length > 0 %}
-                {% if "Group" not in node.member_of_names_list %}
-                <div class="panel">
-                  <h6>{% trans "You may want to read these first: " %}</h6>
-                  {% for index_key, each_node in node.prior_node_dict.items %}
-                  {% get_grid_fs_object each_node as grid_fs_obj %}
-                  {% if each_node.mime_type %}
-                  <a href="{% url 'read_file' group_name_tag each_node.pk  grid_fs_obj.filename %}">{{ each_node.name }}aaaa</a>,&nbsp;
-                  {% else %}
-                  <a href="{% url 'page_details' group_name_tag each_node.pk %}">{{ each_node.name }}</a>,&nbsp;
-                  }
-                  {% endif %}
-                  {% endfor %}
-                </div>
-                {% endif %}
-                {% endif %}
-              </div>
-              -->
-            {% endcomment %}
-
-
-            {% comment %}
-            <div class="small-4 columns"> </div>
-
-            <div class="small-4 small-pull-4 columns">
-              <!-- {#% if node.assesses %#} -->
-              {% get_assesses_list node as assesses_list %}
-              {% if assesses_list %}
-              <div class="panel">
-                <h6>This resource assesses these</h6>
-                {% for  each_node in assesses_list %}
-                {% get_grid_fs_object each_node as grid_fs_obj %}
-                {% if each_node.if_file.mime_type %}
-                <a href="{% url 'read_file' group_name_tag each_node.pk  grid_fs_obj.filename %}">{{ each_node.name }}</a>,&nbsp;
-                {% else %}
-                <a href="{% url 'page_details' group_name_tag each_node.pk %}">{{ each_node.name }}</a>,&nbsp;
-                {% endif %}
-                {% endfor %}
-              </div>
-              {% endif %}
-            </div>
-          </div>
-          {% endcomment %}
+       
           <!-- Code for showing media details -->
           {% if node.if_file.mime_type or node.collection_set %}
             <!-- commenting following block which shows slider if resource is collection of all images/videos/audios -->
@@ -287,13 +239,13 @@ Still keeping for future ref (if needed).
                 <center>
                 <div class="show-image">
                    {% if node.if_file.original.relurl and 'image' in node.if_file.mime_type  %}
-                    <a class="th {% if node.collection_set %}collection-exists{% endif %}"   data-oid="{{node.pk|safe}}">
+                    <a class="th {% if node.collection_set %}collection-exists{% endif %}"   data-oid="{{node.id|safe}}">
                     <img src="{{MEDIA_URL}}{{node.if_file.original.relurl}} " style="min-height:200px;" />
                     </a>
                     {% endif %}
                   {% if not node.collection_set %}
                   <figcaption style="position:relative;top:0;left:0" title="Click Here to View Image in Full Screen">
-                      <a  target="_blank" href="{% url 'read_file' group_name_tag node.pk download_filename %}">
+                      <a  target="_blank" href="{% url 'read_file' group_name_tag node.id download_filename %}">
                          {% trans "View in Full Screen" %}
                          <i class="fi-projection-screen"> </i>
                       </a>
@@ -306,56 +258,56 @@ Still keeping for future ref (if needed).
                 <div class="show-image">
                     <img  src="{{MEDIA_URL}}{{node.if_file.original.relurl}}" style="min-height:200px;" />
                   <figcaption style="position:relative;top:0;left:0" title="Click Here to View Image in Full Screen">
-                      <a  target="_blank" href="{% url 'read_file' group_name_tag node.pk download_filename %}">
+                      <a  target="_blank" href="{% url 'read_file' group_name_tag node.id download_filename %}">
                          {% trans "View in Full Screen" %}
                          <i class="fi-projection-screen"> </i>
                     </figcaption>
                       </a>
                 </div>
                 </center>
-              {% elif 'Pandora_video' in node.member_of_names_list and not is_collection_card_view %}
-                {% get_source_id node.pk as source_id %}
+              {% elif 'Pandora_video' in member_name and not is_collection_card_view %}
+                {% get_source_id node.id as source_id %}
                 <video width="500" poster="http://wetube.gnowledge.org/{{source_id}}/icon128.jpg" controls>
                   <source src="http://wetube.gnowledge.org/{{source_id}}/480p.webm" type="video/webm">
                   {% trans "Your browser does not support the video tag." %}
                 </video>
               {% elif 'video' in node.if_file.mime_type %}
-                {% get_attribute_value node.pk 'has_transcript' as node_transcript %}
+                {% get_attribute_value node.id 'has_transcript' as node_transcript %}
                 {% include 'ndf/widget_video_player.html' with video_obj=node %}
                 {% if node.created_by == request.user.id or is_gstaff %}
                   <dl class="accordion" data-accordion>
                       <dd class="accordion-navigation" data-options="deep_linking:true">
                             <a href="#panel1" style="background-color: #2980B9;color:#FFF;width:20%">{% trans "Change Thumbnail" %}</a>
                             <div id="panel1" class="content" style="height:210px">
-                              {% get_relation_value node.pk 'has_thumbnail' as grel_dict %}
-                              {% include 'ndf/video_thumbnail.html' with grel_dict=grel_dict video_id=node.pk group_id=group_id parent_node=node.pk %}
+                              {% get_relation_value node.id 'has_thumbnail' as grel_dict %}
+                              {% include 'ndf/video_thumbnail.html' with grel_dict=grel_dict video_id=node.id group_id=group_id parent_node=node.id %}
                             </div>
 
                       </dd>
                   </dl>
 
 
-                <a  class="tiny button radius" data-reveal-id="add_transcript{{node.pk}}"> {% trans "Add Transcript" %}</a>
-                <div id="add_transcript{{node.pk}}" class="reveal-modal" data-reveal style="position:absolute;">
+                <a  class="tiny button radius" data-reveal-id="add_transcript{{node.id}}"> {% trans "Add Transcript" %}</a>
+                <div id="add_transcript{{node.id}}" class="reveal-modal" data-reveal style="position:absolute;">
                   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
                   <textarea>{{node_transcript}}</textarea>
                   <input onclick="add_transcript_func(this)" type="button" class="tiny button radius add-trans" data-src ="{{node}}"   value="{% trans 'Add' %}">
                   <input type="button" class="tiny button radius "  value="{% trans 'Cancel' %}">
                 </div>
 
-                <a  class="tiny button radius" data-reveal-id="add_subtitle{{node.pk}}"> {% trans "Add Subtitle(s)" %}</a>
-                <div id="add_subtitle{{node.pk}}" class="reveal-modal" data-reveal style="position:absolute;">
+                <a  class="tiny button radius" data-reveal-id="add_subtitle{{node.id}}"> {% trans "Add Subtitle(s)" %}</a>
+                <div id="add_subtitle{{node.id}}" class="reveal-modal" data-reveal style="position:absolute;">
                   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 
                 </div>
 
                 {% endif %}
               {% elif 'audio' in node.if_file.mime_type %}
-                {% get_attribute_value node.pk 'has_transcript' as node_transcript %}
+                {% get_attribute_value node.id 'has_transcript' as node_transcript %}
                 {% include 'ndf/widget_audio_player.html' with audio_obj=node %}
 
-                 <a  class="tiny button radius mod-btn" data-reveal-id="add_transcript{{node.pk}}"> {% trans "Add Transcript" %}</a>
-                <div id="add_transcript{{node.pk}}" class="reveal-modal" data-reveal style="position:absolute;">
+                 <a  class="tiny button radius mod-btn" data-reveal-id="add_transcript{{node.id}}"> {% trans "Add Transcript" %}</a>
+                <div id="add_transcript{{node.id}}" class="reveal-modal" data-reveal style="position:absolute;">
                   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
                   <textarea>{{node_transcript}}</textarea>
                   <input onclick="add_transcript_func(this)" type="button" class="tiny button radius add-trans" data-src ="{{node}}"   value="{% trans 'Add' %}">
@@ -477,7 +429,7 @@ Still keeping for future ref (if needed).
 
             {% if user.is_authenticated %}
               {% comment %}
-              {% if 'Pandora_video' in node.member_of_names_list %}
+              {% if 'Pandora_video' in member_name %}
                 <a class="button small secondary" href="http://wetube.gnowledge.org/{{video_obj}}/480p.webm" download="480.webm">
               {% elif 'video' in node.if_file.mime_type %}
               {% endcomment %}
@@ -485,7 +437,7 @@ Still keeping for future ref (if needed).
             {% endif %}
           {% endif %}
 
-          {% if "QuizItemEvent" in node.member_of_names_list or "QuizItem" in node.member_of_names_list%}
+          {% if "QuizItemEvent" in member_name or "QuizItem" in member_name%}
               {% load_quiz_player request group_id node %}
           {% endif %}
 
@@ -523,9 +475,11 @@ Still keeping for future ref (if needed).
             {% endfor %}
           {% endfor %}
 
+
           <!-- <div id="commentable-area"> -->
-          {% if "QuizItemEvent" not in node.member_of_names_list and "QuizItem" not in node.member_of_names_list%}
+          {% if "QuizItemEvent" not in member_name and "QuizItem" not in member_name%}
           <div class="node-content-div">
+
             {% with node.content|safe as description %}
             {% if description != "None" %}
               <!-- inside node-content-div-->
@@ -553,7 +507,7 @@ Still keeping for future ref (if needed).
           {% if user.is_authenticated %}
 
             {% if node.if_file.mime_type %}
-                {% if not node.collection_set and "Jsmol" not in node.member_of_names_list%}
+                {% if not node.collection_set and "Jsmol" not in member_name%}
                 <a class="button tiny" title="Click here to Download" href="{% url 'read_file' group_name_tag node download_filename %}" download="{{ download_filename }}">
                   Download
                 </a>
@@ -563,7 +517,7 @@ Still keeping for future ref (if needed).
                 {% endif %}
 
           {%  else %}
-            {% if node.if_file.mime_type and "Jsmol" not in node.member_of_names_list %}
+            {% if node.if_file.mime_type and "Jsmol" not in member_name %}
               {% if 'video' in node.if_file.mime_type  %}
                 <a class="button tiny disabled secondary" title="Please login to download" href="{% url 'auth_login' %}{% if not is_ac_url %}?next={{request.path}}{% endif %}" accesskey="l">
               {% else %}
@@ -580,7 +534,7 @@ Still keeping for future ref (if needed).
        {% endif %}
        <br>
 
-                  {% if social_share == True and "Group" not in node.member_of_names_list and "PartnerGroup" not in node.member_of_names_list %}
+                  {% if social_share == True and "Group" not in member_name and "PartnerGroup" not in member_name %}
                          <div class="large-12 columns row">
                            <a class = "share_link" href="#" accesskey="l" target="_blank"  title="Share on Facebook">
                           <img src="/static/ndf/images/Facebook_logo.png"  width="30px">
@@ -603,12 +557,12 @@ Still keeping for future ref (if needed).
                 <div class="content large-10 columns" id="view-discussion" >
                   <!-- discussion content area -->
                   {% if node.discussion_enable %}
-                    {% get_thread_node node.pk as thread_node_obj %}
+                    {% get_thread_node node.id as thread_node_obj %}
                     {% if thread_node_obj %}
-                        {% get_disc_replies thread_node_obj.pk group_id global_disc_all_replies as all_replies %}
+                        {% get_disc_replies thread_node_obj.id group_id global_disc_all_replies as all_replies %}
                         {% include 'ndf/in-line-texteditor.html' with node=thread_node_obj var_name="content_org" ckeditor_toolbar="BasicToolbar" %}
                     {% else %}
-                        {% get_disc_replies node.pk group_id global_disc_all_replies as all_replies %}
+                        {% get_disc_replies node.id group_id global_disc_all_replies as all_replies %}
                         {% include 'ndf/in-line-texteditor.html' with var_name="content_org" ckeditor_toolbar="BasicToolbar" %}
                     {% endif %}
                   {% endif %}
@@ -623,7 +577,7 @@ Still keeping for future ref (if needed).
 
             {% comment %}
 
-            {% if "Group" in node.member_of_names_list %}
+            {% if "Group" in member_name %}
             {% get_object_value node as objvalue %}
               <table style="width:60%; border-width:0px;" >
               <tbody>
@@ -654,7 +608,7 @@ Still keeping for future ref (if needed).
         <!-- /////////////////// -->
 
         <!-- Display Maps only for Topic or Concept node -->
-        {% if "Topic" in node.member_of_names_list or "Concept" in node.member_of_names_list or "Page" in node.member_of_names_list %}
+        {% if "Topic" in member_name or "Concept" in member_name or "Page" in member_name %}
           <!-- Below code/widgets will only be shown for all resource instances/documents
                which are neither Topic nor Concept
           -->
@@ -717,7 +671,7 @@ Still keeping for future ref (if needed).
               <table id="panel1a" align ="center" style="width:80%; border-width:0px; height: 200px; display: block;overflow-y: scroll;">
                 <tbody>
 
-                {% get_json node.pk as jsonobj %}
+                {% get_json node.id as jsonobj %}
                 {% str_to_dict jsonobj as obj %}
                 {% for key, value in obj.items %}
                 <tr>
@@ -756,7 +710,7 @@ Still keeping for future ref (if needed).
 
               <!-- Content-2 -->
               <div id="panel2a" class="content">
-              {% get_json node.pk as jsonobj %}
+              {% get_json node.id as jsonobj %}
               {% str_to_dict jsonobj as obj %}
               {% for key, value in obj.items %}
 
@@ -789,7 +743,7 @@ Still keeping for future ref (if needed).
 
               <!-- Content-3 -->
               <div id="panel3a" class="content">
-              {% get_json node.pk as jsonobj %}
+              {% get_json node.id as jsonobj %}
               {% str_to_dict jsonobj as obj %}
               {% for key, value in obj.items %}
               {% if key == "attribute_set" %}
@@ -822,7 +776,7 @@ Still keeping for future ref (if needed).
 
               <!-- Content-4 -->
               <div id="panel4a" class="content">
-              {% get_json node.pk as jsonobj %}
+              {% get_json node.id as jsonobj %}
               {% str_to_dict jsonobj as obj %}
               {% for key, value in obj.items %}
               {% if key == "relation_set" %}
@@ -913,14 +867,14 @@ Still keeping for future ref (if needed).
 
       </div><!-- end of tab's content -->
 
-      {% check_group node.pk as is_group %}
+      {% check_group node.id as is_group %}
       {% if is_group %}
         {% if subgroups_cur %}
           <div >
           <section class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
             {% for subgroup_node in subgroups_cur %}
               <li class="card-image-wrapper">
-                {% include 'ndf/simple_card.html' with resource=subgroup_node has_prof_pic=True url_name="groupchange" first_arg=subgroup_node.pk no_checkbox=True %}
+                {% include 'ndf/simple_card.html' with resource=subgroup_node has_prof_pic=True url_name="groupchange" first_arg=subgroup_node.id no_checkbox=True %}
               </li>
             {% comment %}
 

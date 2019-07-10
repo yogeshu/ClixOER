@@ -73,7 +73,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <input type="hidden" name="node_id" class="form_node_id" value="{{activity_node.pk}}">
+                <input type="hidden" name="node_id" class="form_node_id" value="{{activity_node.id}}">
                 <input type="hidden" name="page_type" class="form_node_id" value="{{page_type}}">
 
                 <div class="row">
@@ -163,7 +163,7 @@
                   type: "POST",
                   data:{
                         'csrfmiddlewaretoken': "{{csrf_token}}",
-                        "node_id":'{{activity_node.pk}}',
+                        "node_id":'{{activity_node.id}}',
                     },
                   url: "{% url 'get_metadata_page' groupid  %}",
                   datatype: "html",

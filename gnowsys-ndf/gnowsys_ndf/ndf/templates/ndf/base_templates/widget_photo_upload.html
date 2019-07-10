@@ -9,10 +9,10 @@
 
        <div class="text-center">
         {% if not no_img %}
-        <div class="div-height img-container-{{node.pk}}">
-          {% get_relation_value node.pk 'has_thumbnail' as grel_dict %}
-          {% get_relation_value node.pk 'has_logo' as grel_dict_logo %}
-          {% get_relation_value node.pk 'has_banner_pic' as grel_banner %}
+        <div class="div-height img-container-{{node.id}}">
+          {% get_relation_value node.id 'has_thumbnail' as grel_dict %}
+          {% get_relation_value node.id 'has_logo' as grel_dict_logo %}
+          {% get_relation_value node.id 'has_banner_pic' as grel_banner %}
           {% if prof_pic_obj %}
             <img src="{{MEDIA_URL}}{{prof_pic_obj.if_file.original.relurl}}" class="img-height"/>
           {% elif grel_dict %}
@@ -71,7 +71,7 @@
                 {% endif %}
                 <div id="{{widget_for}}_pic_div" class="hide row">
                     {% if if_module %}
-                    <form class="dropzone" id ="{{widget_for}}_docPost" enctype="multipart/form-data" method="post"  action="{% url 'upload_prof_pic' node.pk %}">
+                    <form class="dropzone" id ="{{widget_for}}_docPost" enctype="multipart/form-data" method="post"  action="{% url 'upload_prof_pic' node.id %}">
                     {% else %}
                     <form class="dropzone" id ="{{widget_for}}_docPost" enctype="multipart/form-data" method="post"  action="{% url 'upload_prof_pic' group_id %}">
                     {% endif %}

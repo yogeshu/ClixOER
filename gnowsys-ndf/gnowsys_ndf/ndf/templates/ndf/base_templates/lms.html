@@ -21,14 +21,15 @@
  <!-- LMS.html -->
 {% comment %}
  {% include "ndf/buddy.html" %}
+
+ {% include 'ndf/widget_user_access_modal.html' %}
 {% endcomment %}
-{% include 'ndf/widget_user_access_modal.html' %}
 {% get_group_object group_id as group_object %}
 <div class="lms_page">
      <div class="lms_banner">
-        
-      {% include 'ndf/widget_photo_upload.html' with url_name='course_about' widget_for="group_banner" is_banner=True  no_update_btn=True node=group_obj %}
-
+      {% comment %}
+       {% include 'ndf/widget_photo_upload.html' with url_name='course_about' widget_for="group_banner" is_banner=True  no_update_btn=True node=group_obj %}
+      {% endcomment %}
        <div class="small-12 columns lms_heading">
         <div class="left unit_name"> {% firstof group_object.altnames group_object.name  %}
         </div>
@@ -37,6 +38,7 @@
      </div>
 </div>
 {% with group_object.member_of_names_list as group_object_member_of_names_list %}
+
 <div class="lms_secondary_header">
 <div class="small-10 medium-10 large-10 columns  lms-menu-header">
  
@@ -224,93 +226,24 @@
         {% if title == "gallery" %}
               {% include "ndf/assets.html" with title=title %}
         {% endif %}
+        
         {% if title == "course_pages" %}
               {% include "ndf/course_pages.html" with title=title %}
+        
         {% elif title == "create_course_pages" %}
               {% include "ndf/course_page_create_edit.html" %}
+        
         {% endif %}
         {% if title == "asset_detail" or title == "asset_content_detail" or  title == "raw_material_detail" or title == "asset_gallery_detail"  %}
             {% include "ndf/add_asset.html"  with title="asset_detail" group_name=group_name %}
         {% endif %}
+        
         {% if title == "asset_list" %}
             {% include "ndf/assets.html" with title="asset_list" %}
         {% endif %}
+    
     </div>
   </div>
-
-
-
-{% comment %}
-
-  <!-- LMS Activity Player  -->
-
-<div class="activity_player_secondary_header activity_player_header">
-        <div class="header_icon_block back_button">
-            <a href="#"><i class="fa fa-angle-left header_icon"></i></a>
-        </div><div class="header_icon_block ">
-            <a href="#"><i class="fa fa-list-ul thumbnails header_icon"></i></a>
-        </div><div class="header_title header_text_block">
-            Invitation 2 CLIx in English
-        </div><div class="">
-        </div><div class="new_note header_text_block">
-            <a href="#">
-                <i class="fa fa-edit header_icon"></i>&nbsp;
-                WRITE A NEW NOTE
-            </a>
-        </div><div class="pagination prev_button header_text_block">
-            <a href="#">
-                <i class="fa fa-angle-left header_icon"></i>
-                &nbsp;PREV
-            </a>
-        </div><div class="pagination page_count header_text_block">
-            2 OF 3
-        </div>
-        <div class="pagination page_count header_text_block">
-            <a href="#">
-                NEXT&nbsp;
-                <i class="fa fa-angle-right header_icon"></i>
-            </a>
-        </div>
-</div>
-
-<div class="row activity_sheet">
-    <div class="small-12 columns">
-        <div class="course_editor ">
-          <div class="small-2 columns">
-            <div class="course_tree">
-              <div class="lesson-title">
-                  Lesson Title
-              </div>
-              <div class="activity-title">
-                <li class="active">Activity Title</li>
-                <li>Activity Title</li>
-                <li>Activity Title</li>
-                <li>Activity Title</li>
-              </div>
-              </div>
-          </div>
-          <div class="small-9 columns">
-            <div class="course_editor_section">
-              <div class="input_links">
-              <a href="#">Discuss</a>
-              <a href="#"> Related Help</a>
-              <a href="#">Translate</a>
-              </div>
-              <div class="activity_page_rendered">
-              Lorem Ipsum
-              "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-              "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
-
-              What is Lorem Ipsum?
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-</div>
-
-{% endcomment %}
 
 <script type="text/javascript">
   var imgSrc = $('.lms_banner .div-height img').attr('src');

@@ -35,7 +35,7 @@ urlpatterns = patterns('gnowsys_ndf.ndf.views.gcourse',
                         # url(r'^/units/$', 'course_resource_detail', name='course_resource_detail'),
                         url(r'^/course_section/(?P<course_sub_section>[\w-]+)/(?P<course_unit>[\w-]+)/(?P<resource_id>[\w-]+)/$', 'course_resource_detail', name='course_resource_detail'),
                         url(r'^/dashboard/$', 'course_dashboard', name='course_dashboard'),
-                        url(r'^/content/$', 'course_content', name='course_content'),
+                        
                         url(r'^/notebook/$', 'course_notebook', name='course_notebook'),
                         url(r'^/notebook/(?P<tab>[\w-]+)/(?P<node_id>[\w-]+)$', 'course_notebook', name='course_notebook_tab_note'),
                         url(r'^/notebook/(?P<node_id>[\w-]+)$', 'course_notebook', name='course_notebook_note'),
@@ -66,16 +66,13 @@ urlpatterns = patterns('gnowsys_ndf.ndf.views.gcourse',
                         
                         url(r'^/activity_player/(?P<lesson_id>[\w-]+)/(?P<activity_id>[\w-]+)/$', 'activity_player_detail', name='activity_player_detail'),
                         
-                        url(r'^/activities/$', 'course_pages', name='course_pages'),
-                        url(r'^/activities/page-no=(?P<page_no>\d+)/$', 'course_pages', name='course_pages_paged'),
-                        url(r'^/activity/detail/(?P<page_id>[\w-]+)$', 'course_pages', name='view_course_page'),
-                        url(r'^/activity/create$', 'create_edit_course_page', name='create_course_page'),
+                        
                         url(r'^/activity/create/(?P<page_type>[\w-]+)$', 'create_edit_course_page', name='create_course_page_info'),
                         url(r'^/activity/edit/(?P<page_id>[\w-]+)$', 'create_edit_course_page', name='edit_course_page'),
 
 
                         url(r'^/load_content_data/$', 'load_content_data', name='load_content_data'),
-                        url(r'^/save_course_page/$', 'save_course_page', name='save_course_page'),
+                        
                         url(r'^/delete_activity_page/$', 'delete_activity_page', name='delete_activity_page'),
                         url(r'^/widget_page_create_edit/$', 'widget_page_create_edit', name='widget_page_create_edit'),
                         url(r'^/load_assessment_analytics/$', 'load_assessment_analytics', name='load_assessment_analytics'),

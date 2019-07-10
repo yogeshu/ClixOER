@@ -235,7 +235,15 @@ def get_node(node_id):
 def get_schema(node):
 	if node:
 		# obj = node_collection.find_one({"_id": ObjectId(node.member_of[0])}, {"name": 1})
-		nam = node.member_of_names_list[0]
+		print "type of node in get_schema",type(node)
+		from elasticsearch_dsl import * 
+		if isinstance(node,response.hit.Hit):
+			q = Q('match',id = node.member_of[0])
+			s1 = Search(using=es, index='nodes',doc_type="node").query(q)
+			s2 = s1.execute()
+			nam =s2[0]
+		else:
+			nam = node.member_of_names_list[0]
 		if(nam == 'Page'):
 			return [1,schema_dict[nam]]
 
@@ -3078,7 +3086,11 @@ def jsonify(value):
     """Parses python value into json-type (useful in converting
     python list/dict into javascript/json object).
     """
-
+    print "type:",type(value)
+    if isinstance(value,AttrDict):
+    	value = value.to_dict()
+    elif isinstance(value,AttrList):
+    	value = list(value)
     return json.dumps(value, cls=NodeJSONEncoder)
 
 @get_execution_time
@@ -4170,9 +4182,17 @@ def get_node_by_member_of_name(group_id, member_of_name):
 def cast_to_node(node_or_node_list):
 	print "cast_to_node"
 	print "\nInput type: ", type(node_or_node_list)
+	node_or_node_list = list(iter(node_or_node_list))
+	print "\nOutput type: ", type(node_or_node_list)
 	if isinstance(node_or_node_list, list):
-		return map(Node,node_or_node_list)
-		print node_or_node_list
+		if not isinstance(node_or_node_list[0],dict):
+			node_or_node_list = [each.to_dict() for each in node_or_node_list]
+			return node_or_node_list
+		else:
+			return map(Node,node_or_node_list)
+		# print "node",type(node_or_node_list[0]),node_or_node_list[0]
+		# nd = map(Node,node_or_node_list)
+		# print "Ddone with casting:",nd[0]
 	else:
 		return Node(node_or_node_list)
 
