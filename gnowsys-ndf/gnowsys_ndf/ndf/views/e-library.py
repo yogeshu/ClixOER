@@ -115,7 +115,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	title = e_library_GST[0].name
 	file_id = GST_FILE[0].id
 	datavisual = []
-	no_of_objs_pp = 24
+	no_of_objs_pp = 5
 
 	# filters = request.POST.get("filters", "")
 	# filters = json.loads(filters)
@@ -166,18 +166,18 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	allfiles2 = allfiles1.execute()
 
 	educationaluse_stats = {}
-
+	print "all_files:",allfiles1
 
 	q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('exists',field = 'collection_set')])
 	collection_pages_cur = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
 	if int(page_no)==1:
-			collection_pages_cur=collection_pages_cur[0:24]
+			collection_pages_cur=collection_pages_cur[0:5]
 	else:
-		temp=( int(page_no) - 1) * 24
-		collection_pages_cur=collection_pages_cur[temp:temp+24]
+		temp=( int(page_no) - 1) * 5
+		collection_pages_cur=collection_pages_cur[temp:temp+5]
 
-	paginator = Paginator(collection_pages_cur, 24)
+	paginator = Paginator(collection_pages_cur, 5)
 
 
 
@@ -214,7 +214,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 
 	allaudios2 = allaudios1.execute()
 
-	q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC')],should=[Q('match_phrase',if_file__mime_type = 'pdf'),Q('match_phrase',if_file__mime_type = 'document')],minimum_should_match=1)
+	q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',name = 'Handbook'),Q('match_phrase',if_file__mime_type = 'pdf')])
 
 	alldocs1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
@@ -226,13 +226,13 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 
 	all_modules2 = all_modules.execute()
 
-	files_new = all_modules2[0:24]
+	files_new = allfiles1[0:24]
 
 	if int(page_no)==1:
-		files_new=all_modules2[0:24]
+		files_new=allfiles1[0:24]
 	else:
 		temp=( int(page_no) - 1) * 24
-		files_new=all_modules2[temp:temp+24]
+		files_new=allfiles1[temp:temp+24]
 
 	if files_new:
 		eu_list = []  
@@ -254,7 +254,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 			result_pages = paginator.page(1)
 		except EmptyPage:
 			result_pages = paginator.page(paginator.num_pages)
-			
+
 	try:
 		results = paginator.page(page_no)
 	except PageNotAnInteger:
@@ -313,17 +313,12 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
 	if request.is_ajax() and request.method == "POST":
 		group_name, group_id = get_group_name_id(group_id)
 
-		no_of_objs_pp = 24
+		no_of_objs_pp = 5
 		result_pages = None
 		filetype = filetype.lower()
 		filters = request.POST.get("filters", "")
 		filters = json.loads(filters)
 		filters = get_filter_querydict(filters)
-
-		# print "filters in E-Library : ", filters
-
-		# declaring empty (deliberately to avoid errors), query dict to be pass-on in query
-		# query_dict = [{}]
 		query_dict = filters
 
 		selfilters = urllib.unquote(request.GET.get('selfilters', ''))
@@ -334,98 +329,15 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
 		# query_dict.append("Q('match',"+t+"=dict(query='"+value+"',type='phrase'))")
 
 		detail_urlname = "file_detail"
-	# 	if filetype != "all":
-	# 		# if filetype == "Pages":
-	# 		# 	detail_urlname = "page_details"
-	# 		# 	result_cur = node_collection.find({'member_of': GST_PAGE._id,
- #   #                                  '_type': 'GSystem',
- #   #                                  'group_set': {'$all': [ObjectId(group_id)]},
- #   #                                  '$or': [
- #   #                                      {'access_policy': u"PUBLIC"},
- #   #                                      {'$and': [
- #   #                                          {'access_policy': u"PRIVATE"},
- #   #                                          {'created_by': request.user.id}
- #   #                                      ]
- #   #                                   }
- #   #                                  ]
- #   #                              }).sort("last_update", -1)
-
-	# 		# 	result_paginated_cur = result_cur
-	# 		# 	result_pages = paginator.Paginator(result_paginated_cur, page_no, no_of_objs_pp)
-
-	# 		# elif filetype == "Collections":
-	# 		if filetype == "Collections":
-	# 			pass
-	# 			# detail_urlname = "page_details"
-	# 			# result_cur = node_collection.find({
-	# 			# 					'member_of': {'$in': [GST_FILE._id, GST_PAGE._id]},
-	# #                                 'group_set': {'$all': [ObjectId(group_id)]},
-	# #                                 '$or': [
-	# #                                     {'access_policy': u"PUBLIC"},
-	# #                                     {'$and': [
-	# #                                         {'access_policy': u"PRIVATE"},
-	# #                                         {'created_by': request.user.id}
-	# #                                     ]
-	# #                                  }
-	# #                                 ],
-	# #                                 'collection_set': {'$exists': "true", '$not': {'$size': 0} }
-	# #                             }).sort("last_update", -1)
-	# 			# # print "=====================", result_cur.count()
-
-	# 			# result_paginated_cur = result_cur
-	# 			# result_pages = paginator.Paginator(result_paginated_cur, page_no, no_of_objs_pp)
-	# 			# # print "=====================", result_pages
-
-	# 			# query_dict.append({ 'collection_set': {'$exists': "true", '$not': {'$size': 0} } })
-	# 		else:
-	# 			query_dict.append("Q('match_phrase',if_file__mime_type = filetype)")
-
-		# print filters
-		# if filters:
-		# 	temp_list = []
-		# 	for each in filters:
-		# 		filter_grp = each["or"]
-		# 		for each_filter in filter_grp:
-		# 			temp_dict = {}
-		# 			each_filter["selFieldText"] = cast_to_data_type(each_filter["se lFieldText"], each_filter["selFieldPrimaryType"])
-
-		# 			if each_filter["selFieldPrimaryType"] == unicode("list"):
-		# 				each_filter["selFieldText"] = {"$in": each_filter["selFieldText"]}
-
-		# 			if each_filter["selFieldGstudioType"] == "attribute":
-
-		# 				temp_dict["attribute_set." + each_filter["selFieldValue"]] = each_filter["selFieldText"]
-		# 				temp_list.append(temp_dict)
-		# 				# print "temp_list : ", temp_list
-		# 			elif each_filter["selFieldGstudioType"] == "field":
-		# 				temp_dict[each_filter["selFieldValue"]] = each_filter["selFieldText"]
-		# 				temp_list.append(temp_dict)
-
-		# 		if temp_list:
-		# 			query_dict.append({ "$or": temp_list})
-
-		# print "query_dict : ", query_dict
-
-		
-		# files = node_collection.find({
-		# 								'member_of': {'$in': [GST_FILE._id,GST_JSMOL._id]},
-		# 								# 'member_of': {'$in': [GST_FILE._id, GST_PAGE._id]},
-		# 								# '_type': 'File',
-		# 								# 'fs_file_ids': {'$ne': []},
-		# 								'group_set': {'$all': [ObjectId(group_id)]},
-		# 								'$and': query_dict,
-		# 								'$or': [
-		# 										{ 'access_policy': u"PUBLIC" },
-		# 										{ '$and': [
-		# 													{'access_policy': u"PRIVATE"},
-		# 													{'created_by': request.user.id}
-		# 												]
-		# 										}
-		# 									]
-		# 								}).sort("last_update", -1)
-
-		q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = filetype)])
-
+		print "filetype:",filetype
+		if filetype != 'Module':
+			if filetype == 'document':
+				print "in Document elif"
+				q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = 'pdf'),Q('match_phrase',name = 'Handbook')])
+			else:
+				q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = filetype)])
+		else:
+			q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED')])
 		allfiletypes1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
 		allfiletypes2 = allfiletypes1.execute()
@@ -433,10 +345,10 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
 		educationaluse_stats = {}
 
 		if int(page_no)==1:
-			files_new=allfiletypes1[0:24]
+			files_new=allfiletypes1[0:5]
 		else:
-			temp=( int(page_no) - 1) * 24
-			files_new=allfiletypes1[temp:temp+24]
+			temp=( int(page_no) - 1) * 5
+			files_new=allfiletypes1[temp:temp+5]
 
 		# print "files_count: ", files.count()
 
@@ -462,7 +374,7 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
 				educationaluse_stats["all"] = files.count()
 				educationaluse_stats["Collections"] = collection_set_count
 
-			paginator = Paginator(files_new, 24)
+			paginator = Paginator(files_new, 5)
 
 
 			#page_no = request.GET.get('page_no')
