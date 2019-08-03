@@ -1,0 +1,73 @@
+{% extends 'ndf/base.html' %}
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+
+{% block content %}
+
+<div class="row justify-content-center" style="background: #007991;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #78ffd6, #007991);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #78ffd6, #007991); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+    <h1>  Help Video - English Team </h1>
+        <div class="col-md-10 py-5">
+            <div class="row">
+                <a href="https://www.youtube.com/embed/7RVdncvy-cc" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img  src="https://img.youtube.com/vi/7RVdncvy-cc/0.jpg" class="rounded img-fluid">
+                </a>
+                <a href="https://www.youtube.com/embed/j2MT9eFV_MM" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/j2MT9eFV_MM/0.jpg" class="img-fluid">
+                </a>
+                <a href="https://www.youtube.com/embed/zbeV_ICx7xI" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/zbeV_ICx7xI/0.jpg" class="img-fluid">
+                </a>
+            </div>
+<!--            <div class="row mt-5">
+                <a href="https://www.youtube.com/embed/nVSrwXTbsTE" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/nVSrwXTbsTE/0.jpg" class="img-fluid">
+                </a>
+                <a href="https://www.youtube.com/embed/kDQBqCVtKn8" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/kDQBqCVtKn8/0.jpg" class="img-fluid">
+                    <h4 class="text-center"> Let's Talk</h4>
+                </a>
+                <a href="https://www.youtube.com/embed/j2MT9eFV_MM" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/j2MT9eFV_MM/0.jpg" class="img-fluid">
+                </a>
+               
+            </div>
+            <div class="row mt-5">
+                    <a href="https://www.youtube.com/embed/ZtvcaT1-MhU" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                        <img src="https://img.youtube.com/vi/ZtvcaT1-MhU/0.jpg" class="img-fluid">
+                    </a>
+                    <a href="https://www.youtube.com/embed/_y0vXoy4Ego" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                        <img src="https://img.youtube.com/vi/_y0vXoy4Ego/0.jpg" class="img-fluid">
+                    </a>
+                    <a href="https://www.youtube.com/embed/WQsQhaoxlSc" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                        <img src="https://img.youtube.com/vi/WQsQhaoxlSc/0.jpg" class="img-fluid">
+                    </a>
+            </div>
+            <div class="row mt-5">
+                    <a href="https://www.youtube.com/embed/106s0p1eTRY" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                        <img src="https://img.youtube.com/vi/106s0p1eTRY/0.jpg" class="img-fluid">
+                    </a>
+                    <a href="https://www.youtube.com/embed/wCTesGdgfGE" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                       
+                        <img src="https://img.youtube.com/vi/wCTesGdgfGE/0.jpg" class="img-fluid">
+                        <div class="card-img-overlay text-center">
+<img class=""  src="../static/noun_play_1830703.png">
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/embed/x-GsJz696NA" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                        <img src="https://img.youtube.com/vi/x-GsJz696NA/0.jpg" class="img-fluid">
+                    </a>
+            
+</div>  -->
+        </div>
+</div>
+<script>
+$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+event.preventDefault();
+$(this).ekkoLightbox();
+            });
+
+</script>    
+{% endblock %}

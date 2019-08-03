@@ -771,7 +771,7 @@ def uploadDoc(request, group_id):
         page_url = request.GET.get("next", "")
         # template = "ndf/UploadDoc.html"
 
-        template = "ndf/UploadDoc.html"
+        template = "ndf/base_templates/UploadDoc.html"
 
         if GSTUDIO_FILE_UPLOAD_FORM == 'detail':
             template = "ndf/Uploader_Form.html"

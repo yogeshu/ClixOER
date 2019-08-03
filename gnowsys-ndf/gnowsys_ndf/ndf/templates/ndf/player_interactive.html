@@ -1,0 +1,291 @@
+<!-- horizontal 
+
+
+<h4>Horizontal Flip</h4>
+-->
+{% load ndf_tags %}
+<div class="container">
+<div class="row"> 
+
+{% for dest in  files %}
+  {% with name=dest.name %}
+
+   {% with json_data=interactivedata|get_item:name %}
+<div class="flip interactive">
+    <div class="front" style="background-image:url({{json_data.Interactive_image}} )">
+       <h4 class="text-shadow">{{dest.name}}</h4>
+       
+    </div>
+    <div class="back">
+
+              
+    
+       <p>{{dest.content}}</p>
+    <div class="card-footer text-center">
+       <a href="{{json_data.Interactive_href}}" target="_blank"  data-toggle="tooltip" title="Play Online"> <i class="fa fa-rocket fa-lg " > </i></a>
+    <a href="{% url 'read_file' group_id dest.id  %}" data-toggle="tooltip" title="Play Offline"> <i class="fa fa-cloud-download-alt fa-lg ml-2"></i></a>
+    </div>
+      </div>
+
+</div>
+  {% endwith %}
+ {% endwith %}
+{% endfor %}
+</div>
+</div>
+
+<!--
+<div class="flip">
+    <div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+       <h1 class="text-shadow">LAKE</hi>
+    </div>
+    <div class="back">
+       <h2>Angular</h2>
+       <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+    </div>
+</div>
+<div class="flip">
+    <div class="front" style="background-image: url(https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+       <h1 class="text-shadow">OCEAN</hi>
+    </div>
+    <div class="back">
+       <h2>Angular</h2>
+       <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+    </div>
+</div>
+
+<br>
+<br>
+-->
+<!-- vertical -->
+  <!--
+<h4>Vertical Flip</h4>
+<div class="flip flip-vertical">
+    <div class="front" style="background-image: url(https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+       <h1 class="text-shadow">FOREST</hi>
+    </div>
+    <div class="back">
+       <h2>Angular</h2>
+       <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+    </div>
+</div>
+<div class="flip flip-vertical">
+    <div class="front" style="background-image: url(https://images.pexels.com/photos/34950/pexels-photo.jpg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+       <h1 class="text-shadow">TRACK</hi>
+    </div>
+    <div class="back">
+       <h2>Angular</h2>
+       <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+    </div>
+</div>
+<div class="flip flip-vertical">
+    <div class="front" style="background-image: url(https://images.pexels.com/photos/34546/sunset-lake-landscape-summer.jpg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+       <h1 class="text-shadow">SWAMP</hi>
+    </div>
+    <div class="back">
+       <h2>Angular</h2>
+       <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+    </div>
+</div>
+-->
+<script>
+
+function getPageList(totalPages, page, maxLength) {
+    if (maxLength < 5) throw "maxLength must be at least 5";
+    function range(start, end) {
+      return Array.from(Array(end - start + 1), (_, i) => i + start);
+    }
+    var sideWidth = maxLength < 9 ? 1 : 2;
+    var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+    var rightWidth = (maxLength - sideWidth * 2 - 2) >> 1;
+    if (totalPages <= maxLength) {
+      // no breaks in list
+      return range(1, totalPages);
+    }
+    if (page <= maxLength - sideWidth - 1 - rightWidth) {
+      // no break on left of page
+      return range(1, maxLength - sideWidth - 1)
+        .concat([0])
+        .concat(range(totalPages - sideWidth + 1, totalPages));
+    }
+    if (page >= totalPages - sideWidth - 1 - rightWidth) {
+      // no break on right of page
+      return range(1, sideWidth)
+        .concat([0])
+        .concat(
+          range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages)
+        );
+    }
+    // Breaks on both sides
+    return range(1, sideWidth)
+      .concat([0])
+      .concat(range(page - leftWidth, page + rightWidth))
+      .concat([0])
+      .concat(range(totalPages - sideWidth + 1, totalPages));
+  }
+  $(function() {
+    // Number of items and limits the number of items per page
+    var numberOfItems = $("#jar .interactive").length;
+    var limitPerPage = 6;
+    // Total pages rounded upwards
+    var totalPages = Math.ceil(numberOfItems / limitPerPage);
+    // Number of buttons at the top, not counting prev/next,
+    // but including the dotted buttons.
+    // Must be at least 5:
+    var paginationSize = 9;
+    var currentPage;
+    function showPage(whichPage) {
+      if (whichPage < 1 || whichPage > totalPages) return false;
+      currentPage = whichPage;
+      $("#jar .interactive")
+        .hide()
+        .slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage)
+        .show();
+      // Replace the navigation items (not prev/next):
+      $(".pagination li")
+        .slice(1, -1)
+        .remove();
+      getPageList(totalPages, currentPage, paginationSize).forEach(item => {
+        $("<li>")
+          .addClass(
+            "page-item " +
+              (item ? "current-page " : "") +
+              (item === currentPage ? "active " : "")
+          )
+          .append(
+            $("<a>")
+              .addClass("page-link")
+              .attr({
+                href: "javascript:void(0)"
+              })
+              .text(item || "...")
+          )
+          .insertBefore("#next-page");
+      });
+      return true;
+    }
+    // Include the prev/next buttons:
+    $(".pagination").append(
+      $("<li>")
+        .addClass("page-item")
+        .attr({ id: "previous-page" })
+        .append(
+          $("<a>")
+            .addClass("page-link")
+            .attr({
+              href: "javascript:void(0)"
+            })
+            .text("Prev")
+        ),
+      $("<li>")
+        .addClass("page-item")
+        .attr({ id: "next-page" })
+        .append(
+          $("<a>")
+            .addClass("page-link")
+            .attr({
+              href: "javascript:void(0)"
+            })
+            .text("Next")
+        )
+    );
+    // Show the page links
+    $("#jar").show();
+    showPage(1);
+    // Use event delegation, as these items are recreated later
+    $(document).on(
+      "click",
+      ".pagination li.current-page:not(.active)",
+      function() {
+        return showPage(+$(this).text());
+      }
+    );
+    $("#next-page").on("click", function() {
+      return showPage(currentPage + 1);
+    });
+    $("#previous-page").on("click", function() {
+      return showPage(currentPage - 1);
+    });
+    $(".pagination").on("click", function() {
+      $("html,body").animate({ scrollTop: 0 }, 0);
+    });
+  });
+</script>
+
+
+
+<style>
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono");
+
+
+.flip {
+  position: relative;
+}
+.flip > .front,
+.flip > .back {
+  display: block;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-duration: .5s;
+  transition-property: transform, opacity;
+}
+.flip > .front {
+  transform: rotateY(0deg);
+}
+.flip > .back {
+  position: absolute;
+  opacity: 0;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  transform: rotateY(-180deg);
+}
+.flip:hover > .front {
+  transform: rotateY(180deg);
+}
+.flip:hover > .back {
+  opacity: 1;
+  transform: rotateY(0deg);
+}
+.flip.flip-vertical > .back {
+  transform: rotateX(-180deg);
+}
+.flip.flip-vertical:hover > .front {
+  transform: rotateX(180deg);
+}
+.flip.flip-vertical:hover > .back {
+  transform: rotateX(0deg);
+}
+
+.flip {
+  position: relative;
+  display: inline-block;
+  margin-right: 2px;
+  margin-bottom: 1em;
+  width: 300px;
+}
+.flip > .front,
+.flip > .back {
+  display: block;
+  color: white;
+  width: inherit;
+  background-size: cover !important;
+  background-position: center !important;
+  height: 220px;
+  padding: 1em 2em;
+  background: #313131;
+  border-radius: 10px;
+}
+.flip > .front p,
+.flip > .back p {
+  font-size: 0.9125rem;
+  line-height: 160%;
+  color: #999;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.04), 2px 2px rgba(0, 0, 0, 0.04), 3px 3px rgba(0, 0, 0, 0.04), 4px 4px rgba(0, 0, 0, 0.04), 0.125rem 0.125rem rgba(0, 0, 0, 0.04), 6px 6px rgba(0, 0, 0, 0.04), 7px 7px rgba(0, 0, 0, 0.04), 8px 8px rgba(0, 0, 0, 0.04), 9px 9px rgba(0, 0, 0, 0.04), 0.3125rem 0.3125rem rgba(0, 0, 0, 0.04), 11px 11px rgba(0, 0, 0, 0.04), 12px 12px rgba(0, 0, 0, 0.04), 13px 13px rgba(0, 0, 0, 0.04), 14px 14px rgba(0, 0, 0, 0.04), 0.625rem 0.625rem rgba(0, 0, 0, 0.04), 16px 16px rgba(0, 0, 0, 0.04), 17px 17px rgba(0, 0, 0, 0.04), 18px 18px rgba(0, 0, 0, 0.04), 19px 19px rgba(0, 0, 0, 0.04), 1.25rem 1.25rem rgba(0, 0, 0, 0.04);
+}
+
+
+</style>

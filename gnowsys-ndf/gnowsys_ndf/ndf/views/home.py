@@ -26,7 +26,7 @@ from gnowsys_ndf.ndf.gstudio_es.paginator import Paginator ,EmptyPage, PageNotAn
 #   V I E W S   D E F I N E D   F O R   H O M E   #
 ###################################################
 index = 'nodes'
-
+print "in home.py"
 @get_execution_time
 def homepage(request, group_id):
     print "Entered home.py"
@@ -48,58 +48,19 @@ def homepage(request, group_id):
         print "auth1:",auth2
         auth = auth2[0]
         # This will create user document in Author collection to behave user as a group.
-        '''
-        The code below is commented whose purpose was to create Author
-        group on first-time login.
-        This functionality is implemented by using django-registration
-        signal 'user_activated'. (See 'def create_auth_grp' in signals.py)
-        
-        if auth is None:        if auth is None:
 
-            auth = node_collection.collection.Author()
-            auth.name = unicode(request.user)
-            auth.email = unicode(request.user.email)
-            auth.password = u""
-            # auth.member_of.append(auth_type)
-            auth.member_of.append(auth_gst._id)
-            auth.group_type = u"PUBLIC"
-            auth.edit_policy = u"NON_EDITABLE"
-            auth.subscription_policy = u"OPEN"
-            user_id = int(request.user.pk)
-            auth.created_by = user_id
-            auth.modified_by = user_id
-            if user_id not in auth.contributors:
-                auth.contributors.append(user_id)
-            # Get group_type and group_affiliation stored in node_holder for this author 
-            try:
-                temp_details = node_collection.one({'$and':[{'_type':'node_holder'},{'details_to_hold.node_type':'Author'},{'details_to_hold.userid':user_id}]})
-                if temp_details:
-                    auth.agency_type = temp_details.details_to_hold['agency_type']
-                    auth.group_affiliation = temp_details.details_to_hold['group_affiliation']
-            except e as Exception:
-                print "error in getting node_holder details for an author"+str(e)
-            auth.save(groupid=group_id)
-
-            # as on when user gets register on platform make user member of two groups:
-            # 1: his/her own username group. 2: "home" group
-            # adding user's id into author_set of "home" group.
-            home_group_obj = node_collection.one({'_type': u"Group", 'name': unicode("home")})
-            # being user is log-in for first time on site after registration,
-            # directly add user's id into author_set of home group without anymore checking overhead.
-            home_group_obj.author_set.append(request.user.id)
-            home_group_obj.save(groupid=group_id)
-        '''
         print GSTUDIO_SITE_LANDING_PAGE, request.user.id
         if GSTUDIO_SITE_LANDING_PAGE == "home":
             print "before reverse"
-            return HttpResponseRedirect( reverse('landing_page') )
+            return HttpResponseRedirect( reverse('e-library'), kwargs={"group_id": group_id} )
 
         else:
             return HttpResponseRedirect( reverse('dashboard', kwargs={"group_id": request.user.id}) )
 
     else:
+        print "in home:",group_id,GSTUDIO_SITE_LANDING_PAGE
         if GSTUDIO_SITE_LANDING_PAGE == "home":
-            return HttpResponseRedirect( reverse('landing_page') )
+            return HttpResponseRedirect(  reverse('e-library', kwargs={"group_id": group_id} ) )
 
         else:
             return HttpResponseRedirect( reverse('groupchange', kwargs={"group_id": group_id}) )
@@ -111,7 +72,7 @@ def landing_page(request):
     '''
     # group_id = node_collection.one({'$and':[{'_type': u'Group'}, {'name': u'home'}]})._id
     q = eval("Q('bool', must=[Q('match', type = 'Group'), Q('match',name='home')])")
-
+    print "in landingpage"
     # q = Q('match',name=dict(query='File',type='phrase'))
     grp_id1 = Search(using=es, index=index,doc_type="node").query(q)
     grp_id2 = grp_id1.execute()

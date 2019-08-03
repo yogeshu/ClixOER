@@ -1,0 +1,133 @@
+{% extends "ndf/base.html" %}
+
+<link href="../static/multislider.js">
+{{csrf_token}}
+{% block content %}
+<body>
+
+ 
+
+<div class="container py-2 mt-4">
+    <div class="row">
+      <div class="col-sm-9">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb ml-n5">
+            <li class="breadcrumb-item  "aria-current="page"> <i class="ml-n4 fas fa-home fa-lg"></i>Domain</li>
+            <li class="breadcrumb-item " aria-current="page"> {{ first_arg }}</li>
+          </ol>
+        </nav>
+
+    </div>
+      <div class="col-sm-3"> <button type="button" class="btn btn-primary butn mx-n2">Download All &nbsp;<i class="fas fa-cloud-download-alt"\
+></i></button>
+      </div>
+    </div>
+</div>
+
+
+<div class="container-fluid hello">
+    <div class="row">
+      <nav class="col-12 col-sm-12 col-md-2" id="verticalScrollspy">
+        <ul class="nav flex-column nav-pills nav-scroll">
+          <li class="nav-item "><a class="nav-link active" href="#dogs"> <i class="fas fa-puzzle-piece"></i> Modules</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cats"><i class="far fa-question-circle"></i> How to Use</a></li>
+          <li class="nav-item"><a class="nav-link" href="#team"><i class="fas fa-users"></i>Team Details</a></li>
+          <li class="nav-item"><a class="nav-link" href="#penguins"><i class="fas fa-seedling"></i>  Design And  <span class="ml-3 py-1"> Developement </span> </a></li>
+          <li class="nav-item"><a class="nav-link" href="#alpacas"><i class="fas fa-comment-alt"></i> Testimonials </a></li>
+          <li class="nav-item"><a class="nav-link" href="#rabbits"><i class="fas fa-comments"></i> Contact Us</a></li>
+        </ul>
+      </nav>
+      <div class="col-12 col-md-10 col-lg-10">
+        <div data-spy="scroll" data-target="#verticalScrollspy">
+          <div id="dogs" class="container-fluid">
+           
+             {% include "ndf/module_cards.html" %}
+             {% include "ndf/pagination.html" %}
+          </div>
+          <div id="cats" class="container-fluid">
+         
+            {% include "ndf/icon_slider.html" %}
+          </div>
+          <div id="team" class="container-fluid">
+        {% include "ndf/domain_team_cards.html"  with slider=slider%}
+          </div>
+          <div id="penguins" class="container-fluid">
+           {% include "ndf/devlopementanwork.html" %} 
+         
+          </div>
+          <div id="alpacas" class="container-fluid" class="mb-5">
+            <h1 class="text-center">Testimonials</h1>         
+{% include "ndf/oer_testimonials.html" %}
+          </div>
+          <div id="rabbits" class="container-fluid" class="mt-5">
+{% include "ndf/contactForm.html" %}           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <script >
+
+
+
+      $(document).ready(function() {
+        $('body').scrollspy({ target: '#verticalScrollspy' })
+      //   $('body').attr('data-spy', 'scroll');
+      //   $('body').attr('data-offset', '0');
+      //   $('body').attr('data-target', '#verticalScrollspy');
+      })
+      
+      
+      
+      
+      </script> -->
+      <script>
+
+        $('#basicSlider').multislider({
+                continuous: true,
+                duration: 2000
+              });
+              $('#mixedSlider').multislider({
+                duration: 750,
+                interval: 3000
+              });
+        
+        
+        
+        
+        </script>
+        </script>
+        <link rel="stylesheet" href="https://npmcdn.com/flickity@2/dist/flickity.css">
+        <script src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
+        <script>
+
+
+(function(){
+    // Your base, I'm in it!
+    var originalAddClassMethod = jQuery.fn.addClass;
+
+    jQuery.fn.addClass = function(){
+        // Execute the original method.
+        var result = originalAddClassMethod.apply( this, arguments );
+
+        // trigger a custom event
+        jQuery(this).trigger('cssClassChanged');
+
+        // return the original result
+        return result;
+    }
+})();
+
+$(".nav-link").bind('cssClassChanged' , function(e) {
+        $(".nav-item").each( function() {
+            if( $(this).hasClass("active") == true ) {
+                $(this).removeClass("active");
+            }
+        });
+
+        $(this).removeClass("active").parent().addClass("active");
+    });
+          </script>
+        
+  
+{% endblock %}

@@ -26,7 +26,7 @@ class UserDetails(object):
     # desired cookie will be available in every HttpResponse parser like browser but not in django view
     def process_response(self, request, response):
         try:
-            print "inside UserDetails process_response"
+            print "inside UserDetails process_response",response.context_data,response.template_name
             from django.contrib.sessions.models import Session
             s = Session.objects.get(pk = request.COOKIES['sessionid'])
             print s.get_decoded()

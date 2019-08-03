@@ -1,0 +1,32 @@
+{% extends "ndf/base.html" %}
+
+{% block content %}
+{% load i18n %}
+{% load ndf_tags %}
+{% get_group_name groupid as group_name_tag %}
+{% check_is_gstaff groupid request.user as is_gstaff %}
+{% get_node groupid as group_obj %}
+
+
+
+
+<div class="container-fluid" id="u"   style="">
+    <div class="row">
+
+{% include "ndf/oer_breadcrumbs.html" %}
+</div>
+<div class="row" id="x">
+{% include "ndf/OER_TOC.html" %}
+
+{% include "ndf/module_cards.html" %}
+<!--</div>-->
+       
+</div> 
+<!---
+{% include "ndf/pagination.html" %}       
+ -->
+    <div class="">
+        {% include "ndf/Oer_teacher_courses.html" %}  
+  </div>
+</div>
+    {%  endblock  %}

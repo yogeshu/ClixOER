@@ -1,0 +1,257 @@
+
+<div class="col-md-2 col-sm-10 col-md-2 collapse d-md-flex navbar-expand-lg pt-2 min-vh-100" >
+       <nav>
+                <ul class="nav flex-column nav-pills nav-scroll">
+                        <li class="nav-item" id="main-page"> <a class="nav-link collapsed " href="#submenu1" data-toggle="collapse" data-target="#submenu1">Subject <i class="float-right fas fa-plus-circle fa-lg"></i></a></li>
+                        <div class="collapse" id="submenu1" aria-expanded="false">
+                            <ul class="flex-column pl-1 nav">
+                         <li class="nav-item">  <a class="nav-link " href="#"><input  id="English" type="checkbox" value="English" class="searchfilter" name="english"> <i class="fas fa-font" > </i>English</a></li>
+                                <li class="nav-item"><a class="nav-link " href="#">  <input id="Mathematics" type="checkbox" value="Mathematics" class="searchfilter"  name="english"><i class="fas fa-calculator"></i> math</a></li>
+            
+                                <li class="nav-item"><a class="nav-link " href="#">  <input id="Science" type="checkbox" value="Science" class="searchfilter" name="english"><i class="fas fa-flask"></i> science</a></li>
+            
+                        
+                            </ul>
+                        </div>
+                    </li>     
+            <section class="load">
+                    <li class="nav-item nav-reload"><a class="nav-link"  id="module"  href="#"> <i class="fas fa-puzzle-piece fa-lg"></i> Modules {{file_pages}}</a></li>
+                    <li class="nav-item nav-reload"><a class="nav-link" id="module_interactive"  href="#"><i class="fas fa-dice-d6 "></i> Interactive {{interactive_pages}}</a></li>
+                   <li class="nav-item nav-relaod"><a class="nav-link" id="handbook"  href="#"><i class="fas fa-images fa-sm"></i> Handbook {{doc_pages}}</a></li>
+</section>
+	 <!-- 	   <li class="nav-item nav-relaod"><a class="nav-link" id="_image"  href="#"><i class="fas fa-images fa-sm"></i> Images {{image_pages}}</a></li>
+                   <li class="nav-item nav-relaod"><a class="nav-link" id="audio" href="#"><i class="fas fa-images fa-sm"></i> Audios {{audio_pages}}</a></li>
+		   <li class="nav-item nav-reload"><a class="nav-link" id="video"  href="#"><i class="fas fa-images fa-sm"></i> Videos {{video_pages}}</a></li>
+                </ul>
+              </nav>
+       </section>
+     
+        <!-- <li class="nav-item"><a class="nav-link" href="#"><i class ="fas fa-bar-chart fa-lg"></i>Handbook</a></li> -->
+         <!-- <li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-puzzle-piece fa-lg"></i> Modules</a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-hand-holding-book "></i> Interactive</a></li>
+             <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-images fa-sm"></i> Handbook</a></li> -->
+        <!-- <li class="nav-item" ><a class="nav-link" href="#"><i class="fas fa-play-circle fa-lg"></i> Video's</a></li>
+         <li class="nav-item" id="image_player"><a class="nav-link" > <i class="fas fa-desktop fa-sm"></i>latform</a></li> -->
+   
+</div>
+<script>
+var domain;
+$('#module').click(function() {
+var domains = $("input:checked").map(function(){
+     return $(this).val();
+    }).get(); // <----
+
+$.ajax({
+            type: "POST",
+            url: "{% url 'elib_paged_file_objs' group_name_tag 'Module' 1 %}",
+            datatype: "html",
+	    traditional : true,
+            data:{
+              csrfmiddlewaretoken: '{{ csrf_token }}',
+              domain_name : domains,
+	      domain_selected:domains,
+            },
+            success: function(data) {
+              $('#jar').html(data)
+             
+
+            }
+          });
+          
+});
+
+$('#handbook').click(function() {
+var domains = $("input:checked").map(function(){
+     return $(this).val();
+    }).get(); // <----
+console.log([],domains);
+{
+		    $.ajax({
+		    type: "POST",
+		    url: "{% url 'elib_paged_file_objs' group_name_tag 'Document' 1 %}",
+		    datatype: "html",
+		    traditional : true,
+		    data:{
+		    csrfmiddlewaretoken: '{{ csrf_token }}',
+		    domain_name:domains,
+		    domain_selected:domains,
+		    },
+		    success: function(data) {
+		    $('#jar').html(data)
+
+
+            }
+          });
+};
+});
+
+$('#_image').click(function() {
+$.ajax({
+            type: "POST",
+            url: "{% url 'elib_paged_file_objs' group_name_tag 'Image' 1%}",
+            datatype: "html",
+            data:{
+
+              csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(data) {
+              $('#jar').html(data)
+
+
+            }
+          });
+
+});
+
+$('#module_interactive').click(function() {
+var domains = $("input:checked").map(function(){
+     return $(this).val();
+    }).get(); // <----
+console.log([],domains);
+{
+                    $.ajax({
+                    type: "POST",
+                    url: "{% url 'elib_paged_file_objs' group_name_tag 'interactives' 1 %}",
+                    datatype: "html",
+                    traditional : true,
+                    data:{
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    domain_name:domains,
+                    domain_selected:domains,
+                    },
+                    success: function(data) {
+                    $('#jar').html(data)
+
+
+            }
+          });
+};
+});
+
+$('#audio').click(function() {
+$.ajax({
+            type: "POST",
+            url: "{% url 'elib_paged_file_objs' group_name_tag 'Audio' 1  %}",
+            datatype: "html",
+            data:{
+
+              csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(data) {
+              $('#jar').html(data)
+
+
+            }
+          });
+
+});
+
+$('#video').click(function() {
+$.ajax({
+            type: "POST",
+            url: "{% url 'elib_paged_file_objs' group_name_tag 'Video' 1  %}",
+            datatype: "html",
+            data:{
+
+              csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(data) {
+              $('#jar').html(data)
+
+
+            }
+          });
+
+});
+
+$('#main-page').click(function() {
+    $('#submenu1').toggle();
+    $("i", this).toggleClass(" fa-plus-circle fa-lg  fa-minus-circle fa-lg  ");
+});
+
+
+
+$('.searchfilter').click(function(e) {
+//  e.preventDefault();
+console.log("IN fileter");
+domain = $("input:checked").map(function(){
+     return $(this).val();
+    }).get(); // <----
+ 
+    console.log([],domain);  
+{
+            $.ajax({
+                type: "POST",
+                url: "{% url 'e-library_domainwise' group_name_tag  %}",
+                datatype:"html",
+                traditional: true,
+                data: {
+              csrfmiddlewaretoken: '{{ csrf_token }}',
+              domain_name:domain,
+
+		    },
+                success: function(data) {              //   alert('it worked');
+                 
+                 //$('#sidebar').html('#');
+                 $('#x').html(data);
+                },
+                 error: function() {
+                    alert('it broke');
+              },
+                complete: function() {
+                  //  alert('it completed');
+                },
+            });
+
+       
+      };
+
+});
+/*
+var checkboxValues = JSON.parse(localStorage.getItem('checkboxValues')) || {},
+    $checkboxes = $("#submenu1 :checkbox");
+
+$checkboxes.on("change", function(){
+  $checkboxes.each(function(){
+    checkboxValues[this.id] = this.checked;
+  });
+  
+  localStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
+});
+// On page load
+$.each(checkboxValues, function(key, value) {
+  $("#" + key).prop('checked', value);
+});
+*/
+
+$(function(e){
+  console.log("in function document ready")
+  console.log(domain);
+  if(domain != undefined){
+  for(i=0;i<domain.length;i++){
+          if (domain[i] == 'English'){
+	      document.querySelector('#English').checked = true;
+	      }
+	      if (domain[i]== 'Mathematics'){
+	            document.querySelector('#Mathematics').checked = true;
+              }
+	      if (domain[i]== 'Science'){
+	            document.querySelector('#Science').checked = true;
+              }
+	}
+   }
+});
+
+ // document.querySelector('#English').checked = request.COOKIES['English'];
+//document.querySelector('#Mathematics').checked = request.COOKIES['Mathematics'];
+//document.querySelector('#Science').checked = 
+ //console.log(this.checked)
+//console.log(document.querySelector('#English'));
+//});
+
+
+$('.nav').on('click', 'li', function(){
+    $('.nav li').removeClass('active');
+    $(this).addClass('active');
+});
+</script>

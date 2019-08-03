@@ -1,6 +1,6 @@
 import re
 import urllib
-
+import json
 ''' -- imports from installed packages -- '''
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -19,7 +19,7 @@ from gnowsys_ndf.ndf.models import Node, GRelation,GSystemType, Triple
 from gnowsys_ndf.ndf.models import node_collection
 from gnowsys_ndf.ndf.views.file import *
 from gnowsys_ndf.ndf.views.methods import cast_to_data_type, get_execution_time
-from gnowsys_ndf.ndf.views.es_queries import get_group_name_id
+from gnowsys_ndf.ndf.views.es_queries import get_node_by_id,get_group_name_id,get_nodes_by_ids_list
 from gnowsys_ndf.ndf.views.methods import get_filter_querydict
 from gnowsys_ndf.ndf.gstudio_es.es import *
 ##############################################################################
@@ -73,45 +73,17 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	"""
 	* Renders a list of all 'Resources' available within the database (except eBooks).
 	"""
-	print "inside resource_list of e-library "
+	print "inside resource_list of e-library ",group_id
 	is_video = request.GET.get('is_video', "")
 
 	try:
 		group_id = ObjectId(group_id)
 	except:
 		group_name, group_id = get_group_name_id(group_id)
-	print "group name and id", group_name,group_id
+	print "group name and id", group_id
 	if app_id is None:
 		app_id = str(app[0].id)
 
-	# # Code for displaying user shelf
-	# shelves = []
-	# shelf_list = {}
-	# auth = node_collection.one({'_type': 'Author', 'name': unicode(request.user.username) })
-
-	# if auth:
-	#   has_shelf_RT = node_collection.one({'_type': 'RelationType', 'name': u'has_shelf' })
-	#   dbref_has_shelf = has_shelf_RT.get_dbref()
-	#   shelf = collection_tr.Triple.find({'_type': 'GRelation', 'subject': ObjectId(auth._id), 'relation_type': dbref_has_shelf })
-	#   shelf_list = {}
-
-	#   if shelf:
-	# 	for each in shelf:
-	# 		shelf_name = node_collection.one({'_id': ObjectId(each.right_subject)})
-	# 		shelves.append(shelf_name)
-
-	# 		shelf_list[shelf_name.name] = []
-	# 		for ID in shelf_name.collection_set:
-	# 		  shelf_item = node_collection.one({'_id': ObjectId(ID) })
-	# 		  shelf_list[shelf_name.name].append(shelf_item.name)
-
-	#   else:
-	# 	shelves = []
-	# # End of user shelf
-
-	# pandoravideoCollection = node_collection.find({'member_of':pandora_video_st._id, 'group_set': ObjectId(group_id) })
-
-	# if e_library_GST._id == ObjectId(app_id):
 	title = e_library_GST[0].name
 	file_id = GST_FILE[0].id
 	datavisual = []
@@ -140,24 +112,6 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	strconcat1 = ""
 	for value in lists:
 		strconcat1 = strconcat1+'eval(str("'+ value +'")),'
-	# query_dict.append({'attribute_set.educationaluse': {'$ne': 'eBooks'}})
-
-	# files = node_collection.find({
-	# 								'member_of': ObjectId(GST_FILE._id),
-	# 								'_type': 'File',
-	# 								'fs_file_ids': {'$ne': []},
-	# 								'group_set': ObjectId(group_id),
-	# 								'$and': query_dict,
-	# 								'$or': [
-	# 										{ 'access_policy': u"PUBLIC" },
-	# 										{ '$and': [
-	# 													{'access_policy': u"PRIVATE"},
-	# 													{'created_by': request.user.id}
-	# 												]
-	# 										}
-	# 									]
-
-	# 								}).sort("last_update", -1)
 
 	q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC')],must_not=[Q('match',attribute_set__educationaluse='ebooks')])
 	
@@ -166,38 +120,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	allfiles2 = allfiles1.execute()
 
 	educationaluse_stats = {}
-	print "all_files:",allfiles1
-
-	q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('exists',field = 'collection_set')])
-	collection_pages_cur = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
-
-	if int(page_no)==1:
-			collection_pages_cur=collection_pages_cur[0:5]
-	else:
-		temp=( int(page_no) - 1) * 5
-		collection_pages_cur=collection_pages_cur[temp:temp+5]
-
-	paginator = Paginator(collection_pages_cur, 5)
-
-
-
-	coll_page_count = collection_pages_cur.count() if collection_pages_cur else 0
-
-	# collection_pages_cur = node_collection.find({
-	# 								'member_of': {'$in': [GST_FILE[0].id, GST_PAGE[0].id ]},
-	#                                    'group_set': {'$all': [ObjectId(group_id)]},
-	#                                       # '$and': query_dict,
-	#                                    # '$or': [
-	#                                    'access_policy': u"PUBLIC",
-	#                                    #     {'$and': [
-	#                                    #     		 {'access_policy': u"PRIVATE"},
-	#                                    #         # {'created_by': request.user.id}
-	#                                    #     ]
-	#                                    #  }
-	#                                    # ],
-	#                                    'collection_set': {'$exists': "true", '$not': {'$size': 0} }
-	#                                }).sort("last_update", -1)
-
+	#print "all_files:",allfiles1
 
 	q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = 'image')])
 	allimages1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
@@ -214,11 +137,18 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 
 	allaudios2 = allaudios1.execute()
 
-	q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',name = 'Handbook'),Q('match_phrase',if_file__mime_type = 'pdf')])
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',name = 'Handbook'),Q('match_phrase',if_file__mime_type = 'pdf')])
 
 	alldocs1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
 	alldocs2 = alldocs1.execute()
+        
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Tool')])
+
+        allinteractives1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+
+        allinteractives2 = allinteractives1.execute()
+        print "interactives count:",allinteractives1.count()
 
 	q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED')])
 
@@ -226,80 +156,32 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 
 	all_modules2 = all_modules.execute()
 
-	files_new = allfiles1[0:24]
+	files_new = all_modules[0:24]
 
-	if int(page_no)==1:
-		files_new=allfiles1[0:24]
-	else:
-		temp=( int(page_no) - 1) * 24
-		files_new=allfiles1[temp:temp+24]
-
-	if files_new:
-		eu_list = []  
-		if set(eu_list):
-			if len(set(eu_list)) > 1:
-				educationaluse_stats = dict((x, eu_list.count(x)) for x in set(eu_list))
-
-			elif len(set(eu_list)) == 1:
-				educationaluse_stats = { eu_list[0]: eu_list.count(eu_list[0])}
-				educationaluse_stats["all"] = files.count()
-
-		paginator = Paginator(files_new, 24)
-
-
-		#page_no = request.GET.get('page_no')
-		try:
-			result_pages = paginator.page(page_no)
-		except PageNotAnInteger:
-			result_pages = paginator.page(1)
-		except EmptyPage:
-			result_pages = paginator.page(paginator.num_pages)
-
-	try:
-		results = paginator.page(page_no)
-	except PageNotAnInteger:
-		results = paginator.page(1)
-	except EmptyPage:
-		results = paginator.page(paginator.num_pages)
-
-
-	
-	coll_page_count = collection_pages_cur.count() if collection_pages_cur else 0
-	print "coll_page_count",coll_page_count
-	# collection_pages = paginator.Paginator(collection_pages_cur, page_no, no_of_objs_pp)
-	
-	print "result_pages:",result_pages
 	datavisual.append({"name":"Doc", "count": alldocs1.count()})
 	datavisual.append({"name":"Page", "count": educationaluse_stats.get("Pages", 0)})
 	datavisual.append({"name":"Image","count": allimages1.count()})
 	datavisual.append({"name":"Video","count": allvideos1.count()})
-	datavisual.append({"name":"Interactives","count": educationaluse_stats.get("Interactives", 0)})
+	datavisual.append({"name":"Interactives","count": allinteractives1.count()})
 	datavisual.append({"name":"Audios","count": allaudios1.count()})
 	datavisual.append({"name":"eBooks","count": educationaluse_stats.get("eBooks", 0)})
 	
-	if collection_pages_cur:
-		datavisual.append({"name":"Collections","count": coll_page_count})
-	datavisual = json.dumps(datavisual)
-	print "educational stats:",educationaluse_stats
-	return render_to_response("ndf/resource_list.html",
+
+	return render_to_response("ndf/Elibrary.html",
 								{'title': title, 'app':e_library_GST[0],
 								 'appId':app[0].id, "app_gst": app[0],
 								 # 'already_uploaded': already_uploaded,'shelf_list': shelf_list,'shelves': shelves,
 								 'files': files_new,
 								 "detail_urlname": "file_detail",
 								 'ebook_pages': educationaluse_stats.get("eBooks", 0),
-								 # 'page_count': pageCollection.count(),
-								 # 'page_nodes':pageCollection
-								 'file_pages': result_pages,
+                                                                 'file_pages':all_modules.count(),
+                                                                 'interactive_pages':allinteractives1.count(),
 								 'image_pages': allimages1.count(),
-								 'interactive_pages': educationaluse_stats.get("Interactives", 0),
+								 #'interactive_pages': educationaluse_stats.get("Interactives", 0),
 								 'educationaluse_stats': json.dumps(educationaluse_stats),
 								 'doc_pages': alldocs1.count(),
 								 'video_pages': allvideos1.count(),
 								 'audio_pages': allaudios1.count(),
-								 'collection_pages': results,
-								 'collection': collection_pages_cur,
-								 'collection_count': coll_page_count,
 								 'groupid': group_id, 'group_id':group_id,
 								 "datavisual":datavisual,
 								},
@@ -310,142 +192,257 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
 	'''
 	Method to implement pagination in File and E-Library app.
 	'''
+        print "in elib_paged_file_objs",request.is_ajax(),request.method
+        domain_name = request.POST.getlist("domain_name")
+        domain_selected = request.POST.getlist("domain_selected")
+        print 'dsfadf',domain_name,domain_selected
+        #print "cookie values:",request.COOKIES['English'],request.COOKIES['Mathematics'],request.COOKIES['Science']
 	if request.is_ajax() and request.method == "POST":
-		group_name, group_id = get_group_name_id(group_id)
+                if len(domain_selected) == 0:
+                        group_name, group_id = get_group_name_id(group_id)
+                        
+                        no_of_objs_pp = 5
+                        result_pages = None
+                        filetype = filetype.lower()
+                        print "filetype received:",filetype
+                        detail_urlname = "file_detail"
+                        template = 'ndf/module_cards.html'
+                        if filetype != 'module':
+                                if filetype == 'document':
+                                        template = 'ndf/player_handbook.html'
+                                        print "in Document elif"
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = 'pdf'),Q('match_phrase',name = 'Handbook')])
+                                elif filetype == 'interactives':
+                                        print "in interactives"
+                                        template = "ndf/player_interactive.html"
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Tool')])
+                                else:
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = filetype)])
+                        else:
+                                q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED')])
+                        
+                        allfiletypes1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+                                
+                        allfiletypes2 = allfiletypes1.execute()
+                        
+                
+                else:
+                        group_name, group_id = get_group_name_id(group_id)
 
-		no_of_objs_pp = 5
-		result_pages = None
-		filetype = filetype.lower()
-		filters = request.POST.get("filters", "")
-		filters = json.loads(filters)
-		filters = get_filter_querydict(filters)
-		query_dict = filters
+                        no_of_objs_pp = 5
+                        result_pages = None
+                        filetype = filetype.lower()
+                        print "filetype received:",filetype
+                        detail_urlname = "file_detail"
+                        template = 'ndf/module_cards.html'
+                        domain_nds = []
+                        for each in domain_selected:
+                                domain_name,domain_id = get_group_name_id(each)
+                                nd = get_node_by_id(domain_id)
+                                domain_nds.append(nd)
+                        print "domain nds:",domain_nds
+                        unitnds = []
+                        modules = []
+                        for eachnd in domain_nds:
+                                modulends = get_nodes_by_ids_list(eachnd.collection_set)
+                                for eachmod in modulends:
+                                        modules.append(eachmod.id)
+                                        unitnds.extend(eachmod.collection_set)
+                        print "final grp_set:",unitnds
+                        if filetype != 'module':
+                                if filetype == 'document':
+                                        template = 'ndf/player_handbook.html'
+                                        print "in Document elif"
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = 'pdf'),Q('match_phrase',name = 'Handbook'),Q('terms',group_set = unitnds)])
+                                elif filetype == 'interactives':
+                                        template = "ndf/player_interactive.html"
+                                        domain_selected = [str(each).title() for each in domain_selected]
+                                        print "domain selected:",domain_selected
+                                        q1 = []
+                                        for each in domain_selected:
+                                                q1.append(Q('match_phrase',tags = str(each)))
+                                        print q1
 
-		selfilters = urllib.unquote(request.GET.get('selfilters', ''))
-		if selfilters:
-			selfilters = json.loads(selfilters)
-			query_dict = get_filter_querydict(selfilters)
-
-		# query_dict.append("Q('match',"+t+"=dict(query='"+value+"',type='phrase'))")
-
-		detail_urlname = "file_detail"
-		print "filetype:",filetype
-		if filetype != 'Module':
-			if filetype == 'document':
-				print "in Document elif"
-				q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = 'pdf'),Q('match_phrase',name = 'Handbook')])
-			else:
-				q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = filetype)])
-		else:
-			q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED')])
-		allfiletypes1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
-
-		allfiletypes2 = allfiletypes1.execute()
-
-		educationaluse_stats = {}
-
-		if int(page_no)==1:
-			files_new=allfiletypes1[0:5]
-		else:
-			temp=( int(page_no) - 1) * 5
-			files_new=allfiletypes1[temp:temp+5]
-
-		# print "files_count: ", files.count()
-
-		# if filetype == "Pages":
-		# 	filter_result = "True" if (result_cur.count() > 0) else "False"
-		# else:
-		if files_new:# and not result_pages:
-			# print "=======", educationaluse_stats
-
-			eu_list = []  # count
-			collection_set_count = 0
-			# for each in files_new:
-			# 	eu_list += [i.get("educationaluse") for i in each.attribute_set if i.has_key("educationaluse")]
-			# 	collection_set_count += 1 if each.collection_set else 0
-
-			# files.rewind()
-
-			if set(eu_list):
-				if len(set(eu_list)) > 1:
-					educationaluse_stats = dict((x, eu_list.count(x)) for x in set(eu_list))
-				elif len(set(eu_list)) == 1:
-					educationaluse_stats = { eu_list[0]: eu_list.count(eu_list[0])}
-				educationaluse_stats["all"] = files.count()
-				educationaluse_stats["Collections"] = collection_set_count
-
-			paginator = Paginator(files_new, 5)
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Tool')],should=q1,minimum_should_match=1)
+                                else:
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = filetype),Q('terms',group_set = unitsnds)])
+                        else:
+                                print "module ids",modules
+                                q= Q('bool', must=[Q('match', member_of = gst_module[0].id),Q('terms',id = modules), Q('match',status='PUBLISHED')])
+                        allfiletypes1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+                        
+                        allfiletypes2 = allfiletypes1.execute()
+                educationaluse_stats = {}
+                #print "allfiletypes:", allfiletypes2                                                                                                          
+                files_new = allfiletypes1[0:allfiletypes1.count()]
+                if files_new:
+                        eu_list = []  # count                                                                                                                   
+                        collection_set_count = 0
+                        
+                        if set(eu_list):
+                                if len(set(eu_list)) > 1:
+                                        educationaluse_stats = dict((x, eu_list.count(x)) for x in set(eu_list))
+                                elif len(set(eu_list)) == 1:
+                                        educationaluse_stats = { eu_list[0]: eu_list.count(eu_list[0])}
+                                        educationaluse_stats["all"] = files.count()
+                                        educationaluse_stats["Collections"] = collection_set_count
+                                        
 
 
-			#page_no = request.GET.get('page_no')
-			try:
-				result_pages = paginator.page(page_no)
-			except PageNotAnInteger:
-				result_pages = paginator.page(1)
-			except EmptyPage:
-				result_pages = paginator.page(paginator.num_pages)
-		
-		filter_result = "True" if (allfiletypes1.count() > 0) else "False"
+                filter_result = "True" if (allfiletypes1.count() > 0) else "False"
+                print "template",template
+                with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/theInteractive.json','r') as json_file:
+                        interactivedata = json.load(json_file)
 
-		if filetype == "Collections":
-			detail_urlname = "page_details"
-			q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('exists',field = 'collection_set')])
-			collection_pages_cur = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
-
-			# result_cur = node_collection.find({
-			# 					'member_of': {'$in': [GST_FILE._id, GST_PAGE._id]},
-#                                 'group_set': {'$all': [ObjectId(group_id)]},
-			# 					'$and': query_dict,
-#                                 '$or': [
-#                                     {'access_policy': u"PUBLIC"},
-#                                     {'$and': [
-#                                         {'access_policy': u"PRIVATE"},
-#                                         {'created_by': request.user.id}
-#                                     ]
-#                                  }
-#                                 ],
-#                                 'collection_set': {'$exists': "true", '$not': {'$size': 0} }
-#                             }).sort("last_update", -1)
-			# print "=====================", result_cur.count()
-
-			# result_paginated_cur = result_cur
-			result_pages = paginator.Paginator(collection_pages_cur, page_no, no_of_objs_pp)
-
-		# if filetype == "all":
-		#     if files:
-		#         result_paginated_cur = files
-		#         result_pages = paginator.Paginator(result_paginated_cur, page_no, no_of_objs_pp)
-
-		# # else:
-		# elif filetype == "Documents":
-		#     d_Collection = node_collection.find({'_type': "GAttribute", 'attribute_type': gattr._id,"subject": {'$in': coll} ,"object_value": "Documents"}).sort("last_update", -1)
-
-		#     doc = []
-		#     for e in d_Collection:
-		#         doc.append(e.subject)
-
-		#     result_paginated_cur = node_collection.find({ '$or':[{'_id': {'$in': doc}},
-
-		#                 {'member_of': {'$nin': [ObjectId(GST_IMAGE._id), ObjectId(GST_VIDEO._id),ObjectId(pandora_video_st._id)]},
-		#                                     '_type': 'File', 'group_set': {'$all': [ObjectId(group_id)]},
-		#                                     # 'mime_type': {'$not': re.compile("^audio.*")},
-		#                                     '$or': [
-		#                                           {'access_policy': u"PUBLIC"},
-		#                                             {'$and': [{'access_policy': u"PRIVATE"}, {'created_by': request.user.id}]}
-		#                                            ]
-		#                                     }]
-
-		#         }).sort("last_update", -1)
-
-		#     result_pages = paginator.Paginator(result_paginated_cur, page_no, no_of_objs_pp)
-
-		# print "educationaluse_stats: ", educationaluse_stats
-
-		return render_to_response ("ndf/file_list_tab.html", {
+                return render_to_response (template, {
 				"filter_result": filter_result,
 				"group_id": group_id, "group_name_tag": group_id, "groupid": group_id,
 				'title': "E-Library", "educationaluse_stats": json.dumps(educationaluse_stats),
-				"resource_type": allfiletypes1, "detail_urlname": detail_urlname,
-				"filetype": filetype, "res_type_name": "", "page_info": result_pages
+				"files": allfiletypes1[0:40], "detail_urlname": detail_urlname,
+			        "filetype": filetype, "res_type_name": "","interactivedata":interactivedata
 			},
 			context_instance = RequestContext(request))
+
+
+def resource_list_domainwise(request,group_id, app_id=None, page_no=1):
+        """
+        * Renders a list of all 'Resources' available within the database (except eBooks).
+        """
+        print "home group id:",group_id
+        domain_name = request.POST.getlist("domain_name")
+        print "inside resource_list_domainwise of e-library ",domain_name
+        try:
+                group_id = ObjectId(group_id)
+        except:
+                group_name, group_id = get_group_name_id(group_id)
+        
+        print "group name and id",group_id
+        
+        domain_set = []
+        if len(domain_name) == 0:
+                domain_name = ['English','Mathematics','Science']
+        if len(domain_name) > 1:
+
+                for each in domain_name:
+                        print "each val:",each
+                        domain_group_name, domain_group_id = get_group_name_id(each)
+                        domain_set.append(domain_group_id)
+        
+        else:
+                if len(domain_name) ==1:
+                        if 'All' == domain_name[0]:
+                                domain_set.append(group_id)
+                        else:
+                                domain_group_name, domain_group_id = get_group_name_id(domain_name[0])
+                                domain_set.append(domain_group_id)
+
+        print "domain set:",domain_set
+        domainds = get_nodes_by_ids_list(domain_set)
+        print "domain nds:",domainds
+        idlist = []
+        for each in domainds:
+                idlist.extend(each.collection_set)
+        print "modules:",idlist
+        idnds = get_nodes_by_ids_list(idlist)
+        unitslist = []
+        for each in idnds:
+                unitslist.extend(each.collection_set)
+        print "units:",unitslist
+        if app_id is None:
+                app_id = str(app[0].id)
+
+        title = e_library_GST[0].name
+        file_id = GST_FILE[0].id
+        datavisual = []
+        no_of_objs_pp = 5
+        domain_set = [str(each) for each in domain_set]
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id]),Q('terms',group_set=domain_set),Q('match',access_policy='PUBLIC')],must_not=[Q('match',attribute_set__educationaluse='ebooks')])
+
+        allfiles1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+
+        allfiles2 = allfiles1.execute()
+
+        educationaluse_stats = {}
+        print "all_files:",allfiles1
+
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('terms',group_set=domain_set),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = 'image')])
+        allimages1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+        allimages2 = allimages1.execute()
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('terms',group_set=domain_set),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = 'video')])
+
+        allvideos1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+
+        allvideos2 = allvideos1.execute()
+
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('terms',group_set=domain_set),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = 'audio')])
+
+        allaudios1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+
+        allaudios2 = allaudios1.execute()
+
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('terms',group_set=unitslist),Q('match_phrase',name = 'Handbook'),Q('match_phrase',if_file__mime_type = 'pdf')])
+
+        alldocs1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+
+        alldocs2 = alldocs1.execute()
+
+        q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id=idlist)])
+
+        all_modules = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+
+        all_modules2 = all_modules.execute()
+
+        if len(domain_name) == 0:
+                domain_name = ['Science','Mathematics','English']
+        q1 = []
+        for each in domain_name:
+                q1.append(Q('match_phrase',tags = str(each)))
+        print q1
+        
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Tool')],should=q1,minimum_should_match=1)
+       
+        print "interactive query:",q
+
+        all_interactives1 = (Search(using=es,index = index,doc_type=doc_type).query(q))
+
+        all_interactives2 = all_interactives1.execute()
+        
+        print "interactives count:",all_interactives1.count()
+        
+        #print "query",q
+        files_new = all_modules2[0:24]
+        datavisual.append({"name":"Doc", "count": alldocs1.count()})
+        datavisual.append({"name":"Page", "count": educationaluse_stats.get("Pages", 0)})
+        datavisual.append({"name":"Image","count": allimages1.count()})
+        datavisual.append({"name":"Video","count": allvideos1.count()})
+        datavisual.append({"name":"Interactives","count": all_interactives1.count()})
+        datavisual.append({"name":"Audios","count": allaudios1.count()})
+        datavisual.append({"name":"eBooks","count": educationaluse_stats.get("eBooks", 0)})
+
+        print "educational stats:",educationaluse_stats,all_modules2
+        response = render_to_response("ndf/theE.html",
+                                  {'title': title, 'app':e_library_GST[0],
+                                   'appId':app[0].id, "app_gst": app[0],
+                                   # 'already_uploaded': already_uploaded,'shelf_list': shelf_list,'shelves': shelves,
+                                   'files': files_new,
+                                   'file_pages':all_modules.count(),
+                                   "detail_urlname": "file_detail",
+                                   'ebook_pages': educationaluse_stats.get("eBooks", 0),
+                                   'image_pages': allimages1.count(),
+                                   'interactive_pages': all_interactives1.count(),
+                                   'educationaluse_stats': json.dumps(educationaluse_stats),
+                                   'doc_pages': alldocs1.count(),
+                                   'video_pages': allvideos1.count(),
+                                   'audio_pages': allaudios1.count(),
+                                   'groupid': group_id,'group_name_tag':group_id, 'group_id':group_id,
+                                   "datavisual":datavisual,
+                           },
+                           context_instance = RequestContext(request))
+        
+        for each in ['English','Mathematics','Science']:
+                print "each value:",each
+                if( each in domain_name):
+                        response.set_cookie(each,True)
+                else:
+                        response.set_cookie(each,False)
+        return response

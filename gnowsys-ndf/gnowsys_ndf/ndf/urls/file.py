@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 urlpatterns = patterns('gnowsys_ndf.ndf.views.file',
                        url(r'^[/]$', 'file', name='file'),
                        # url(r'^/(?P<file_id>[\w-]+)$', 'file', name='file'),
-                       url(r'^/uploadDoc/$', 'uploadDoc', name='uploadDoc'), #Direct ot html template                               
+                               
                        url(r'^/submitDoc/', 'submitDoc', name='submitDoc'),
                        url(r'^/submit/', 'submitDoc', name='submitDoc'),
                        url(r'^/documentList/', 'GetDoc', name='documentList'),

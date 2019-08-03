@@ -1,0 +1,225 @@
+
+{
+"Run Kitty Run_en":{
+    "Interactive_image" : "/static/ndf/images/run_kitty_run.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/runkittyrun/en/"
+
+},
+"Run Kitty Run_hi":{
+    "Interactive_image" : "/static/ndf/images/run_kitty_run.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/runkittyrun/hi/"
+
+},
+"Run Kitty Run_te":{
+    "Interactive_image" : "/static/ndf/images/run_kitty_run.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/runkittyrun/te/"
+
+},
+"Turtle_Blocks" : { 
+    "Interactive_image" : "/static/ndf/images/turtle-blocks.svg",
+    "Interactive_href": " https://demo-clix.tiss.edu/turtle"
+},
+"Music_Blocks": {
+    "Interactive_image" : "'/static/ndf/images/music_block.jpg'",
+    "Interactive_href": " https://demo-clix.tiss.edu/softwares/Tools/musicblocks/"
+},
+"PHet":
+{
+    "Interactive_image" : "/static/ndf/images/phet-logo-tm.svg",
+    "Interactive_href": "https://demo-clix.tiss.edu/phet/"
+},
+"phet_customized":{
+    "Interactive_image" : "/static/ndf/images/phet-logo-tm.svg",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/PhET-customized/"
+},
+"sugarlabs": {
+    "Interactive_image" : "/static/ndf/images/sugar-xo-logo.svg",
+    "Interactive_href": "https://demo-clix.tiss.edu/sugar"
+
+},
+"Astroamer Element Hunt Activity_en" : {
+    "Interactive_image" : "/static/ndf/images/Element_Hunt.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Element_Hunt_Activity/en/"
+
+},
+"Astroamer Element Hunt Activity_hi" : {
+    "Interactive_image" : "/static/ndf/images/Element_Hunt.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Element_Hunt_Activity/hi/"
+
+},
+"Astroamer Element Hunt Activity_te" : {
+    "Interactive_image" : "/static/ndf/images/Element_Hunt.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Element_Hunt_Activity/te/"
+
+},
+"Astroamer Moon Track_hi" : { 
+    "Interactive_image" : "/static/ndf/images/Motions_of_Moon.jpg",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Moon_Track/hi/"
+},
+"Astroamer Moon Track_en" : { 
+    "Interactive_image" : "/static/ndf/images/Motions_of_Moon.jpg",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Moon_Track/en/"
+},
+"Astroamer Moon Track_te" : { 
+    "Interactive_image" : "/static/ndf/images/Motions_of_Moon.jpg",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Moon_Track/te/"
+},
+"Astroamer Planet Trek_hi": {
+    "Interactive_image" : "/static/ndf/images/Solar_System.jpg",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Planet_Trek_Activity/hi/"
+},
+"Astroamer Planet Trek_en": {
+    "Interactive_image" : "/static/ndf/images/Solar_System.jpg",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Planet_Trek_Activity/en/"
+},
+"Astroamer Planet Trek_te": {
+    "Interactive_image" : "/static/ndf/images/Solar_System.jpg",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Planet_Trek_Activity/te/"
+},
+"Ages Puzzle":
+{
+    "Interactive_image" : "/static/ndf/images/Ages_Puzzle.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/ages_puzzle/"
+},
+"Coins Puzzle":
+{
+    "Interactive_image" : "/static/ndf/images/Coins.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/coins_linear_eqn/"
+},
+"GeoGebra_Classic": {
+    "Interactive_image" : "/static/ndf/images/geogebra-icon.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/GeoGebra-Customized/Classic%20-%20GeoGebra.html"
+
+},
+"Factorisation Puzzle": {
+    "Interactive_image": "/static/ndf/images/Factorization.png",
+    "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/factorisation/"
+
+},
+"Food Sharing Tool_hi":{
+    "Interactive_image": "/static/ndf/images/FST.png",
+    "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/food_sharing_tool/hi/"
+
+},
+"Food Sharing Tool_en":{
+    "Interactive_image": "/static/ndf/images/FST.png",
+    "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/food_sharing_tool/en/"
+
+},
+"Food Sharing Tool_te":{
+    "Interactive_image": "/static/ndf/images/FST.png",
+    "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/food_sharing_tool/te/"
+
+},
+"Ice Cubes in Lemonade_hi":{
+    "Interactive_image": "/static/ndf/images/icl_en.png",
+    "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Ice-cubes-in-lemonade/hi/"
+
+},
+"Ice Cubes in Lemonade_en":{
+    "Interactive_image": "/static/ndf/images/icl_en.png",
+    "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Ice-cubes-in-lemonade/en"
+
+},
+"Ice Cubes in Lemonade_te":{
+    "Interactive_image": "/static/ndf/images/icl_en.png",
+    "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Ice-cubes-in-lemonade/te/"
+
+},
+"Motions of the Moon - Animation_hi":{
+    "Interactive_image":"/static/ndf/images/Motion_of_the_Moon.png",
+    "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Motions_of_the_Moon_Animation/hi/"
+},
+"Motions of the Moon - Animation_en":{
+    "Interactive_image":"/static/ndf/images/Motion_of_the_Moon.png",
+    "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Motions_of_the_Moon_Animation/en/"
+},
+"Motions of the Moon - Animation_te":{
+    "Interactive_image":"/static/ndf/images/Motion_of_the_Moon.png",
+    "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Motions_of_the_Moon_Animation/te/"
+},
+"Open_Story_Tool":{
+    "Interactive_image":"/static/ndf/images/noun_331311_cc.svg",
+    "Interactive_href":"https://demo-clix.tiss.edu/softwares/Tools/open-story-tool/"
+
+},
+"Video Analysis Tool":{
+    "Interactive_image": "/static/ndf/images/physics_video_tool.jpg",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/physics-video-player/"
+},
+"PoliceQuad_hi":{
+"Interactive_image" : "/static/ndf/images/PoliceQuad_pt33x.png",
+"Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/policequad/hi/"
+},
+"PoliceQuad_en":{
+    "Interactive_image" : "/static/ndf/images/PoliceQuad_pt33x.png",
+    "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/policequad/en/"
+},
+"PoliceQuad_te":{
+        "Interactive_image" : "/static/ndf/images/PoliceQuad_pt33x.png",
+        "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/policequad/te/"
+},
+"Ratio & Patterns_en":{
+    "Interactive_image": "/static/ndf/images/RP.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Ratio-Patterns/"
+
+},
+"Ratio & Patterns_hi":{
+    "Interactive_image": "/static/ndf/images/RP.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Ratio-Patterns/"
+
+},
+"Ratio & Patterns_te":{
+    "Interactive_image": "/static/ndf/images/RP.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Ratio-Patterns/"
+
+},
+"RotationOfEarth_hi":{
+    "Interactive_image": "/static/ndf/images/Rotation_of_Earth.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Rotation_of_Earth_Animation/hi/"
+
+}, 
+"RotationOfEarth_en":{
+    "Interactive_image": "/static/ndf/images/Rotation_of_Earth.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Rotation_of_Earth_Animation/en/"
+
+},
+"RotationOfEarth_te":{
+    "Interactive_image": "/static/ndf/images/Rotation_of_Earth.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Rotation_of_Earth_Animation/te/"
+
+}, 
+"RunKittyRun_hi":{
+"Interactive_image": "/static/ndf/images/run_kitty_run.png",
+"Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/runkittyrun/hi/"
+},
+"RunKittyRun_en":{
+    "Interactive_image": "/static/ndf/images/run_kitty_run.png",
+    "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/runkittyrun/en/"
+},
+"RunKittyRun_te":{
+        "Interactive_image": "/static/ndf/images/run_kitty_run.png",
+        "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/runkittyrun/te/"
+},
+"Solar System - Animation_hi":{
+"Interactive_image": "/static/ndf/images/Solar_Systems.png",
+"Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Solar_System_Animation/hi/"
+},
+"Solar System - Animation_en":{
+    "Interactive_image": "/static/ndf/images/Solar_Systems.png",
+    "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Solar_System_Animation/en/"
+},
+"Solar System - Animation_te":{
+        "Interactive_image": "/static/ndf/images/Solar_Systems.png",
+        "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Solar_System_Animation/te/"
+},
+"StarLogoNova":{
+    "Interactive_image": "/static/ndf/images/StarLogoNova.png",
+    "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/StarLogoNova/"
+}
+
+
+
+
+
+}

@@ -1,0 +1,219 @@
+
+    <div class="jquery-script-center">
+        <div class="rotateslider-container" id="slider">
+  {% if first_arg == 'Mathematics' %}
+          {% for slide in testimony.Team_detail_math %}
+            
+        <div class="rotateslider-item">
+
+
+            <div class='card card-profile text-center'>
+                <img alt='' class='card-img-top' src='https://dummyimage.com/340x160/53615e/474747.png'>
+              <div class="card-img-overlay">
+  <button type="button" class="btn btn-dark " style="margin-top:-40px; margin-left:10px;">
+                
+                    Teachear
+                </button> 
+                
+                <p style="color:#fff; font-weight:bold"> 
+                                      &quot; {{ slide.UDetails | truncatechars:255 }}      &quot;
+
+                    </p>
+              </div>
+  <div class='card-block'>
+                  <img alt='' class='card-img-profile' src='https://previews.123rf.com/images/nexusby/nexusby1810/nexusby181000286/111362910-default-avatar-placeholder-profile-icon-male.jpg' style="margin-left:200px;"  width='100px' height='100px'>
+                  <h6 class='card-title' style="margin-top:-90px; margin-left:-120px;">
+                                       {{ slide.userName }}
+
+<!--
+                    <small>{{slide.jobTitleName}}</small> -->
+                  </h6>
+                    <small>{{slide.jobTitleName}}</small>
+
+                  <div class='card-links'>
+                   
+                  </div>
+                </div>
+              </div>
+              
+        </div>
+{% endfor %}
+{% endif %}
+
+
+ {% if first_arg == 'Science' %}
+          {% for slide in testimony.Team_detail_science %}
+
+  <div class="rotateslider-item">
+            <div class='card card-profile text-center'>
+                <img alt='' class='card-img-top' src='https://dummyimage.com/34
+0x160/53615e/474747.png'>
+              <div class="card-img-overlay">
+  <button type="button" class="btn btn-dark " style="margin-top:-40px; margin-left:10px;">
+                
+                    Teachear
+                </button> 
+                
+                <p style="color:#fff; font-weight:bold">
+                                      &quot;   {{ slide.UDetails | truncatechars:255 }}    &quot; 
+
+                    </p>
+              </div>
+  <div class='card-block'>
+                  <img alt='' class='card-img-profile' src='https://previews.123rf.com/images/nexusby/nexusby1810/nexusby181000286/111362910default-avatar-placeholder-profile-icon-male.jpg' style="margin-left:200px;"  width='100px' height='100px'>
+                  <h4 class='card-title'   style="margin-top:-90px; margin-left:-120px;">
+    &quot;                                     {{ slide.userName }}                &quot; 
+                  
+                  </h4>
+                                       <small>{{slide.jobTitleName}}</small>
+
+                  <div class='card-links'>
+
+                  </div>
+                </div>
+              </div>
+
+        </div>
+{% endfor %}
+{% endif %}
+
+ {% if first_arg == 'English' %}
+          {% for slide in testimony.Team_detail_english %}
+
+  <div class="rotateslider-item">
+ 
+
+
+            <div class='card card-profile text-center'>
+                <img alt='' class='card-img-top' src='https://dummyimage.com/340x160/53615e/474747.png'>
+              <div class="card-img-overlay">
+
+  <button type="button" class="btn btn-dark " style="margin-top:-40px; margin-left:10px;">
+                
+                    Teachear
+                </button> 
+                
+                <p style="color:#fff; font-weight:bold">
+           &quot;                                     {{ slide.UDetails | truncatechars:255 }}  &quot;
+     
+                    </p>
+              </div>
+  <div class='card-block'>
+                  <img alt='' class='card-img-profile' src='https://previews.123rf.com/images/nexusby/nexusby1810/nexusby181000286/111362910default-avatar-placeholder-profile-icon-male.jpg' style="margin-left:200px;"  width='100px' height='100px'>
+                  <h4 class='card-title'  style="margin-top:-90px; margin-left:-120px;">
+                                       {{ slide.userName }}
+<!--                    <small>{{slide.jobTitleName}}</small>
+    -->            
+  </h4>
+                    <small>{{slide.jobTitleName}}</small>
+
+                  <div class='card-links'>
+
+                  </div>
+                </div>
+              </div>
+
+        </div>
+{% endfor %}
+{% endif %} 
+<!--        <div class="rotateslider-item">
+
+            <div class='card card-profile text-center'>
+                <img alt='' class='card-img-top' src='https://unsplash.it/340/160?image=354'>
+              <div class="card-img-overlay">
+                <p style="color:#fff; font-weight:bold">
+                                     {{ slide.UDetails | truncatechars:255 }}
+
+                    </p>
+              </div>
+  <div class='card-block'>
+                  <img alt='' class='card-img-profile' src='https://it.gravatar.com/userimage/3434071/205a00fc16ae537b26b56f40790910fe.jpg?si\
+ze=100'>
+                  <h4 class='card-title'>
+                                       {{ slide.userName }}
+
+                    <small></small>
+                  </h4>
+                  <div class='card-links'>
+
+                  </div>
+                </div>
+              </div>
+
+        </div>
+   <div class='card card-profile text-center'>
+     
+          <img alt='' class='card-img-top' src='https://unsplash.it/340/160?image=354'>
+          <div class="card-img-overlay">
+            <p style="color:#fff; font-weight: bold">These are innovative and exciting materials which break away from the traditional coursebook norms of focusing on grammatical forms one by one and providing easy but meaninglessly artificial  practice.</p>
+          </div>
+          <div class='card-block'>
+            <img alt='' class='card-img-profile' src='https://it.gravatar.com/userimage/3434071/205a00fc16ae537b26b56f40790910fe.jpg?size=100'>
+            <h4 class='card-title'>
+                Professor Brian Tomlinson 
+            </h4>
+
+         University of Liverpool, Shanghai International Studies University, Anaheim University
+    
+            <div class='card-links'>
+             
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="rotateslider-item">    <div class='card card-profile text-center'>
+            <img alt='' class='card-img-top' src='https://unsplash.it/340/160?image=354'>
+            <div class='card-block'>
+              <img alt='' class='card-img-profile' src='https://it.gravatar.com/userimage/3434071/205a00fc16ae537b26b56f40790910fe.jpg?size=100'>
+              <h4 class='card-title'>
+                Nicola Pressi
+                <small>Front-end designer</small>
+              </h4>
+              <div class='card-links'>
+               
+              </div>
+            </div>
+          </div></div>
+        <div class="rotateslider-item">    <div class='card card-profile text-center'>
+            <img alt='' class='card-img-top' src='https://unsplash.it/340/160?image=354'>
+            <div class='card-block'>
+              <img alt='' class='card-img-profile' src='https://it.gravatar.com/userimage/3434071/205a00fc16ae537b26b56f40790910fe.jpg?size=100'>
+              <h4 class='card-title'>
+                Nicola Pressi
+                <small>Front-end designer</small>
+              </h4>
+              <div class='card-links'>
+               
+              </div>
+            </div>
+          </div></div>
+        <div class="rotateslider-item"><div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+      </ul> 
+      <div class="card-body">
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    </div></div> -->
+        <span class="arrow right js-rotateslider-arrow" data-action="next"><i class="fa fa-angle-right fa-3x"></i></span>
+        <span class="arrow left js-rotateslider-arrow" data-action="prev"><i class="fa fa-angle-left fa-3x"></i></span>
+      </div>
+
+
+      <script>
+      
+      $(function() {
+  $('#slider').rotateSlider({
+
+  });
+
+});
+      </script>

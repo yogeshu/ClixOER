@@ -1,0 +1,113 @@
+
+{% load get_relation_value  from ndf_tags %}
+<style>
+
+   .fade i {
+     color:rgb(65, 146, 238);
+   }
+  ul > i{
+  color: rgb(43, 113, 194);
+}
+ 
+ </style>
+<div class="container">
+                     <div class="modal-header">
+<div class="row">
+<div class="col-12 col-sm-12 col-md-12 col-lg-12"> 
+              <h5 class="modal-title ml-2 " id="exampleModalLongTitle" class="col-10  col-md-3  col-sm-10" style="font-weight:bold; font-size: 18px;">{{moduledetails.name}}</h5>
+</p> 
+</div>
+</div>
+
+              <h5 >  <span class="badge badge-color py-2 ml-5">   
+<i  class="fas fa-language fa-sm"> &nbsp; {{moduledetails.subject}}</i></span> </h5>
+        <h5> <span class="badge badge-color py-2 ml-4"><i class= "pl-2 fas fa-user-graduate"> &nbsp; {{moduledetails.grade}}</i></span> </h5>
+
+       <h5>
+          <ul class="float-right" >
+{% for dest in files %}
+ <a href="https://demo-clix.tiss.edu/home/module/{{dest.id}}/courses" data-toggle="tooltip" title="explore module online" \
+ target="_blank" >
+{% endfor %}
+            <i  class="fas fa-rocket  ml-5"></i> </a> </h5>
+                    <h5> <a data-toggle="tooltip" title="download offline version"  href=""
+            <i class="fas fa-cloud-download-alt ml-4"></i></a> </h5>
+                    <h5>
+       <a   data-toggle="tooltip" title="student handbook"   href=""
+            <i class="fas fa-book-open ml-4"></i></a> </h5>
+                    <h5> 
+         <a data-toggle="tooltip" title="Teacher Handbook"  href=""
+            <i class="fas fa-file-alt ml-4"></i></a> </h5>
+                    <h5>
+     <a data-toggle="tooltip" title="Share link"   href=""
+            <i class="fas fa-share-alt  ml-3"></i></a> </h5>
+                  
+                    </ul>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-md-12" style="text-align: justify;">
+                                             {{moduledetails.content|default:'No description added yet.'|safe}}
+                   <p>  No. Of Interactive : 0 </p>
+                         </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-4 py-5 ">
+                  
+                  <img
+                    src="/media/{{moduledetails.image.grel_node.if_file.original.relurl}}"
+                    class="card-img border-rounded mx-2 my-4"
+                    alt="..."
+                  />
+                
+                      </div>
+                      <div class="col-md-8 py-5" style="overflow-y:scroll !important; height: 300px;">
+                       <table class="table table-hover">
+            <thead>
+              <tr>
+              
+                <th scope="col">Unit </th>
+                <th scope="col">Lesson</th>
+                <th scope="col">No. of Activities</th>
+              </tr>
+            </thead>
+            <tbody>
+	     {% for data in moduledetails.unitdetails %}
+              <tr>
+           
+                <td>{{data.name}}</td>
+                <td>{{data.lessname}}</td>
+                <td>{{data.totalactivities}}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+                    </div>
+                    <!-- <div class="col-md-4 ml-auto">.col-md-4 .ml-auto</div> -->
+                  </div>
+                  <!-- <div class="row">
+                    <div class="col-md-3 ml-auto">.col-md-3 .ml-auto</div>
+                    <div class="col-md-2 ml-auto">.col-md-2 .ml-auto</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 ml-auto">.col-md-6 .ml-auto</div>
+                  </div> -->
+                  <div class="row">
+                    <div class="col-sm-9 mt-n3 ">
+            <i class="fas fa-eye "> View: 2 </i>            <i class="fas fa-cloud-downlaod-alt ml-3 "> Download</i>
+   <div class="row">
+                  
+              
+                  
+                </div>
+              </div>
+            </div>
+            
+         
+</div>

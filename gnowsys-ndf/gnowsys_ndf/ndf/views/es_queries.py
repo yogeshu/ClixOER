@@ -28,13 +28,311 @@ from gnowsys_ndf.ndf.models import node_collection
 
 from gnowsys_ndf.ndf.models import GSystemType
 
+gfs = HashFS('/data/media/', depth=3, width=1, algorithm='sha256')
+
+
+def get_file(md5_or_relurl=None):
+
+    file_blob = None
+    
+    try:
+        if md5_or_relurl:
+            file_blob = gfs.open(md5_or_relurl)
+    except Exception as e:
+        print "File '", md5_or_relurl, "' not found: ", e
+            
+    return file_blob
+
+def readDoc(request, id, group_id, file_name=""):
+    '''Return Files
+    '''
+    try:
+        group_id = ObjectId(group_id)
+    except:
+        group_name, group_id = get_group_name_id(group_id)
+
+
+    file_node = get_node_by_id(id)
+
+
+    if file_node is not None:
+
+        if file_node.if_file.original.relurl:
+            # print "md5_or_relurl : ", file_node.if_file.original
+            return HttpResponse(get_file(file_node.if_file.original.relurl),
+                                content_type=file_node.if_file.mime_type)
+    else:
+        return HttpResponse("")
+
+
+def about(request,group_id):
+    template = 'ndf/about.html'
+    return render_to_response(template, {'group_id':group_id})
+
+
+def domain_help(request,group_id,domain_name):
+    print "inside domain help",domain_name
+    if domain_name == 'English':
+        template = 'ndf/theEDhelp.html'
+
+    if domain_name == 'Mathematics':
+        template = 'ndf/theMDhelp.html'
+
+    if domain_name == 'Science':
+        template = 'ndf/theSDhelp.html'
+
+    return render_to_response(template, {'group_id':group_id,'domain_name':domain_name})
+
+
+def loadDesignDevelopment(request,group_id,domain_name):
+    print "inside Design Development:",domain_name
+    if domain_name == 'English':
+        template = 'ndf/ED.html'
+       
+    if domain_name == 'Mathematics':
+        template = 'ndf/MD.html'
+       
+    if domain_name == 'Science':
+        template = 'ndf/SD.html'
+    
+    return render_to_response(template, {'group_id':group_id,'domain_name':domain_name})
+
+
+def uploadDoc(request, group_id):
+    print "inside"
+    
+    group_name, group_id = get_group_name_id(group_id)
+
+    print "inside upload doc",group_name,group_id
+    
+    if request.method == "GET":
+        template = "ndf/cmspage.html"
+
+    variable = RequestContext(request, {'groupid':group_id,'group_id':group_id})
+    return render_to_response(template, variable)
+
+
+def upload_using_save_file(request,group_id):
+    from gnowsys_ndf.ndf.views.file import save_file
+    try:
+        group_id = ObjectId(group_id)
+    except:
+        group_name, group_id = get_group_name_id(group_id)
+
+    group_obj = node_collection.one({'_id': ObjectId(group_id)})
+    title = request.POST.get('context_name','')
+    sel_topic = request.POST.get('topic_list','')
+    
+    usrid = request.user.id
+    name  = request.POST.get('name')
+
+    from gnowsys_ndf.ndf.views.filehive import write_files
+    is_user_gstaff = check_is_gstaff(group_obj._id, request.user)
+    content_org = request.POST.get('content_org', '')
+    uploaded_files = request.FILES.getlist('filehive', [])
+    # gs_obj_list = write_files(request, group_id)
+    # fileobj_list = write_files(request, group_id)
+    # fileobj_id = fileobj_list[0]['_id']
+    fileobj_list = write_files(request, group_id,unique_gs_per_file=False)
+    # fileobj_list = write_files(request, group_id)
+    fileobj_id = fileobj_list[0]['_id']
+    file_node = node_collection.one({'_id': ObjectId(fileobj_id) })
+
+    discussion_enable_at = node_collection.one({"_type": "AttributeType", "name": "discussion_enable"})
+    for each_gs_file in fileobj_list:
+        #set interaction-settings
+        each_gs_file.status = u"PUBLISHED"
+        if usrid not in each_gs_file.contributors:
+            each_gs_file.contributors.append(usrid)
+
+        if title == "raw material" or (title == "gallery" and is_user_gstaff):
+            if u'raw@material' not in each_gs_file.tags:
+                each_gs_file.tags.append(u'raw@material')
+
+        group_object = node_collection.one({'_id': ObjectId(group_id)})
+        if (group_object.edit_policy == "EDITABLE_MODERATED") and (group_object.moderation_level > 0):
+            from gnowsys_ndf.ndf.views.moderation import get_moderator_group_set
+            # print "\n\n\n\ninside editable moderated block"
+            each_gs_file.group_set = get_moderator_group_set(each_gs_file.group_set, group_object._id)
+            # print "\n\n\npage_node._id",page_node._id
+            each_gs_file.status = u'MODERATION'
+            # print "\n\n\n page_node.status",page_node.status
+        each_gs_file.save()
+        create_gattribute(each_gs_file._id, discussion_enable_at, True)
+        return_status = create_thread_for_node(request,group_obj._id, each_gs_file)
+
+    if title == "gallery" and not is_user_gstaff:
+        return HttpResponseRedirect(reverse('course_gallery', kwargs={'group_id': group_id}))
+    elif title == "raw material" or (title == "gallery" and is_user_gstaff):
+        return HttpResponseRedirect(reverse('course_raw_material', kwargs={'group_id': group_id}))
+    else:
+        return HttpResponseRedirect( reverse('file_detail', kwargs={"group_id": group_id,'_id':fileobj_id}))
+    # return HttpResponseRedirect(url_name)
+
+def write_files(request, group_id, make_collection=False, unique_gs_per_file=True, **kwargs):
+
+    user_id = request.user.id
+    try:
+        user_id = Author.extract_userid(request, **kwargs)
+    except Exception as e:
+        pass
+    # print "user_id: ", user_id
+
+    # author_obj = node_collection.one({'_type': u'Author', 'created_by': int(user_id)})
+    author_obj = Author.get_author_obj_from_name_or_id(user_id)
+    author_obj_id = author_obj._id
+    kwargs['created_by'] = user_id
+
+    group_name, group_id = get_group_name_id(group_id)
+
+    first_obj      = None
+    collection_set = []
+    uploaded_files = request.FILES.getlist('filehive', [])
+    name           = request.POST.get('name')
+
+    gs_obj_list    = []
+    for each_file in uploaded_files:
+
+        gs_obj = node_collection.collection.GSystem()
+
+        language = request.POST.get('language', GSTUDIO_SITE_DEFAULT_LANGUAGE)
+        language = get_language_tuple(language)
+
+        group_set = [ObjectId(group_id), ObjectId(author_obj_id)]
+
+        if name and not first_obj and (name != 'untitled'):
+            file_name = name
+        else:
+            file_name = each_file.name if hasattr(each_file, 'name') else name
+
+        existing_file_gs = gs_obj.fill_gstystem_values(request=request,
+                                    name=file_name,
+                                    group_set=group_set,
+                                    language=language,
+                                    uploaded_file=each_file,
+                                    unique_gs_per_file=unique_gs_per_file,
+                                    **kwargs)
+        # print "existing_file_gs",existing_file_gs
+        if (gs_obj.get('_id', None) or existing_file_gs.get('_id', None)) and \
+           (existing_file_gs.get('_id', None) == gs_obj.get('_id', None)):
+            if gst_file_id not in gs_obj.member_of:
+                gs_obj.member_of.append(gst_file_id)
+
+            gs_obj.save(groupid=group_id,validate=False)
+
+            if 'video' in gs_obj.if_file.mime_type:
+                convertVideo.delay(user_id, str(gs_obj._id), file_name)
+            if not first_obj:
+                first_obj = gs_obj
+            else:
+                collection_set.append(gs_obj._id)
+
+            gs_obj_list.append(gs_obj)
+        elif existing_file_gs:
+                gs_obj_list.append(existing_file_gs)
+
+    if make_collection and collection_set:
+        first_obj.collection_set = collection_set
+        first_obj.save()
+
+    return gs_obj_list
+
+    # return render_to_response('ndf/filehive.html', {
+    #   'group_id': group_id, 'groupid': group_id,
+    #   }, context_instance=RequestContext(request))
+
+
+def domain_page(request,group_id,domain_name):
+    import json
+    print "es_queries domain page:",domain_name
+    domain_id = get_name_id_from_type(domain_name,'Group')[1]
+    print "domain id:",domain_id
+    domainnd = get_node_by_id(domain_id)
+    print "domain nd:",domainnd
+    
+    files = get_nodes_by_ids_list(list(domainnd.collection_set))
+    print request.META["CSRF_COOKIE"]
+    #CSRF_COOKIE = request.META["CSRF_COOKIE"]
+    import os
+    print "re",files,os.getcwd()
+    with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/employees.json','r') as json_file:
+        employeedata = json.load(json_file)
+    with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/testimonial.json','r') as json_file:
+        testimonydata = json.load(json_file)
+    return render_to_response(
+            "ndf/domain.html",
+            {"employee":employeedata,"testimony":testimonydata,"files":files,"first_arg":domain_name,"group_id":group_id},context_instance=RequestContext(request)) 
+
+def get_module_previewdata(request,group_id):
+
+    '''
+    ARGS: module_obj
+    Result will be of following form:
+    {
+        name: 'Module1',
+        grade : [],
+        subject : science,
+        unit_details: [
+            {
+                name: 'Unit 1',
+                lessn: 'Lessn 1',
+                activities: 10
+            },
+            {
+                name: 'Unit 1',
+                type: 'Lessn 2',
+                activities: 10
+            }
+        ]
+    }
+    '''
+    node_id = request.POST.get("node_id")
+
+    print "in es-queries: get_module_previewdata",node_id
+    node_obj = get_node_by_id(node_id)
+
+
+    units = list(get_attribute_value(node_id,'items_sort_list'))
+    print "unitnds:",units
+    #imgsrc = get_attribute_value(node_id,'has_banner_pic')
+    # unitnds = get_nodes_by_ids_list(list(node_obj.collection_set))
+    module_dict = {}
+
+    module_dict['name'] = node_obj.altnames
+    module_dict['grade'] = get_attribute_value(node_id,'educationallevel')
+    module_dict['subject'] = get_attribute_value(node_id,'educationalsubject')
+    module_dict['image'] = get_relation_value(node_id,'has_banner_pic')
+    module_dict['content'] = node_obj.content
+    module_dict['unitdetails'] = []
+
+    for each in units:
+        lessnnds = get_nodes_by_ids_list(list(each.collection_set))
+        print "lessnnds:",lessnnds
+        for lessn in lessnnds:
+            unitdict = {}
+            unitdict['name'] = each.altnames
+            # print "lessnnds:",each.collection_set
+            print "lessn name:",lessn.name
+            unitdict['lessname'] = lessn.name
+            unitdict['totalactivities'] = len(list(lessn.collection_set))
+            module_dict['unitdetails'].append(unitdict) 
+    print "module details:",module_dict
+
+    return render_to_response('ndf/Emodule_preview.html',
+            {
+                'group_id': group_id, 'groupid': group_id,
+                'moduledetails':module_dict
+            },
+            context_instance=RequestContext(request))
+
 def get_node_by_id(node_id):
     '''
         Takes ObjectId or objectId as string as arg
             and return object
     '''
+    print "node id:",node_id
     if node_id:
-        q = eval("Q('match', id = node_id)")
+        q = eval("Q('match', id = str(node_id))")
 
         # q = Q('match',name=dict(query='File',type='phrase'))
         s1 = Search(using=es, index='nodes',doc_type="node").query(q)
@@ -57,6 +355,7 @@ def get_nodes_by_ids_list(node_id_list):
     # except:
     #     node_id_list = [ObjectId(nid) for nid in node_id_list if nid]
     if node_id_list:
+        node_id_list = [str(each) for each in node_id_list]
         q = eval("Q('terms', id = node_id_list)")
         print q
         # q = Q('match',name=dict(query='File',type='phrase'))
@@ -1134,15 +1433,16 @@ def get_relation_value(node_id, grel, return_single_right_subject=False):
                         # print "\n\n grel_val_node, grel_id == ",grel_val_node, grel_id
                         result_dict.update({"grel_id": grel_id, "grel_node": grel_val_node_cur})
                 else:
+                    print "else:",grel
                     # node_grel = triple_collection.one({'_type': "GRelation", "subject": node._id, 'relation_type': relation_type_node._id,'status':"PUBLISHED"})
-                    q = Q('bool',must=[Q('match', type = 'GRelation'), Q('match', subject = node.id), Q('match', relation_type = relation_type_node.id), Q('match', status = "PUBLISHED")])
+                    q = Q('bool',must=[Q('match', type = 'GRelation'), Q('match', subject = node.id), Q('match', relation_type = relation_type_node.id)])
                     s1 = Search(using=es, index='triples',doc_type="triple").query(q)
                     s2 = s1.execute()
                     node_grel = s2[0]
                     if node_grel:
                         grel_val = list()
                         grel_val = node_grel.right_subject
-                        grel_val = grel_val if isinstance(grel_val, list) else [grel_val]
+                        grel_val = grel_val if isinstance(grel_val, list) else grel_val
                         grel_id = node_grel.id
                         # grel_val_node = node_collection.one({'_id':ObjectId(grel_val)})
                         # grel_val_node = node_collection.find_one({'_id':{'$in': grel_val}})

@@ -1,0 +1,147 @@
+{% extends "ndf/base.html" %}
+{% block content %}
+<!-- <script src="../node_modules/ckeditor/ckeditor.js">
+</script> -->
+
+<link rel="stylesheet" href="../static/node_modules/ckeditor/samples/toolbarconfigurator/css/fontello.css">
+<form>
+  <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-8 col-md-8 col-lg-10 text-center">
+     
+    <div class="input-group mb-3 py-5">
+            <div class="input-group-prepend ">
+              <span class="input-group-text" id="inputGroup-sizing-default"> UniQue Name </span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+     
+          <div class="input-group mb-3 py-2 ">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default"> Display Name </span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              </div>
+                     </div>
+        </div>
+        <div class="row">
+            <div class="col col-sm-4 col-md-4 col-lg-4 text-center">
+                 <h4> Select Type
+                 </h4>
+            </div>
+        
+                 <!-- Example single danger button -->
+                 <div class="col col-sm-4 col-md-4 col-lg-4 text-center">
+    <div class="btn-group">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Type
+            </button>
+            <div class="dropdown-menu "   data-content={{each.content}}>
+              <a class="dropdown-item test"  id="test1" href="#">TEST</a>
+              <a class="dropdown-item test" id="testi2" href="#">Tesimonials</a>
+           
+            </div>
+          </div>
+           
+     
+        
+             
+                <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary ml-5 example" data-toggle="modal" data-target="#exampleModal">
+          choose template 
+          </button>
+    </div>
+    
+    
+          <!-- Modal -->
+          <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          </div>
+    
+      {% include "ndf/html_editor.html" %}
+        </div>
+      </form>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body templates_content">
+
+</div>
+              </div>
+           
+            </div>
+          </div>
+    </div>
+   
+<script>
+
+
+
+{% comment  %}
+$( ".example" ).click(function() {
+        $.ajax({
+            type: "POST",
+            url: "{% url ' '  %}",
+            datatype: "html",
+            data:{
+              csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(data) {
+              $(".templates_content").html(data);
+              $('#exampleModal').modal('show');
+            
+          
+            },
+            error: function(){
+                console.log("Something went wrong");  
+            }
+        });
+    });
+{% endcomment  %}  
+</script>
+ <script type="text/javascript">
+  $(".test").click(function(event){
+      var test = $(this).attr("data-content");
+      CKEDITOR.instances['editor1'].insertHtml(test);
+
+      // $('#group_imgs_on_modal').modal('hide');
+  });
+</script>
+<script>
+var templates={};
+templates["#test1"]="<p>This is the first template</p>";
+templates["#test2"]="<p>This is the second template</p>";
+$('.testing-menu').change(function(){
+    var template = $(this).val();
+    CKEDITOR.instances["editor1"].setData(templates[template])
+});
+
+
+
+</script>
+{% endblock %}
+
+
