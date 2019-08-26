@@ -13,6 +13,8 @@ from django.http import HttpResponse
 from django.http.request import HttpRequest
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response  # , render
+from django.template.loader import render_to_string
+
 from django.template import RequestContext
 from django.template.defaultfilters import slugify
 from gnowsys_ndf.ndf.gstudio_es.paginator import Paginator ,EmptyPage, PageNotAnInteger
@@ -20,7 +22,7 @@ from gnowsys_ndf.ndf.gstudio_es.paginator import Paginator ,EmptyPage, PageNotAn
 from django.core.cache import cache
 from bson import ObjectId
 from gnowsys_ndf.ndf.gstudio_es.es import *
-from gnowsys_ndf.settings import LANGUAGES,OTHER_COMMON_LANGUAGES
+from gnowsys_ndf.settings import LANGUAGES,OTHER_COMMON_LANGUAGES,EMAIL_HOST_USER
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from gnowsys_ndf.ndf.models import GSystemType, Group, Node, GSystem, Buddy, Counter  #, Triple
@@ -30,6 +32,19 @@ from gnowsys_ndf.ndf.models import GSystemType
 
 gfs = HashFS('/data/media/', depth=3, width=1, algorithm='sha256')
 
+def help(request,group_id):
+    template = 'ndf/help.html'
+    return render_to_response(template, {'group_id':group_id})
+ 
+def help_videos(group_id,node_id):
+    with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/module.json','r') as fd:
+        json_data = json.load(fd)
+    nd = get_node_by_id(node_id)
+    videos = json_data['module_help'][nd.name]
+    print "videos:",videos
+    template = 'ndf/help_videos.html'
+    return render_to_response(template, {'group_id':group_id , 'videos':videos})
+   
 
 def get_file(md5_or_relurl=None):
 
@@ -68,6 +83,35 @@ def readDoc(request, id, group_id, file_name=""):
 def about(request,group_id):
     template = 'ndf/about.html'
     return render_to_response(template, {'group_id':group_id})
+
+
+def send_message(request,group_id):
+    #template = 'ndf/about.html'
+    #return render_to_response(template, {'group_id':group_id})
+    from django.core.mail import send_mail, EmailMultiAlternatives
+    from django.contrib import messages
+    print "send message"
+    print request
+    print request.POST
+    subject = 'Feedback message'
+    domain = request.POST.get('domain','')
+    if domain == '':
+        domain = 'About'
+    message = 'feedback received for'+domain
+    c = {'email': request.POST['email'],
+                 'first_name': request.POST['first_name'],'last_name':request.POST['last_name'],'domain':request.POST['domain'],'message':request.POST['message']}
+    email_from = EMAIL_HOST_USER
+    recipient_list = ['sheetal.kashid@tiss.edu']
+    html_content = render_to_string('ndf/html_message.html', c)
+    msg = EmailMultiAlternatives(subject, message,email_from, recipient_list)
+
+    msg.attach_alternative(html_content, "text/html")
+    msg.send(fail_silently=True)
+    messages.success(request, 'Your feedback sent successfully!')
+    if domain != 'About':
+        return HttpResponseRedirect( reverse('domain_page', kwargs={"group_id": group_id,"domain_name":request.POST['domain']}) )
+    else:
+        return HttpResponseRedirect( reverse('about', kwargs={"group_id": group_id}) )
 
 
 def domain_help(request,group_id,domain_name):
@@ -262,7 +306,7 @@ def domain_page(request,group_id,domain_name):
     return render_to_response(
             "ndf/domain.html",
             {"employee":employeedata,"testimony":testimonydata,"files":files,"first_arg":domain_name,"group_id":group_id},context_instance=RequestContext(request)) 
-
+    
 def get_module_previewdata(request,group_id):
 
     '''
@@ -294,6 +338,9 @@ def get_module_previewdata(request,group_id):
 
     units = list(get_attribute_value(node_id,'items_sort_list'))
     print "unitnds:",units
+    if len(units) == 0 :
+        units = get_nodes_by_ids_list(node_obj.collection_set)
+
     #imgsrc = get_attribute_value(node_id,'has_banner_pic')
     # unitnds = get_nodes_by_ids_list(list(node_obj.collection_set))
     module_dict = {}
@@ -304,6 +351,58 @@ def get_module_previewdata(request,group_id):
     module_dict['image'] = get_relation_value(node_id,'has_banner_pic')
     module_dict['content'] = node_obj.content
     module_dict['unitdetails'] = []
+    module_dict['id'] = node_obj.id
+    module_dict['grade'] = [str(each) for each in module_dict['grade']]
+    q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='File')])")
+    GST_FILE = (Search(using=es,index = 'nodes',doc_type='node').query(q)).execute()
+    
+    q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='Page')])")
+    GST_PAGE = (Search(using=es,index = 'nodes',doc_type='node').query(q)).execute()
+    
+    q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='Jsmol')])")
+    GST_JSMOL = (Search(using=es,index = 'nodes',doc_type='node').query(q)).execute()
+
+    q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Handbook'),Q('match_phrase',tags = module_dict['name'].split()[0]),Q('match_phrase',tags = 'Student')])
+
+    alldocs1 = (Search(using=es,index = 'nodes',doc_type='node').query(q)).sort({"last_update" : {"order" : "desc"}})
+    
+    alldocs2 = alldocs1.execute()
+
+    print "document count:",alldocs1.count()
+    student_docs = {}
+    if alldocs1.count() > 0 :
+        for each in alldocs2:
+            student_docs[str(each.language[1])]='/media/'+str(each.if_file.original.relurl)
+    print "docs:",student_docs
+    
+    q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Handbook'),Q('match_phrase',tags = module_dict['name'].split()[0]),Q('match_phrase',tags = 'Teacher')])
+
+    alldocs1 = (Search(using=es,index = 'nodes',doc_type='node').query(q)).sort({"last_update" : {"order" : "desc"}})
+    alldocs2 = alldocs1.execute()
+    
+    teacher_docs = {}
+    
+    if alldocs1.count() > 0 :
+        for each in alldocs2:
+            teacher_docs[str(each.language[1])]='/media/'+str(each.if_file.original.relurl)
+    print "docs:",teacher_docs
+    q1 = []
+    for each in str(module_dict['name']).split():
+        q1.append(Q('match_phrase', tags = each))
+
+    q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('terms',language = ['english']  ),Q('match_phrase',tags = 'Tool')],should = q1,minimum_should_match=1)
+                
+    allinteractives1 = (Search(using=es,index = 'nodes',doc_type='node').query(q)).sort({"last_update" : {"order" : "desc"}})
+
+    allinteractives2 = allinteractives1.execute()
+
+    with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/theInteractive.json','r') as json_file:
+        tooldata = json.load(json_file)
+    interactives_data ={}
+    for each in allinteractives1:
+        interactives_data[str(each.name)] = tooldata[str(each.name)]['Interactive_href']
+
+    print q,allinteractives1.count(),interactives_data
 
     for each in units:
         lessnnds = get_nodes_by_ids_list(list(each.collection_set))
@@ -312,8 +411,8 @@ def get_module_previewdata(request,group_id):
             unitdict = {}
             unitdict['name'] = each.altnames
             # print "lessnnds:",each.collection_set
-            print "lessn name:",lessn.name
-            unitdict['lessname'] = lessn.name
+            print "lessn name:",str(lessn.name).encode('utf-8')
+            unitdict['lessname'] = str(lessn.name).encode('utf-8')
             unitdict['totalactivities'] = len(list(lessn.collection_set))
             module_dict['unitdetails'].append(unitdict) 
     print "module details:",module_dict
@@ -321,7 +420,7 @@ def get_module_previewdata(request,group_id):
     return render_to_response('ndf/Emodule_preview.html',
             {
                 'group_id': group_id, 'groupid': group_id,
-                'moduledetails':module_dict
+                'moduledetails':module_dict, 'student_docs':student_docs,'teacher_docs':teacher_docs, 'interactivestotal':allinteractives1.count(), 'toolsdata':interactives_data
             },
             context_instance=RequestContext(request))
 
@@ -599,11 +698,11 @@ def get_attribute_value(node_id, attr_name, get_data_type=False, use_cache=True)
             s1 = Search(using=es, index='triples',doc_type="triple").query(q)
             s2 = s1.execute()
             print "s2:",s2,q
-            node_attr = s2[0]
-            print "node attr:",node_attr
-    if node_attr:
-        attr_val = node_attr.object_value
-        print "\n here: ", attr_name, " : ", type(attr_val), " : ", attr_val
+            if s1.count() > 0:
+                node_attr = s2[0]
+                attr_val = node_attr.object_value
+                print "\n here: ", attr_name, " : ", type(attr_val), " : ", attr_val
+                print "node attr:",node_attr
     if get_data_type:
         return {'value': attr_val, 'data_type': data_type}
     cache.set(cache_key, attr_val, 60 * 60)

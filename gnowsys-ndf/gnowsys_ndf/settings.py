@@ -3,7 +3,7 @@
 # imports from python libraries
 import os
 import djcelery
-
+from django.contrib.messages import constants as messages
 # imports from core django libraries
 # from django.conf import global_settings
 # from django.utils.translation import ugettext
@@ -23,7 +23,13 @@ BENCHMARK = "ON"
 GSTUDIO_DEFAULT_GROUPS_LIST = ['home', 'Trash', 'desk', 'help', 'warehouse']
 GROUP_SETTING_1 = {'edit_policy': 'NON_EDITABLE'}
 GROUP_SETTING_2 = {'edit_policy': 'EDITABLE_NON_MODERATED'}
-
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 GSTUDIO_DEFAULT_FACTORY_GROUPS = {'home': GROUP_SETTING_1,
              'warehouse':GROUP_SETTING_2, 'Trash': GROUP_SETTING_1,
              'desk': GROUP_SETTING_2, 'help': GROUP_SETTING_2}
@@ -494,6 +500,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.core.context_processors.static',
     'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
     # 'django.core.context_processors.csrf',
 )
 
@@ -1077,10 +1084,10 @@ GLITE_RCS_REPO_DIR = os.path.join('/data/', RCS_REPO_DIRNAME)
 
 GSTUDIO_ELASTIC_SEARCH_INDEX = {
   #"Filehives": ["Filehive"],
-  "Triples": ["Triple"],
+  #"Triples": ["Triple"],
   # "Buddies": ["Buddy"],
   # "Benchmarks": ["Benchmark"],
-  #"Nodes": ["Node"],
+  "Nodes": ["Node"],
   # "Counters": ["Counter"]
 }
 

@@ -1,12 +1,48 @@
 {% extends "ndf/base.html" %}
  {% block content %}
 
-{% include "ndf/oer_breadcrumbs.html" %}
+<style>
+
+img{
+overflow-y:auto;
+}
+</style>
+  
+<nav aria-label="breadcrumb ml-5 ">
+    <ol class="breadcrumb mt-3">
+             <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'e-library' group_id  %}"  > <i style="color:#fff;" class=" fas fa-home fa-lg  ml-n4"></i> </a> </li>
+        <li class="breadcrumb-item " aria-current="page"><i class="fas fa-user-friends"></i> About</li>
+<!--
+      <li class="breadcrumb-item " aria-current="page">The Design And Development </li>
+-->
+    </ol>
+  </nav>
+{{csrf_token}}
 
 {% include "ndf/panel.html" %}
-<div class="mt-5" style="margin-bottom:0px;">
-        {% include "ndf/pedo.html" %}
 
+
+<div class="py-5 text-center">
+<h5> Pedagogical Pillars </h5>
+<img class="img-fluid" src="/static/ndf/AbtPg.png"/>
+</div>
+<!--
+<div class="mt-5" style="margin-bottom:0px;">
+       
+
+</div>  -->
+<h4 class="text-center py-5"> Research </h4>
+<div class="text-center ">
+{% include "ndf/theLearningpage.html" %}
+</div>
+<div class="text-center">
+<h2> Clix In the State </h2>
+<img class="img-fluid" src="/static/ndf/Abtpg2.png"/>
+</div>
+<h4 class="text-center py-5"> Our Collaborators </h4>
+<div class="py-5">
+
+{% include "ndf/thefootericon.html" %}
 </div>
 <div class="mt-n5"></div>
 </div>

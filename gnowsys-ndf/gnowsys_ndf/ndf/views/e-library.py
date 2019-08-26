@@ -19,7 +19,7 @@ from gnowsys_ndf.ndf.models import Node, GRelation,GSystemType, Triple
 from gnowsys_ndf.ndf.models import node_collection
 from gnowsys_ndf.ndf.views.file import *
 from gnowsys_ndf.ndf.views.methods import cast_to_data_type, get_execution_time
-from gnowsys_ndf.ndf.views.es_queries import get_node_by_id,get_group_name_id,get_nodes_by_ids_list
+from gnowsys_ndf.ndf.views.es_queries import get_node_by_id,get_group_name_id,get_nodes_by_ids_list,get_attribute_value
 from gnowsys_ndf.ndf.views.methods import get_filter_querydict
 from gnowsys_ndf.ndf.gstudio_es.es import *
 ##############################################################################
@@ -137,7 +137,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 
 	allaudios2 = allaudios1.execute()
 
-        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',name = 'Handbook'),Q('match_phrase',if_file__mime_type = 'pdf')])
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Handbook')])
 
 	alldocs1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
@@ -149,14 +149,23 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 
         allinteractives2 = allinteractives1.execute()
         print "interactives count:",allinteractives1.count()
-
-	q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED')])
+        
+        domain_set = ['English','Mathematics','Science']
+        domain_nds = [get_group_name_id(each)[1] for each in domain_set]
+        domains = get_nodes_by_ids_list(domain_nds)
+        moduleids = []
+        for each in domains:
+                moduleids.extend(each.collection_set)
+	q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id = moduleids)])
 
 	all_modules = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
 	all_modules2 = all_modules.execute()
+        
+        files_new = all_modules[0:24]
 
-	files_new = all_modules[0:24]
+        for each in files_new:
+                print each
 
 	datavisual.append({"name":"Doc", "count": alldocs1.count()})
 	datavisual.append({"name":"Page", "count": educationaluse_stats.get("Pages", 0)})
@@ -211,7 +220,7 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
                                 if filetype == 'document':
                                         template = 'ndf/player_handbook.html'
                                         print "in Document elif"
-                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = 'pdf'),Q('match_phrase',name = 'Handbook')])
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Handbook')])
                                 elif filetype == 'interactives':
                                         print "in interactives"
                                         template = "ndf/player_interactive.html"
@@ -219,7 +228,13 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
                                 else:
                                         q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = filetype)])
                         else:
-                                q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED')])
+                                domain_set = ['English','Mathematics','Science']
+                                domain_nds = [get_group_name_id(each)[1] for each in domain_set]
+                                domains = get_nodes_by_ids_list(domain_nds)
+                                moduleids = []
+                                for each in domains:
+                                        moduleids.extend(each.collection_set)
+                                q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id = moduleids)])
                         
                         allfiletypes1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
                                 
@@ -253,7 +268,14 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
                                 if filetype == 'document':
                                         template = 'ndf/player_handbook.html'
                                         print "in Document elif"
-                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = 'pdf'),Q('match_phrase',name = 'Handbook'),Q('terms',group_set = unitnds)])
+                                        domain_selected = [str(each).title() for each in domain_selected]
+                                        print "domain selected:",domain_selected
+                                        q1 = []
+                                        for each in domain_selected:
+                                                q1.append(Q('match_phrase',tags = str(each)))
+                                        print q1
+
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Handbook')],should = q1,minimum_should_match=1)
                                 elif filetype == 'interactives':
                                         template = "ndf/player_interactive.html"
                                         domain_selected = [str(each).title() for each in domain_selected]
@@ -379,8 +401,13 @@ def resource_list_domainwise(request,group_id, app_id=None, page_no=1):
         allaudios1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
         allaudios2 = allaudios1.execute()
-
-        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('terms',group_set=unitslist),Q('match_phrase',name = 'Handbook'),Q('match_phrase',if_file__mime_type = 'pdf')])
+        
+        q1 = []
+        for each in domain_name:
+                q1.append(Q('match_phrase',tags = str(each)))
+        print q1
+                                        
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match_phrase',tags = 'Handbook')],should = q1,minimum_should_match=1)
 
         alldocs1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 

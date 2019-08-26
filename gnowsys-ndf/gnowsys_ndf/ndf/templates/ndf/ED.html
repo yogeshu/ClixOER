@@ -1,12 +1,19 @@
 {% extends "ndf/base.html" %} {% block content %}
 <style> 
- p {
+
+#uslider  p {
     font-size: 14px;
     text-align: justify;
+    text-
+    
+}
+#uslider img{
+ text-align:center;
+border-radius: 10px;
 }
 
 .back-dd{
-  background: rgb(139, 131, 131);
+  background: #F8F9FA;
 text-emphasis: none;
 font-family: Roboto;
 font-weight: 300;
@@ -16,11 +23,24 @@ pre{
 }
 
 </style>
-<div class="container">
+ <nav aria-label="breadcrumb ">
+          <ol class="breadcrumb ml-n5 mt-3">
+            <li class="breadcrumb-item  "aria-current="page"> <i class="ml-2 fas fa-home fa-lg"></i> E-library</li>
+            <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> --> 
+            <li class="breadcrumb-item  "aria-current="page"> <i class=" fas  fa-lg"></i> Design And Development-English</li>
+            <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> -->
+
+        </nav>
+          </ol>
+        </nav>
+        
+
+
+<div class="container"  id="uslider">
   <div class="row">
     <div class="col-12 col-sm-10 col-md-12">
-      <div class="research-header text-center">
-        <h1 class="text-center back-dd py-2">Research</h1>
+      <div class="research-header ">
+     <!--   <h1 class="text-center back-dd py-2">Introduction</h1>
       </div>
       <h6>
         Design based research:
@@ -72,39 +92,154 @@ pre{
         <li>Artefacts that came out of this process (tools/interactives)</li>
         <li>How we imagined the role of teacher in this process</li>
       </ul>
-      <h2 class=" back-dd text-center py-1" id="introduction">
+-->
+      <h2 class=" back-dd  py-1" id="introduction">
           Introduction
       </h2>
-      <p> 
-            The design and development of the CLIx English modules followed a design thinking approach, which  mapped to the six steps of Empathy, Defining a problem, Ideation, Prototyping, Testing and Iteration of the solution. In this case, extensive field research and literature review, along with classroom observations across the four states and discussions with state officials, headmasters and school teachers helped us narrow our focus to Communicative English. The focus was to be on developing listening and speaking skills of students in grades 9-10 in government schools. The baseline survey showed that most students  generally fell within the bands  A1(beginner) -B1 (intermediate) of the Common European Framework (CEFR). This framework was  used as there was no traceable Indian equivalent and it was used only to broadly understand what level the course should be pitched at. 
+<p>
+We designed the Communicative English modules after extensive field research, classroom observations and discussions with students, teachers, headmasters and state officials. These stakeholders helped us narrow the focus of our modules to listening and speaking skills in English among high school students (grade 8 - 10) in government schools. </p>
+<!--
+<Field Visits TS>
+ 
+<Field Visits MZ>
+-->
+<div class="row " style="margin-bottom:40px;">
+<div class="col-sm">
+<img src="/static/ndf/S1090027.JPG" class="img-fluid" width="648px" height="432px"  />
+</div>
+<div class="col-sm">
+<img src="/static/ndf/IMG_4925.JPG" class="img-fluid" width="648px" height="432px"/>
+</div>
+</div>
+<p> 
+We were a diverse team of designers from TISS, which included faculty members, media professionals and technologists who collaborated with teams at The Education Arcade and the Office of Digital Learning at MIT between 2014 and 2018 to create this set of resources. 
 
-      </p>
-      <h2 class=" back-dd text-center py-1" id="baseline">Baseline </h2>
-      <p> An effective resource is well tailored to suit the needs of the target audience. A  dipstick survey was done with a small sample of  students initially in Mizoram, Telangana, Rajasthan and later in Chhattisgarh, between May 2015 and December 2015. Structured as a needs analysis it also included a listening test, a writing task and a set of predefined informal interview questions and read aloud sections (from local textbooks). This was designed to assess the language levels of the learners to assist the  designers in creating resources that would sufficiently challenge the learners and address the gaps in their learning. This dipstick survey was followed-up with a more systematic and rigorous project-wide baseline survey  between July, 2016 to August, 2016, sub-skills within reading, writing, listening and speaking were measured among the learners. The baseline data helped us conclude that our learners largely fell in the A1-B1 band guiding us to create resources which would show progression in our modules along these lines. 
+This rich and complex partnership was held together by two central processes. The first was the process of Design Thinking. All ideas and resources were generated through an intensive and hands on process of design thinking. At all stages, designers followed the six steps of design thinking which included - Empathy, Defining a problem, Ideation, Prototyping, Testing and Iteration of the solution. The design camp at MIT in August 2015 (read about it below) set the tone for this.  
+</p>
+
+<!--
+< Design Camp Photos>
+-->
+
+<div class="row" style="margin-bottom:20px;">
+<div class="col-sm text-center">
+<img src="/static/ndf/IMG_1245.jpg" class="img-fluid" width="648px" height="432px"/>
+</div>
+</div>
+<p>
+The second process we followed was adopting tenets of Design Based Research (DBR). We designed and tested solutions for addressing gaps in listening and speaking skills in an iterative manner. Between 2015-2018 the overall content and design of our modules went through at least three iterations. 
+</p>
+<!---
+<Designers in the field/Field Trials>
+-->
+<div class="row">
+<div class="col-sm text-center">
+<img src="/static/ndf/IMG_6588.JPG" class="img-fluid" width="648px" height="432px"/> 
+</div>
+</div>
+      <!--</p> -->
+<div>
+      <h2 class=" back-dd py-1" id="baseline">Baseline Research </h2>
+<p>
+
+Before we began designing the modules, we did two things. One was an intensive infrastructure mapping exercise. This was done  to understand the minimum technology that was available in a majority of schools in our target states. </p>
+<!--
+<Image of pre-CLIx labs>
+-->
+<div class="row">
+<div class="col-sm text-center">
+<img src="/static/ndf/IMG_1537.JPG" class="img-fluid" width="648px" height="432px"/>
+</div>
+</div>
+<p>
+The second thing we did was conduct a dipstick survey with a small sample of students in all four states between May 2015 and December 2015. This was designed to assess the language levels of the learners so that designers would be informed to create resources that would be pitched at suitable levels for the learners.
+</p> 
+<!--
+<Photos of these tests from any state>
+
+<Some sample papers> 
+-->
+<img src="/static/ndf/IMG_1661.JPG" class="img-fluid mx-auto" width="648px" height="432px"/>
+<p>
+This was followed-up with a more s ystematic and rigorous project-wide baseline survey  between July, 2016 and August, 2016. Sub-skills within reading, writing, listening and speaking were measured among the learners. The baseline data helped us conclude that our learners largely fell in the A1-B1 band guiding us to create resources which would show progression in our modules along these lines.
+ 
+<!--
+<Baseline study graph>
+-->
+
+
         </p>
-        <h2 class="back-dd text-center py-1" id="">
-                Dastaan fellowship
+</div>
+        <h2 class="back-dd py-1" id="">
+                Dastaan 
             
             
             </h2>
             <p> 
-                    A short term fellowship was constituted in October 2015 with the objective of understanding our learners better and generating a user profile that would enable designers to create authentic, engaging and culturally relevant content. Titled, DASTAAN which also means ‘a story’ in hindi, it stood for : Develop Bonds with Locals, Ask questions, Study Local Societies, Trace Relations between Socio-Economic Strata and Cultural Practices and Beliefs, Analyse and Assess and Note.  It sought to understand the adolescent’s world(s) through a series of engaging interactions and rigorous research documentation that fellows would facilitate through an immersion in the local school sites in Mizoram, Telangana, Chhattisgarh and Rajasthan. It sought to capture background data on teenagers, such as  their linguistic backgrounds, home environment, their likes and dislikes and the students’ learning framework and link with teaching methodology and process. Fellows  collected and recorded information about   students’ interests and their cultural background, the local traditions and practices, heritage and folklore. This was recorded through text, pictures, videos and audio to support the teams in understanding their learners better. 
-
-
+                At the outset of the intervention, as designers we felt a disconnect with our large and varied set of learners. In October 2015, we constituted a short term fellowship with the objective of understanding our learners better. We wanted to generate user profiles and varied use case scenarios that would enable designers to create authentic, engaging and culturally relevant content. Titled, DASTAAN which also a  in hindi, it stood for : Develop Bonds with Locals, Ask questions, Study Local Societies, Trace Relations between Socio-Economic Strata and Cultural Practices and Beliefs, Analyse and Assess and Note.  It sought to understand the s world(s) through a series of engaging interactions and rigorous research documentation that fellows would facilitate through an immersion in the local school sites in Mizoram, Telangana, Chhattisgarh and Rajasthan. It sought to capture background data on teenagers, such as  their linguistic backgrounds, home environment, their likes and dislikes and the  learning framework and link with teaching methodology and process. Research fellows  collected and recorded information about   interests and their cultural background, the local traditions and practices, heritage and folklore. This was recorded through text, pictures, videos and audio to support the teams in understanding their learners better. 
+<!--
+<DASTAAN Fellowship workshop at TISS>
+<DASTAAN field photos>
+studentsstudentsadolescentstorymeans 
+-->
             </p>
-            <h2 class="back-dd text-center py-1">
-                Desgin camp
+            <h2 class="back-dd  py-1">
+                Design Camp
             </h2>
             <p> 
-                    The first design camp at MIT in August 2015 initiated the team into the design thinking process, enabling designers to come back with concrete ideas on activities or tool types that they had prototyped (paper) and tested. These paper prototypes went on transform into technology-based tools which the team used to create activity and assessment items, within the modules. The design camp also initiated a dynamic working relationship between the teams at TISS and MIT. Weekly calls and discussions between the teams  helped the designers gradually convert their paper prototype into a digital prototype, over a period of 6-9 months. The process of conversion involved intensive collaboration between the domain team, the media team that helped in producing audios, illustrations and videos for the modules and the technology team that built the digital platform and brainstormed on ways of modifying activities to capitalise on the dynamism of the technology enabled learning platform.
+The first design camp at MIT in August 2015 initiated the designers into the design thinking process. We came back with concrete ideas on activities and learning tools that we had prototyped and playtested at MIT.  These paper prototypes went on transform into digital tools which the team used to create activity and assessment items, within the modules. 
+
+The design camp also initiated a dynamic working relationship between the teams at TISS and MIT. Weekly calls and discussions between the teams  over a period of 6-9 months helped the designers gradually convert their paper prototype into a digital prototype. 
+
+The process of conversion involved intensive collaboration between the domain team, the media team ( helped in producing audios, illustrations and videos for the modules) and the technology team that built the digital platform. 
+
+After the first phase of roll outs in schools, the design team went back for another design camp at MIT in October 2016 where we focussed on aspects of design based research and more iterations. 
+
 
 
             </p>
-            <h2 class="back-dd text-center py-1" id="">
-                Design element We favoured 
+            <h2 class="back-dd py-1" id="">
+                Design Elements We Favoured 
             </h2>
-            <p>The team considered it important to harness the potential of technology to support language learning and pedagogy. Designers focused on the affordances of technology that complement language learning in a classroom. They also tried to harness the potential of technology to create opportunities for collaboration, autonomy, self-pacing and authentic learning. These determined the design of the platform as well as the ideal classroom set-up within which these digital resources would be used. The field constraints such as  limited computers in classrooms was turned into an opportunity to foster collaboration between students - all activities were designed in such a way that  2-3 learners would have to collaborate in order to complete the learning task at hand. The platform also allows for learners to choose the activities as per their likes  and can make multiple attempts to complete it. Unlike a regular classroom, where the teacher provides feedback to the entire classroom, technology allows for learners to seek specific feedback. This way, they pay more attention to the mistakes they make, and  learn from them. 
+<p>
+            We harnessed technology to create opportunities for collaboration, autonomy, self-pacing and authentic learning. These determined the design of the learning platform as well as the ideal classroom set-up within which these digital resources would be used. The field constraints such as  limited computers in classrooms was turned into an opportunity to foster collaboration between students - all activities were designed in such a way that  2-3 learners would have to collaborate in order to complete the learning task at hand. The platform also allows learners to choose the activities as per their likes  and they can make multiple attempts to complete it. Unlike a regular classroom, where the teacher provides feedback to the entire classroom, technology allows for learners to seek specific feedback. This way, they pay more attention to the mistakes they make, and  learn from them. 
+
                 </p>
+  <h2 class="back-dd py-1" id="">  Design Based Research 
+</h2>
+<p>
+Adopting the design thinking process meant, creating rapid prototypes and testing them at regular intervals with our intended audience. We decided to adopt a design based research design to document and study the design process retrospectively. To this end, early in May 2015, the team generated an Innovation Configuration Map which outlined the key components of the intervention and later helped designers arrive at the three design principles of collaborative learning, learning from mistakes and authentic learning contexts.  
+
+The first small scale trial in Mumbai in January 2016 saw the designers testing one activity type - Open Story Tool with students in a local municipal corporation school. 
+
+Field Trials at Local Schools
+
+The next big wave of  prototyping and playtesting two lessons with three activity types was conducted between February 2016 and May 2016 across multiple schools in all four states. This intensive testing experience gave the designers many insights into tool use, activity design and its effectiveness. Most importantly it alerted us to challenges (technical, logistic, human resource) in the field and prepared us to design innovatively for these constraints. 
+
+Photos from Field Trials
+
+This first bout of testing helped us consolidate our design principles, set realistic learning outcomes and receive feedback from teachers and curriculum designers to make the content engaging for a diverse audience. Based on these insights more content was created by the English team which was released as a ten hour module on the Unplatform in September 2016.
+
+As designers we spent a lot of time on the field doing intensive observations while also supporting implementation wherever necessary. This design based implementation research model led us to identify and understand some gaps in the design. This led to another iteration of the module before the next release in June 2017 which also saw the launch of the official CLIx platform, a more interactive and collaborative interface than the Unplatform.
+<br/>
+The design based research process enabled us to arrive at the following changes for the new modules:
+
+New unit: For students in Rajasthan and Telangana the language level of the modules was found to be too high. They required bilingual support for instructions.  A new unit, was developed to introduce them to basic  vocabulary, greetings and simple listening tasks. 
+
+Reflection activity: The students were observed to not attempt reflection activities with enthusiasm or involvement when it was in the form of multiple choice questions. They were also not clear what the objective of the checklist was. For this reason, the activity at the end of every lesson was changed to an open-ended format that asked three direct questions and required students to discuss and reflect on the lesson they had completed. 
+<br/>
+Word help or glossary: A word help or glossary feature was also introduced, to allow students to look up meanings of words they encountered in the lessons. While the initial list of words in the Word Help tool included pronunciation, audio support for pronunciation and meaning of the word in Hindi and Telugu, the bilingual aid and meaning was removed for select words in Level 2 of the modules, based on the difficulty level of the words. This feature was added to aid learner autonomy which was a key design principle. 
+
+
+</p>
+ 
+<div class="row text-center">
+<div class="col-sm">
+<img src="/static/ndf/DSC_0615.jpeg" class="img-fluid" width="648px" height="432px"/>
+</div>
+</div>
+
+
     </div>
 
   </div>

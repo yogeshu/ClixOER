@@ -1,14 +1,32 @@
 
-<div class="col-md-2 col-sm-10 col-md-2 collapse d-md-flex navbar-expand-lg pt-2 min-vh-100" >
+
+
+
+
+
+
+
+
+<div class="col-md-2 col-sm-10 col-md-2 collapse d-md-flex navbar-expand-lg pt-2 min-vh-100" id="side">
        <nav>
                 <ul class="nav flex-column nav-pills nav-scroll">
                         <li class="nav-item" id="main-page"> <a class="nav-link collapsed " href="#submenu1" data-toggle="collapse" data-target="#submenu1">Subject <i class="float-right fas fa-plus-circle fa-lg"></i></a></li>
                         <div class="collapse" id="submenu1" aria-expanded="false">
-                            <ul class="flex-column pl-1 nav">
-                         <li class="nav-item">  <a class="nav-link " href="#"><input  id="English" type="checkbox" value="English" class="searchfilter" name="english"> <i class="fas fa-font" > </i>English</a></li>
-                                <li class="nav-item"><a class="nav-link " href="#">  <input id="Mathematics" type="checkbox" value="Mathematics" class="searchfilter"  name="english"><i class="fas fa-calculator"></i> math</a></li>
+                            <ul class="flex-column pl-1 nav su">
+                         <li class="nav-item ">  <a class="nav-link " href="#">
+<i class="fas fa-font" > </i>English
+<input  id="English" type="checkbox"  value="English" class="searchfilter"  name="english"> 
+<!--<i class="fas fa-font" > </i>English -->
+</a></li>
+                                <li class="nav-item"><a class="nav-link " href="#"> <i class="fas fa-calculator"></i> Math  <input id="Mathematics" type="checkbox" value="Mathematics" class="searchfilter"   name="english">
+<!--   <i class="fas fa-calculator"></i> Math -->
+
+</a></li>
             
-                                <li class="nav-item"><a class="nav-link " href="#">  <input id="Science" type="checkbox" value="Science" class="searchfilter" name="english"><i class="fas fa-flask"></i> science</a></li>
+                                <li class="nav-item" ><a class="nav-link " href=""> <i class="fas fa-flask"></i> Science  <input id="Science" type="checkbox" value="Science" class="searchfilter"  name="english">
+<!--<i class="fas fa-flask"></i> Science -->
+</a>
+</li>
             
                         
                             </ul>
@@ -35,6 +53,9 @@
    
 </div>
 <script>
+
+
+
 var domain;
 $('#module').click(function() {
 var domains = $("input:checked").map(function(){
@@ -174,12 +195,15 @@ $('#main-page').click(function() {
 $('.searchfilter').click(function(e) {
 //  e.preventDefault();
 console.log("IN fileter");
+
 domain = $("input:checked").map(function(){
      return $(this).val();
-    }).get(); // <----
- 
-    console.log([],domain);  
-{
+    }).get();
+//console.log("==========================")
+//console.log($(this).text)
+//console.log(domain) 
+//    console.log([],domain);  
+//{
             $.ajax({
                 type: "POST",
                 url: "{% url 'e-library_domainwise' group_name_tag  %}",
@@ -190,13 +214,13 @@ domain = $("input:checked").map(function(){
               domain_name:domain,
 
 		    },
-                success: function(data) {              //   alert('it worked');
+                success: function(data) {                // alert('it worked');
                  
                  //$('#sidebar').html('#');
                  $('#x').html(data);
                 },
                  error: function() {
-                    alert('it broke');
+                    $("exampleModalCenterErrorPage").html(data);
               },
                 complete: function() {
                   //  alert('it completed');
@@ -204,7 +228,7 @@ domain = $("input:checked").map(function(){
             });
 
        
-      };
+      //};
 
 });
 /*
@@ -247,9 +271,6 @@ $(function(e){
 //document.querySelector('#Science').checked = 
  //console.log(this.checked)
 //console.log(document.querySelector('#English'));
-//});
-
-
 $('.nav').on('click', 'li', function(){
     $('.nav li').removeClass('active');
     $(this).addClass('active');

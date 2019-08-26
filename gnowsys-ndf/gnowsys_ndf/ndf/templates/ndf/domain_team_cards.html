@@ -1,12 +1,13 @@
-<div class="container" style="margin-top:50px;">
+
+<div class="container" style="">
         <div class="row">
              <div class="col-5 text-center mx-auto">
                 <h1>Our Team</h1>
              </div>
 {% if first_arg == 'English' %}         
     <div class="col-10 text-center mx-auto">
-                <p style="max-width: 450px; text-center ">
-The English Team at TISS designs and creates the CLIx English course for students and the English Teacher Professional Development (TPD) courses for teachers</p>
+              <!--  <p style="max-width: 450px; text-center ">
+The English Team at TISS designs and creates the CLIx English course for students and the English Teacher Professional Development (TPD) courses for teachers</p> -->
             </div>
 {% endif %}
         </div>
@@ -21,12 +22,17 @@ The English Team at TISS designs and creates the CLIx English course for student
                     <img src="/static/ndf/noun_profile_405164.png" alt="" />
                   </div>
                   <div class="card-team-name">
-                    <h5>{{  slide.userId }} </h5>
-                    <span>{{ slide.jobTitleName | truncatechars:255 }}</span>
+                    <h6>{{  slide.moduleId }} </h6>
+
+                    {% for side in slide.userIdArray %}
+                     <li style="text-align:justify; font-size: 12px; line-height: 1.2rem;">{{ side | truncatechars:20 }}</li>
+
+                   {% endfor %}
+                   <!-- <span>{{ slide.jobTitleName | truncatechars:255 }}</span> -->
                   </div>
                   <div class="card-team-content bio">
                    
-                    <p>{{ slide.employeeDetails | truncatechars:250 }}                     </p>
+                    <p>                    </p>
                     <ul class="social" >                        <!-- <li><a href="{{ slide.slide_co }}" class="fab fa-facebook"></a></li> -->
                         <li><a href="#" class="fab fa-twitter"></a></li>
                         <!-- <li><a href="#" class="fab fa-google-plus"></a></li> -->
@@ -41,20 +47,27 @@ The English Team at TISS designs and creates the CLIx English course for student
 
  {% if first_arg == 'Science' %}
                            {% for slide in employee.Team_detail_science %}
-
+              
               <div class="carousel-team-card-cell our-team">
                 <div class="carousel-card-team">
                   <div class="card-team-img">
 <img src="/static/ndf/profile4.png">
                   </div>
-                  <div class="card-team-name">
-                    <h6>{{  slide.userId }} </h6>
-                    <span>{{ slide.jobTitleName | truncatechars:20 }}</span>
+                  <div class="card-team-name"> 
+
+                    <h6>{{  slide.moduleId }} </h6>
+
+             {% for side in slide.userIdArray %}
+                     <li style="text-align:justify; font-size: 12px; line-height: 1.2rem;">{{ side | truncatechars:20 }}</li>
+
+                   {% endfor %}
+
+                  <!--  <span>{{ slide.jobTitleName | truncatechars:20 }}</span> -->
                   </div>
                   <div class="card-team-content bio">
                    
-                    <p>{{ slide.employeeDetails | truncatechars:250 }} 
-                    </p>
+                 <!--   <p>{{ slide.employeeDetails | truncatechars:250 }} 
+                    </p> -->
                     <ul class="social" >
                         <!-- <li><a href="{{ slide.slide_co }}" class="fab fa-facebook"></a></li> -->
                         <li><a href="twitter.com/share?text@clix_tiss" class="fab fa-twitter"></a href="twitter.com/clix_oer"> </li>
@@ -78,13 +91,18 @@ The English Team at TISS designs and creates the CLIx English course for student
 <img src="/static/ndf/profile4.png">
                   </div>
                   <div class="card-team-name">
-                    <h6>{{  slide.userId }} </h6>
-                    <span>{{ slide.jobTitleName | truncatechars:20 }}</span>
+                    <h6>{{  slide.moduleId }} </h6>
+                   <!-- <span>{{ slide.jobTitleName | truncatechars:20 }}</span> -->
+  {% for side in slide.userIdArray %}
+                     <li style="text-align:justify; font-size: 12px; line-height: 1.2rem;">{{ side | truncatechars:20 }}</li>
+
+                   {% endfor %}
+
                   </div>
                   <div class="card-team-content bio">
 
-                    <p>{{ slide.employeeDetails | truncatechars:250 }}
-                    </p>
+                   <!-- <p>{{ slide.employeeDetails | truncatechars:250 }}
+                    </p> -->
                     <ul class="social" >
                         <!-- <li><a href="{{ slide.slide_co }}" class="fab fa-facebook"></a></li> -->
                         <li><a href="twitter.com/share?text@clix_tiss" class="fab fa-twitter"></a href="twitter.com/clix_oer"> </li>

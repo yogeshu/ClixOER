@@ -1,40 +1,41 @@
 {
   "Team_detail_math": [
-    {
+    { 
+      "user1":"Student",
       "userName": "Ms. Wendy    ",
       "userPic": "",
       "jobTitleName": "A student",
       "UDetails": "This is so different from our usual class and we were enjoying it a lot.Clix is easier simpler and a faster way of learning. Everything is put in a simpler way for anyone to learn Before clix I never knew that mathematics will be so much fun. It feels like we are playing game. Well, we were actually solving geometry. "},
-    {
+    { 
+
+   "user1": "Teacher",
       "userName": "Mr. David",
+
       "userPic": "",
       "jobTitleName": "Mizoram Board of School Education (MBSE) and Math domain advisor",
       "UDetails": "When clix came out it was totally different. It was more like an umbrella term. For geometry, they don’t particularly go for any theroram or any topics. They just go to the basics.I think that.. in the long term if teachers can use it properly then it will help them in strengthening their concepts. "
     },
-    {
+    {   "user1": "Teacher",
       "userName": "Mr. Robert Lalngaihawma",
       "userPic": "",
       "jobTitleName": "From Proportional Reasoning module review",
       "UDetails": "The objectives are clear and comprehensible. The objectives focus on developing the reasoning power of the students from additive thinking to multiplicative thinking. The arrangement of the units from basic to higher order is in a good sequential manner. The important concepts like sharing, comparing, equal distribution are selected."
     },
-    {
+    {  
+                                      "user1":    "Teacher",
+
       "userName": "Mrs. Chaya Singh Thakur",
       "userPic": "",
       "jobTitleName": "Asst. Teacher, Govt. Higher Secondary School, Charra, Chattisgarh      ",
       "UDetails": "मुझे लगता है (CLIx में) बच्चों की जो तर्क करने की शक्ति है या समझ है, उसका विकास हो रहा है, तो ये चीज़ मुझे अच्छी लगी है। बच्चे अभी अपने तरीके से ज्यामितीय आकृति को परिभाषित कर ले रहे हैं"
     },
-    {
+    {  "user1":"Student",
       "userName": "Yamini & Tarini",
       "userPic": "",
       "jobTitleName": "students at Govt. Higher Secondary School, Sirri, Chattisgarh      ",
       "UDetails": "पहले हम समान और समान्तर को एक ही मानते थे, तो जब हम कंप्यूटर लैब PoliceQuad गेम में क्लू वाला गेम खेलते थे तो हर बार गलत हो जाता था। तो फिर हमने सर से इस बारे में डिस्कस किया तो सर ने बताया समान्तर का मतलब समान अंतर होता हैं  फिर हम लोग का कन्फूशन दूर हुआ"
-    },
-    {
-      "userName": "Amit Dhakulkar",
-      "userPic": "",
-      "jobTitleName": "Assistant Professor",
-      "UDetails": "I am a researcher in science and mathematics education. My special interest areas include graphicacy and the use of graphs, as well as the history and philosophy of science. My work includes developing educational activities involving graphs and the handling of real-world data. I enjoy exploring the use of technology to design and change learning experiences in science and mathematics. In CLIx, I am also a part of the Mathematics team."
     }
+   
   ],
   "Team_detail_english": [
     {
@@ -45,32 +46,25 @@
       "emailAddress": "romin.k.irani@gmail.com",
       "education": "Ph.D. current, Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Designing learning contexts for graphicacy in science education. M.Sc (2005), Department of Physics, University of Pune. Physics B.Sc (2001), Fergusson College, Pune. Physics"
     },
-    {
+    {                 "user1":    "Teacher",
+
+
       "userName": "Esther",
       "userPic": "",
       "jobTitleName": "",
       "UDetails": "These are innovative and exciting materials which break away from the traditional coursebook norms of focusing on grammatical forms one by one and providing easy but meaninglessly artificial  practice"
-    },{
-      "userName": "Professor Brian Tomlinson",
-      "userPic": "",
-      "jobTitleName": "University of Liverpool, Shanghai International Studies University, Anaheim University      ",
-      "UDetails": "They also apply principles derived from research in second language acquisition (SLA) which has demonstrated the value of localised materials which feature familiar settings, situations and issues which are relevant and meaningful to the learners."
-    },{
+    },
+{ 
+
+                "user1":    "Teacher",
+
       "userName": "Kusum",
       "userPic": "",
       "jobTitleName": "Teacher, Government Gorkha High School, Aizawl      ",
       "UDetails": "We have one student who never speak the english and scared of it. Now he asked question in english in class. In the school compound also he speaks in english, he at least try. He got the motivation because of CLIx only. There is one student who wanted to use English more than me in class. Because of this student I can also correct myself. I should become the role model, but students are becoming for me. So it is nice that we will be definitely help each other.      "
-    },{
-      "userName": "P.K. Samy",
-      "userPic": "",
-      "jobTitleName": "Assistant Professor",
-      "UDetails": "Selection Grade Teacher, Government Bungkawn High School, Aizawl     "
-    },{
-      "userName": "Esther ",
-      "userPic": "",
-      "jobTitleName": "2017 interview done by Nishi",
-      "UDetails": "I have no words to describe the feeling. The children were just thrilled! I will never forget the way they were on that day. They put on the headphones, they took off the headphones, they interviewed their friends, spoke in the mike…for half an hour they did nothing, just played with the computer. They were so excited!      "
-    },{
+    },
+{
+      "user1":"Student",
       "userName": "Student",
       "userPic": "",
       "jobTitleName": "Student, Gorkha H.S.",
@@ -80,16 +74,6 @@
       "userPic": "",
       "jobTitleName": "Assistant Professor",
       "UDetails": "I like the speaking and recording activity..because it’s the only time we get to speak a few sentences in English and we can also record and hear ourselves!’      "
-    },{
-      "userName": "Amit Dhakulkar",
-      "userPic": "",
-      "jobTitleName": "Assistant Professor",
-      "UDetails": "I am a researcher in science and mathematics education. My special interest areas include graphicacy and the use of graphs, as well as the history and philosophy of science. My work includes developing educational activities involving graphs and the handling of real-world data. I enjoy exploring the use of technology to design and change learning experiences in science and mathematics. In CLIx, I am also a part of the Mathematics team."
-    },{
-      "userName": "Amit Dhakulkar",
-      "userPic": "",
-      "jobTitleName": "Assistant Professor",
-      "UDetails": "I am a researcher in science and mathematics education. My special interest areas include graphicacy and the use of graphs, as well as the history and philosophy of science. My work includes developing educational activities involving graphs and the handling of real-world data. I enjoy exploring the use of technology to design and change learning experiences in science and mathematics. In CLIx, I am also a part of the Mathematics team."
     }
   ],
   "Team_detail_science": [
@@ -101,19 +85,24 @@
       "emailAddress": "romin.k.irani@gmail.com",
       "education": "Ph.D. current, Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Designing learning contexts for graphicacy in science education. M.Sc (2005), Department of Physics, University of Pune. Physics B.Sc (2001), Fergusson College, Pune. Physics"
     },
-    {
+    {   
+       "user1":"Student",
       "userName": "A girl student ",
       "userPic": "",
       "jobTitleName": " from Gov. Sr. Secondary school Sheetla Mata, Jaipur.      ",
       "UDetails": "game bahot achha laga.. maine swarna padak jita, shukla paksha... krishna paksha samajh aya.. pehle chandrama ki kalaye kyuin hoti hai ye samajh nahi ata tha but ab samajh aya"
     },
     {
+                       "user1":    "Teacher",
+
       "userName": "Sunita Gupta",
       "userPic": "",
       "jobTitleName": "Gov. Sr. Secondary school Sheetla Mata, Jaipur.      ",
       "UDetails": "bahot achha laga (astro module)... sabse badi baat to ye hai ke bachho ko achha laga... hame to achha laga hi tha uss din bhi (refering to TPD workshop on 27Nov2017) kiya tha to samajh aya tha.. bahot achhe se banaya hai (refrering to astro module).. bahot achhe se clear huwa bachho ko."
     },
-    {
+    { 
+                  "user1":    "Teacher",
+
       "userName": "Ashok Kumar ",
       "userPic": "",
       "jobTitleName": "Teacher and Teacher Educator, Gov. Sr. Secondary school, chhabra, baran, Rajasthan, on ‘Sound’ module.      ",

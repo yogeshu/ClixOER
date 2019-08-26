@@ -1,15 +1,46 @@
-<div class="container py-2 mt-4">
+
+
+<div class="container mt-4">
     <div class="row">
       <div class="col-sm-9">
         <nav aria-label="breadcrumb">
-          <ol class="breadcrumb ml-n5">
-            <li class="breadcrumb-item  "aria-current="page"> <i class="ml-n4 fas fa-home fa-lg"></i> E-library</li>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item " style="margin-left:2rem;"aria-current="page" style="color:#000;"> <a style="color:#fff;" href="{% url 'e-library' group_id  %}">  <i class="ml-n4 fas fa-home fa-lg"></i> E-library</li> </a>
           <!--  <li class="breadcrumb-item " aria-current="page"> Math</li> -->
           </ol>
         </nav>
         
     </div>
-      <div class="col-sm-3"> <button type="button" class="btn btn-primary butn mx-n2">Download All &nbsp;<i class="fas fa-cloud-download-alt"></i></button>
+      <div class="col-sm-3" data-toggle="tooltip" title="Download Unplatform Version Of All Modules" > <button type="button" class="btn btn-primary butn mx-n2">Download All &nbsp;<i data-toggle="tooltip" title="Download Unplatform Version Of All Modules" class="fas fa-cloud-download-alt"></i></button>
       </div>
     </div>
 </div>
+<style>
+@media only screen and (max-width:440px){
+.breadcrumb-item {
+margin-left:1rem;
+}
+}
+
+.breadcrumb-item {
+color: #000;
+background:#ccc;
+}
+
+@media only screen and (min-width:1100px){
+ .breadcrumb  {
+margin-left: -40px;
+}
+
+@media only screen and (max-width:700px){
+.breadcrumb  {
+
+margin-left:40px;
+}
+ .breadcrumb-item {
+margin-left:1rem !important;
+}
+}
+
+
+</style>

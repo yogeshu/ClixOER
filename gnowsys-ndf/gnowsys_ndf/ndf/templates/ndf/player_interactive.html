@@ -23,7 +23,7 @@
        <p>{{dest.content}}</p>
     <div class="card-footer text-center">
        <a href="{{json_data.Interactive_href}}" target="_blank"  data-toggle="tooltip" title="Play Online"> <i class="fa fa-rocket fa-lg " > </i></a>
-    <a href="{% url 'read_file' group_id dest.id  %}" data-toggle="tooltip" title="Play Offline"> <i class="fa fa-cloud-download-alt fa-lg ml-2"></i></a>
+    <a href="{% url 'read_file' group_id dest.id  %}" data-toggle="tooltip" title="Play Offline" download="{{dest.name}}"> <i class="fa fa-cloud-download-alt fa-lg ml-2" download="{{dest.name}}"></i></a>
     </div>
       </div>
 
@@ -210,6 +210,10 @@ function getPageList(totalPages, page, maxLength) {
       $("html,body").animate({ scrollTop: 0 }, 0);
     });
   });
+
+
+
+
 </script>
 
 

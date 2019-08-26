@@ -1,19 +1,40 @@
 
+
+
+<style>
+@media only screen and (max-width:700px) {
+.rotateslider-container .rotateslider-item.now {
+opacity:4;
+
+}
+
+.rotateslider-container 
+ .rotateslider-item.prev {
+opacity:0.1;
+}
+.rotateslider-container 
+ .rotateslider-item.next ,
+ .rotateslider-item.next {
+opacity:0.1;
+}
+}
+
+</style>
     <div class="jquery-script-center">
-        <div class="rotateslider-container" id="slider">
+        <div class="rotateslider-container" style="background:#fff;" id="slider">
   {% if first_arg == 'Mathematics' %}
           {% for slide in testimony.Team_detail_math %}
             
-        <div class="rotateslider-item">
+        <div class="rotateslider-item" >
 
 
             <div class='card card-profile text-center'>
-                <img alt='' class='card-img-top' src='https://dummyimage.com/340x160/53615e/474747.png'>
+                <img alt='' class='card-img-top' src='https://dummyimage.com/340x160/53615e/53615e.png'>
               <div class="card-img-overlay">
   <button type="button" class="btn btn-dark " style="margin-top:-40px; margin-left:10px;">
                 
-                    Teachear
-                </button> 
+                    
+{{slide.user1}}               </button> 
                 
                 <p style="color:#fff; font-weight:bold"> 
                                       &quot; {{ slide.UDetails | truncatechars:255 }}      &quot;
@@ -21,7 +42,9 @@
                     </p>
               </div>
   <div class='card-block'>
-                  <img alt='' class='card-img-profile' src='https://previews.123rf.com/images/nexusby/nexusby1810/nexusby181000286/111362910-default-avatar-placeholder-profile-icon-male.jpg' style="margin-left:200px;"  width='100px' height='100px'>
+<img alt='' class='card-img-profile'
+ src='https://previews.123rf.com/images/nexusby/nexusby1810/nexusby181000286/111362910default-avatar-placeholder-profile-icon-male.jpg' style="margin-left:200px;"  width='100px' height='100px' />
+
                   <h6 class='card-title' style="margin-top:-90px; margin-left:-120px;">
                                        {{ slide.userName }}
 
@@ -51,7 +74,7 @@
               <div class="card-img-overlay">
   <button type="button" class="btn btn-dark " style="margin-top:-40px; margin-left:10px;">
                 
-                    Teachear
+                    {{slide.user1}}
                 </button> 
                 
                 <p style="color:#fff; font-weight:bold">
@@ -62,7 +85,7 @@
   <div class='card-block'>
                   <img alt='' class='card-img-profile' src='https://previews.123rf.com/images/nexusby/nexusby1810/nexusby181000286/111362910default-avatar-placeholder-profile-icon-male.jpg' style="margin-left:200px;"  width='100px' height='100px'>
                   <h4 class='card-title'   style="margin-top:-90px; margin-left:-120px;">
-    &quot;                                     {{ slide.userName }}                &quot; 
+                                         {{ slide.userName }}                 
                   
                   </h4>
                                        <small>{{slide.jobTitleName}}</small>
@@ -90,8 +113,7 @@
 
   <button type="button" class="btn btn-dark " style="margin-top:-40px; margin-left:10px;">
                 
-                    Teachear
-                </button> 
+                   {{slide.user1}}             </button> 
                 
                 <p style="color:#fff; font-weight:bold">
            &quot;                                     {{ slide.UDetails | truncatechars:255 }}  &quot;

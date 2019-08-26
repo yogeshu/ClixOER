@@ -1,16 +1,16 @@
 
 {
-"Run Kitty Run_en":{
+"Run Kitty Run_english":{
     "Interactive_image" : "/static/ndf/images/run_kitty_run.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/runkittyrun/en/"
 
 },
-"Run Kitty Run_hi":{
+"Run Kitty Run_hindi":{
     "Interactive_image" : "/static/ndf/images/run_kitty_run.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/runkittyrun/hi/"
 
 },
-"Run Kitty Run_te":{
+"Run Kitty Run_telugu":{
     "Interactive_image" : "/static/ndf/images/run_kitty_run.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/runkittyrun/te/"
 
@@ -37,42 +37,42 @@
     "Interactive_href": "https://demo-clix.tiss.edu/sugar"
 
 },
-"Astroamer Element Hunt Activity_en" : {
+"Astroamer Element Hunt Activity_english" : {
     "Interactive_image" : "/static/ndf/images/Element_Hunt.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Element_Hunt_Activity/en/"
 
 },
-"Astroamer Element Hunt Activity_hi" : {
+"Astroamer Element Hunt Activity_hindi" : {
     "Interactive_image" : "/static/ndf/images/Element_Hunt.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Element_Hunt_Activity/hi/"
 
 },
-"Astroamer Element Hunt Activity_te" : {
+"Astroamer Element Hunt Activity_telugu" : {
     "Interactive_image" : "/static/ndf/images/Element_Hunt.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Element_Hunt_Activity/te/"
 
 },
-"Astroamer Moon Track_hi" : { 
+"Astroamer Moon Track_hindi" : { 
     "Interactive_image" : "/static/ndf/images/Motions_of_Moon.jpg",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Moon_Track/hi/"
 },
-"Astroamer Moon Track_en" : { 
+"Astroamer Moon Track_english" : { 
     "Interactive_image" : "/static/ndf/images/Motions_of_Moon.jpg",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Moon_Track/en/"
 },
-"Astroamer Moon Track_te" : { 
+"Astroamer Moon Track_telugu" : { 
     "Interactive_image" : "/static/ndf/images/Motions_of_Moon.jpg",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Moon_Track/te/"
 },
-"Astroamer Planet Trek_hi": {
+"Astroamer Planet Trek_hindi": {
     "Interactive_image" : "/static/ndf/images/Solar_System.jpg",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Planet_Trek_Activity/hi/"
 },
-"Astroamer Planet Trek_en": {
+"Astroamer Planet Trek_english": {
     "Interactive_image" : "/static/ndf/images/Solar_System.jpg",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Planet_Trek_Activity/en/"
 },
-"Astroamer Planet Trek_te": {
+"Astroamer Planet Trek_telugu": {
     "Interactive_image" : "/static/ndf/images/Solar_System.jpg",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Astroamer_Planet_Trek_Activity/te/"
 },
@@ -96,45 +96,45 @@
     "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/factorisation/"
 
 },
-"Food Sharing Tool_hi":{
+"Food Sharing Tool_hindi":{
     "Interactive_image": "/static/ndf/images/FST.png",
     "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/food_sharing_tool/hi/"
 
 },
-"Food Sharing Tool_en":{
+"Food Sharing Tool_english":{
     "Interactive_image": "/static/ndf/images/FST.png",
     "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/food_sharing_tool/en/"
 
 },
-"Food Sharing Tool_te":{
+"Food Sharing Tool_telugu":{
     "Interactive_image": "/static/ndf/images/FST.png",
     "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/food_sharing_tool/te/"
 
 },
-"Ice Cubes in Lemonade_hi":{
+"Ice Cubes in Lemonade_hindi":{
     "Interactive_image": "/static/ndf/images/icl_en.png",
     "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Ice-cubes-in-lemonade/hi/"
 
 },
-"Ice Cubes in Lemonade_en":{
+"Ice Cubes in Lemonade_english":{
     "Interactive_image": "/static/ndf/images/icl_en.png",
     "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Ice-cubes-in-lemonade/en"
 
 },
-"Ice Cubes in Lemonade_te":{
+"Ice Cubes in Lemonade_telugu":{
     "Interactive_image": "/static/ndf/images/icl_en.png",
     "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Ice-cubes-in-lemonade/te/"
 
 },
-"Motions of the Moon - Animation_hi":{
+"Motions of the Moon - Animation_hindi":{
     "Interactive_image":"/static/ndf/images/Motion_of_the_Moon.png",
     "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Motions_of_the_Moon_Animation/hi/"
 },
-"Motions of the Moon - Animation_en":{
+"Motions of the Moon - Animation_english":{
     "Interactive_image":"/static/ndf/images/Motion_of_the_Moon.png",
     "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Motions_of_the_Moon_Animation/en/"
 },
-"Motions of the Moon - Animation_te":{
+"Motions of the Moon - Animation_telugu":{
     "Interactive_image":"/static/ndf/images/Motion_of_the_Moon.png",
     "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Motions_of_the_Moon_Animation/te/"
 },
@@ -147,79 +147,87 @@
     "Interactive_image": "/static/ndf/images/physics_video_tool.jpg",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/physics-video-player/"
 },
-"PoliceQuad_hi":{
+"PoliceQuad_hindi":{
 "Interactive_image" : "/static/ndf/images/PoliceQuad_pt33x.png",
 "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/policequad/hi/"
 },
-"PoliceQuad_en":{
+"PoliceQuad_english":{
     "Interactive_image" : "/static/ndf/images/PoliceQuad_pt33x.png",
     "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/policequad/en/"
 },
-"PoliceQuad_te":{
+"PoliceQuad_telugu":{
         "Interactive_image" : "/static/ndf/images/PoliceQuad_pt33x.png",
         "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/policequad/te/"
 },
-"Ratio & Patterns_en":{
+"Ratio & Patterns_english":{
     "Interactive_image": "/static/ndf/images/RP.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Ratio-Patterns/"
 
 },
-"Ratio & Patterns_hi":{
+"Ratio & Patterns_hindi":{
     "Interactive_image": "/static/ndf/images/RP.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Ratio-Patterns/"
 
 },
-"Ratio & Patterns_te":{
+"Ratio & Patterns_telugu":{
     "Interactive_image": "/static/ndf/images/RP.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Ratio-Patterns/"
 
 },
-"RotationOfEarth_hi":{
+"Rotation of Earth - Animation_hindi":{
     "Interactive_image": "/static/ndf/images/Rotation_of_Earth.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Rotation_of_Earth_Animation/hi/"
 
 }, 
-"RotationOfEarth_en":{
+"Rotation of Earth - Animation_english":{
     "Interactive_image": "/static/ndf/images/Rotation_of_Earth.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Rotation_of_Earth_Animation/en/"
 
 },
-"RotationOfEarth_te":{
+"Rotation of Earth - Animation_telugu":{
     "Interactive_image": "/static/ndf/images/Rotation_of_Earth.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/Rotation_of_Earth_Animation/te/"
 
 }, 
-"RunKittyRun_hi":{
+"RunKittyRun_hindi":{
 "Interactive_image": "/static/ndf/images/run_kitty_run.png",
 "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/runkittyrun/hi/"
 },
-"RunKittyRun_en":{
+"RunKittyRun_english":{
     "Interactive_image": "/static/ndf/images/run_kitty_run.png",
     "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/runkittyrun/en/"
 },
-"RunKittyRun_te":{
+"RunKittyRun_telugu":{
         "Interactive_image": "/static/ndf/images/run_kitty_run.png",
         "Interactive_href": "https://demo-clix.tiss.edu/softwares/Tools/runkittyrun/te/"
 },
-"Solar System - Animation_hi":{
+"Solar System - Animation_hindi":{
 "Interactive_image": "/static/ndf/images/Solar_Systems.png",
 "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Solar_System_Animation/hi/"
 },
-"Solar System - Animation_en":{
+"Solar System - Animation_english":{
     "Interactive_image": "/static/ndf/images/Solar_Systems.png",
     "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Solar_System_Animation/en/"
 },
-"Solar System - Animation_te":{
+"Solar System - Animation_telugu":{
         "Interactive_image": "/static/ndf/images/Solar_Systems.png",
         "Interactive_href" : "https://demo-clix.tiss.edu/softwares/Tools/Solar_System_Animation/te/"
 },
-"StarLogoNova":{
+"StarLogoNova - Anemia1":{
     "Interactive_image": "/static/ndf/images/StarLogoNova.png",
-    "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/StarLogoNova/"
+    "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/StarLogoNova/Anemia1/en/"
+},
+"StarLogoNova - Anemia2":{
+    "Interactive_image": "/static/ndf/images/StarLogoNova.png",
+    "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/StarLogoNova/Anemia2/en/"
+},
+"StarLogoNova - FishAlgae":{
+    "Interactive_image": "/static/ndf/images/StarLogoNova.png",
+    "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/StarLogoNova/FishAlgae/en/"
+},
+"Open Story Tool":{
+    "Interactive_image": "/static/ndf/images/noun_331311_cc.svg",
+    "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/open-story-tool/"
+
 }
-
-
-
-
-
 }

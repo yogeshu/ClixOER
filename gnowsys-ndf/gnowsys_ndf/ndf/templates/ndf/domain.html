@@ -7,20 +7,23 @@
 
  
 
-<div class="container py-2 mt-4">
+<div class="container mt-2 mb-4">
     <div class="row">
       <div class="col-sm-9">
         <nav aria-label="breadcrumb">
-          <ol class="breadcrumb ml-n5">
-            <li class="breadcrumb-item  "aria-current="page"> <i class="ml-n4 fas fa-home fa-lg"></i>Domain</li>
-            <li class="breadcrumb-item " aria-current="page"> {{ first_arg }}</li>
-          </ol>
+          <ol class="breadcrumb ml-2">
+            <li class="breadcrumb-item ml-n3" aria-current="page" > <a style="color:#fff;" href="{% url 'e-library' group_id  %}"> <i class=" fas fa-home fa-lg "></i></li> </a>
+            <li class="breadcrumb-item pl-n2 " aria-current="page"> 
+<!--<i class="fa fa-calculator fa-sm"></i> -->
+ {{ first_arg }}</li>
+           </ol>
         </nav>
 
     </div>
-      <div class="col-sm-3"> <button type="button" class="btn btn-primary butn mx-n2">Download All &nbsp;<i class="fas fa-cloud-download-alt"\
+    <!--  <div class="col-sm-3"> <button type="button" class="btn btn-primary butn mx-n2" style="float:right;">Download All &nbsp;<i class="fas fa-cloud-download-alt"\
 ></i></button>
-      </div>
+      </div> 
+-->
     </div>
 </div>
 
@@ -30,11 +33,13 @@
       <nav class="col-12 col-sm-12 col-md-2" id="verticalScrollspy">
         <ul class="nav flex-column nav-pills nav-scroll">
           <li class="nav-item "><a class="nav-link active" href="#dogs"> <i class="fas fa-puzzle-piece"></i> Modules</a></li>
-          <li class="nav-item"><a class="nav-link" href="#cats"><i class="far fa-question-circle"></i> How to Use</a></li>
-          <li class="nav-item"><a class="nav-link" href="#team"><i class="fas fa-users"></i>Team Details</a></li>
-          <li class="nav-item"><a class="nav-link" href="#penguins"><i class="fas fa-seedling"></i>  Design And  <span class="ml-3 py-1"> Developement </span> </a></li>
-          <li class="nav-item"><a class="nav-link" href="#alpacas"><i class="fas fa-comment-alt"></i> Testimonials </a></li>
-          <li class="nav-item"><a class="nav-link" href="#rabbits"><i class="fas fa-comments"></i> Contact Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cats"><i class="far fa-question-circle"></i>CLIx in the Classroom</a></li>
+          <li class="nav-item"><a class="nav-link" href="#team"><i class="fas fa-users"></i>Team Details </a></li>
+          <li class="nav-item"><a class="nav-link" href="#penguins"><i class="fas fa-seedling"></i>  Design and<span class=" py-1">
+Development </span> </a></li>
+        <!--  <li class="nav-item"><a class="nav-link" href="#alpacas"><i class="fas fa-comment-alt"></i> Testimonials </a></li>
+
+-->          <li class="nav-item"><a class="nav-link" href="#rabbits"><i class="fas fa-comments"></i> Contact Us</a></li>
         </ul>
       </nav>
       <div class="col-12 col-md-10 col-lg-10">
@@ -48,7 +53,7 @@
          
             {% include "ndf/icon_slider.html" %}
           </div>
-          <div id="team" class="container-fluid">
+          <div id="team" class="container-fluipd mt-5">
         {% include "ndf/domain_team_cards.html"  with slider=slider%}
           </div>
           <div id="penguins" class="container-fluid">
@@ -56,7 +61,8 @@
          
           </div>
           <div id="alpacas" class="container-fluid" class="mb-5">
-            <h1 class="text-center">Testimonials</h1>         
+           <!-- <h1 class="text-center">Testimonials</h1>   -->
+                <h1 class="text-center"> Voices from the Field</h1>      
 {% include "ndf/oer_testimonials.html" %}
           </div>
           <div id="rabbits" class="container-fluid" class="mt-5">

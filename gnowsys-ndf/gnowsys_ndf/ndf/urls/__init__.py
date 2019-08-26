@@ -255,4 +255,7 @@ urlpatterns += patterns('gnowsys_ndf.ndf.views.es_queries',
                         url(r'^(?P<group_id>[^/]+)/about/$', 'about', name='about'),
                         url(r'^(?P<group_id>[^/]+)/domain/(?P<domain_name>[^/]+)/help/$', 'domain_help', name='domainHelp'),
                         url(r'^(?P<group_id>[^/]+)/file/readDoc/(?P<_id>[\w-]+)/$', 'readDoc', name='read_file'),
+                        url(r'^(?P<group_id>[^/]+)/ajax/send_message/$', 'send_message', name='send_message'),
+                        url(r'^(?P<group_id>[^/]+)/help/$', 'help', name='help'),
+                        url(r'^(?P<group_id>[^/]+)/module/(?P<node_id>[\w-]+)/help_videos/$', 'help_videos', 'help_videos'),
                        )

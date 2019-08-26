@@ -2,27 +2,37 @@
 
 <h1 class="text-center py-5"> Contact Us </h1>
 
-
+{% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+{% endfor %}
 <div class="container-contact100">
 	<div class="wrap-contact100">
-		<form class="contact100-form validate-form">
+		<form class="contact100-form validate-form" id="c" action="{% url 'send_message' group_id %} "  method="POST">
+  {% csrf_token %}
 			<span class="contact100-form-title">
 				We love to hear from you!
 			</span>
 
-		<!--	<label class="label-input100" for="first-name">Tell us your name *</label> -->
+		<!--	<label class="label-input100" for="first-name">Tell us your name *</label>  -->
+                        
 			<div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Type first name">
-				<input id="first-name" class="input100" type="text" name="first-name" placeholder="First name">
+				<input id="first-name" class="input100" type="text" name="first_name" placeholder="First name" required>
 				<span class="focus-input100"></span>
-			</div>
+                	</div>  
 			<div class="wrap-input100 rs2-wrap-input100 validate-input" data-validate="Type last name">
-				<input class="input100" type="text" name="last-name" placeholder="Last name">
+				<input class="input100" type="text" name="last_name" placeholder="Last name" required>
 				<span class="focus-input100"></span>
 			</div>
 <!--
 			<label class="label-input100" for="email">Enter your email *</label> -->
+              <input type="hidden" name="domain" value={{first_arg}}>
 			<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-				<input id="email" class="input100" type="text" name="email" placeholder="Eg. example@email.com">
+				<input id="email" type="email" class="input100"  name="email" placeholder="Eg. example@email.com" required>
 				<span class="focus-input100"></span>
 			</div>
 <!--
@@ -34,14 +44,15 @@
 
 			<label class="label-input100" for="message">Message *</label>
 			<div class="wrap-input100 validate-input" data-validate = "Message is required">
-				<textarea id="message" class="input100" name="message" placeholder="Write us a message"></textarea>
+				<textarea id="message" class="input100" name="message" placeholder="Write us a message" required></textarea>
 				<span class="focus-input100"></span>
 			</div>
 
-			<div class="container-contact100-form-btn">
-				<button class="contact100-form-btn">
-					Send Message
-				</button>
+			<div class="container-contact100-form-btn"  id="send-message">
+                          
+				<input class="contact100-form-btn" id="send-message" type="submit" value="Send Message">
+					
+			
 			</div>
 		</form>
 
@@ -103,7 +114,28 @@
 
 <div id="dropDownSelect1"></div>
 
+<!-- Button trigger modal -->
 
+<!-- Modal -->
+<div class="modal fade" id="ErrorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <style>
 
 
@@ -608,3 +640,120 @@ textarea.input100 {
 
 
 </style>
+<script>
+/*
+$(document).ready(function () {
+
+$("#button").validate({
+    rules: {
+        name: {
+            minlength: 2,
+            required: true
+        },
+        email: {
+            required: true,
+            email: true
+        },
+        message: {
+            minlength: 2,
+            required: true
+        }
+    }
+});
+
+$("button").click(function(e) {
+    e.preventDefault();
+    var firstname = $(this.first-name).val()
+    $.ajax({
+type: "POST",
+        url: "{% url 'send_message' group_id%}",
+        data: {
+                  csrfmiddlewaretoken: '{{ csrf_token }}' ,
+                  //firstname : firstname,
+        },
+        success: function(result) {
+            alert('ok');
+        },
+        error: function(result) {
+            alert('error');
+}
+    });
+});
+
+
+
+});
+
+$("#send-message").submit(function(e) {
+    e.preventDefault();
+console.log("hi")
+
+    var firstname = $(this.first-name).val()
+           var data = $(this).serialize();
+            var $form = $(this);
+console.log($form);
+
+    $.ajax({
+        type: "POST",
+        url: "{% url 'send_message' group_id%}",
+        data:  $form.serialize(),
+        success: function(result) {
+            alert('ok');
+
+        },
+        error: function(result) {
+            alert('error');
+        }
+    });
+});
+
+
+*/
+
+
+
+
+/*
+
+$("#send-message").submit('click', function (event) {
+    event.preventDefault();
+    console.log('in ajax');
+    if ($("#c")[0].checkValidity() === false) {
+        event.stopPropagation();
+    } else {
+        $("#send-message").submit(function(e) {
+           var data = $(this).serialize();
+            console.log(data);
+$("form :input").change(function() {
+    console.log($(this).closest('form').serialize());
+});
+           $.ajax({
+                 type: "POST",
+                  url: "{% url 'send_message' group_id %}",
+                  data: {
+
+                        //'csrfmiddlewaretoken':$( "#csrfmiddlewaretoken" ).val()
+                       csrfmiddlewaretoken: {{csrf_token}},
+                        //firstname : firstname,
+                        //  $("#c").serialize(),
+                           data.serialize(),
+
+                          },
+                  success: function(result) {
+                       $("#ErrorModal").html(data);
+                       alert('ok');
+                     console.log(data);
+                        },
+                  error: function(result) {
+                       alert('error');
+                       }
+                 });
+});
+
+
+    }
+    $("#c").addClass('was-validated');
+});
+
+*/
+</script>

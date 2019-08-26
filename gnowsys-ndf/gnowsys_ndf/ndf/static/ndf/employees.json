@@ -1,6 +1,14 @@
 {
   "Team_detail_math": [
-    {
+      { 
+     "moduleId": "Proportional Reasoning",
+      "userIdArray":  [ "Amit Dhakulkar",
+        "Arati Sudhir Bapat",
+        "Arindam Bose",
+        "Jeenat Rahman",
+        "Suchismita Srinavsas",
+        "Sumegh Paltiwale"
+        ],
       "userId": "Amit Dhakulkar",
       "jobTitleName": "Assistant Professor",
       "employeeDetails": "I am a researcher in science and mathematics education. My special interest areas include graphicacy and the use of graphs, as well as the history and philosophy of science. My work includes developing educational activities involving graphs and the handling of real-world data. I enjoy exploring the use of technology to design and change learning experiences in science and mathematics. In CLIx, I am also a part of the Mathematics team.",
@@ -9,6 +17,15 @@
       "education": "Ph.D. current, Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Designing learning contexts for graphicacy in science education. M.Sc (2005), Department of Physics, University of Pune. Physics B.Sc (2001), Fergusson College, Pune. Physics"
     },
     {
+       "moduleId": "Geometric Reasoning Part I",
+      "userIdArray":  [ "Amit Dhakulkar",
+        "Arati Sudhir Bapat",
+        "Arindam Bose",
+        "Jeenat Rahman",
+        "Suchismita Srinavsas",
+        "Sumegh Paltiwale"
+        ],
+
       "userId": "Arati Sudhir Bapat            ",
       "jobTitleName": "Assistant Professor",
       "employeeDetails": "I have been working in the field of education for the past 9 years, engaging with both- the students and teachers. My primary responsibilities in CLIx are developing content for Mathematics modules, designing professional development courses for teachers and conducting workshops for teachers. Research in the areas of students’ learning and classroom interactions were some of my other focus areas in CLIx. I have previously worked with Homi Bhabha Centre for Science Education, TIFR, Mumbai and Azim Premji Foundation, Bangalore.",
@@ -16,7 +33,16 @@
       "emailAddress": "romin.k.irani@gmail.com",
       "education": "M.A. Elementary Education (2017), Tata Institute of Social Sciences, Mumbai.M.Sc. Physics (2008), University of Mumbai."
     },
-    {
+    { 
+          "moduleId": "Geometric Reasoning Part I",
+      "userIdArray":  [ "Amit Dhakulkar",
+        "Arati Sudhir Bapat",
+        "Arindam Bose",
+        "Jeenat Rahman",
+        "Suchismita Srinavsas",
+        "Sumegh Paltiwale"
+        ],
+
       "userId": "Arindam Bose            ",
       "jobTitleName": "Team Lead & Associate Professor",
       "employeeDetails": "I have taught Mathematics at the undergraduate level in Patna University for 5 years (2002-2007), during which period I was a member of the Mathematics focus group of the Bihar Curriculum Framework 2006 for school education. I was also part of the Bihar Governor’s Core Committee for recommending and rejuvenating higher education in Bihar. In CLIx, I oversee Mathematics Team’s overall task domain including module vision and creation, teachers’ professional development workshops and module implementation. My key interests include sociology of (mathematics) education, language diversity and math learning, and ethnomathematics.            ",
@@ -25,6 +51,15 @@
       "education": "Post Doc (2016), University of South Africa (UNISA), South Africa Ph.D. (2015), Mathematics Education, HBCSE, Tata Institute of Fundamental Research (TIFR) Deemed University MSc (2002), Mathematics, University of Pune BSc (1999), Mathematics (Honours), Patna University"
     },
     {
+"moduleId": "Linear Equations ",
+      "userIdArray":  [ "Amit Dhakulkar",
+        "Arati Sudhir Bapat",
+        "Arindam Bose",
+        "Jeenat Rahman",
+        "Suchismita Srinavsas",
+        "Sumegh Paltiwale"
+        ],
+
       "userId": "Jeenath Rahaman            ",
       "jobTitleName": "Senior Research Associate",
       "employeeDetails": "I have been engaged with Mathematics education and Cognitive Science research work for more than 5 years now. My Ph.D. work is on students’ conceptions of area measurement. As a Senior Research Associate within the CLIx Mathematics team, I was involved in developing content, doing field trials, supporting the teacher training, facilitating the implementation of modules, collecting and analyzing field data and writing research reports for the same.              ",
@@ -58,7 +93,17 @@
     }
   ],
   "Team_detail_english": [
-    {
+    {  
+     "moduleId": "Communicative English I",
+      "userIdArray":  [ "Jennifer Thomas",
+        "Anusha Ramanathan",
+        "Nishevita Jayendran",
+        "Sujata Bhonsal",
+          "Surbhi Nagpal",
+"Mushtaq Ahmed",
+        "Sumegh Paltiwale"
+        ],
+        
       "userId": "Jennifer Thomas",
       "jobTitleName": "Assistant Professor",
       "employeeDetails": "I have worked as a teacher, teacher educator and curriculum designer in the public and private sector over the last few years. Prior to CLIx, I worked with St. Andrew’s College, Muktangan (NGO), consulted with TISS-NUSSD and Tata Trusts. I serve as an honorary board member for Sharon Education Society, Mumbai.            ",
@@ -66,7 +111,17 @@
       "emailAddress": "romin.k.irani@gmail.com",
       "education": "Ph.D. current, Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Designing learning contexts for graphicacy in science education. M.Sc (2005), Department of Physics, University of Pune. Physics B.Sc (2001), Fergusson College, Pune. Physics"
     },
-    {
+    {  
+  "moduleId": "Communicative English II",
+      "userIdArray":  [ "Jennifer Thomas",
+        "Anusha Ramanathan",
+        "Nishevita Jayendran ",
+        "Sujata Bhonsale",
+          "Surbhi Nagpal ",
+"Mushtaq Ahmed",
+        "Sumegh Paltiwale"
+        ],
+
       "userId": "Anusha Ramanathan           ",
       "jobTitleName": "Curriculum Consultant, CEIAR, TISS, Mumbai",
       "employeeDetails": "I began my career as a journalist, covering education in The Hindu from 2010 to 2012. Subsequently, I worked on curriculum development with the NGO Selco Foundation and on documenting practices with another NGO, Vidya Mytri trust. At CLIx, I am part of the English team and involved in curriculum development and research.            ",
@@ -117,6 +172,15 @@
   ],
   "Team_detail_science": [
     {
+        "moduleId": "Ecosytem ",
+      "userIdArray":  [ "Shamin Padalkar",
+        "Rafikh Shaikh           ",
+        "Prayas Sutar           ",
+        "Arunachal Kumar           ",
+         "Sheetal Chopde             ",
+"R. K. Latha            ",
+       "Jayashree Anand           "
+        ],
       "userId": "Shamin Padalkar",
       "jobTitleName": "Assistant Professor",
       "employeeDetails": "I am a researcher in science and mathematics education. My special interest areas include graphicacy and the use of graphs, as well as the history and philosophy of science. My work includes developing educational activities involving graphs and the handling of real-world data. I enjoy exploring the use of technology to design and change learning experiences in science and mathematics. In CLIx, I am also a part of the Mathematics team.",
@@ -125,6 +189,15 @@
       "education": "Ph.D. current, Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Designing learning contexts for graphicacy in science education. M.Sc (2005), Department of Physics, University of Pune. Physics B.Sc (2001), Fergusson College, Pune. Physics"
     },
     {
+       "moduleId": "Health and Disease ",
+      "userIdArray":  [ "Shamin Padalkar",
+        "Rafikh Shaikh           ",
+        "Prayas Sutar           ",
+        "Arunachal Kumar           ",
+         "Sheetal Chopde             ",
+"R. K. Latha            ",
+       "Jayashree Anand           "
+        ],
       "userId": "Rafikh Shaikh           ",
       "jobTitleName": "Assistant Professor",
       "employeeDetails": "I have been working in the field of education for the past 9 years, engaging with both- the students and teachers. My primary responsibilities in CLIx are developing content for Mathematics modules, designing professional development courses for teachers and conducting workshops for teachers. Research in the areas of students’ learning and classroom interactions were some of my other focus areas in CLIx. I have previously worked with Homi Bhabha Centre for Science Education, TIFR, Mumbai and Azim Premji Foundation, Bangalore.",
@@ -132,7 +205,16 @@
       "emailAddress": "romin.k.irani@gmail.com",
       "education": "M.A. Elementary Education (2017), Tata Institute of Social Sciences, Mumbai.M.Sc. Physics (2008), University of Mumbai."
     },
-    {
+    { 
+            "moduleId": "Atomic struture",
+      "userIdArray":  [ "Shamin Padalkar",
+        "Rafikh Shaikh           ",
+        "Prayas Sutar           ",
+        "Arunachal Kumar           ",
+         "Sheetal Chopde             ",
+"R. K. Latha            ",
+       "Jayashree Anand           "
+        ],
       "userId": "Prayas Sutar           ",
       "jobTitleName": "Team Lead & Associate Professor",
       "employeeDetails": "I have taught Mathematics at the undergraduate level in Patna University for 5 years (2002-2007), during which period I was a member of the Mathematics focus group of the Bihar Curriculum Framework 2006 for school education. I was also part of the Bihar Governor’s Core Committee for recommending and rejuvenating higher education in Bihar. In CLIx, I oversee Mathematics Team’s overall task domain including module vision and creation, teachers’ professional development workshops and module implementation. My key interests include sociology of (mathematics) education, language diversity and math learning, and ethnomathematics.            ",
@@ -140,7 +222,16 @@
       "emailAddress": "romin.k.irani@gmail.com",
       "education": "Post Doc (2016), University of South Africa (UNISA), South Africa Ph.D. (2015), Mathematics Education, HBCSE, Tata Institute of Fundamental Research (TIFR) Deemed University MSc (2002), Mathematics, University of Pune BSc (1999), Mathematics (Honours), Patna University"
     },
-    {
+    {  
+         "moduleId": "Sound ",
+      "userIdArray":  [ "Shamin Padalkar",
+        "Rafikh Shaikh           ",
+        "Prayas Sutar           ",
+        "Arunachal Kumar           ",
+         "Sheetal Chopde             ",
+"R. K. Latha            ",
+       "Jayashree Anand           "
+        ],
       "userId": "Arunachal Kumar           ",
       "jobTitleName": "Senior Research Associate",
       "employeeDetails": "I have been engaged with Mathematics education and Cognitive Science research work for more than 5 years now. My Ph.D. work is on students’ conceptions of area measurement. As a Senior Research Associate within the CLIx Mathematics team, I was involved in developing content, doing field trials, supporting the teacher training, facilitating the implementation of modules, collecting and analyzing field data and writing research reports for the same.              ",
@@ -148,7 +239,16 @@
       "emailAddress": "romin.k.irani@gmail.com",
       "education": "Ph.D. (pursuing), Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Mathematics Education and Cognition.M. Sc (2009), Bengal Engineering and Science University, Shibpur. Applied Mathematics. B. Sc (2007), University of North Bengal. Mathematics."
     },
-    {
+    { 
+   "moduleId": "uderstanding motion ",
+      "userIdArray":  [ "Shamin Padalkar",
+        "Rafikh Shaikh           ",
+        "Prayas Sutar           ",
+        "Arunachal Kumar           ",
+         "Sheetal Chopde             ",
+"R. K. Latha            ",
+       "Jayashree Anand           "
+        ],
       "userId": "Sheetal Chopde             ",
       "jobTitleName": "Research Associate",
       "employeeDetails": "I have been working in education for 6 years now. As part of the TFI fellowship, I taught primary grade students in a Municipal Corporation school in Delhi. I worked in the Teacher Education space with APF, Uttarakhand, designing curriculum and engagements. At CLIx, I am involved with the design and development of secondary level Mathematics content for ICT based student learning modules and online Teacher Professional Development courses. My interest areas are instructional design, ICT for Mathematics learning, Math Education Research and Teacher Professional Development.            ",
@@ -156,7 +256,16 @@
       "emailAddress": "romin.k.irani@gmail.com",
       "education": "M.A. Education (Elementary) (pursuing), Tata Institute of Social Sciences, Mumbai M.Sc. (Tech.) Information Systems (2011), Birla Institute of Technology and Science, Pilani"
     },
-    {
+    { 
+"moduleId": "basic structure ",
+      "userIdArray":  [ "Shamin Padalkar",
+        "Rafikh Shaikh           ",
+        "Prayas Sutar           ",
+        "Arunachal Kumar           ",
+         "Sheetal Chopde             ",
+"R. K. Latha            ",
+       "Jayashree Anand           "
+        ],
       "userId": "R. K. Latha            ",
       "jobTitleName": "Ex-Team Lead (till Dec 2016) & Adjunct Associate Professor",
       "employeeDetails": "In the three decades spent in the field of Education, I have been a Mathematics Teacher, Assessment Expert, Curriculum Designer, and Teacher Educator. Prior to CLIx, as Vice President, at Educational Initiatives Pvt. Ltd., I conceptualized and created Mindspark, India’s first Digital Adaptive Learning program. I also designed the Mathematics Pedagogy course for Azim Premji University’s B.Sc-B.Ed program, and have been associated with various projects at UNICEF and NCERT, among others. At CLIx, I initially led Mathematics curriculum design, and later, research related to the implementation of the modules. My main interest now is to improve access to education, especially through innovative digital technologies.            ",

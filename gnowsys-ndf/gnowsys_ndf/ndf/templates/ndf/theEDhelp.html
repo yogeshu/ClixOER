@@ -1,15 +1,15 @@
 {% extends 'ndf/base.html' %}
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
-
+-->
 {% block content %}
-
+<div class="container">
 <div class="row justify-content-center" style="background: #007991;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #78ffd6, #007991);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #78ffd6, #007991); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 ">
     <h1>  Help Video - English Team </h1>
-        <div class="col-md-10 py-5">
+        <div class="col-12 col-sm-4 col-md-10 py-5">
             <div class="row">
                 <a href="https://www.youtube.com/embed/7RVdncvy-cc" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
                     <img  src="https://img.youtube.com/vi/7RVdncvy-cc/0.jpg" class="rounded img-fluid">
@@ -21,6 +21,21 @@ background: linear-gradient(to right, #78ffd6, #007991); /* W3C, IE 10+/ Edge, F
                     <img src="https://img.youtube.com/vi/zbeV_ICx7xI/0.jpg" class="img-fluid">
                 </a>
             </div>
+
+
+<div class="row pt-5"  >
+                <a href="https://www.youtube.com/embed/v-UT7JLyBfE" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img  src="https://img.youtube.com/vi/v-UT7JLyBfE/0.jpg" class="rounded img-fluid">
+                </a>
+                <a href="https://www.youtube.com/embed/kTf9Wyes2Y4" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/kTf9Wyes2Y4/0.jpg" class="img-fluid">
+                </a>
+                <a href="https://www.youtube.com/embed/lA5s3whsCzQ" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4 text-center">
+                    <img src="https://img.youtube.com/vi/lA5s3whsCzQ/0.jpg" class="img-fluid">
+                       <h4> Open Story Help Video </h4>
+                </a>
+            </div>
+
 <!--            <div class="row mt-5">
                 <a href="https://www.youtube.com/embed/nVSrwXTbsTE" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
                     <img src="https://img.youtube.com/vi/nVSrwXTbsTE/0.jpg" class="img-fluid">
@@ -63,11 +78,12 @@ background: linear-gradient(to right, #78ffd6, #007991); /* W3C, IE 10+/ Edge, F
 </div>  -->
         </div>
 </div>
+</div>
 <script>
-$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+/*  $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 event.preventDefault();
 $(this).ekkoLightbox();
             });
-
+*/
 </script>    
 {% endblock %}
