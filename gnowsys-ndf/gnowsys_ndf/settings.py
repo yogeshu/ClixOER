@@ -404,7 +404,6 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-
 # Django-provide base translation in django/conf/locale.
 LOCALE_PATHS = (os.path.join(os.path.dirname(__file__), '..','conf/locale/'),)
 

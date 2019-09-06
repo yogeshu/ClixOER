@@ -34,15 +34,18 @@ gfs = HashFS('/data/media/', depth=3, width=1, algorithm='sha256')
 
 def help(request,group_id):
     template = 'ndf/help.html'
-    return render_to_response(template, {'group_id':group_id})
+    return render_to_response(template, {'group_id':group_id},
+                                context_instance=RequestContext(request))
  
-def help_videos(group_id,node_id):
+def help_videos(request,group_id):
+    node_id = request.POST.get('node_id')
+    print 'inside help_videos',node_id
     with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/module.json','r') as fd:
         json_data = json.load(fd)
     nd = get_node_by_id(node_id)
-    videos = json_data['module_help'][nd.name]
+    videos = json_data[nd.name]
     print "videos:",videos
-    template = 'ndf/help_videos.html'
+    template = 'ndf/thehelpmodal.html'
     return render_to_response(template, {'group_id':group_id , 'videos':videos})
    
 
@@ -82,7 +85,8 @@ def readDoc(request, id, group_id, file_name=""):
 
 def about(request,group_id):
     template = 'ndf/about.html'
-    return render_to_response(template, {'group_id':group_id})
+    return render_to_response(template, {'group_id':group_id},
+                                context_instance=RequestContext(request)   )
 
 
 def send_message(request,group_id):
@@ -101,7 +105,7 @@ def send_message(request,group_id):
     c = {'email': request.POST['email'],
                  'first_name': request.POST['first_name'],'last_name':request.POST['last_name'],'domain':request.POST['domain'],'message':request.POST['message']}
     email_from = EMAIL_HOST_USER
-    recipient_list = ['sheetal.kashid@tiss.edu']
+    recipient_list = ['satej_shende@tiss.edu']
     html_content = render_to_string('ndf/html_message.html', c)
     msg = EmailMultiAlternatives(subject, message,email_from, recipient_list)
 
@@ -125,7 +129,8 @@ def domain_help(request,group_id,domain_name):
     if domain_name == 'Science':
         template = 'ndf/theSDhelp.html'
 
-    return render_to_response(template, {'group_id':group_id,'domain_name':domain_name})
+    return render_to_response(template, {'group_id':group_id,'domain_name':domain_name},
+                                context_instance=RequestContext(request)   )
 
 
 def loadDesignDevelopment(request,group_id,domain_name):
@@ -139,7 +144,8 @@ def loadDesignDevelopment(request,group_id,domain_name):
     if domain_name == 'Science':
         template = 'ndf/SD.html'
     
-    return render_to_response(template, {'group_id':group_id,'domain_name':domain_name})
+    return render_to_response(template, {'group_id':group_id,'domain_name':domain_name},
+                                context_instance=RequestContext(request)   )
 
 
 def uploadDoc(request, group_id):
@@ -288,7 +294,7 @@ def write_files(request, group_id, make_collection=False, unique_gs_per_file=Tru
 
 def domain_page(request,group_id,domain_name):
     import json
-    print "es_queries domain page:",domain_name
+    print "es_queries domain page:",domain_name,request.session.session_key
     domain_id = get_name_id_from_type(domain_name,'Group')[1]
     print "domain id:",domain_id
     domainnd = get_node_by_id(domain_id)
@@ -332,7 +338,7 @@ def get_module_previewdata(request,group_id):
     '''
     node_id = request.POST.get("node_id")
 
-    print "in es-queries: get_module_previewdata",node_id
+    print "in es-queries: get_module_previewdata",node_id,request.session.session_key
     node_obj = get_node_by_id(node_id)
 
 
@@ -406,6 +412,7 @@ def get_module_previewdata(request,group_id):
 
     for each in units:
         lessnnds = get_nodes_by_ids_list(list(each.collection_set))
+        lessnnds = sorted(lessnnds, key=lambda nd: nd.last_update)
         print "lessnnds:",lessnnds
         for lessn in lessnnds:
             unitdict = {}
@@ -1489,7 +1496,7 @@ def get_relation_value(node_id, grel, return_single_right_subject=False):
             s1 = Search(using=es, index='nodes',doc_type="node").query(q)
             s2 = s1.execute()
             relation_type_node = s2[0]
-            print "relation_type_node.object_cardinality:",relation_type_node.object_cardinality
+            print "relation_type_node.object_cardinality:",relation_type_node.id
             if node and relation_type_node:
                 if relation_type_node.object_cardinality > 1:
                     # node_grel = triple_collection.find({'_type': "GRelation", "subject": node._id, 'relation_type': relation_type_node._id,'status':"PUBLISHED"})
@@ -1534,10 +1541,14 @@ def get_relation_value(node_id, grel, return_single_right_subject=False):
                 else:
                     print "else:",grel
                     # node_grel = triple_collection.one({'_type': "GRelation", "subject": node._id, 'relation_type': relation_type_node._id,'status':"PUBLISHED"})
-                    q = Q('bool',must=[Q('match', type = 'GRelation'), Q('match', subject = node.id), Q('match', relation_type = relation_type_node.id)])
+                    q = Q('bool',must=[Q('match', type = 'GRelation'), Q('match', subject = node_id), Q('match', relation_type = relation_type_node.id)])
                     s1 = Search(using=es, index='triples',doc_type="triple").query(q)
                     s2 = s1.execute()
-                    node_grel = s2[0]
+                    for each in s1[0:s1.count()]:
+                        if each.status == 'PUBLISHED':
+                            node_grel = each
+                            break
+                
                     if node_grel:
                         grel_val = list()
                         grel_val = node_grel.right_subject
@@ -1552,9 +1563,10 @@ def get_relation_value(node_id, grel, return_single_right_subject=False):
                         s1 = Search(using=es, index='nodes',doc_type="node").query(q)
                         s2 = s1.execute()
                         grel_val_node = s2[0]
+                        
                         # returns right_subject of grelation and GRelation _id
                         result_dict.update({"grel_id": grel_id, "grel_node": grel_val_node, "cursor": False})
-        # print "\n\nresult_dict === ",result_dict
+        print "\n\nresult_dict === ",result_dict
         return result_dict
     except Exception as e:
         print e

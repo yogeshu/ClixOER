@@ -75,7 +75,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	"""
 	print "inside resource_list of e-library ",group_id
 	is_video = request.GET.get('is_video', "")
-
+        print "request:",request.session.get_expiry_age(),request.session.get_expire_at_browser_close()
 	try:
 		group_id = ObjectId(group_id)
 	except:
@@ -148,7 +148,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
         allinteractives1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
         allinteractives2 = allinteractives1.execute()
-        print "interactives count:",allinteractives1.count()
+        #print "interactives count:",allinteractives1.count()
         
         domain_set = ['English','Mathematics','Science']
         domain_nds = [get_group_name_id(each)[1] for each in domain_set]
@@ -158,14 +158,14 @@ def resource_list(request, group_id, app_id=None, page_no=1):
                 moduleids.extend(each.collection_set)
 	q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id = moduleids)])
 
-	all_modules = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+	all_modules = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
 
 	all_modules2 = all_modules.execute()
         
         files_new = all_modules[0:24]
 
-        for each in files_new:
-                print each
+        #for each in files_new:
+        #        print each
 
 	datavisual.append({"name":"Doc", "count": alldocs1.count()})
 	datavisual.append({"name":"Page", "count": educationaluse_stats.get("Pages", 0)})
@@ -175,6 +175,8 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	datavisual.append({"name":"Audios","count": allaudios1.count()})
 	datavisual.append({"name":"eBooks","count": educationaluse_stats.get("eBooks", 0)})
 	
+        with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/module.json','r') as json_file:
+                moduledata = json.load(json_file)
 
 	return render_to_response("ndf/Elibrary.html",
 								{'title': title, 'app':e_library_GST[0],
@@ -192,7 +194,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 								 'video_pages': allvideos1.count(),
 								 'audio_pages': allaudios1.count(),
 								 'groupid': group_id, 'group_id':group_id,
-								 "datavisual":datavisual,
+								 "datavisual":datavisual
 								},
 								context_instance = RequestContext(request))
 
@@ -236,7 +238,7 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
                                         moduleids.extend(each.collection_set)
                                 q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id = moduleids)])
                         
-                        allfiletypes1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+                        allfiletypes1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
                                 
                         allfiletypes2 = allfiletypes1.execute()
                         
@@ -291,11 +293,11 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
                         else:
                                 print "module ids",modules
                                 q= Q('bool', must=[Q('match', member_of = gst_module[0].id),Q('terms',id = modules), Q('match',status='PUBLISHED')])
-                        allfiletypes1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+                        allfiletypes1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
                         
                         allfiletypes2 = allfiletypes1.execute()
                 educationaluse_stats = {}
-                #print "allfiletypes:", allfiletypes2                                                                                                          
+                print "allfiletypes:", allfiletypes1.count()                                                                                                          
                 files_new = allfiletypes1[0:allfiletypes1.count()]
                 if files_new:
                         eu_list = []  # count                                                                                                                   
@@ -320,7 +322,7 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
 				"filter_result": filter_result,
 				"group_id": group_id, "group_name_tag": group_id, "groupid": group_id,
 				'title': "E-Library", "educationaluse_stats": json.dumps(educationaluse_stats),
-				"files": allfiletypes1[0:40], "detail_urlname": detail_urlname,
+				"files": allfiletypes1[0:allfiletypes1.count()], "detail_urlname": detail_urlname,
 			        "filetype": filetype, "res_type_name": "","interactivedata":interactivedata
 			},
 			context_instance = RequestContext(request))
@@ -415,7 +417,7 @@ def resource_list_domainwise(request,group_id, app_id=None, page_no=1):
 
         q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id=idlist)])
 
-        all_modules = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+        all_modules = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
 
         all_modules2 = all_modules.execute()
 

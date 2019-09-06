@@ -229,5 +229,32 @@
     "Interactive_image": "/static/ndf/images/noun_331311_cc.svg",
     "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/open-story-tool/"
 
+},
+"PhET Customized:Build A Molecule-english":{
+    "Interactive_image": "/static/ndf/images/BuildaMolecule_en.png",
+    "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/PhET-customized/Build_A_Molecule/en/Build_A_Molecule.html"
+
+},
+"PhET Customized:Build A Molecule-hindi":{
+    "Interactive_image": "/static/ndf/images/BuildaMolecule_en.png",
+    "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/PhET-customized/Build_A_Molecule/hi/Build_A_Molecule.html"
+
+},
+"PhET Customized:Build A Molecule-telugu":{
+    "Interactive_image": "/static/ndf/images/BuildaMolecule_en.png",
+    "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/PhET-customized/Build_A_Molecule/te/Build_A_Molecule.html"
+
+},
+"PhET Customized:Build An Atom-english":{
+    "Interactive_image": "/static/ndf/images/BuildanAtom_en.png",
+    "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/PhET-customized/Build_An_Atom/en/Build_An_Atom.html"
+
+},
+"PhET Customized:Build An Atom-hindi":{
+    "Interactive_image": "/static/ndf/images/BuildanAtom_en.png",
+    "Interactive_href" :"https://demo-clix.tiss.edu/softwares/Tools/PhET-customized/Build_An_Atom/hi/Build_An_Atom.html"
+
 }
+
+
 }

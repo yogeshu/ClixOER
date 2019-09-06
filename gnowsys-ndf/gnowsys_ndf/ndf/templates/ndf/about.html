@@ -10,7 +10,10 @@ overflow-y:auto;
   
 <nav aria-label="breadcrumb ml-5 ">
     <ol class="breadcrumb mt-3">
-             <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'e-library' group_id  %}"  > <i style="color:#fff;" class=" fas fa-home fa-lg  ml-n4"></i> </a> </li>
+             <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'e-library' group_id  %}"  > <i style="color:#fff;" class=" fas
+ fa-home fa-lg  ml-n4"></i> </a> </li>
+ 
+
         <li class="breadcrumb-item " aria-current="page"><i class="fas fa-user-friends"></i> About</li>
 <!--
       <li class="breadcrumb-item " aria-current="page">The Design And Development </li>
@@ -41,7 +44,7 @@ overflow-y:auto;
 </div>
 <h4 class="text-center py-5"> Our Collaborators </h4>
 <div class="py-5">
-
+{{csrf_token}}
 {% include "ndf/thefootericon.html" %}
 </div>
 <div class="mt-n5"></div>

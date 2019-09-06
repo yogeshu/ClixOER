@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load ndf_tags %}
 {% load get_dict_from_list_of_dicts from simple_filters %}
 
 {% load get_relation_value  from ndf_tags %}
@@ -18,8 +19,23 @@ margin:0px;
 
 input#English,input#Mathematics,input#Science {
 float:right;
+z-index:-1;
 }
 
+#submenu1 li a.nav-link {
+color: #fff !important;
+}
+.load li a.nav-link {
+color: #fff !important;
+}
+
+.dropdown-item{
+font-size: 12px !important;
+color:#
+}
+.dropdown-menu a{
+color:rgb(7, 120, 250) !important;
+}
 </style>
 
 <div class="col">
@@ -35,11 +51,9 @@ float:right;
   <main>
     <div class="col-md-sm-lg-10  py-2 content-module cards-elibrary">
       <div class="container" id="jar">
-        <div class="row" style="">
-	  
+        <div class="row" style="">	  
           {% for dest in files %}
-	  
-	   {% get_dict_from_list_of_dicts dest.attribute_set as node_attrs %}
+	     {% get_dict_from_list_of_dicts dest.attribute_set as node_attrs %}
             <div 
             class="card col-md-offset-2 shadow mb-3 border-rounded content"
             style="max-width: 400px; ">
@@ -53,22 +67,23 @@ float:right;
               <div class="col-8 col-sm-6 col-md-5 col-sm-6 mx-auto">
                 <a  class="module_module" id="{{dest.id}}">
 		  {% get_relation_value dest.id 'has_banner_pic' as grel_dict %}
-                  {% if not grel_dict.cursor and grel_dict.grel_node and grel_dict.grel_node.if_file.original.relurl %}
-                    <img  src="/media/{{grel_dict.grel_node.if_file.original.relurl}}" class=" card-img img-fluid module_preview   border-rounded mx-2 my-4  " alt="" width="200px" height="200px" alt="{{dest.name }}"  /></img>
+                  {% if not grel_dict.cursor and grel_dict.grel_node and grel_dict.grel_node.if_file.mid.relurl %}
+		   {{grel_dict.grel_id}}
+                    <img  src="/media/{{grel_dict.grel_node.if_file.mid.relurl}}" class=" card-img img-fluid module_preview   border-rounded mx-2 my-4  " alt="" style="width:167px; height:167px;"  alt="{{dest.name }}"   /></img>
              {% else %}
 
                   <img
                     src="/static/ndf/images/module-card.png"
                     class="card-img border-rounded mx-2 my-4"
                     alt="..."
-                   width="200px" height="200px"
+                   style="width:167px; height:167px;"
                   />
 		   {% endif %}
                 </a>
               </div>
               <div class="col-md-7 col-sm-12 pl-1">
                 <div class="card-body c-body">
-                  <div class="card-header c-header">
+                  <div class="card-header c-header"  style="font-size:14px;">
                     {{ dest.name }} <br />
                   </div>
 
@@ -85,35 +100,62 @@ float:right;
 
 {{ node_attrs.educationalsubject }} 
                     </span>
-                    <span class="badge badge-secondary"   data-toggle="tooptip" title="Grade"                      ><i class="fas fa-user-graduate fa-sm"></i>
+                    <span class="badge badge-secondary"   data-toggle="tooltip" title="Grade"                      ><i class="fas fa-user-graduate fa-sm"></i>
 		      {% for each_attr in node_attrs.educationallevel %}{{each_attr|slice:"5:"}}
 		      {% if not forloop.last %}, {%endif %} 
 		      {% endfor %}</span
                     >
                   </h6>
-                  <p class="card-text" style="font-size:11px !important;">
-                   {{dest.content|default:'No description added yet.'|safe| truncatechars:255}}
+                  <p class="card-text" style="text-align:justify;      font-size:11px !important;">
+                   {{dest.content|default:'No description added yet.'|safe| truncatechars:207}}
                     <br />
                   </p>
-                  <div class="card-footer c-footer text-center">
+                  <div class="card-footer c-footer   text-center">
                     <a href="https://demo-clix.tiss.edu/home/module/{{dest.id}}/courses" data-toggle="tooltip" title="Explore Module Online"  target="_blank" >
                       <i class="fas fa-rocket    fa-lg"></i></a
                     >
 <div class="dropdown show" style="display:inline-block">
-                    <a href="" data-toggle="dropdown"  title="Download Offline Version"
-                      ><i class="fas fa-cloud-download-alt  fa-lg">
+                    <a href="" data-toggle="dropdown" 
+                      ><i class="fas fa-cloud-download-alt  fa-lg"  data-toggle="tooltip" title="Download offline Version" > 
                         <span
                           class="badge "
                           style="font-size:5px; background: #F0578F; color: #fff;"
                           >3</span
                         >
                       </i></a
-                    >                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item">Download Unplatform Version For Windows </a>
-                          <a class="  dropdown-item" href="#" >Download Unplatform Version For Debian</a>
+                    >                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkMu">
+                          <a class="dropdown-item " data-toggle="modal" data-target="#unplatform">Download Unplatform Version For Windows </a>
+                          <a class="  dropdown-item" href="#" data-toggle="modal" data-target="#unplatformMu" >Download Unplatform Version For Debian</a>
                           
                         </div>
                       </div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="unplatformMu">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Intruction for Installing unplatform</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+<a class="video" style="color:#0778FA;"    id="{{dest.id}}"   style="display:inline-block" > <i class="fas fa-video" data-toggle="tooltip"
+ title="Help Video"  ></i> </a>
+
+
+
 
                     <div class="dropdown show" style="display:inline-block" href="">  
    <a class=""     href=""   role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -127,15 +169,20 @@ float:right;
                         </a>
                       
                         <div class="dropdown-menu" href="" aria-labelledby="dropdownMenuLink" >
-                          <a class="dropdown-item" onclick="CopyLink()"  id="copy">Copy</a>
+                          <a class="dropdown-item" onclick="CopyLink()"  id="copy">
+<i class="fas fa-copy"> </i>
+Copy</a>
                         <!--  <a class="
 dropdown-item"  data-js="facebook-share">Share Facebook</a>
                           <a  class="dropdown-item" data-js="twitter-share" >Share on Twitter</a> -->
 <a class="dropdown-item" href="http://www.facebook.com/sharer.php?s=100&amp;p[title]=[TITLE_GOES_HERE]&amp;p[summary]=[SUMMARY_GOES_HERE]&amp;p[url]=[URL_GOES_HERE]&amp;p[images[0]=[IMAGE_GOES_HERE]" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup', 'height=350,width=600'); return false;"
->Share on Facebook</a>
-<a class="dropdown-item" href="http://twitter.com/intent/tweet?url=http://103.36.84.176:8000/5752ad5a2e01310a05dca583/e-library/" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'); data-url="document.URL" return false;">Tweet this</a>
+> <i class="fab fa-facebook"> </i>
+Share on Facebook </a>
+<a class="dropdown-item" href="http://twitter.com/intent/tweet?url=http://103.36.84.176:8000/5752ad5a2e01310a05dca583/e-library/" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'); data-url="document.URL" return false;">
+<i class="fab fa-twitter"> </i>
+Tweet this</a>
 <a class="dropdown-item" href="javascript:void(window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent(document.title), '_blank'))"> 
-    <i></i>
+    <i class="fab fa-telegram"></i>
     Telegram link
 </a>
 
@@ -149,9 +196,9 @@ dropdown-item"  data-js="facebook-share">Share Facebook</a>
                         >3</span
                       ></a
                     > -->
-
-<a class="video" style="color:#0778FA;"  data-toggle="modal" data-target="#exampleModalCenterLu" title="Help Video" style="display:inline-block" > <i class="fas fa-video "></i> </a>
-
+<!--
+<a class="video show-modaltrue" style="color:#0778FA;"  onclick="modalhelpvi()"   title="Help Video" style="display:inline-block" > <i class="fas fa-video "></i> </a>
+-->
                     <a class="modal_modal domain_modal "  title="Preview" data-toggle="tooltip"   id="{{dest.id}}" style="color:#3333ff
 ;">
                  
@@ -172,7 +219,22 @@ dropdown-item"  data-js="facebook-share">Share Facebook</a>
               </div>
             </div>
           </div>
-	  {% endfor %}
+
+    <!--    <div class="col-sm-4">
+          <a href="https://unsplash.it/1200/768.jpg?image=257" data-toggle="lightbox" data-gallery="mixedgallery" class="col-sm-4">
+              <img src="https://unsplash.it/600.jpg?image=257" class="img-fluid">
+          </a>
+        </div>
+        <div class="col-sm-4">
+    
+          <a href="http://vimeo.com/80629469" data-remote="http://player.vimeo.com/video/80629469" data-toggle="lightbox" data-gallery="mixedgallery" class="col-sm-4">
+              <img src="http://b.vimeocdn.com/ts/458/070/458070637_200.jpg" class="img-fluid">
+          </a>
+        </div>
+    -->
+        
+ {% endfor %}	 
+
 <!--
 <nav class="text-center">
   <ul class="pagination justify-content-center pagination-sm">
@@ -186,6 +248,15 @@ dropdown-item"  data-js="facebook-share">Share Facebook</a>
                 </div>
               </div>
             </div>
+
+
+<div class="modal fade" id="exampleModalCenterLu" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content muvideLu">
+       
+          </div>
+        </div>
+      </div>
 <!--
 <div class="modal fade" id="exampleModalVideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -205,7 +276,7 @@ dropdown-item"  data-js="facebook-share">Share Facebook</a>
   </div>
 </div>          
 -->
-  
+  <!--
 <div class="modal fade" id="exampleModalCenterLu" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
@@ -218,9 +289,10 @@ dropdown-item"  data-js="facebook-share">Share Facebook</a>
         <div class="modal-body">
 <div class="container">
   <div class="row">
+
     <div class="col-sm-4">
-        <a href="http://www.youtube.com/watch?v=k6mFF3VmVAs" data-toggle="lightbox" data-gallery="mixedgallery" class="col-sm-4">
-          <img src="http://i1.ytimg.com/vi/yP11r5n5RNg/mqdefault.jpg" class="img-fluid">
+        <a href="{{key}}" data-toggle="lightbox" data-gallery="mixedgallery" class="col-sm-4">
+          <img src="{{value}}" class="img-fluid">
       </a>
     </div>
     <div class="col-sm-4">
@@ -237,12 +309,13 @@ dropdown-item"  data-js="facebook-share">Share Facebook</a>
 
     </div>
   </div>
-</div>
-      </div>
+
+
+</div>     </div>
 
     
   </div>
-         
+    -->   
           
     </div>
 
@@ -494,6 +567,37 @@ function getPageList(totalPages, page, maxLength) {
 
 
 
+$("a.video").click(function(){
+        var id =$(this).attr("id");
+  console.log(id);
+
+
+});
+
+$("a.video").click(function() {
+    var id =$(this).attr("id");
+    console.log("in a.modal_modal click:",id)
+   console.log({{CSRF_COOKIE}})
+    $.ajax({
+                      type: "POST",
+                      url: "{% url 'help_videos' group_id %}",
+                      data :{
+                              csrfmiddlewaretoken: "{{csrf_token }}",
+                                      node_id:id,
+                      },
+                      datatype: "html",
+
+                      success: function(data) {
+                      // $('#jar').html(data)
+                      $(".muvideLu").html(data);
+                      $("#exampleModalCenterLu").modal('show');
+
+                      }
+           });
+
+
+});
+
 
 
 $("a.modal_modal").click(function() {
@@ -648,4 +752,26 @@ $(".remove_weight_button").click(function(){
      
 
 });
+
+
+
+
+function modalhelpvi(){
+ $("#exampleModalCenterLu").modal('show');
+};
+
+
+
+
+
+$(document).ready(function(){
+  var show_btn=$('.show-modaltrue');
+  var show_btn=$('.show-modaltrue');
+  //$("#testmodal").modal('show');
+  
+    show_btn.click(function(){
+      $("#exampleModalCenterLu").modal('show');
+  })
+});
+
 </script>

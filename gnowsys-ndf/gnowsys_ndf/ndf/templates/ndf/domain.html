@@ -1,4 +1,4 @@
-{% extends "ndf/base.html" %}
+B{% extends "ndf/base.html" %}
 
 <link href="../static/multislider.js">
 {{csrf_token}}
@@ -12,10 +12,14 @@
       <div class="col-sm-9">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb ml-2">
-            <li class="breadcrumb-item ml-n3" aria-current="page" > <a style="color:#fff;" href="{% url 'e-library' group_id  %}"> <i class=" fas fa-home fa-lg "></i></li> </a>
+            <li class="breadcrumb-item ml-n3" aria-current="page" > <a style="color:#fff;" href="{% url 'e-library' group_id  %}"> <i class=" fas fa-home fa-lg "></i> </a> </li>
+ <li class="breadcrumb-item" style="background:#7c777c;"> <a style="color:#fff;"><i class="ml-n2 fas fa-globe fa-lg"></i></a>Domain <li>
+
             <li class="breadcrumb-item pl-n2 " aria-current="page"> 
 <!--<i class="fa fa-calculator fa-sm"></i> -->
  {{ first_arg }}</li>
+
+
            </ol>
         </nav>
 
@@ -32,14 +36,22 @@
     <div class="row">
       <nav class="col-12 col-sm-12 col-md-2" id="verticalScrollspy">
         <ul class="nav flex-column nav-pills nav-scroll">
-          <li class="nav-item "><a class="nav-link active" href="#dogs"> <i class="fas fa-puzzle-piece"></i> Modules</a></li>
-          <li class="nav-item"><a class="nav-link" href="#cats"><i class="far fa-question-circle"></i>CLIx in the Classroom</a></li>
-          <li class="nav-item"><a class="nav-link" href="#team"><i class="fas fa-users"></i>Team Details </a></li>
-          <li class="nav-item"><a class="nav-link" href="#penguins"><i class="fas fa-seedling"></i>  Design and<span class=" py-1">
+          <li class="nav-item "><a class="nav-link active" href="#dogs"> <img src="/static/ndf/modules.png" class="img-fluid" style="width:25px; height:25px;"> Modules</a></li>
+          <li class="nav-item"><a class="nav-link" href="#alpacas"><img src="/static/ndf/voices from the field.png" class="img-fluid" 
+style="width:25px; height:25px;">Voices From The Field</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cats">
+<img src="/static/ndf/clix in the classroom.png" class="img-fluid"
+style="width:25px; height:25px;">
+CLIx In The Classroom </a></li>
+          <li class="nav-item"><a class="nav-link" href="#penguins">
+<img src="/static/ndf/design and development.png" class="img-fluid"
+style="width:25px; height:25px;">
+  Design and<span class=" py-1">
 Development </span> </a></li>
-        <!--  <li class="nav-item"><a class="nav-link" href="#alpacas"><i class="fas fa-comment-alt"></i> Testimonials </a></li>
+          <li class="nav-item"><a class="nav-link" href="#team"><img src="/static/ndf/team.png" class="img-fluid"
+style="width:25px; height:25px;"> Team Details  </a></li>
 
--->          <li class="nav-item"><a class="nav-link" href="#rabbits"><i class="fas fa-comments"></i> Contact Us</a></li>
+     <li class="nav-item"><a class="nav-link" href="#rabbits"><i class="fas fa-comments"></i> Connect with Us</a></li>
         </ul>
       </nav>
       <div class="col-12 col-md-10 col-lg-10">
@@ -49,21 +61,25 @@ Development </span> </a></li>
              {% include "ndf/module_cards.html" %}
              {% include "ndf/pagination.html" %}
           </div>
+
+ <div id="alpacas" class="container-fluid" class="mb-5  mt-5">
+           <!-- <h1 class="text-center">Testimonials</h1>   -->
+                <h1 class="text-center mt-2"> Voices from the Field</h1>
+{% include "ndf/oer_testimonials.html" %}
+          </div>
+
+
           <div id="cats" class="container-fluid">
          
             {% include "ndf/icon_slider.html" %}
           </div>
+  <div id="penguins" class="container-fluid">
+           {% include "ndf/devlopementanwork.html" %}
+
+          </div>
+
           <div id="team" class="container-fluipd mt-5">
         {% include "ndf/domain_team_cards.html"  with slider=slider%}
-          </div>
-          <div id="penguins" class="container-fluid">
-           {% include "ndf/devlopementanwork.html" %} 
-         
-          </div>
-          <div id="alpacas" class="container-fluid" class="mb-5">
-           <!-- <h1 class="text-center">Testimonials</h1>   -->
-                <h1 class="text-center"> Voices from the Field</h1>      
-{% include "ndf/oer_testimonials.html" %}
           </div>
           <div id="rabbits" class="container-fluid" class="mt-5">
 {% include "ndf/contactForm.html" %}           

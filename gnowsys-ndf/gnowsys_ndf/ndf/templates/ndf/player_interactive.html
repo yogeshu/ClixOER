@@ -3,18 +3,46 @@
 
 <h4>Horizontal Flip</h4>
 -->
+
+<style>
+
+
+.imageHolder {
+    position: relative;
+    width: 285px;
+    height: 175px;
+}
+.imageHolder .caption {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    bottom: 0px;
+    left: 0px;
+    color: #ffffff;
+    background: green;
+text-align:center;
+font-weight:bold;
+opacity:0.7;
+}
+</style>
 {% load ndf_tags %}
 <div class="container">
 <div class="row"> 
 
 {% for dest in  files %}
   {% with name=dest.name %}
-
    {% with json_data=interactivedata|get_item:name %}
 <div class="flip interactive">
-    <div class="front" style="background-image:url({{json_data.Interactive_image}} )">
-       <h4 class="text-shadow">{{dest.name}}</h4>
-       
+ <div class="element">
+                <span class="vert-flag">
+                    <img  src="https://demo-clix.tiss.edu/static/ndf/images/favicon/clix-favicon.png"/></img>
+                </span>
+              </div>
+
+    <div class="front  imageHolder" style="background-image:url({{json_data.Interactive_image}} )">
+<div class="caption"> 
+      <h6 class="text-shadow">{{dest.name}}</h6>
+       </div>
     </div>
     <div class="back">
 

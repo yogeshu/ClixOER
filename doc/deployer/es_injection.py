@@ -99,7 +99,7 @@ def main():
     print(GSTUDIO_SITE_NAME)
     for index, doc_type in GSTUDIO_ELASTIC_SEARCH_INDEX.items():
         temp = []
-
+        mongodb_nd_ids = []
         if GSTUDIO_SITE_NAME == "clix":
             index_lower = index.lower()
         else:
@@ -129,59 +129,65 @@ def main():
 
                 res = es.scroll(scrollid, scroll="1m")
             print "temp result:",temp
+            nodeids = node_collection.find({},{'_id':1})
+            for each in nodeids:
+                mongodb_nd_ids.append(str(each._id))
 
-            if(index_lower.find("nodes") !=-1):
-                nodes = node_collection.find({ '_id': {'$nin': temp} }).batch_size(5)
-                print "nodes:",nodes.count()
-                if(nodes.count() == 0):
-                    print("All "+ index_lower +" documents has injected to elasticsearch")
-                    continue
-                else:
-                    index_docs(nodes, index_lower, doc_type)
+            print len(mongodb_nd_ids),nodeids.count(),len(temp)
+            if(nodeids.count() >= len(temp)):
+                if(index_lower.find("nodes") !=-1):
+                    nodes = node_collection.find({ '_id': {'$nin': temp} }).batch_size(5)
+                    print "nodes:",nodes.count()
+                    if(nodes.count() == 0):
+                        print("All "+ index_lower +" documents has injected to elasticsearch")
+                        continue
+                    else:
+                        index_docs(nodes, index_lower, doc_type)
 
-            elif (index_lower.find("triples") !=-1):
-                triples = triple_collection.find({ '_id': {'$nin': temp} }).batch_size(5)
-                if (triples.count() == 0):
-                    print("All " + index_lower + " documents has injected to elasticsearch")
-                    continue
-                else:
-                    # f = open("/data/triples.txt", "w")
-                    # os.chmod("/data/triples.txt", 0o777)
-                    index_docs(triples, index_lower, doc_type)
+                elif (index_lower.find("triples") !=-1):
+                    triples = triple_collection.find({ '_id': {'$nin': temp} }).batch_size(5)
+                    if (triples.count() == 0):
+                        print("All " + index_lower + " documents has injected to elasticsearch")
+                        continue
+                    else:
+                        # f = open("/data/triples.txt", "w")
+                        # os.chmod("/data/triples.txt", 0o777)
+                        index_docs(triples, index_lower, doc_type)
 
-            elif (index_lower.find("benchmarks") !=-1 ):
-                benchmarks = benchmark_collection.find({ '_id': {'$nin': temp} }).batch_size(5)
-                if (benchmarks.count() == 0):
-                    print("All " + index_lower + " documents has injected to elasticsearch")
-                    continue
-                else:
-                    index_docs(benchmarks, index_lower, doc_type)
+                elif (index_lower.find("benchmarks") !=-1 ):
+                    benchmarks = benchmark_collection.find({ '_id': {'$nin': temp} }).batch_size(5)
+                    if (benchmarks.count() == 0):
+                        print("All " + index_lower + " documents has injected to elasticsearch")
+                        continue
+                    else:
+                        index_docs(benchmarks, index_lower, doc_type)
 
-            elif (index_lower.find("filehives")!=-1):
-                filehives = filehive_collection.find({ '_id': {'$nin': temp} }).batch_size(5)
-                print filehives.count()
-                if (filehives.count() == 0):
-                    print("All " + index_lower + " documents has injected to elasticsearch")
-                    continue
-                else:
-                    index_docs(filehives, index_lower, doc_type)
+                elif (index_lower.find("filehives")!=-1):
+                    filehives = filehive_collection.find({ '_id': {'$nin': temp} }).batch_size(5)
+                    print filehives.count()
+                    if (filehives.count() == 0):
+                        print("All " + index_lower + " documents has injected to elasticsearch")
+                        continue
+                    else:
+                        index_docs(filehives, index_lower, doc_type)
                     
-            elif (index_lower.find("buddies")!=-1):
-                buddys = buddy_collection.find({ '_id': {'$nin': temp} }).batch_size(5)
-                if (buddys.count() == 0):
-                    print("All " + index_lower + " documents has injected to elasticsearch")
-                    continue
-                else:
-                    index_docs(buddys, index_lower, doc_type)
+                elif (index_lower.find("buddies")!=-1):
+                    buddys = buddy_collection.find({ '_id': {'$nin': temp} }).batch_size(5)
+                    if (buddys.count() == 0):
+                        print("All " + index_lower + " documents has injected to elasticsearch")
+                        continue
+                    else:
+                        index_docs(buddys, index_lower, doc_type)
 
-            elif (index_lower.find("counters")!=-1):
-                counters = counter_collection.find({ '_id': {'$nin': temp} }).batch_size(5)
-                if (counters.count() == 0):
-                    print("All " + index_lower + " documents has injected to elasticsearch")
-                    continue
-                else:
-                    index_docs(counters, index_lower, doc_type)
-
+                elif (index_lower.find("counters")!=-1):
+                    counters = counter_collection.find({ '_id': {'$nin': temp} }).batch_size(5)
+                    if (counters.count() == 0):
+                        print("All " + index_lower + " documents has injected to elasticsearch")
+                        continue
+                    else:
+                        index_docs(counters, index_lower, doc_type)
+            else:
+                print "ES has more nodes than mongodb"
 
             #print(res['_scroll_id'])
             #print(res['hits']['total'])

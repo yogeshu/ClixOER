@@ -281,6 +281,7 @@ def get_schema(node):
 
 @register.filter
 def get_item(dictionary, key):
+    print "dictionary,key",dictionary,key
     return dictionary.get(key)
 
 

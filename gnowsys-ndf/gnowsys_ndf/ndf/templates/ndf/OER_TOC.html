@@ -1,41 +1,33 @@
-
-
-
-
-
-
-
-
-
 <div class="col-md-2 col-sm-10 col-md-2 collapse d-md-flex navbar-expand-lg pt-2 min-vh-100" id="side">
-       <nav>
-                <ul class="nav flex-column nav-pills nav-scroll">
-                        <li class="nav-item" id="main-page"> <a class="nav-link collapsed " href="#submenu1" data-toggle="collapse" data-target="#submenu1">Subject <i class="float-right fas fa-plus-circle fa-lg"></i></a></li>
-                        <div class="collapse" id="submenu1" aria-expanded="false">
+	<nav>
+        	<ul class="nav flex-column nav-pills nav-scroll">
+                        <li class="nav-item" id="main-page"> <a class="nav-link collapsed " href="#submenu1" data-toggle="collapse" data-target="#submenu1">Subject <i class="float-right fas fa-minus-circle fa-lg"></i></a></li>
+                        <div class="collapse show" id="submenu1" aria-expanded="false">
                             <ul class="flex-column pl-1 nav su">
-                         <li class="nav-item ">  <a class="nav-link " href="#">
-<i class="fas fa-font" > </i>English
-<input  id="English" type="checkbox"  value="English" class="searchfilter"  name="english"> 
-<!--<i class="fas fa-font" > </i>English -->
-</a></li>
-                                <li class="nav-item"><a class="nav-link " href="#"> <i class="fas fa-calculator"></i> Math  <input id="Mathematics" type="checkbox" value="Mathematics" class="searchfilter"   name="english">
-<!--   <i class="fas fa-calculator"></i> Math -->
-
-</a></li>
-            
-                                <li class="nav-item" ><a class="nav-link " href=""> <i class="fas fa-flask"></i> Science  <input id="Science" type="checkbox" value="Science" class="searchfilter"  name="english">
-<!--<i class="fas fa-flask"></i> Science -->
-</a>
-</li>
-            
-                        
+                         <li class="nav-item ">
+				<a class="nav-link "><i class="fas fa-font" > </i>English
+					<input  id="English" type="checkbox"  value="English" class="searchfilter"  name="english"> 
+					<!--<i class="fas fa-font" > </i>English -->
+				</a>
+			</li>
+                        <li class="nav-item">
+				<a class="nav-link " > <i class="fas fa-calculator"></i> Math  
+					<input id="Mathematics" type="checkbox" value="Mathematics" class="searchfilter"   name="english">
+					<!--   <i class="fas fa-calculator"></i> Math -->
+				</a></li>
+                                <li class="nav-item" >
+					<a class="nav-link "> <i class="fas fa-flask"></i> Science  
+						<input id="Science" type="checkbox" value="Science" class="searchfilter"  name="english">
+						<!--<i class="fas fa-flask"></i> Science -->
+					</a>
+				</li>
                             </ul>
                         </div>
                     </li>     
             <section class="load">
-                    <li class="nav-item nav-reload"><a class="nav-link"  id="module"  href="#"> <i class="fas fa-puzzle-piece fa-lg"></i> Modules {{file_pages}}</a></li>
-                    <li class="nav-item nav-reload"><a class="nav-link" id="module_interactive"  href="#"><i class="fas fa-dice-d6 "></i> Interactive {{interactive_pages}}</a></li>
-                   <li class="nav-item nav-relaod"><a class="nav-link" id="handbook"  href="#"><i class="fas fa-images fa-sm"></i> Handbook {{doc_pages}}</a></li>
+                    <li class="nav-item nav-reload targetele"><a class="nav-link "  id="module"  > <i class="fas fa-puzzle-piece fa-lg"></i> Modules {{file_pages}}</a></li>
+                    <li class="nav-item nav-reload"><a class="nav-link targetele" id="module_interactive"  ><i class="fas fa-dice-d6 "></i> Interactive {{interactive_pages}}</a></li>
+                   <li class="nav-item nav-relaod"><a class="nav-link targetele" id="handbook" ><i class="fas fa-images fa-sm"></i> Handbook {{doc_pages}}</a></li>
 </section>
 	 <!-- 	   <li class="nav-item nav-relaod"><a class="nav-link" id="_image"  href="#"><i class="fas fa-images fa-sm"></i> Images {{image_pages}}</a></li>
                    <li class="nav-item nav-relaod"><a class="nav-link" id="audio" href="#"><i class="fas fa-images fa-sm"></i> Audios {{audio_pages}}</a></li>
@@ -53,9 +45,6 @@
    
 </div>
 <script>
-
-
-
 var domain;
 $('#module').click(function() {
 var domains = $("input:checked").map(function(){
@@ -74,7 +63,7 @@ $.ajax({
             },
             success: function(data) {
               $('#jar').html(data)
-             
+               
 
             }
           });
@@ -151,6 +140,7 @@ console.log([],domains);
 
 $('#audio').click(function() {
 $.ajax({
+
             type: "POST",
             url: "{% url 'elib_paged_file_objs' group_name_tag 'Audio' 1  %}",
             datatype: "html",
@@ -187,8 +177,148 @@ $.ajax({
 
 $('#main-page').click(function() {
     $('#submenu1').toggle();
-    $("i", this).toggleClass(" fa-plus-circle fa-lg  fa-minus-circle fa-lg  ");
+    $("i", this).toggleClass(" fa-minus-circle fa-lg  fa-plus-circle fa-lg  ");
 });
+//console.log("==========================")
+//console.log($(this).text)
+//console.log(domain) 
+//    console.log([],domain);  
+/*
+var checkboxValues = JSON.parse(localStorage.getItem('checkboxValues')) || {},
+    $checkboxes = $("#submenu1 :checkbox");
+
+$checkboxes.on("change", function(){
+  $checkboxes.each(function(){
+    checkboxValues[this.id] = this.checked;
+  });
+  
+  localStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
+});
+// On page load
+$.each(checkboxValues, function(key, value) {
+  $("#" + key).prop('checked', value);
+});
+*/
+
+//ent.querySelector('#English').checked = request.COOKIES['English'];
+//document.querySelector('#Mathematics').checked = request.COOKIES['Mathematics'];
+//document.querySelector('#Science').checked = 
+ //console.log(this.checked)
+//console.log(document.querySelector('#English'));
+$('.nav').on('click', 'li', function(){
+    $('.nav li').removeClass('active');
+    $(this).addClass('active');
+});
+/*
+$('.searchfilter').click(function(){
+var x=$(this).find('.searchfilter');
+if(x.prop("checked")==false)
+{
+	y.push(x.val());
+	console.log(y);
+        localStorage.setItem("domain", JSON.stringify(y));
+	x.prop("checked",true);
+	$.ajax({
+                type: "POST",
+                url: "{% url 'e-library_domainwise' group_name_tag  %}",
+                datatype:"html",
+                traditional: true,
+                data: {
+              csrfmiddlewaretoken: '{{ csrf_token }}',
+              domain_name:y,
+
+                    },
+                success: function(data) {                // alert('it worked');
+
+                 //$('#sidebar').html('#');
+                 $('#x').html(data);
+                            $(".targetele").effect( "highlight", {color:"#669966"}, 3000 );
+
+                },
+                 error: function() {
+                    $("exampleModalCenterErrorPage").html(data);
+              },
+                complete: function() {
+                  //  alert('it completed');
+                },
+            });
+	x.prop("checked",true);
+}
+else if(x.prop("checked")==true)
+{
+console.log(y);
+x.prop("checked",false);
+}
+});
+
+*/
+
+
+
+/*
+
+$('.searchfilter').click(function(e) {
+//  e.preventDefault();
+console.log("IN fileter");
+domain = $("input:checked").map(function(){
+     return $(this).val();
+    }).get();
+//console.log("==========================")
+//console.log($(this).text)
+//console.log(domain) 
+//    console.log([],domain);  
+//{
+            $.ajax({
+                type: "POST",
+                url: "{% url 'e-library_domainwise' group_name_tag  %}",
+                datatype:"html",
+                traditional: true,
+                data: {
+              csrfmiddlewaretoken: '{{ csrf_token }}',
+              domain_name:domain,
+		        },
+                success: function(data) {                // alert('it worked');
+                 
+                 //$('#sidebar').html('#');
+                 $('#x').html(data);
+                },
+                 error: function() {
+                    $("exampleModalCenterErrorPage").html(data);
+              },
+                complete: function() {
+                  //  alert('it completed');
+                },
+            });
+       
+      //};
+});
+
+
+
+
+$(function(e){
+  console.log("in function document ready")
+  console.log(domain);
+  if(domain != undefined){
+  for(i=0;i<domain.length;i++){
+          if (domain[i] == 'English'){
+	            document.querySelector('#English').checked = true;
+	            }
+	            if (domain[i]== 'Mathematics'){
+	                  document.querySelector('#Mathematics').checked = true;
+              }
+	            if (domain[i]== 'Science'){
+	                  document.querySelector('#Science').checked = true;
+              }
+	      }
+   }
+});
+
+
+
+
+*/
+
 
 
 
@@ -213,11 +343,13 @@ domain = $("input:checked").map(function(){
               csrfmiddlewaretoken: '{{ csrf_token }}',
               domain_name:domain,
 
-		    },
+	          },
                 success: function(data) {                // alert('it worked');
                  
                  //$('#sidebar').html('#');
                  $('#x').html(data);
+            
+
                 },
                  error: function() {
                     $("exampleModalCenterErrorPage").html(data);
@@ -254,25 +386,47 @@ $(function(e){
   if(domain != undefined){
   for(i=0;i<domain.length;i++){
           if (domain[i] == 'English'){
-	      document.querySelector('#English').checked = true;
+	            document.querySelector('#English').checked = true;
+	            }
+	            if (domain[i]== 'Mathematics'){
+	                  document.querySelector('#Mathematics').checked = true;
+              }
+	            if (domain[i]== 'Science'){
+	                  document.querySelector('#Science').checked = true;
+              }
 	      }
-	      if (domain[i]== 'Mathematics'){
-	            document.querySelector('#Mathematics').checked = true;
-              }
-	      if (domain[i]== 'Science'){
-	            document.querySelector('#Science').checked = true;
-              }
-	}
    }
 });
 
- // document.querySelector('#English').checked = request.COOKIES['English'];
-//document.querySelector('#Mathematics').checked = request.COOKIES['Mathematics'];
-//document.querySelector('#Science').checked = 
- //console.log(this.checked)
-//console.log(document.querySelector('#English'));
-$('.nav').on('click', 'li', function(){
-    $('.nav li').removeClass('active');
-    $(this).addClass('active');
+
+
+
+/*
+
+
+
+$(function(e){
+  console.log("in function document ready")
+  console.log(y);
+  if(Array.isArray(y) && y.length){
+  for(i=0;i<y.length;i++){
+          if (y[i] == 'English'){
+              document.querySelector('#English').checked = true;
+              }
+              if (y[i]== 'Mathematics'){
+                    document.querySelector('#Mathematics').checked = true;
+              }
+              if (y[i]== 'Science'){
+                    document.querySelector('#Science').checked = true;
+              }
+        }
+   }
 });
+*/
+/*
+$(function(e){
+console.log("The values in local storage are as follows:",localStorage.getItem('domain'));
+});
+
+*/
 </script>

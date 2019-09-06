@@ -46,7 +46,7 @@
      <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
      <style>
-
+    
       ul.nav-pills{
          position: sticky;
          top: 20%;
@@ -105,6 +105,16 @@ max-width: 100%  !important;
 }
 }
 
+.navbar-nav>li.nav-item.active>a.nav-link{
+  text-decoration:none;
+  color:red;
+}
+ *:hover{
+transition:none !important;
+}
+.card:hover{
+border: 1px solid #000 !important;
+}
      </style>
 </head>
 
@@ -201,6 +211,15 @@ $(function () {
 $(function () {
   $('[data-toggle="popover"]').popover()
 })
+
+
+
+$(document).ready(function(){
+$('.navbar-nav .nav-item').click(function(){
+    $('.navbar-nav .nav-item').removeClass('active');
+    $(this).addClass('active');
+})
+});
 </script>
 
 

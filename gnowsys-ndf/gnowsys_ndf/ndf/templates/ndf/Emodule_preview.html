@@ -1,4 +1,3 @@
-
 {% load get_relation_value  from ndf_tags %}
 <style>
 a:hover {
@@ -8,14 +7,54 @@ cursor: pointer;
 
 overflow:hidden;
 }
-   .fade i {
-     size:14px;
-     color:rgb(65, 146, 238);
-   }
   ul > i{
   color: rgb(43, 113, 194);
 }
- 
+table {
+  width: 100%;
+font-size: 12px;
+}
+
+table, td {
+ border-collapse: collapse;
+  border: none;
+}
+
+thead {
+  display: table; /* to take the same width as tr */
+  width: calc(100% - 17px); /* - 17px because of the scrollbar width */
+}
+
+tbody {
+  display: block; /* to enable vertical scrolling */
+  max-height: 200px; /* e.g. */
+  overflow-y: scroll; /* keeps the scrollbar even if it doesn't need it; display purpose */
+}
+
+th, td {
+  width: 33.33%; /* to enable "word-break: break-all" */
+  padding: 5px;
+  word-break: break-all; /* 4. */
+}
+
+tr {
+  display: table; /* display purpose; th's border */
+  width: 100%;
+  box-sizing: border-box; /* because of the border (Chrome needs this line, but not FF) */
+}
+
+td {
+  text-align: center;
+  border-bottom: none;
+  border-left: none;
+}
+
+.square{
+width: 100px;
+border: 1px solid #000;
+padding:40px;
+margin:10px;
+} 
  </style>
  
 <!---
@@ -126,24 +165,24 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 <div class="modal-header">
        <h5 class="modal-title ml-2 " id="exampleModalLongTitle" class="col-10  col-md-3  col-sm-10" style="font-weight:bold; font-size:
  18px;">{{moduledetails.name}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-              <div class="modal-body">
+    -->  
+            <!--  <div class="modal-body">
 <div class="container">
           <div class="row">
-            <div class="col-sm-4">
-         <p class="badge badge-color " style="padding:10px; font-size:14px;">  
+            <div class="col-sm-2">
+         <p class="badge badge-secondary " style="padding:5px; font-size:10px; color:#fff !important;">  
  
 <i  class="fas fa-language fa-lg"> &nbsp; {{moduledetails.subject}}</i></p> 
 </div> 
-  <div class="col-sm-4">
-      <p class="badge badge-color" style="padding:10px; float:left;  font-size: 14px;"><i class= "pl-2 fas fa-user-graduate fa-lg"> &nbsp; {{moduledetails.grade}}</i></p> 
+  <div class="col-sm-2">
+      <p class="badge badge-secondary" style="padding:5px;  font-size: 10px; color:#fff !important;"><i class="pl-2 fas fa-user-graduate fa-lg"> &nbsp; {{moduledetails.grade}}</i></p> 
             </div>
           </div>
         </div>
-        
+        -->
         <div class="row" >
           <div class="col-sm">
         
@@ -216,32 +255,52 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 
                         </div>
                       </div>
-
-<a class="video"  data-toggle="modal" data-target="#exampleModalCenterLu" title="Help Video" style="display:inline-block" > <i 
-class="fas fa-video "></i> </a>
-
+<div style="display:inline-block;" class="video-modal">
+<a class="video"  data-toggle="modal" data-target="#exampleModalCenterLu" style="color:rgb(7, 120, 250);"  title="Help Video" style="display:inline-block" > <i 
+class="fas fa-video  fa-lg "></i> </a>
 </div>
 </div>
-        
+</div>
+
+
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+     </div>   
                 
                 
-        
+        <div class="modal-body">
+<div class="container">
+          <div class="row">
+            <div class="col-sm-2">
+         <p class="badge badge-secondary " style="padding:5px; font-size:10px; color:#fff !important;">
+
+<i  class="fas fa-language fa-lg"> &nbsp; {{moduledetails.subject}}</i></p>
+</div>
+  <div class="col-sm-2">
+      <p class="badge badge-secondary" style="padding:5px;  font-size: 10px; color:#fff !important;"><i class="pl-2 fas fa-user-graduate fa-l\
+g"> &nbsp; {{moduledetails.grade}}</i></p>
+            </div>
+          </div>
+        </div>
+
         
                 <div class="container-fluid">
                   <div class="row">
                       <div class="col-md-12" style="text-align: justify;">
                                              {{moduledetails.content|default:'No description added yet.'|safe}}
-                   <p>  No. Of Interactive : {{interactivestotal}} </p>
+                   <h6>  No. Of Interactive : {{interactivestotal}} </h6>
 
 		   {% for key,values in toolsdata.items %} 
-<li style="display:inline-block; margin-left:5px;font-size:12px; "   class="btn btn-outline-dark">
-		  <a href="{{values}}"> {{key}} </a> </li>
+<li style="display:inline-block; font-size:12px; "   class="square btn-outline-dark ">
+		  <a href="{{values}}"> {{key}} </a>  </li>
 		   {% endfor %}
                          </div>
                   </div>
 
                   <div class="row">
-                      <div class="col-md-4 py-5 ">
+                      <div class="col-md-4 py-4 ">
                   
                   <img
                     src="/media/{{moduledetails.image.grel_node.if_file.original.relurl}}"
@@ -250,9 +309,9 @@ class="fas fa-video "></i> </a>
                   />
                 
                       </div>
-                      <div class="col-md-8 py-5" style="overflow-y:scroll !important; height: 300px;">
+                      <div class="col-md-8 py-5">
                        <table class="table table-hover">
-            <thead>
+            <thead style="postion:sticky; overflow-y:auto; ">
               <tr>
               
                 <th scope="col">Unit </th>
@@ -283,7 +342,7 @@ class="fas fa-video "></i> </a>
                   </div> -->
                   <div class="row">
                     <div class="col-sm-9 mt-n3 ">
-            <i class="fas fa-eye "> View: 2 </i>            <i class="fas fa-cloud-downlaod-alt ml-3 "> Download: 0</i>
+        <!--    <i class="fas fa-eye "> View: 2 </i>            <i class="fas fa-cloud-downlaod-alt ml-3 "> Download: 0</i> -->
    <div class="row">
                   
               

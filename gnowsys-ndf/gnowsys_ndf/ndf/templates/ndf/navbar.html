@@ -7,30 +7,32 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="/static/ndf/OER-02.jpg" class="d-block w-100" alt="OER_slider">
-  <div class="carousel-caption d-none d-md-block " style="margin-top:-20% !important;">
+<!--  <div class="carousel-caption d-none d-md-block " style="margin-top:-20% !important;">
     <img src="/static/ndf/UNESCO Medal.png" width="250px" height="150px"   alt="UNESCO Medal Clix" class="img-fluid" style="margin-top:-10%;">         
           <p style="margin-top:-8%; margin-left:34%; font-size:16px; font-weight:700">Winner Of the prestigious UNESCO King Hamad Bin Isa Al-Khalifa Prize</p>
         </div>      
-    </div>
+-->
+    </div> 
     <div class="carousel-item">
       <img src="/static/ndf/OER-01.jpg" class="d-block w-100" alt="OER_slider">
- <div class="carousel-caption d-none d-md-block " style="margin-top:-20% !important;">
+
+ <!--   <div class="carousel-caption d-none d-md-block " style="margin-top:-20% !important;">
     <img src="/static/ndf/UNESCO Medal.png" width="250px" height="150px"   alt="UNESCO Medal Clix" class="img-fluid" style="margin-top:-10%;"\
 >
           <p style="margin-top:-8%; margin-left:34%; font-size:16px; font-weight:700;">Winner Of the prestigious UNESCO King Hamad Bin Isa Al-Khalifa Prize</p\
 >
         </div>
-
+-->
 </div>
     <div class="carousel-item">
       <img src="/static/ndf/OER-03.jpg" class="d-block w-100" alt="OER_slider">
- <div class="carousel-caption d-none d-md-block " style="margin-top:-20% !important;">
+ <!--   <div class="carousel-caption d-none d-md-block " style="margin-top:-20% !important;">
     <img src="/static/ndf/UNESCO Medal.png" width="250px" height="150px"   alt="UNESCO Medal Clix" class="img-fluid" style="margin-top:-10%;"\
 >
           <p style="margin-top:-8%; margin-left:34%; font-size:16px; font-weight:700">Winner Of the prestigious UNESCO King Hamad Bin Isa Al-Khalifa Prize</p\
 >
         </div>
-
+   -->
 </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" title="Prev" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -49,12 +51,19 @@
 
   <div class="collapse navbar-collapse justify-content-center" id="navbarsExample04">
     <ul class="navbar-nav  " >
+<li>
+<img src="/static/ndf/UNESCO Medal.png"  class="img-fluid" style="width:120px; height:70px; float:left;" > 
+</li>
       <li class="nav-item first-fliter-search">
         <a class="nav-link py-3 home fun-name" href="{% url 'e-library' group_id  %}"  title="E-library"> <i class="fas fa-book solid"></i> E-library <span class="sr-only">(current)</span></a>
       </li>
        <li class="nav-item dropdown">
         <a class="nav-link py-3 dropdown-toggle ml-3 fun-name" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<i class="fas fa-globe solid"  data-toggle="tooltip" title="select Domain"> </i> Domain</a>
+
+
+
+
+<i class="fas fa-globe solid"  data-toggle="tooltip" title="select Domain"> </i> {{ first_arg}}</a>
         <div class="dropdown-menu" aria-labelledby="dropdown04">
 <!--          <a href="{% url 'domain_page' group_id 'Mathematics' %}" id="maths" class="dropdown-item domain_name" >Math</a>
 -->
@@ -65,6 +74,7 @@
         </div>
       </li>
       <li class="nav-item ">
+	
         <a class="nav-link ml-3 py-3 fun-name" href="{% url 'about' group_id  %}"> <i class="fas fa-user-friends" title="About"></i>  About</a>
       </li>
       <li class="nav-item ">
@@ -147,3 +157,29 @@
       </ul>
     </div>
   </nav> -->
+<script>
+$('.nav li').click(function(){
+$('.nav li').removeClass('active');
+$(this).addClass('active');
+})
+
+$('.navbar-nav .nav-link').each(function(){
+    if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
+    {
+    $(this).addClass('active').siblings().removeClass('active');
+    }
+});
+$(document).ready(function () {
+    var links = $('.navbar ul li a');
+    $.each(links, function (key, va) {
+        if (va.href == document.URL) {
+            $(this).addClass('active');
+        }
+    });
+});
+
+$('.navbar-nav .nav-link a').click(function(){
+    $('.navbar-nav .nav-link a').removeClass('active');
+    $(this).addClass('active');
+})
+</script>
