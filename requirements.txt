@@ -1,6 +1,8 @@
 elasticsearch-dsl==6.4
 django==1.6
 django-mongokit==0.2.6
+django-pagination==1.0.7
+django-mailbox==4.4.1
 python-magic==0.4.6
 Pillow==2.6.1
 django-json-rpc==0.6.3
