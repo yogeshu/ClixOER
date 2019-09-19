@@ -46,7 +46,8 @@
      <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
      <style>
-    
+
+ 
       ul.nav-pills{
          position: sticky;
          top: 20%;
@@ -93,6 +94,10 @@
     color: #fff;
     top: 5px;
 }
+
+body p{
+font-size:14px;
+}
 @media only screen and (max-width:900px){
 
 .nav-scroll .nav-link {
@@ -109,12 +114,19 @@ max-width: 100%  !important;
   text-decoration:none;
   color:red;
 }
+
+ .navbar-light .navbar-nav .nav-link.active {
+    border-bottom: 1px solid #713558 !important;
+    color: #713 !important;
+}
  *:hover{
 transition:none !important;
 }
 .card:hover{
 border: 1px solid #000 !important;
 }
+
+
      </style>
 </head>
 
@@ -199,11 +211,12 @@ $('#return-to-top').click(function() {      // When arrow is clicked
         scrollTop : 0                       // Scroll to top of body
     }, 500);
 });
-
+/*
 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
                 $(this).ekkoLightbox();
             });
+*/
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
@@ -211,7 +224,6 @@ $(function () {
 $(function () {
   $('[data-toggle="popover"]').popover()
 })
-
 
 
 $(document).ready(function(){

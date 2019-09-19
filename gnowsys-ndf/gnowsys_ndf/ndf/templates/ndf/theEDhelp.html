@@ -3,11 +3,48 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
 -->
 {% block content %}
+
+<style>
+.breadcrumb li {
+background: #9693a3 !important;
+color:#fff !important;
+}
+.breadcrumb li a {
+color:#fff !important;
+
+}
+.breadcrumb li i {
+color:#fff !important;
+}
+
+
+</style>
+
 <div class="container">
-<div class="row justify-content-center" style="background: #007991;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #78ffd6, #007991);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #78ffd6, #007991); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+<nav aria-label="breadcrumb ">
+          <ol class="breadcrumb ml-n5 mt-3">
+            <li class="breadcrumb-item  " aria-current="page">
+<a   href="{% url 'e-library' group_id %}"
+ <i class="ml-2 fas fa-home fa-lg" ></i> </a> </li>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i>  Domain </li>
+ <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" href="{% url 'domain_page' group_id 'English'  \
+\                                                                                                                                             
+%}"> </i> English </li> </a>
+            <li class="breadcrumb-item ml-n2 " aria-current="page"> <i class=" fas  fa-lg"></i> Help Videos -English</li>
+          </ol>
+        </nav>
+
+<div class="row justify-content-center" style="background: #007991;  /* fallback for old browsers */                                          
+background: -webkit-linear-gradient(to right, #78ffd6, #007991);  /* Chrome 10-25, Safari 5.1-6 */                                            
+background: linear-gradient(to right, #78ffd6, #007991); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */               
 ">
+    
+
+
+
+
     <h1>  Help Video - English Team </h1>
         <div class="col-12 col-sm-4 col-md-10 py-5">
             <div class="row">

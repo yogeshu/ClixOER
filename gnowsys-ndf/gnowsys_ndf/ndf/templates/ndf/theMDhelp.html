@@ -4,6 +4,19 @@ h1{
 
 }
 
+.breadcrumb li {
+background: #9693a3 !important;
+color:#fff !important;
+}
+.breadcrumb li a {
+color:#fff !important;
+
+}
+.breadcrumb li i {
+color:#fff !important;
+}
+
+
 </style>
 <!--
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.min.js">
@@ -41,27 +54,131 @@ h1{
       -->
 
 {% block content %}
+
 <div class="container" style="width:100%;">
-<div class="row justify-content-center" style="background: #007991;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #78ffd6, #007991);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #78ffd6, #007991); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+<style>
+h1{
+
+}
+
+.breadcrumb li {
+background: #9693a3 !important;
+color:#fff !important;
+}
+.breadcrumb li a {
+color:#fff !important;
+
+}
+.breadcrumb li i {
+color:#fff !important;
+}
+
+
+</style>
+
+
+<nav aria-label="breadcrumb "  style="text-align: left;">
+          <ol class="breadcrumb ml-n5 mt-3">
+            <li class="breadcrumb-item  " aria-current="page">
+<a href="{% url 'e-library' group_id %}">
+ <i class="ml-2 fas fa-home fa-lg"></i> </a> </li>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i>  Domain </li>
+ <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" href="{% url 'domain_page' group_id 'Mathematic\
+\                                                                                                                                             
+s'  \                                                                                                                                        \
+                                                                                                                                              
+%}"> </i> Mathematics </li> </a>
+
+            <li class="breadcrumb-item  " aria-current="page"> <i class=" fas  fa-lg"></i> Help Videos - Mathemactics</li>
+          </ol>
+        </nav>
+
+
+
+
+
+<div class="row justify-content-center" style="background: #007991;  /* fallback for old browsers */                                          
+background: -webkit-linear-gradient(to right, #78ffd6, #007991);  /* Chrome 10-25, Safari 5.1-6 */                                            
+background: linear-gradient(to right, #78ffd6, #007991); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */               
 ">
-    <h1>  Help Video - English Team </h1>
+    
+
+<!--
+    <h1>  Help Video - Mathematics Team </h1>
+-->
         <div class="col-md-10 py-5">
+    <h1>  Help Video - Mathematics Team </h1>
+
             <div class="row">
-                <a href="https://www.youtube.com/embed/7RVdncvy-cc" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                    <img  src="https://img.youtube.com/vi/7RVdncvy-cc/0.jpg" class="rounded img-fluid">
-<h4 class="text-center"> dummy name </h4>
+                <a href="https://www.youtube.com/embed/Y996EhVrbb4" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img  src="https://img.youtube.com/vi/Y996EhVrbb4/0.jpg" class="rounded img-fluid">
+<h6 class="text-center">Fractions as tools for proportional reasoning</h6>
                 </a>
-                <a href="https://www.youtube.com/embed/j2MT9eFV_MM" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                    <img src="https://img.youtube.com/vi/j2MT9eFV_MM/0.jpg" class="img-fluid">
+                <a href="https://www.youtube.com/embed/AIzj0ntxtuM" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/AIzj0ntxtuM/0.jpg" class="img-fluid">
+<h6 class="text-center">How to develop proportional reasoning among students?</h6>
                 </a>
-                <a href="https://www.youtube.com/embed/zbeV_ICx7xI" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                    <img src="https://img.youtube.com/vi/zbeV_ICx7xI/0.jpg" class="img-fluid">
+                <a href="https://www.youtube.com/embed/aes71wbjbiM" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/aes71wbjbiM/0.jpg" class="img-fluid">
+<h6 class="text-center">What is Proportional Reasoning - Difference between additive and proportional thinking
+</h6>
                 </a>
             </div>    
 
 </div>
+
+
+
+
+ <div class="col-md-10 py-3">
+            <div class="row">
+                <a href="https://www.youtube.com/embed/6m1YP5wElCc" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img  src="https://img.youtube.com/vi/6m1YP5wElCc/0.jpg" class="rounded img-fluid">
+<h6 class="text-center">Introduction to CLIx Proportional Reasoning Module</h6>
+                </a>
+                <a href="https://www.youtube.com/embed/QL_DDuFf-WM" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/QL_DDuFf-WM/0.jpg" class="img-fluid">
+<h6 class="text-center">What is a chunking strategy for proportional reasoning and how it can develop?</h6>
+                </a>
+                <a href="https://www.youtube.com/embed/O8CuiyLOhwk" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/O8CuiyLOhwk/0.jpg" class="img-fluid">
+<h6 class="text-center">Real Life Situations Which are Proportional</h6>
+                </a>
+            </div>
+
 </div>
+
+
+
+
+
+ <div class="col-md-10 py-5">
+            <div class="row">
+                <a href="https://www.youtube.com/embed/gJgNjipBR6E" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img  src="https://img.youtube.com/vi/gJgNjipBR6E/0.jpg" class="rounded img-fluid">
+<h6 class="text-center">Approximately Proportional Situations</h6>
+                </a>
+                <a href="https://www.youtube.com/embed/imbEXrWl8lw" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/imbEXrWl8lw/0.jpg" class="img-fluid">
+<h6 class="text-center">Affine Proportional Relationships</h6>
+                </a>
+                <a href="https://www.youtube.com/embed/TO9me6evzNI" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/TO9me6evzNI/0.jpg" class="img-fluid">
+<h6 class="text-center">Module Design - CLIx Math Geometric Reasoning </h6>
+                </a>
+            </div>
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
 </div>
       {% endblock %}

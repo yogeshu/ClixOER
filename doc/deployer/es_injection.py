@@ -3,6 +3,7 @@ import os
 import sys
 import json
 from elasticsearch import Elasticsearch
+from elasticsearch_dsl import *
 from gnowsys_ndf.ndf.models import *
 
 #from gnowsys_ndf.settings import GSTUDIO_SITE_NAME
@@ -129,10 +130,19 @@ def main():
 
                 res = es.scroll(scrollid, scroll="1m")
             print "temp result:",temp
-            nodeids = node_collection.find({},{'_id':1})
-            for each in nodeids:
-                mongodb_nd_ids.append(str(each._id))
-
+            if index_lower == 'nodes':
+                nodeids = node_collection.find({},{'_id':1})
+                for each in nodeids:
+                    mongodb_nd_ids.append(str(each._id))
+            elif index_lower == 'triples':
+                nodeids = triple_collection.find({},{'_id':1})
+                for each in nodeids:
+                    mongodb_nd_ids.append(str(each._id))
+            else:
+                nodeids = filehive_collection.find({},{'_id':1})
+                for each in nodeids:
+                    mongodb_nd_ids.append(str(each._id))
+            
             print len(mongodb_nd_ids),nodeids.count(),len(temp)
             if(nodeids.count() >= len(temp)):
                 if(index_lower.find("nodes") !=-1):
@@ -187,8 +197,12 @@ def main():
                     else:
                         index_docs(counters, index_lower, doc_type)
             else:
-                print "ES has more nodes than mongodb"
-
+                print "ES has more nodes than mongodb",index_lower,doc_type,len(mongodb_nd_ids)
+                #mongodb_nd_ids = [ObjectId(each) for each in mongodb_nd_ids]
+                q = Q('bool',must_not=[Q('terms',id = mongodb_nd_ids)])
+                s = Search(using=es,index=index_lower, doc_type= doc_type[0].lower()).query(q)
+                print "documents to b deleted:",s.count()
+                s1 = s.delete()
             #print(res['_scroll_id'])
             #print(res['hits']['total'])
 

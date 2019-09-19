@@ -1,1 +1,61 @@
-Hi
+{% extends "ndf/base.html" %}
+
+<style>
+
+<nav aria-label="breadcrumb "  style="text-align: left;">
+          <ol class="breadcrumb ml-n5 mt-3">
+            <li class="breadcrumb-item  " aria-current="page">
+<a href="{% url 'e-library' group_id %}">
+ <i class="ml-2 fas fa-home fa-lg"></i> </a> </li>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i>  Domain </li>
+ <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" href="{% url 'domain_page' group_id 'Mathematic\
+\                                                                                                                                             
+s'  \                                                                                                                                        \
+                                                                                                                                              
+%}"> </i> Mathematics </li> </a>
+
+            <li class="breadcrumb-item  " aria-current="page"> <i class=" fas  fa-lg"></i> Help Videos - Mathemactics</li>
+          </ol>
+        </nav>
+
+
+
+</style>
+
+
+<nav aria-label="breadcrumb ">
+          <ol class="breadcrumb ml-n5 mt-3">
+            <li class="breadcrumb-item  " aria-current="page">
+<a href="{% url 'e-library' group_id %}"
+ <i class="ml-2 fas fa-home fa-lg"></i> </a> </li>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i> Domain  </li>
+ <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;"
+ href="{% url 'domain_page' group_id 'Science' %}"> </i> Science </li> </a>
+<!--                                                                                                                                         
+  <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" >  Design And Developement </li> </a>         
+-->
+            <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> -->
+            <li class="breadcrumb-item  " aria-current="page"> <i class=" fas  fa-lg"></i> Help Videos -Science</li>
+            <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> -->
+
+
+          </ol>
+        </nav>
+
+
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-4">Coming Soon!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or informati\
+on.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,106 +1,143 @@
-{% extends "ndf/base.html" %} {% block content %}
+1;5202;0c{% extends "ndf/base.html" %} {% block content %}
 <style>
 h1 , h2 , h3 , h4 , h5 , h6 , p {
     text-transform: capitalize;
 }
+
+
+#uDuu p {
+    font-size: 14px;
+    text-align: justify;
+    text-
+
+}
+#uDuu li {
+ font-size:14px;
+ text-align: justify;
+}
+#uslider img{
+ text-align:center;
+border-radius: 10px;
+}
+
 .back-dd{
+background: #F8F9FA !important;
   background: rgb(139, 131, 131);
 text-emphasis: none;
 font-family: Roboto;
 font-weight: 300;
 }
+
+
+
+.breadcrumb li {
+background: #9693a3 !important;
+color:#fff !important;
+}
+.breadcrumb li a {
+color:#fff !important;
+
+}
+.breadcrumb li i {
+color:#fff !important;
+}
+
 </style>
+<!--
   <nav aria-label="breadcrumb">
           <ol class="breadcrumb ml-n5">
             <li class="breadcrumb-item  "aria-current="page"> <i class="ml-n4 fas fa-home fa-lg"></i></li>
               <li class="breadcrumb-item  "aria-current="page"> <i class="ml-n4 fas fa-home fa-lg"></i> Design And Development - Science</li>
 
-            <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> -->
+            <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> 
           </ol>
-        </nav> 
+        </nav>
+--> 
+
+ <nav aria-label="breadcrumb ">
+          <ol class="breadcrumb ml-n5 mt-3">
+            <li class="breadcrumb-item  " aria-current="page">
+<a href="{% url 'e-library' group_id %}"
+ <i class="ml-2 fas fa-home fa-lg"></i> </a> </li>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i>  Domain </li>
+ <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" href="{% url 'domain_page' group_id 'Science'  \
+%}"> </i> Science </li> </a>
+<!--                                                                                                                                         
+  <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" >  Design And Developement </li> </a>         
+-->
+            <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> -->
+            <li class="breadcrumb-item  " aria-current="page"> <i class=" fas  fa-lg"></i> Design And Development-Science</li>
+            <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> -->
+
+
+          </ol>
+        </nav>
+
  <div class="container-fluid py-5">
                 <div class="row">
                   <div class="col-12 col-sm-12 col-md-10 mx-auto ">
-                    <div class="Science">
-<h1 class="back-dd py-1">
-  Design and Development process
+                    <div class="Science" id="uduu">
+<h1 class="back-dd py-1">  
+
+Objectives
+
 </h1>
 <p>
+There have been huge leaps in digital technology and increasing amount of research in educational technology in the last two decades, it is about time to bring the insights from research into practice and exploit the potential of digital technology to improve the quality education at scale. Science modules of the connected learning initiatives are prepared with the aim to blend the digital instruction with classroom instruction and to push the overall pedagogy in mainstream schools towards more interactive, learner centric and constructivist pedagogy, in keeping with the suggestions of NCF 2005 (science position paper).
+<br>
+
+Designing the CLIx Science Modules
+Design is an iterative, collaborative process, which reflects in the method used to digitize the selected Science topics. The design and development of the CLIx Science modules is detailed in Figure 1 and the sections that follow.
+
+</p>
+<h5>Identifying topics</h5>
+<p>
+The process of designing started from identifying which topics needed to be developed digitally. to be developed. Here we took three things into consideration. First we invited suggestions from practicing teachers. They suggested a number of topics which they found difficult to teach. Second, we carried out a literature review of science education research that points towards topics that are particularly prone to misconceptions and are difficult, such as dynamics. (Are you suggesting or assuming here that such topics are better suited to digitization?) , Our final consideration was to pick topics that would be most suited for adopting to the digital medium. For example, topics like astronomy hinges upon visuospatial thinking and hence we felt that the digital medium can play a pivotal role in preparing instructional material on such topics. Based upon these inputs, we finalized six topics namely, atomic structure (chemistry), astronomy, motion, sound (physics), ecosystem and health and disease (biology).
+
+</p>
+<h1 class="back-dd py-1">                                                                                          
+  Deciding Broad form of the material / High Level Design / Macro Design / Design Phase                                                       
+                                                                                                                                              
+</h1>
+<!--<p>
   The process of design and development is given in the flowchart (Figure 1).
   The process is detailed out in the following subsections.
 </p>
-
-<h5>Identifying topics</h5>
+-->
 <p>
-  The process of designing started from identifying topics on which instruction
-  needs to developed. Here we took three things into consideration. First we
-  invited suggestions from practicing teachers. They suggested a number of
-  topics which they found difficult to teach. Second we referred to the
-  literature in science education research. Earlier research suggests that
-  certain topics, such as dynamics, are prone to misconceptions and more
-  difficult than others. Finally, we considered which of those topics are better
-  suited for adopting into digital medium. For example, topics like astronomy
-  hinges upon visuospatial thinking and hence digital medium can play a pivotal
-  role in preparing instructional material. Based upon these inputs, we
-  finalized six topics namely, atomic structure (chemistry), astronomy, motion,
-  sound (physics), ecosystem and health and disease (biology).
+This section highlights the high level or macro design decisions that would impact the overall design of the modules. 
 </p>
-
-  <h5>Deciding Broad form of the material</h5>
+<!--  <h5>Deciding Broad form of the material</h5>
   <p>
     In this subsection elaborates upon some of the key decisions and their
     justification.
   </p>
+-->
   <h5>Blended modules</h5>
   <p>
-    We decided to create blended material instead of completely digital material
-    for two reasons. First learning science is a multimodal process. One needs
-    to go through different experiences in lab (observing the dramatic changes
-    in colours when you mix the chemicals, smelling and feeling them, acquiring
-    motor skills to measure small quantities through vernier calliper or
-    pipette, feeling electric shocks (of about 20 volts DC) etc.), outdoor
-    experiences (of watching stars, gathering feathers, getting bitten up by
-    bees and thrones etc.), discussions with friends, reading, making
-    back-of-the-envelope calculations, applying the knowledge to solve practical
-    problems and so on. Adding digital medium would definitely be of great value
-    because it will help students to visualize the concepts better and engage
-    them in a game environment where they can apply their knowledge to solve
-    problems, but it cannot be the sole medium of teaching and learning. Second,
-    were aware that the number of students in a class are typically large (about
-    40) as compared to the number of computers available in the school computer
-    lab (maximum 10) in government schools for which the CLIx worked, which also
-    is the case in aided school as well as private low cost schools. So students
-    have to access the computers in batches which is time consuming and
-    logistically difficult. So we decided that about 25 to 30% of the content
-    can be digital. Rest should include hands-on activities, discussions and
-    readings, which, in ideal conditions, should be facilitated by teacher but
-    can be accessed by an individual student of a group of students as a self
-    learning material.
+Our first major decision was to create blended material instead of completely digital material for two reasons. The first reason was that learning science is a multimodal process. One needs to go through different experiences in lab (observing the dramatic changes in colours when you mix the chemicals, smelling and feeling them, acquiring motor skills to measure small quantities through vernier calliper or pipette, feeling electric shocks (of about 20 volts DC) etc.), outdoor experiences (of watching stars, gathering feathers, getting bitten by bees and thrones etc.), discussions with friends, reading, making back-of-the-envelope calculations, applying the knowledge to solve practical problems and so on.
+<br> Adding digital medium would definitely be of great value because it will help students to visualize the concepts better and engage them in a game environment where they can apply their knowledge to solve problems, but it cannot be the sole medium of teaching and learning.
+The second reason for the blended approach was a high number of students in CLIx schools (close to 40 in a class), with a relatively low number of computers. This resulted in a high student to computer ratio. We found this to be the case in both Government schools and private low cost schools. Such a situation would be best served by a scenario where about 30% of material would be digital and the balance would be a compilation of various other resources such as hands-on activities, discussions and readings. These activities, ideally, would be facilitated by the teacher and when that was not possible, students would access the resources as self learning material.
+
   </p>
   <h5>
-    Overlap with textbook chapters
+  <!--  Overlap with textbook chapters -->
+Alignment With Textbook 
   </h5>
-  <p>
-    We decided that the modules should roughly follow the content covered in
-    textbook chapters because we were aware that teachers are already
-    overburdened and would not have time to teach out of the syllabus topics.
-    Although we were working with multiple states, the content covered under
-    certain topic in different state textbooks and NCERT textbooks had a large
-    overlap. This content seemed reasonable, although some important concepts
-    were missing from some of the textbooks. We decided to address core content
-    under each topic with some extra information wherever it would enhance
-    students’ understanding. However, in all our module the treatment and the
-    activities are different from those in the textbook. Some of the textbooks
-    did present many activities and pushed teachers towards constructivist
-    pedagogy. But we presented different set of activities so that the teachers
-    have a greater pool of resources from which teachers can learn and choose.
+  <p>Our next design decision was that roughly follow the content covered in the textbook.  By doing this, we wanted to ensure that teachers would readily use the digital resources and not consider them as out of syllabus, thus making it to be additional workload.  In our review of the textbooks of various state boards, described earlier, we discovered that there was a lot in common between these textbooks and NCERT textbooks. Even though we felt that some important topics were missing from the state board textbooks, we decided to work with this common overlap that we found. We did make sure however, that although the topics were same as in the textbook, the treatment of our modules was distinct from how they were treated in the textbook. We also made sure that we presented teachers with a variety of activities so that they may have have a larger pool of resources to choose from. 
+
   </p>
-<h1 class="back-dd py-1">
+<h5>
         Pedagogic Pillar
 
-</h1>
+</h5>
+<!--
 <p>CLIx team identified three pedagogic pillars which all CLIx modules, irrespective of subject, used as guiding principles. There were: collaborative learning, authentic learning and learning from mistakes. Here is a short description on how each of them emerged in the design of science module.
-    </p>
+    </p>-->
+<p>
+CLIx modules of all subjects rest on three pedagogic pillars which guide the design and development of modules. These pillars are: collaborative learning, authentic learning and learning from mistakes. Here is a short description on how each of them emerged in the design of the science modules.
+
+</p>
 <p> 
        <strong>Collaborative learning: </strong> Collaboration plays a crucial role in both learning and advancement of science. Keeping this in mind, many activities in the module are to be done in pairs or groups. All the digital activities were designed to be played in papers, with both players having active role. An interesting example would be, in ‘Run kitty run’ game in the ‘Understanding Motion’ module, when the mouse and kitty start at different point of time, for the given speed of the mouse, one player has to set the speed of the kitty so that she can catch the mouse exactly at the finish line in a race and the other player has bet whether the kitty will catch the mouse on time, early, or late. This of course is of great value in its own sense because it exposes students to one of the core principles of science, inviting review on predictions and reviewing those predictions. But it also solves a practical problem of high students-to-computer ratio. Many of the hands-on activities are also designed to be done in collaboration. For example, In roleplays in ‘Basic Astronomy’ module students become different celestial bodies and mimic their motion together to observe the consequences. 
 
@@ -111,14 +148,15 @@ font-weight: 300;
         
 </p>
 \<p>
-        Learning from mistakes: The module offers opportunities to learners to make mistakes and learn from them. Some activities are designed such that students will automatically realize their mistakes if they do any. For others either teacher or a peer can point them out. A teacher’s skill to identify them mistake and use it as a resource to discuss things, invite a debate or clarify certain concepts through counter examples or demonstration is crucial here.  
+  <strong>      Learning from mistakes: </strong> The module offers opportunities to learners to make mistakes and learn from them. Some activities are designed such that students will automatically realize their mistakes if they do any. For others either teacher or a peer can point them out. A teacher’s skill to identify them mistake and use it as a resource to discuss things, invite a debate or clarify certain concepts through counter examples or demonstration is crucial here.  
         In case of digital activities, a well designed feedback, customized to each mistake has the potential to provide opportunity to learn from mistakes.  Among digital activities, two games, namely Run Kitty Run and Astronomer, which are designed in-house, particularly stand out in terms of providing an opportunity for students to learn from mistakes. They include small problems, detailed feedback to students’ solutions and opportunities to correct their solutions.
         
 </p>
-<h1 class="back-dd py-1">
-        Teacher’s role
+<h5>
+        Teacher's role
 
-</h1>
+</h5>
+<!--
 <p>
         For the classroom lessons, the teacher is supposed to lead the classroom activities are discussions around them. For the digital lessons, teacher is envisioned as a facilitator. For this, the teacher should be well familiar with the entire module before she starts to teach. More importantly, the teacher should be aware of the rationale behind each activity. Teachers are strongly recommended to study the Teachers’ book before taking the module into their classrooms. Once teachers are familiar with the pedagogic approach and the rationale behind the activities, they are free to change the activities to appropriate them for their curricula and classroom situation.
         Teacher’s presence is necessary for two reasons:
@@ -126,16 +164,34 @@ font-weight: 300;
         As a content facilitator: Teacher can use this time for personal tutoring by going around answering students’ questions on one to one basis. They may be able to notice certain common mistakes and use them as a resource to clarify the concepts. 
         
 </p>
-<h4>
-        Process of ideation
+-->
 
-</h4>
+<p>
+Our final design decision was about the role of teachers in this initiative. In the classroom, , the teacher usually leads the classroom activities and discussions around them. For the digital lessons too, teacher is envisaged as a facilitator. For this, the teacher should be familiar with the entire module before she starts teaching. More importantly, the teacher should be aware of the rationale behind each activity. We recommend that Teachers study the  book before taking the module into their classrooms. Once they are familiar with the pedagogic approach and the rationale behind the activities, they are free to change the activities to appropriate them for their curricula and classroom situation.
+The s presence is necessary for two reasons:
+<li>Managing logistics: which includes guiding the students through digital activities, solving technological problems, making sure that all students are getting the opportunity to interact with computer (since students will be working in pairs or triads), and so on. </li>
+<li>As a content facilitator: Teacher can use this time for personal tutoring by going around answering  questions on one to one basis. They may be able to notice certain common mistakes and use them as a resource to clarify the concepts. 
+
+</li>
+</p>
+<h1 class="back-dd py-1">
+        Process of ideation / Ideation Phase 
+
+
+</h1>
+<!--
 <p>
         As indicated earlier, several design related decisions were made during the process of ideation. Many hands-on and digital activities available in textbooks, through internet and other resource material and documented in the literature were reviewed. Some of them were selected and appropriated for the modules, some were freshly created in order to fill the gaps.
 
 </p>
-<h4>
-        Process of developing digital content
+-->
+<p>
+As indicated earlier, several design related decisions were made during the process of ideation. Many hands-on and digital activities available in textbooks, through internet and other resource material and documented in the literature were reviewed. Some of them were selected and appropriated for the modules and some were freshly created in order to fill the gaps.
+
+</p>
+<h4 class="back-dd py-1">
+        Process of developing digital content / Development Phase or Micro-Design
+
 
 </h4>
 <p>
@@ -145,9 +201,11 @@ font-weight: 300;
         
 </p>
 <h1 class="back-dd py-1">
-        Learnings from last two years and its implications 
+        Learnings from last two years and its implications / Insights from the  Implementation Phase
+
 
 </h1>
+<!--
 <p>
         The CLIx team supported module implementation in the partner states. Some of the important points learned from this experience are given below:
         Teacher preparation: The pedagogy adopted by the modules is quite different from the routine pedagogy used in main-streem Indian schools. Teachers need to learn different class management skills to facilitate the discussions, collaboration and out-door activities without disturbing the discipline of the school. They also need to know broader issues in science education such as the importance of understanding the nature of science and Inclusivity. A three-month blended course called ‘interactive science teaching’ was prepared to support teachers in this process. It included resource material for each module, other resources around important issues in science education and assessment. Module implementation was a compulsory part of the course and one of the assignments required teachers to reflect on the module implementation and write what they learned from it.
@@ -155,10 +213,24 @@ font-weight: 300;
         Functional computer lab is seen to be essential for module implementation. The students to computer ratio should be 2:1. It is recommended that the computer lab has a black board on which both students and teachers can write instructions, draw diagrams, post questions and so on. The computer lab should have 10 computers and one server. Server should have 8 GB RAM and 1 TB Hard Disk space, processor should be above i3. Client machines can be of lower specifications, but should at least have 2 GB RAM.
         
 </p>
+-->
+<p>
+The CLIx team supported module implementation in the partner states. Some of the important points learned from this experience are given below:
+<li>   Teacher preparation: The pedagogy adopted by the modules is quite different from the routine pedagogy used in main-streem Indian schools. Teachers need to learn different class management skills to facilitate the discussions, collaboration and out-door activities without disturbing the discipline of the school. They also need to know broader issues in science education such as the importance of understanding the nature of science and inclusivity. A three-month blended course Interactive Science  was prepared to support teachers in this process. It included resource material for each module and other resources around important issues in science education and assessment. Module implementation was a compulsory part of the course and one of the assignments required teachers to reflect on the module implementation and write what they learned from it.  </li>
+
+<li>
+  During the field observations we realized that sometimes teachers did not implement the entire module. Instead they selected a few activities from the modules and blended it with their regular teaching. This is one of the reasons we are providing individual activities in the modules as OER.
+</li>
+<li>
+
+A functioning  computer lab is essential for effective module implementation. The students to computer ratio should ideally be 2:1. It is recommended that the computer lab have a black board on which both students and teachers can write instructions, draw diagrams, post questions and make notes which facilitate discussions . The computer lab should have 10 computers and one server. The server should have an 8 GB RAM and 1 TB of hard disk space. The processor should be above i3. Client machines can be of lower specifications, but should have at least 2 GB of RAM.
+</li>
+</p>
 <p>
      <strong>   Suggestions for teachers </strong>
 
 </p>
+
 <ul>
 
 
@@ -178,5 +250,15 @@ font-weight: 300;
 
     </li>
 </ul>
+
+<h1 class="back-dd py-1">
+References 
+</h1>
+<p>
+Mayer, R. E. (2014). Cognitive theory of multimedia learning. In R. E. Mayer (Ed.), Cambridge handbooks in psychology. The Cambridge handbook of multimedia learning (pp. 43-71). New York, NY, US: Cambridge University Press.
+NCERT (2005). NCF position paper Teaching of 
+Scienceon 
+</p>
+
 </div></div></div></div>
 {% endblock %}

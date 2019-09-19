@@ -1,7 +1,7 @@
 
 
 <h1 class="text-center py-5"> Contact Us </h1>
-<p  class="text-center " >Hope you enjoyed and found our modules useful. For any further queries or feedback, please write to:  </p>
+<!--<p  class="text-center " >Hope you enjoyed and found our modules useful. For any further queries or feedback, please write to:  </p> -->
 {% for message in messages %}
   <div class="alert {{ message.tags }} alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -14,14 +14,14 @@
 	<div class="wrap-contact100">
 		<form class="contact100-form validate-form" id="c" action="{% url 'send_message' group_id %} "  method="POST">
   {% csrf_token %}
-			<span class="contact100-form-title">
-				We love to hear from you!
+			<span class="contact100-form-title" style="text-align:justify;">
+			Hope you enjoyed and found our modules useful. For any further queries or feedback, please write to: 
 			</span>
 
 		<!--	<label class="label-input100" for="first-name">Tell us your name *</label>  -->
                         
 			<div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Type first name">
-				<input id="first-name" class="input100" type="text" name="first_name" placeholder="First name" required>
+				<input  class="input100" type="text" name="first_name" placeholder="First name" required>
 				<span class="focus-input100"></span>
                 	</div>  
 			<div class="wrap-input100 rs2-wrap-input100 validate-input" data-validate="Type last name">
@@ -180,7 +180,10 @@
 input {
 	outline: none;
 	border: none;
+     
+
 }
+
 
 textarea {
   outline: none;
@@ -232,21 +235,21 @@ iframe {
 /*==================================================================
 [ Text ]*/
 .txt1 {
-  font-family: Poppins-Regular;
+  
   font-size: 18px;
   line-height: 1.2;
   color: #fff;
 }
 
 .txt2 {
-  font-family: Poppins-Regular;
+
   font-size: 15px;
   line-height: 1.6;
   color: #999999;
 }
 
 .txt3 {
-  font-family: Poppins-Regular;
+  
   font-size: 15px;
   line-height: 1.6;
   color: #00ad5f;
@@ -341,8 +344,9 @@ iframe {
 .contact100-form-title {
   width: 100%;
   display: block;
-  font-family: Poppins-Regular;
-  font-size: 30px;
+ 
+  font-size: 14px;
+  font-weight:400;
   color: #333333;
   line-height: 1.2;
   text-align: center;
@@ -370,7 +374,6 @@ iframe {
 }
 
 .label-input100 {
-  font-family: Poppins-Regular;
   font-size: 12px;
   color: #555555;
   line-height: 1.5;
@@ -396,7 +399,7 @@ iframe {
   display: block;
   width: 100%;
   background: transparent;
-  font-family: Poppins-Regular;
+ 
   font-size: 18px;
   color: #666666;
   line-height: 1.2;
@@ -482,7 +485,7 @@ textarea.input100 {
   border-radius: 2px;
   background: #00ad5f;
 
-  font-family: Montserrat-Bold;
+  
   font-size: 12px;
   color: #fff;
   line-height: 1.2;
@@ -579,7 +582,7 @@ textarea.input100 {
   right: 2px;
   pointer-events: none;
 
-  font-family: Poppins-Regular;
+  
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;

@@ -1,4 +1,4 @@
-B{% extends "ndf/base.html" %}
+{% extends "ndf/base.html" %}
 
 <link href="../static/multislider.js">
 {{csrf_token}}
@@ -13,12 +13,8 @@ B{% extends "ndf/base.html" %}
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb ml-2">
             <li class="breadcrumb-item ml-n3" aria-current="page" > <a style="color:#fff;" href="{% url 'e-library' group_id  %}"> <i class=" fas fa-home fa-lg "></i> </a> </li>
- <li class="breadcrumb-item" style="background:#7c777c;"> <a style="color:#fff;"><i class="ml-n2 fas fa-globe fa-lg"></i></a>Domain <li>
-
-            <li class="breadcrumb-item pl-n2 " aria-current="page"> 
-<!--<i class="fa fa-calculator fa-sm"></i> -->
- {{ first_arg }}</li>
-
+ <li class="breadcrumb-item" style="background:#7c777c;"> <a style="color:#fff;"><i class="ml-n2 fas fa-globe fa-lg"></i></a>Domain </li>
+<li class="breadcrumb-item pl-n2 " style="">{{ first_arg }}</li>
 
            </ol>
         </nav>
@@ -36,22 +32,22 @@ B{% extends "ndf/base.html" %}
     <div class="row">
       <nav class="col-12 col-sm-12 col-md-2" id="verticalScrollspy">
         <ul class="nav flex-column nav-pills nav-scroll">
-          <li class="nav-item "><a class="nav-link active" href="#dogs"> <img src="/static/ndf/modules.png" class="img-fluid" style="width:25px; height:25px;"> Modules</a></li>
-          <li class="nav-item"><a class="nav-link" href="#alpacas"><img src="/static/ndf/voices from the field.png" class="img-fluid" 
+          <li class="nav-item "><a title="Click to see all modules" class="nav-link active" href="#dogs"> <img src="/static/ndf/modules.png" class="img-fluid" style="width:25px; height:25px;"> Modules</a></li>
+          <li class="nav-item"><a class="nav-link"  title="Testimonials of student and teachers" href="#alpacas" ><img src="/static/ndf/voices from the field.png" class="img-fluid" 
 style="width:25px; height:25px;">Voices From The Field</a></li>
-          <li class="nav-item"><a class="nav-link" href="#cats">
+          <li class="nav-item"><a class="nav-link" title="Support material to integrate Clix OERs in the classroom" href="#cats">
 <img src="/static/ndf/clix in the classroom.png" class="img-fluid"
 style="width:25px; height:25px;">
-CLIx In The Classroom </a></li>
-          <li class="nav-item"><a class="nav-link" href="#penguins">
+CLIx in the Classroom </a></li>
+          <li class="nav-item"><a class="nav-link" title="Know about the design and development details of CLix OERs" href="#penguins">
 <img src="/static/ndf/design and development.png" class="img-fluid"
 style="width:25px; height:25px;">
   Design and<span class=" py-1">
-Development </span> </a></li>
-          <li class="nav-item"><a class="nav-link" href="#team"><img src="/static/ndf/team.png" class="img-fluid"
+Development Process </span> </a></li>
+          <li class="nav-item"><a class="nav-link" title="Know our team" href="#team"><img src="/static/ndf/team.png" class="img-fluid"
 style="width:25px; height:25px;"> Team Details  </a></li>
 
-     <li class="nav-item"><a class="nav-link" href="#rabbits"><i class="fas fa-comments"></i> Connect with Us</a></li>
+     <li class="nav-item"><a class="nav-link" title="Connect with us"  href="#rabbits"><i class="fas fa-comments"></i> Contact us </a></li>
         </ul>
       </nav>
       <div class="col-12 col-md-10 col-lg-10">
@@ -64,7 +60,7 @@ style="width:25px; height:25px;"> Team Details  </a></li>
 
  <div id="alpacas" class="container-fluid" class="mb-5  mt-5">
            <!-- <h1 class="text-center">Testimonials</h1>   -->
-                <h1 class="text-center mt-2"> Voices from the Field</h1>
+                <h1 class="text-center mt-4"> Voices from the Field</h1>
 {% include "ndf/oer_testimonials.html" %}
           </div>
 

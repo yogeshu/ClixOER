@@ -129,7 +129,7 @@ class Triple(DjangoDocument):
       attribute_object_value_for_name = attribute_object_value[:20]
       self.name = "%(subject_name)s -- %(attribute_type_name)s -- %(attribute_object_value_for_name)s" % locals()
       name_value = self.name
-      print name_value
+     # print name_value
       subject_type_list = at_node.subject_type
       subject_member_of_list = subject_document.member_of
       print "subject type list",subject_type_list

@@ -1,14 +1,14 @@
 {% load get_relation_value  from ndf_tags %}
 <style>
-a:hover {
+a:hover  {
 cursor: pointer;
 }
   i {
-
+  
 overflow:hidden;
 }
   ul > i{
-  color: rgb(43, 113, 194);
+ 
 }
 table {
   width: 100%;
@@ -163,8 +163,12 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 </div>   -->         
 
 <div class="modal-header">
-       <h5 class="modal-title ml-2 " id="exampleModalLongTitle" class="col-10  col-md-3  col-sm-10" style="font-weight:bold; font-size:
+<div class="row">
+<div class="col-12 col-sm col-md-5">
+       <h5 class="modal-title ml-2 " id="exampleModalLongTitle" class="col-12  col-md-5  col-sm-10" style="font-weight:bold; font-size:
  18px;">{{moduledetails.name}}</h5>
+</div>
+
 <!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -183,8 +187,8 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
           </div>
         </div>
         -->
-        <div class="row" >
-          <div class="col-sm">
+        
+          <div class="col-12 col-sm-12 col-md-7 mt-1  align-items-md-end">
         
         
         
@@ -192,12 +196,12 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
  <a href="https://demo-clix.tiss.edu/home/module/{{moduledetails.id}}/courses" data-toggle="tooltip" title="Explore Module Online" \
  target="_blank" >
 
-            <i  class="fas fa-rocket ml-4 fa-lg"></i> </a> 
+            <i style="color: #5088c7;"  class="fas fa-rocket ml-4 fa-lg"></i> </a> 
                     </div>
 
 <div class="dropdown show" style="display:inline-block;">
  <a data-toggle="dropdown" title="Download Offline Version"  href=""  id="dropdownMenuLinKLink">
-            <i class="fas fa-cloud-download-alt ml-4 fa-lg"></i></a>
+            <i style="color: #5088c7;" class="fas fa-cloud-download-alt ml-4 fa-lg"></i></a>
 
 <div class="dropdown-menu"  aria-labelledby="dropdownMenuLinkLink">
 
@@ -211,7 +215,7 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 <div class="dropdown show" style="display:inline-block;">
 
        <a   data-toggle="dropdown" href="" title="Student Handbook" id="dropdownMenuLink">
-            <i class="fas fa-user-graduate ml-4 fa-lg"></i></a> 
+            <i style="color:#5088c7;" class="fas fa-user-graduate ml-4 fa-lg"></i></a> 
 <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
 
 
@@ -223,7 +227,7 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 
   <div class="dropdown show" style="display:inline-block;">
          <a data-toggle="dropdown" title="Teacher Handbook"  href="" id="dropdownMenuLinkTeacher">
-            <i class="fas  fa-chalkboard-teacher ml-4 fa-lg"></i></a> 
+            <i style="color: #5088c7;" class="fas  fa-chalkboard-teacher ml-4 fa-lg"></i></a> 
 
 <div class="dropdown-menu"  aria-labelledby="dropdownMenuLinkTeacher">
 
@@ -234,10 +238,17 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 </div>
 </div>
 
+<div style="display:inline-block;" class="video-modal">                                                                                       
+<a class="video"  data-toggle="modal" data-target="#exampleModalCenterLu" style="color:rgb(7, 120, 250);"  title="Help Video" style="display:\
+inline-block" > <i             style="color: #5088c7;"                                                                                                               
+class="fas fa-video ml-4  fa-lg "></i> </a>                                                                                                        
+</div>   
+
+
                        <div class="dropdown show" style="display:inline-block" href="">
 
      <a data-toggle="dropdown" title="Share Link"   href="" id="dropdownMenuLink">
-            <i class="fas fa-share-alt  ml-3 fa-lg"></i></a>  
+            <i style="color: #5088c7;" class="fas fa-share-alt  ml-3 fa-lg"></i></a>  
                                            <div class="dropdown-menu" href="" aria-labelledby="dropdownMenuLink" >
                           <a class="dropdown-item" onclick="CopyLink()"  id="copy">Copy</a>
                        
@@ -250,15 +261,17 @@ L, 'facebook-popup', 'height=350,width=600'); return false;"
 <a class="dropdown-item" href="javascript:void(window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href)+'&text='+en\
 codeURIComponent(document.title), '_blank'))" target="_blank">
     <i></i>
-    Telegram Link
+  Share On  Telegram 
 </a>
 
                         </div>
                       </div>
+<!--
 <div style="display:inline-block;" class="video-modal">
 <a class="video"  data-toggle="modal" data-target="#exampleModalCenterLu" style="color:rgb(7, 120, 250);"  title="Help Video" style="display:inline-block" > <i 
 class="fas fa-video  fa-lg "></i> </a>
 </div>
+-->
 </div>
 </div>
 
@@ -276,11 +289,16 @@ class="fas fa-video  fa-lg "></i> </a>
             <div class="col-sm-2">
          <p class="badge badge-secondary " style="padding:5px; font-size:10px; color:#fff !important;">
 
-<i  class="fas fa-language fa-lg"> &nbsp; {{moduledetails.subject}}</i></p>
+<i data-toggle="tooltip" title="Subject "  class="fas fa-language fa-lg"> &nbsp; {{moduledetails.subject}}</i></p>
 </div>
   <div class="col-sm-2">
-      <p class="badge badge-secondary" style="padding:5px;  font-size: 10px; color:#fff !important;"><i class="pl-2 fas fa-user-graduate fa-l\
-g"> &nbsp; {{moduledetails.grade}}</i></p>
+      <p class="badge badge-secondary" style="padding:5px;  font-size: 10px; color:#fff !important;"><i data-toggle="tooltip" title="Grade" class="pl-2 fas fa-user-graduate fa-l\
+g"> &nbsp; {% for each_attr in moduledetails.grade %}{{each_attr|slice:"5:"}}
+                      {% if not forloop.last %}, {%endif %}
+                      {% endfor %}
+ 
+
+</i></p>
             </div>
           </div>
         </div>
@@ -290,11 +308,21 @@ g"> &nbsp; {{moduledetails.grade}}</i></p>
                   <div class="row">
                       <div class="col-md-12" style="text-align: justify;">
                                              {{moduledetails.content|default:'No description added yet.'|safe}}
-                   <h6>  No. Of Interactive : {{interactivestotal}} </h6>
+<br>                  
+<br>
+ <h6>  No. Of Interactive : {{interactivestotal}} </h6>
 
 		   {% for key,values in toolsdata.items %} 
-<li style="display:inline-block; font-size:12px; "   class="square btn-outline-dark ">
-		  <a href="{{values}}"> {{key}} </a>  </li>
+
+<div class="row" style="display:inline-block !important;">
+<div class="col-12 col-sm-3 col-md-3">
+<img src="{{values.1}}" class="img-fluid"   width="70" height="70">
+
+<p style="display:inline-block; font-size:12px; text-align:justifty;" >
+                       
+		  <a href="{{values.0}}"  style="display:inline-block;" target="_blank"> {{key}} </a>  </p>
+</div>
+</div>
 		   {% endfor %}
                          </div>
                   </div>
@@ -312,7 +340,7 @@ g"> &nbsp; {{moduledetails.grade}}</i></p>
                       <div class="col-md-8 py-5">
                        <table class="table table-hover">
             <thead style="postion:sticky; overflow-y:auto; ">
-              <tr>
+              <tr style="text-align:center;">
               
                 <th scope="col">Unit </th>
                 <th scope="col">Lesson</th>
@@ -340,12 +368,24 @@ g"> &nbsp; {{moduledetails.grade}}</i></p>
                   <div class="row">
                     <div class="col-md-6 ml-auto">.col-md-6 .ml-auto</div>
                   </div> -->
+<div class="row">
+<div class="col-12 col-md-10">
+
+<h6> Authors : </h6>
+</div>
+
+<div class="col-12 col-md-2">
+<p> <a href="http://103.36.84.176:8000/5752ad5a2e01310a05dca583/domain/{{moduledetails.subject}}/#team"> read more </a> 
+</p>
+</div>
+
                   <div class="row">
                     <div class="col-sm-9 mt-n3 ">
         <!--    <i class="fas fa-eye "> View: 2 </i>            <i class="fas fa-cloud-downlaod-alt ml-3 "> Download: 0</i> -->
-   <div class="row">
-                  
-              
+  
+
+ <div class="row">
+    
                   
                 </div>
               </div>

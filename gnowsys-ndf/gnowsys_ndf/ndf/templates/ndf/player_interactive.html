@@ -24,7 +24,40 @@ text-align:center;
 font-weight:bold;
 opacity:0.7;
 }
+.imgaeHolder {
+
+}
+
+.vert-flag {
+    /* -webkit-box-shadow: 1px 0 1px rgba(158, 90, 167, 0.35); */
+     box-shadow: transparent;
+     background: transparent; */
+    display: inline-block !important;
+    text-align: center;
+     width: 20px;
+    position: absolute !important;
+     padding: 0px!important;
+     top: 0px !important;
+    /* padding-top: 10px; */
+    right: 10px !important;
+    color: #fff !important;
+    z-index: 11 !important;}
+
+.vert-flag:before {
+    content: '';
+    display: block;
+    height: 0;
+    width: 0;
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent;
+    left: 0;
+    /* border-bottom-color: #fff; */
+    position: absolute;
+    bottom: -1px;
+}
 </style>
+
 {% load ndf_tags %}
 <div class="container">
 <div class="row"> 
@@ -32,26 +65,49 @@ opacity:0.7;
 {% for dest in  files %}
   {% with name=dest.name %}
    {% with json_data=interactivedata|get_item:name %}
+   <style>
+
+.vert-flag {
+    /* -webkit-box-shadow: 1px 0 1px rgba(158, 90, 167, 0.35); */
+     box-shadow: transparent;
+     background: transparent; */
+    display: inline-block !important;
+    text-align: center;
+     width: 20px;
+    position: absolute !important;
+     padding: 0px!important;
+     top: 0px !important;
+    /* padding-top: 10px; */
+    right: 10px !important;
+    color: #fff !important;
+    z-index: 11 !important;}
+
+</style>
 <div class="flip interactive">
  <div class="element">
                 <span class="vert-flag">
-                    <img  src="https://demo-clix.tiss.edu/static/ndf/images/favicon/clix-favicon.png"/></img>
+                    <img style="width:20px; height:40px;"   src="/static/ndf/card_ribbon_logo_v1.png" / ></img>
                 </span>
               </div>
 
     <div class="front  imageHolder" style="background-image:url({{json_data.Interactive_image}} )">
 <div class="caption"> 
       <h6 class="text-shadow">{{dest.name}}</h6>
+<span class="badge badge-primary">{% for each_attr in dest.tags %}{{each_attr}}
+                      {% if not forloop.last %}, {%endif %}
+                      {% endfor %}</span>
+
        </div>
     </div>
     <div class="back">
 
               
     
-       <p>{{dest.content}}</p>
+       <p>{{dest.content | truncatechars:211 }}</p>
     <div class="card-footer text-center">
        <a href="{{json_data.Interactive_href}}" target="_blank"  data-toggle="tooltip" title="Play Online"> <i class="fa fa-rocket fa-lg " > </i></a>
-    <a href="{% url 'read_file' group_id dest.id  %}" data-toggle="tooltip" title="Play Offline" download="{{dest.name}}"> <i class="fa fa-cloud-download-alt fa-lg ml-2" download="{{dest.name}}"></i></a>
+    <a href="{% url 'read_file' group_id dest.id  %}" data-toggle="tooltip" title="Play Offline" download="{{dest.name}}"> 
+<i  data-toggle="modal" data-target="#MyUc" class="fas fa-cloud-download-alt"    download="{{dest.name}}"></i></a>
     </div>
       </div>
 
@@ -61,6 +117,30 @@ opacity:0.7;
 {% endfor %}
 </div>
 </div>
+<div class="modal" id="MyUc" tabindex="-1" role="dialog">                                                                                     
+  <div class="modal-dialog" role="document">                                                                                                  
+    <div class="modal-content">                                                                                                               
+      <div class="modal-header">                                                                                                              
+        <h5 class="modal-title">Instructions for installing interactives</h5>                                                                                              
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">                                                          
+          <span aria-hidden="true">&times;</span>                                                                                             
+        </button>                                                                                                                             
+      </div>                                                                                                                                  
+      <div class="modal-body">                                                                                                                
+        <p>
+<li> Unzip/Extract the file</li>
+<li> Open the file folder and click on `index.html` and open it using any browser. </li>
+<!--
+<li>3. Show Download button with name of file (size of file). Ex: Download ratios-and-pattern.zip (25MB)</li> 
+-->
+</p>                                                                                                     
+      </div>                                                                                                                                  
+      <div class="modal-footer">                                                                                                              
+                                                                                                                                              
+      </div>                                                                                                                                  
+    </div>                                                                                                                                    
+  </div>                                                                                                                                      
+</div> -->
 
 <!--
 <div class="flip">

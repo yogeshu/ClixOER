@@ -301,6 +301,7 @@ def domain_page(request,group_id,domain_name):
     print "domain nd:",domainnd
     
     files = get_nodes_by_ids_list(list(domainnd.collection_set))
+    files = sorted(files, key=lambda nd: nd.last_update)
     print request.META["CSRF_COOKIE"]
     #CSRF_COOKIE = request.META["CSRF_COOKIE"]
     import os
@@ -342,11 +343,13 @@ def get_module_previewdata(request,group_id):
     node_obj = get_node_by_id(node_id)
 
 
-    units = list(get_attribute_value(node_id,'items_sort_list'))
+    units = get_attribute_value(node_id,'items_sort_list')
     print "unitnds:",units
-    if len(units) == 0 :
+    if units == 'None':
         units = get_nodes_by_ids_list(node_obj.collection_set)
-
+    else:
+        units = list(units)
+    print "units:",units
     #imgsrc = get_attribute_value(node_id,'has_banner_pic')
     # unitnds = get_nodes_by_ids_list(list(node_obj.collection_set))
     module_dict = {}
@@ -406,11 +409,12 @@ def get_module_previewdata(request,group_id):
         tooldata = json.load(json_file)
     interactives_data ={}
     for each in allinteractives1:
-        interactives_data[str(each.name)] = tooldata[str(each.name)]['Interactive_href']
+        interactives_data[str(each.name)] = [tooldata[str(each.name)]['Interactive_href'],tooldata[str(each.name)]['Interactive_image']]
 
     print q,allinteractives1.count(),interactives_data
 
     for each in units:
+        #print "collection_set:",each.collection_set,each.id
         lessnnds = get_nodes_by_ids_list(list(each.collection_set))
         lessnnds = sorted(lessnnds, key=lambda nd: nd.last_update)
         print "lessnnds:",lessnnds
@@ -467,7 +471,7 @@ def get_nodes_by_ids_list(node_id_list):
         # q = Q('match',name=dict(query='File',type='phrase'))
         s1 = Search(using=es, index='nodes',doc_type="node").query(q)
         s2 = s1.execute()
-        return s2
+        return s1[0:s1.count()]
         # return node_collection.find({'_id': {'$in': node_id_list}})
     else:
         return None

@@ -1,8 +1,15 @@
+<style>
+li{
+text-align: justify;
+}
 
-<div class="container" style="">
+</style>
+<div class="container" style="margin-bottom: 10px;">
         <div class="row">
              <div class="col-5 text-center mx-auto">
-                <h1>Our Team</h1>
+                <h1>
+ <!--  Our -->
+ Team  Details </h1>
              </div>
 {% if first_arg == 'English' %}         
     <div class="col-10 text-center mx-auto">
@@ -18,12 +25,15 @@ The English Team at TISS designs and creates the CLIx English course for student
                            {% for slide in employee.Team_detail_math %}
              <div class="carousel-team-card-cell our-team">
                 <div class="carousel-card-team">
-                  <div class="card-team-img">
-                    <img src="/static/ndf/noun_profile_405164.png" alt="" />
+                  <div class="card-team-img" >
+  
+                    <img src="{{slide.moduleimg}} " style="margin-top:-15px;" alt="" />
                   </div>
                   <div class="card-team-name">
                     <h6>{{  slide.moduleId }} </h6>
-
+                    {% for sideu in slide.u %}
+<li style=" font-size:14px;   font-weight:400">{{sideu }}  </li>
+{% endfor %}
                     {% for side in slide.userIdArray %}
                      <li style="text-align:justify; font-size: 12px; line-height: 1.2rem;">{{ side | truncatechars:20 }}</li>
 
@@ -33,11 +43,12 @@ The English Team at TISS designs and creates the CLIx English course for student
                   <div class="card-team-content bio">
                    
                     <p>                    </p>
-                    <ul class="social" >                        <!-- <li><a href="{{ slide.slide_co }}" class="fab fa-facebook"></a></li> -->
+         <!--           <ul class="social" >                        <!-- <li><a href="{{ slide.slide_co }}" class="fab fa-facebook"></a></li> 
                         <li><a href="#" class="fab fa-twitter"></a></li>
-                        <!-- <li><a href="#" class="fab fa-google-plus"></a></li> -->
+                        <!-- <li><a href="#" class="fab fa-google-plus"></a></li> 
                         <li><a href="#" class="far fa-envelope"></a></li>
-                    </ul>
+                    </ul> 
+-->
                   </div>
                 </div>
               </div>
@@ -51,11 +62,14 @@ The English Team at TISS designs and creates the CLIx English course for student
               <div class="carousel-team-card-cell our-team">
                 <div class="carousel-card-team">
                   <div class="card-team-img">
-<img src="/static/ndf/profile4.png">
+<img src="{{slide.moduleimg}}" style="margin-top:-15px;">
                   </div>
                   <div class="card-team-name"> 
 
                     <h6>{{  slide.moduleId }} </h6>
+{% for sideu in slide.u %}
+<li style=" font-size:14px;  font-weight:400">{{sideu }}  </li>
+{% endfor %}
 
              {% for side in slide.userIdArray %}
                      <li style="text-align:justify; font-size: 12px; line-height: 1.2rem;">{{ side | truncatechars:20 }}</li>
@@ -68,12 +82,13 @@ The English Team at TISS designs and creates the CLIx English course for student
                    
                  <!--   <p>{{ slide.employeeDetails | truncatechars:250 }} 
                     </p> -->
-                    <ul class="social" >
-                        <!-- <li><a href="{{ slide.slide_co }}" class="fab fa-facebook"></a></li> -->
+   <!--                 <ul class="social" >
+                        <!-- <li><a href="{{ slide.slide_co }}" class="fab fa-facebook"></a></li> 
                         <li><a href="twitter.com/share?text@clix_tiss" class="fab fa-twitter"></a href="twitter.com/clix_oer"> </li>
-                        <!-- <li><a href="#" class="fab fa-google-plus"></a></li> -->
+                        <!-- <li><a href="#" class="fab fa-google-plus"></a></li> 
                         <li><a href="mailto:contact@clix.tiss.edu" class="far fa-envelope"></a href="mailto:contact@clix.tiss.edu"></li>
                     </ul>
+-->
                   </div>
                 </div>
               </div>
@@ -87,13 +102,25 @@ The English Team at TISS designs and creates the CLIx English course for student
 
               <div class="carousel-team-card-cell our-team">
                 <div class="carousel-card-team">
-                  <div class="card-team-img">
-<img src="/static/ndf/profile4.png">
+            
+      <div class="card-team-img">
+
+
+                    <img src="{{slide.moduleimg}} " style="margin-top:-15px;" alt="" />
+
+
                   </div>
                   <div class="card-team-name">
                     <h6>{{  slide.moduleId }} </h6>
                    <!-- <span>{{ slide.jobTitleName | truncatechars:20 }}</span> -->
+{% for sideu in slide.u %}
+<li style=" font-size:14px;  font-weight:400; text-align:justify;">{{sideu }}  </li>
+{% endfor %}
+<!--
+  {% for sidu
+-->
   {% for side in slide.userIdArray %}
+
                      <li style="text-align:justify; font-size: 12px; line-height: 1.2rem;">{{ side | truncatechars:20 }}</li>
 
                    {% endfor %}
@@ -103,12 +130,13 @@ The English Team at TISS designs and creates the CLIx English course for student
 
                    <!-- <p>{{ slide.employeeDetails | truncatechars:250 }}
                     </p> -->
-                    <ul class="social" >
-                        <!-- <li><a href="{{ slide.slide_co }}" class="fab fa-facebook"></a></li> -->
+   <!--                 <ul class="social" >
+                        <!-- <li><a href="{{ slide.slide_co }}" class="fab fa-facebook"></a></li> 
                         <li><a href="twitter.com/share?text@clix_tiss" class="fab fa-twitter"></a href="twitter.com/clix_oer"> </li>
-                        <!-- <li><a href="#" class="fab fa-google-plus"></a></li> -->
+                        <!-- <li><a href="#" class="fab fa-google-plus"></a></li> 
                         <li><a href="mailto:contact@clix.tiss.edu" class="far fa-envelope"></a href="mailto:contact@clix.tiss.edu"></li>
                     </ul>
+-->
                   </div>
                 </div>
               </div>

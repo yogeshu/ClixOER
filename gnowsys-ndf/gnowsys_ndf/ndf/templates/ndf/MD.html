@@ -1,5 +1,16 @@
 {% extends "ndf/base.html" %} {% block content %}
 <style> 
+#uMdu  p, li {
+    font-size: 14px;
+    text-align: justify;
+    text-
+
+}
+#uMdu img{
+ text-align:center;
+border-radius: 10px;
+}
+
 
 .back-dd{
   background: #F8F9FA;
@@ -7,20 +18,52 @@ text-emphasis: none;
 font-family: Roboto;
 font-weight: 300;
 }
+.breadcrumb li {
+background: #9693a3 !important;
+color:#fff !important;
+}
+.breadcrumb li a {
+color:#fff !important;
+
+}
+.breadcrumb li i {
+color:#fff !important;
+}
 
 </style>
+<!--
 <nav aria-label="breadcrumb ml-5">
     <ol class="breadcrumb">
         <li class="breadcrumb-item " aria-current="page">    <a style="color:#fff;" href="{% url 'e-library' group_id  %}"> <i class=" fas fa-home fa-lg "> </i>  </a>   </li>
       <li class="breadcrumb-item " aria-current="page">The Design And Development </li>
     </ol>
-  </nav>
+  </nav> 
+-->
+ <nav aria-label="breadcrumb ">
+          <ol class="breadcrumb ml-n5 mt-3">
+            <li class="breadcrumb-item  " aria-current="page">
+<a href="{% url 'e-library' group_id %}"
+ <i class="ml-2 fas fa-home fa-lg"></i> </a> </li>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i>  Domain </li>
+ <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" href="{% url 'domain_page' group_id 'Mathematics'  \
+%}"> </i> Mathematics </li> </a>
+<!--                                                                                                                                          
+  <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" >  Design And Developement </li> </a>          
+-->
+
+            <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> -->
+            <li class="breadcrumb-item  " aria-current="page"> <i class=" fas  fa-lg"></i> Design And Development- Mathemactics</li>
+            <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> -->
+
+
+          </ol>
+        </nav>
   
  
-<div class="container-fluid py-5">
+<div class="container">
   <div class="row">
-    <div class="col-12 col-sm-12 col-md-10 mx-auto ">
-      <div class="Math">
+    <div class="col-12 col-sm-12 col-md-10 mx-auto">
+      <div class="Math" id="uMdu">
         <h4 class="back-dd py-1">1. What is it that we decided to do?</h4>
         <p>
           Development of the CLIx mathematics modules were guided by the broad

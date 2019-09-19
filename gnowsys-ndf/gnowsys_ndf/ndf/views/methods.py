@@ -4834,7 +4834,7 @@ def delete_node(
                     + "\n\nIf required, you can still purge this node !"
                 return (True, delete_status_message)
 
-            print "\n 4 >> node to be deleted fetched successfully... ",node_to_be_deleted.name
+            print "\n 4 >> node to be deleted fetched successfully... ",str(node_to_be_deleted.name).encode('utf-8')
             if ((node_to_be_deleted.status == u"DELETED" and
                  deletion_type == 1) or
                     (node_to_be_deleted.status != u"DELETED")):

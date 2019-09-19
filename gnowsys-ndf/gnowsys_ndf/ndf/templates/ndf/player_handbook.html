@@ -30,32 +30,94 @@ opacity:0.7;
       class="handbook"
       href="/media/{{dest.if_file.original.relurl}}"
       target="_blank"
-    >
--->      <div
+    >   
+-->     
+<a href="{% url 'read_file' group_id dest.id  %}"  target="_blank" style="color:#fff;">
+ <div
         class="card text-white back-colox
                     mb-3  content"
         style="width: 12rem;"      >
         <div class="card-body">
           <img
-            class="card-img img-fluid"
-            src="/static/ndf/noun_PDF_2201522.png" width="100px" height="100px"/>
+            class="card-img img-fluid "
+            src="/static/ndf/handbooks2.png" width="100px" height="100px"/>
 <div class="caption">
-          <p style="font-size:10px; font-weight:700;"  class="card-title">{{dest.name}}</p> 
+          <p style="font-size:14px; font-weight:500;"  class="card-title">{{dest.name}}</p> 
 </div>         
-<a href="{% url 'read_file' group_id dest.id  %}"  id="dropdownMenuLink1"   target="_blank" download="{% url 'read_file' group_id dest.id  %}">
-   <i
-            class="fas fa-cloud-download-alt"
-          ></i>  </a>
+<div class="text-center">
+<a href="{% url 'read_file' group_id dest.id  %}"  
+ id="dropdownMenuLink1"    target="_blank" download="{{dest.name}}" data-toggle="tooltip" title="Download">
+   <i            class="fas fa-cloud-download-alt"
+       data-toggle="modal" data-target="#exampleModalLong"   ></i>  </a>
 
-
-<a href="{% url 'read_file' group_id dest.id  %}">
+   
+<a href="{% url 'read_file' group_id dest.id  %}" class="handbook" data-toggle="tooltip" title="Explore Online" target="_blank">
           <i  class="fa fa-rocket"></i>
 </a>
+</div>
 
+</a>
         </div>
       </div>
+
+
+
+
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<!--
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="MyUc" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+      
+      </div>
+    </div>
+  </div>
+</div> -->
    <!--  </a> -->
 {% endfor %}
+
+
+
+
+<div class="modal" tabindex="-1" role="dialog" id="uc">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
     <script>
       $(".handbook").click(function() {
         alert("would you like to open this handbook in next tab ?");

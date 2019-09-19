@@ -1,4 +1,4 @@
-B<style>
+<style>
 .ur-team {
 background:#fff;
 color:#000;
@@ -22,10 +22,13 @@ background: #fff !important;
 <!--
 <a class="thenewRoom" href="{% url 'domainHelp' group_id first_arg%}">                                                                           -->                
 
-<div class="clixInclass py-5">
+<div class="clixInclass ">
 <!--<p> CLix In The ClassRoom </p>--> 
-      <div class="jumbotron some-dark py-5 mt-5"  >
-            <h2 class="h1-responsive mt-n2">CLIx in the Classroom</h2>
+      <div class="jumbotron some-dark py-5 "  >
+            <h1 class="h1-responsive mt-n2">CLIx  {{first_arg}}   in the Classroom </h1>
+<!--
+</h2>
+-->
    <!--         <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention
                 to featured content or information. 
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi nulla enim temporibus labore minus reprehenderit dolore exercitationem, ex consectetur sed eius fugit ipsa corrupti delectus qui saepe esse. Id, eveniet!</p>
@@ -44,7 +47,7 @@ Read more to know classroom integration strategies for CLIx OERsfreedefine
                 container.
             </p> 
 -->
-            <a class="btn btn-primary btn-sm" href="{% url 'domainHelp' group_id first_arg%}" role="button" >Know more</a>
+            <a class="btn btn-primary btn-sm" href="{% url 'domainHelp' group_id first_arg%}" role="button" target="_blank" >Explore more</a>
         </div>
 </div>
 <!--

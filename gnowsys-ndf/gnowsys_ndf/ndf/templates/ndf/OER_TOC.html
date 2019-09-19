@@ -1,22 +1,26 @@
 <div class="col-md-2 col-sm-10 col-md-2 collapse d-md-flex navbar-expand-lg pt-2 min-vh-100" id="side">
 	<nav>
         	<ul class="nav flex-column nav-pills nav-scroll">
-                        <li class="nav-item" id="main-page"> <a class="nav-link collapsed " href="#submenu1" data-toggle="collapse" data-target="#submenu1">Subject <i class="float-right fas fa-minus-circle fa-lg"></i></a></li>
-                        <div class="collapse show" id="submenu1" aria-expanded="false">
+                        <li class="nav-item" id="main-page"> <a class="nav-link collapsed " href="#submenu1" data-toggle="collapse" data-target="#submenu1"><i class="fas fa-globe solid"> </i>   Subject <i  data-target="tooltip" title="Click to filter by subjects" class="float-right fas fa-minus-circle fa-lg u"></i></a></li>
+                        <div class="collapse show" id="submenu1" data-toggle="tooltip" title="Click to see subjects" aria-expanded="false">
                             <ul class="flex-column pl-1 nav su">
                          <li class="nav-item ">
-				<a class="nav-link "><i class="fas fa-font" > </i>English
+				<a class="nav-link lu" style="background-image: rgb(131,58,180) !important;
+background-image: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(207,65,174,1) 10%, rgba(186,40,125,1) 74%) !important;
+"><i class="fas fa-font" > </i>English
 					<input  id="English" type="checkbox"  value="English" class="searchfilter"  name="english"> 
 					<!--<i class="fas fa-font" > </i>English -->
 				</a>
 			</li>
                         <li class="nav-item">
-				<a class="nav-link " > <i class="fas fa-calculator"></i> Math  
+				<a class="nav-link lu"   style="background-image: rgb(131,58,180) !important;
+background-image: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(207,65,174,1) 10%, rgba(186,40,125,1) 74%) !important;
+"> <i class="fas fa-calculator"></i> Math  
 					<input id="Mathematics" type="checkbox" value="Mathematics" class="searchfilter"   name="english">
-					<!--   <i class="fas fa-calculator"></i> Math -->
-				</a></li>
-                                <li class="nav-item" >
-					<a class="nav-link "> <i class="fas fa-flask"></i> Science  
+					<!--   <i class="fas fa-calculator"></i> Math -->			</a></li>
+                                <li class="nav-item " >
+					<a class="nav-link lu" style="background-image: rgb(131,58,180) !important; 
+background-image: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(207,65,174,1) 10%, rgba(186,40,125,1) 74%) !important;"> <i class="fas fa-flask"></i> Science  
 						<input id="Science" type="checkbox" value="Science" class="searchfilter"  name="english">
 						<!--<i class="fas fa-flask"></i> Science -->
 					</a>
@@ -25,9 +29,9 @@
                         </div>
                     </li>     
             <section class="load">
-                    <li class="nav-item nav-reload targetele"><a class="nav-link "  id="module"  > <i class="fas fa-puzzle-piece fa-lg"></i> Modules {{file_pages}}</a></li>
-                    <li class="nav-item nav-reload"><a class="nav-link targetele" id="module_interactive"  ><i class="fas fa-dice-d6 "></i> Interactive {{interactive_pages}}</a></li>
-                   <li class="nav-item nav-relaod"><a class="nav-link targetele" id="handbook" ><i class="fas fa-images fa-sm"></i> Handbook {{doc_pages}}</a></li>
+                    <li class="nav-item nav-reload targetele"><a class="nav-link " data-toggle="tooltip" title="Click to see modules"  id="module"  > <img src="/static/ndf/modules.png" class="img-fluid" style="width:25px;  height:25px; " > Modules {{file_pages}}</a></li>
+                    <li class="nav-item nav-reload"><a class="nav-link targetele" id="module_interactive" data-toggle="tooltip" title="Click to see interactives"  ><i class="fas fa-dice-d6 "></i> Interactives {{interactive_pages}}</a></li>
+                   <li class="nav-item nav-relaod"><a class="nav-link targetele" data-toggle="tooltip" title="Click to see teacher and student handbooks"  id="handbook" ><img  class="img-fluid" src="/static/ndf/handbooks2.png" style="width:25px;  height:25px;"></i> Handbooks {{doc_pages}}</a></li>
 </section>
 	 <!-- 	   <li class="nav-item nav-relaod"><a class="nav-link" id="_image"  href="#"><i class="fas fa-images fa-sm"></i> Images {{image_pages}}</a></li>
                    <li class="nav-item nav-relaod"><a class="nav-link" id="audio" href="#"><i class="fas fa-images fa-sm"></i> Audios {{audio_pages}}</a></li>
@@ -177,7 +181,7 @@ $.ajax({
 
 $('#main-page').click(function() {
     $('#submenu1').toggle();
-    $("i", this).toggleClass(" fa-minus-circle fa-lg  fa-plus-circle fa-lg  ");
+    $(".u", this).toggleClass(" fa-minus-circle fa-lg  fa-plus-circle fa-lg  ");
 });
 //console.log("==========================")
 //console.log($(this).text)

@@ -21,22 +21,34 @@ font-weight: 300;
 pre{
     font-size: 14px;
 }
+.breadcrumb li {
+background: #9693a3 !important;
+color:#fff !important;
+}
+.breadcrumb li a {
+color:#fff !important;
 
+}
+.breadcrumb li i {
+color:#fff !important;
+}
 </style>
  <nav aria-label="breadcrumb ">
           <ol class="breadcrumb ml-n5 mt-3">
-            <li class="breadcrumb-item  "aria-current="page"> <i class="ml-2 fas fa-home fa-lg"></i> E-library</li>
- <li class="breadcrumb-item " style="margin-left:2rem;"aria-current="page" style="color:#000;">  <i class="ml-n4 fa fa-globe fa-lg"></i>Domain </li> 
- <li class="breadcrumb-item " style="margin-left:2rem;"aria-current="page" style="color:#000;"> <a style="color:#fff;" href="{% url 'domain_page' group_id 'English'  %}">  <i class="ml-n4 fas fa-home fa-lg"></i> English </li> </a>
-  <li class="breadcrumb-item " style="margin-left:2rem;"aria-current="page" style="color:#000;"> <a style="color:#fff;" href="{% ur\
-l 'e-library' group_id  %}">  <i class="ml-n4 fas fa-home fa-lg"></i> Design And Developement </li> </a>
-
+            <li class="breadcrumb-item  " aria-current="page">
+<a   href="{% url 'e-library' group_id %}"
+ <i class="ml-2 fas fa-home fa-lg" ></i> </a> </li>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i>  Domain </li> 
+ <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" href="{% url 'domain_page' group_id 'English'  %}"> </i> English </li> </a>
+<!--
+  <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" >  Design And Developement </li> </a>
+-->
 
             <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> --> 
-            <li class="breadcrumb-item  "aria-current="page"> <i class=" fas  fa-lg"></i> Design And Development-English</li>
+            <li class="breadcrumb-item ml-n2 " aria-current="page"> <i class=" fas  fa-lg"></i> Design And Development-English</li>
             <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> -->
 
-        </nav>
+       
           </ol>
         </nav>
         

@@ -145,7 +145,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
         
         q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Tool')])
 
-        allinteractives1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
+        allinteractives1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({'last_update' : {"order":"asc"}})
 
         allinteractives2 = allinteractives1.execute()
         #print "interactives count:",allinteractives1.count()
@@ -175,8 +175,6 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	datavisual.append({"name":"Audios","count": allaudios1.count()})
 	datavisual.append({"name":"eBooks","count": educationaluse_stats.get("eBooks", 0)})
 	
-        with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/module.json','r') as json_file:
-                moduledata = json.load(json_file)
 
 	return render_to_response("ndf/Elibrary.html",
 								{'title': title, 'app':e_library_GST[0],
