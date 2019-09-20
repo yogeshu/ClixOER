@@ -239,7 +239,7 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 </div>
 
 <div style="display:inline-block;" class="video-modal">                                                                                       
-<a class="video"  data-toggle="modal" data-target="#exampleModalCenterLu" style="color:rgb(7, 120, 250);"  title="Help Video" style="display:\
+<a class="video" id="{{dest.id}}" style="color:rgb(7, 120, 250);"  onclick="document.getElementsByClassName('video').click()"    title="Help Video" style="display:\
 inline-block" > <i             style="color: #5088c7;"                                                                                                               
 class="fas fa-video ml-4  fa-lg "></i> </a>                                                                                                        
 </div>   
@@ -247,21 +247,23 @@ class="fas fa-video ml-4  fa-lg "></i> </a>
 
                        <div class="dropdown show" style="display:inline-block" href="">
 
-     <a data-toggle="dropdown" title="Share Link"   href="" id="dropdownMenuLink">
+     <a data-toggle="dropdown" title="Share"   href="" id="dropdownMenuLink">
             <i style="color: #5088c7;" class="fas fa-share-alt  ml-3 fa-lg"></i></a>  
                                            <div class="dropdown-menu" href="" aria-labelledby="dropdownMenuLink" >
-                          <a class="dropdown-item" onclick="CopyLink()"  id="copy">Copy</a>
+                          <a class="dropdown-item" onclick="CopyLink()"  id="copy"> <i class="fas fa-copy">  </i> Copied to clipboard </a>
                        
 <a class="dropdown-item" href="http://www.facebook.com/sharer.php?s=100&amp;p[title]=[TITLE_GOES_HERE]&amp;p[summary]=[SUMMARY_GOES_HERE]&amp\
 ;p[url]=[URL_GOES_HERE]&amp;p[images[0]=[IMAGE_GOES_HERE]" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.UR\
 L, 'facebook-popup', 'height=350,width=600'); return false;"
- target="_blank" >Share on Facebook</a>
+ target="_blank" > <i class="fab  fa-facebook" > </i>   Share on Facebook</a>
 <a class="dropdown-item" href="http://twitter.com/intent/tweet?text=[learn about Clix]" onclick="window.open(this.href, 'twitterwindow','left\
-=20,top=20,width=600,height=300,toolbar=0,resizable=1'); return false;" target="_blank">Tweet This</a>
+=20,top=20,width=600,height=300,toolbar=0,resizable=1'); return false;" target="_blank">     <i class="fab fa-twitter"> </i>  Tweet This</a>
 <a class="dropdown-item" href="javascript:void(window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href)+'&text='+en\
 codeURIComponent(document.title), '_blank'))" target="_blank">
     <i></i>
-  Share On  Telegram 
+<i class="fab fa-telegram">
+</i>
+   Telegram Link
 </a>
 
                         </div>
