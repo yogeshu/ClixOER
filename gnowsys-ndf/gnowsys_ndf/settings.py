@@ -2,14 +2,14 @@
 
 # imports from python libraries
 import os
-#import djcelery
+import djcelery
 from django.contrib.messages import constants as messages
-# imports from core django libraries
-# from django.conf import global_settings
-# from django.utils.translation import ugettext
-# from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+#imports from core django libraries
+#from django.conf import global_settings
+#from django.utils.translation import ugettext
+#from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
-# imports from third-party app(s)
+#imports from third-party app(s)
 
 # from gnowsys_ndf.ndf.utils import (is_dir_exists, ensure_dir, get_current_dbs_path,
 #     move_file_or_dirctory)
@@ -504,13 +504,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 
-#djcelery.setup_loader()
-# # CELERY_RESULT_BACKEND = "mongodb"
-#CELERY_RESULT_BACKEND = "djcelery.backends.database:DatabaseBackend"
-#CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+djcelery.setup_loader()
+#CELERY_RESULT_BACKEND = "mongodb"
+CELERY_RESULT_BACKEND = "djcelery.backends.database:DatabaseBackend"
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
-#CELERY_TASK_SERIALIZER = "json"
-#CELERY_IMPORTS = ("gnowsys_ndf.ndf.views.tasks")
+CELERY_TASK_SERIALIZER = "json"
+CELERY_IMPORTS = ("gnowsys_ndf.ndf.views.tasks")
 # # BROKER_URL = 'mongodb://localhost:27017/' + DATABASES['mongodb']['NAME']
 BROKER_URL = 'amqp://'
 
@@ -524,10 +524,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'registration',
-    #'notification',
+    'registration',
+    'notification',
     'pagination',
-    #'captcha',
+    'captcha',
     # 'gnowsys_ndf.benchmarker',
     # 'django.contrib.flatpages',   #textb
     # 'django_extensions',          #textb
@@ -538,19 +538,19 @@ INSTALLED_APPS = (
     # 'online_status',              #for online_users
     # 'endless_pagination',
     # 'jsonrpc',
-    #'registration_email',
+    'registration_email',
     'memcache_admin',
-   # 'django_mailbox',
-   # 'djcelery',
+    'django_mailbox',
+    'djcelery',
     #'dlkit',
     #'dlkit_runtime'
 )
 
-#AUTHENTICATION_BACKENDS = (
-#    'registration_email.auth.EmailBackend',
-#)
+AUTHENTICATION_BACKENDS = (
+    'registration_email.auth.EmailBackend',
+)
 
-#ACCOUNT_ACTIVATION_DAYS = 2  # Two days for activation.
+ACCOUNT_ACTIVATION_DAYS = 2  # Two days for activation.
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -582,7 +582,9 @@ LOGGING = {
 }
 
 LOGIN_REDIRECT_URL = "/"
-
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 600
+SESSION_SAVE_EVERY_REQUEST = True
 # Binary - Only meant for RelationType's document to represent
 # Binary relationship, especially defined to differentiate
 # from other relationship(s), i.e. Triadic, etc.

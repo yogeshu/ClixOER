@@ -18,7 +18,7 @@ from django.contrib.auth.models import Group as DjangoGroup
 from django.contrib.sessions.models import Session
 from django.db import models
 from django.http import HttpRequest
-#from celery import task
+from celery import task
 from django.template.defaultfilters import slugify
 from django.core.cache import cache
 
@@ -40,7 +40,7 @@ try:
 except ImportError:  # old pymongo
     from pymongo.objectid import ObjectId
 
-#from registration.signals import user_registered
+from registration.signals import user_registered
 
 # imports from application folders/files
 from gnowsys_ndf.settings import RCS_REPO_DIR, MEDIA_ROOT
