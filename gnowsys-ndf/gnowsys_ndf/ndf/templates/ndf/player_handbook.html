@@ -119,11 +119,13 @@ opacity:0.7;
       <div class="modal-header">
         <h5 class="modal-title">Modal title</h5>
     <script>
+/*
+
       $(".handbook").click(function() {
         alert("would you like to open this handbook in next tab ?");
       });
 
-
+*/
 
 
 
@@ -261,7 +263,8 @@ function getPageList(totalPages, page, maxLength) {
 $("a.explore").click(function() {
     var id =$(this).attr("id");
     var link = $(this).attr("href");
-    console.log("in a.modal_modal click:",link)
+    var type = $(this).attr("title");
+    console.log("in a.modal_modal click:",title)
    console.log({{CSRF_COOKIE}})
     $.ajax({
                             type: "POST",

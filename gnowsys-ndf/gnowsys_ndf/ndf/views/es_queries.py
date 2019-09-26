@@ -91,7 +91,7 @@ def readDoc(request, group_id,file_id):
     print "in readDoc"
     file_node = get_node_by_id(file_id)
     print "Session:",request.COOKIES['sessionid']
-
+    print "tags:",file_node.tags
     results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid']).filter(visitednode_name=file_node.name)
     if len(results) ==0:
         obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=file_node.id,visitednode_name=file_node.name,preview_count=0,visit_count=0,download_count=1,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
@@ -103,6 +103,13 @@ def readDoc(request, group_id,file_id):
         if obj1.download_count == 0:
             obj1.download_count = 1                                                                                                                                 
             obj1.save()
+        if file_node.tags[0].find('handbook') >= 0:
+            if obj1.visit_count == 0:
+                obj1.visit_count = 1
+                obj1.save()
+            if obj1.download_count == 0:
+                obj1.download_count = 1
+                obj1.save()
         
     if file_node is not None:
 
