@@ -75,12 +75,12 @@
 
 },      
     {
-"moduleId": "Linear Equations ",
+"moduleId": "Linear Equations",
 "moduleimg":"/media/b/7/9/7240200b808aa2b3e57ee4a80567fa3781eee1f852f3f55274ce44e8980ef.png",
 "u" : [
 "Amit Dhakulkar"
 ],
-      "userIdArray":  [ "Amit Dhakulkar",
+      "userIdArray":  [
         "Arati Sudhir Bapat",
         "Arindam Bose",
         "Jeenat Rahman",
@@ -97,7 +97,7 @@
  ],
   "Team_detail_english": [
     {  
-     "moduleId": "Communicative English I",
+     "moduleId": "Communicative English: Level I",
      "moduleimg":"/media/d/7/f/de17e9b4bd1b9785a02032d61ebf02423357ea62830240da9ee428adc4eb0.png",
     "u" : [
               "Jennifer Thomas"
@@ -108,9 +108,10 @@
 "Lavanya Murali ",
 "Mayuri Kulkarni ",
         "Nishevita Jayendran",
-        "Sujata Bhonsal",
+        "Sujata Bhonsale",
           "Surbhi Nagpal",
-"Mushtaq Ahmed"
+"Mushtaq Ahmed",
+"Reema Mani"
         ],
         
       "userId": "Jennifer Thomas",
@@ -121,7 +122,7 @@
       "education": "Ph.D. current, Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Designing learning contexts for graphicacy in science education. M.Sc (2005), Department of Physics, University of Pune. Physics B.Sc (2001), Fergusson College, Pune. Physics"
     },
     {  
-  "moduleId": "Communicative English II",
+  "moduleId": "Communicative English: Level II",
  "moduleimg": "/media/5/3/f/4660af2d29cc09e2f8c6d6ab34e6d15c6ab5c4d1d92339cc24292c3c50035.png",
 "u" : [
 "Jennifer Thomas"
@@ -135,7 +136,8 @@
 "Mayuri Kulkarni",
         "Sujata Bhonsale",
           "Surbhi Nagpal ",
-"Mushtaq Ahmed"
+"Mushtaq Ahmed",
+"Reema Mani"
         ],
 
       "userId": "Anusha Ramanathan           ",
@@ -167,7 +169,7 @@
 
   "Team_detail_science": [
     {
-        "moduleId": "Ecosytem ",
+        "moduleId": "Ecosystem",
 	"moduleimg":"/media/3/b/7/3e479aea268e8051ae6cfaa736d3e8a7ae5ec4b3684f9d892c5bfffed8bf4.jpg",
  "u" : [
 "Binoy V.V"
@@ -188,7 +190,7 @@
       "education": "Ph.D. current, Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Designing learning contexts for graphicacy in science education. M.Sc (2005), Department of Physics, University of Pune. Physics B.Sc (2001), Fergusson College, Pune. Physics"
     },
     {
-       "moduleId": "Health and Disease ",
+       "moduleId": "Health and Disease",
 	"moduleimg":"/media/8/3/3/16651de50f167a76911ac2a127cc5d80ac8b9eb447231432f062a705dae12.jpg",
    "u": [
 "Deepak Verma"
@@ -209,7 +211,7 @@
       "education": "M.A. Elementary Education (2017), Tata Institute of Social Sciences, Mumbai.M.Sc. Physics (2008), University of Mumbai."
     },
     { 
-            "moduleId": "Atomic struture",
+            "moduleId": "Atomic Structure",
 	   "moduleimg":"/media/9/2/0/8c2156744968de70d88fa88bb1f0334bb75e1b06132e067507feba6a21b2d.jpg",
  "u" : [
 "Deepak Verma"
@@ -230,7 +232,7 @@
       "education": "Post Doc (2016), University of South Africa (UNISA), South Africa Ph.D. (2015), Mathematics Education, HBCSE, Tata Institute of Fundamental Research (TIFR) Deemed University MSc (2002), Mathematics, University of Pune BSc (1999), Mathematics (Honours), Patna University"
     },
     {  
-         "moduleId": "Sound ",
+         "moduleId": "Sound",
 	"moduleimg":"/media/f/c/9/d278a8fcd43b9a91df02c301cc5c3dc236d218d3bc1f5a5d0ab99ecc53874.png",
    "u" : [
 "Deepak Verma"
@@ -251,7 +253,7 @@
       "education": "Ph.D. (pursuing), Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Mathematics Education and Cognition.M. Sc (2009), Bengal Engineering and Science University, Shibpur. Applied Mathematics. B. Sc (2007), University of North Bengal. Mathematics."
     },
     { 
-   "moduleId": "uderstanding motion ",
+   "moduleId": "Understanding Motion",
 	"moduleimg":"/media/c/5/6/f8c3a0688f5953cdd8b65a5da36b72d6fe6c771f3bbe4710c74d253721db7.jpg",
  "u" : [
  "Deepak Verma"
@@ -272,12 +274,12 @@
       "education": "M.A. Education (Elementary) (pursuing), Tata Institute of Social Sciences, Mumbai M.Sc. (Tech.) Information Systems (2011), Birla Institute of Technology and Science, Pilani"
     },
     { 
-"moduleId": "basic astronomy ",
+"moduleId": "Basic Astronomy",
 "moduleimg":"/media/7/7/0/566b77c1c118edf1423c3ae5422bfd0f265bafe6658859862a06a4d0bacbf.jpg",
  "u": [
  "Shamin Padalkar"
 ],
-      "userIdArray":  [ "Shamin Padalkar",
+      "userIdArray":  [ 
         "Rafikh Shaikh           ",
         "Prayas Sutar           ",
         "Arunachal Kumar           ",

@@ -72,16 +72,16 @@ register.tag('xextends', do_xextends)
 @get_execution_time
 @register.assignment_tag
 def get_dict_from_list_of_dicts(list_of_dicts,convert_objid_to_str=False):
-    print "list of dicts:",list_of_dicts,convert_objid_to_str
+    #print "list of dicts:",list_of_dicts,convert_objid_to_str
     req_dict = {}
     # [req_dict.update(d) for d in list_of_dicts]
     for d in list_of_dicts:
-        print "value of d:",d,type(d)
+        #print "value of d:",d,type(d)
         if not isinstance(d,dict):
             req_dict.update(d.to_dict())
         else:
             [req_dict.update(d) for d in list_of_dicts]
-    print "final dict:", req_dict
+    #print "final dict:", req_dict
     if convert_objid_to_str:
         str_val_dict = {key: map(str,val) for key, val in req_dict.items()}
         return str_val_dict

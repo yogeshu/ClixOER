@@ -1,6 +1,7 @@
 import re
 import urllib
 import json
+import datetime
 ''' -- imports from installed packages -- '''
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -15,7 +16,7 @@ except ImportError:  # old pymongo
 ''' -- imports from application folders/files -- '''
 from gnowsys_ndf.settings import GAPPS
 # from gnowsys_ndf.ndf.models import Node, GRelation,GSystemType,File,Triple
-from gnowsys_ndf.ndf.models import Node, GRelation,GSystemType, Triple
+from gnowsys_ndf.ndf.models import Node, GRelation,GSystemType, Triple, hit_counters
 from gnowsys_ndf.ndf.models import node_collection
 from gnowsys_ndf.ndf.views.file import *
 from gnowsys_ndf.ndf.views.methods import cast_to_data_type, get_execution_time
@@ -65,6 +66,7 @@ GST_JSMOL = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute(
 q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='Module')])")
 gst_module = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute()
 
+banner_pics = ['/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png']
 
 ##############################################################################
 
@@ -175,7 +177,18 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	datavisual.append({"name":"Audios","count": allaudios1.count()})
 	datavisual.append({"name":"eBooks","count": educationaluse_stats.get("eBooks", 0)})
 	
-
+        
+        print "Session:",request.COOKIES['sessionid']
+        
+        results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid'],visitednode_name='home')
+        if len(results) ==0:
+                obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=group_id,visitednode_name='home',preview_count=0,visit_count=1,download_count=0,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
+                obj.save()
+        #else:
+                #cnt = results[0].visit_count
+                #obj1 = results[0]
+                #obj1.visit_count += 1
+                #obj1.save()
 	return render_to_response("ndf/Elibrary.html",
 								{'title': title, 'app':e_library_GST[0],
 								 'appId':app[0].id, "app_gst": app[0],
@@ -192,7 +205,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 								 'video_pages': allvideos1.count(),
 								 'audio_pages': allaudios1.count(),
 								 'groupid': group_id, 'group_id':group_id,
-								 "datavisual":datavisual
+								 "datavisual":datavisual, 'bannerpics': banner_pics
 								},
 								context_instance = RequestContext(request))
 
@@ -315,13 +328,13 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
                 print "template",template
                 with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/theInteractive.json','r') as json_file:
                         interactivedata = json.load(json_file)
-
+                
                 return render_to_response (template, {
 				"filter_result": filter_result,
 				"group_id": group_id, "group_name_tag": group_id, "groupid": group_id,
 				'title': "E-Library", "educationaluse_stats": json.dumps(educationaluse_stats),
 				"files": allfiletypes1[0:allfiletypes1.count()], "detail_urlname": detail_urlname,
-			        "filetype": filetype, "res_type_name": "","interactivedata":interactivedata
+			        "filetype": filetype, "res_type_name": "","interactivedata":interactivedata, 'bannerpics': banner_pics
 			},
 			context_instance = RequestContext(request))
 
@@ -462,7 +475,7 @@ def resource_list_domainwise(request,group_id, app_id=None, page_no=1):
                                    'video_pages': allvideos1.count(),
                                    'audio_pages': allaudios1.count(),
                                    'groupid': group_id,'group_name_tag':group_id, 'group_id':group_id,
-                                   "datavisual":datavisual,
+                                   "datavisual":datavisual,'bannerpics': banner_pics
                            },
                            context_instance = RequestContext(request))
         

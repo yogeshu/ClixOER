@@ -516,6 +516,7 @@ BROKER_URL = 'amqp://'
 
 INSTALLED_APPS = (
     'gnowsys_ndf.ndf',
+    'hit_count',
     # 'dlkit',
     'django.contrib.auth',
     'django.contrib.admin',
@@ -583,7 +584,7 @@ LOGGING = {
 
 LOGIN_REDIRECT_URL = "/"
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_COOKIE_AGE = 600
+SESSION_COOKIE_AGE = 3600
 SESSION_SAVE_EVERY_REQUEST = True
 # Binary - Only meant for RelationType's document to represent
 # Binary relationship, especially defined to differentiate

@@ -55,6 +55,9 @@ border: 1px solid #000;
 padding:40px;
 margin:10px;
 } 
+.user{
+line-height:0.5rem;
+}
  </style>
  
 <!---
@@ -164,7 +167,7 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 
 <div class="modal-header">
 <div class="row">
-<div class="col-12 col-sm col-md-5">
+<div class="col-12 col-sm-5 col-md-5">
        <h5 class="modal-title ml-2 " id="exampleModalLongTitle" class="col-12  col-md-5  col-sm-10" style="font-weight:bold; font-size:
  18px;">{{moduledetails.name}}</h5>
 </div>
@@ -239,7 +242,7 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 </div>
 
 <div style="display:inline-block;" class="video-modal">                                                                                       
-<a class="video" id="{{dest.id}}" style="color:rgb(7, 120, 250);"  onclick="document.getElementsByClassName('video').click()"    title="Help Video" style="display:\
+<a class="video" id="{{moduledetails.id}}" style="color:rgb(7, 120, 250);"      title="Help Video" style="display:\
 inline-block" > <i             style="color: #5088c7;"                                                                                                               
 class="fas fa-video ml-4  fa-lg "></i> </a>                                                                                                        
 </div>   
@@ -250,7 +253,7 @@ class="fas fa-video ml-4  fa-lg "></i> </a>
      <a data-toggle="dropdown" title="Share"   href="" id="dropdownMenuLink">
             <i style="color: #5088c7;" class="fas fa-share-alt  ml-3 fa-lg"></i></a>  
                                            <div class="dropdown-menu" href="" aria-labelledby="dropdownMenuLink" >
-                          <a class="dropdown-item" onclick="CopyLink()"  id="copy"> <i class="fas fa-copy">  </i> Copied to clipboard </a>
+                          <a class="dropdown-item" onclick="CopyLink()"  id="copy"> <i class="fas fa-copy">  </i> Copy link </a>
                        
 <a class="dropdown-item" href="http://www.facebook.com/sharer.php?s=100&amp;p[title]=[TITLE_GOES_HERE]&amp;p[summary]=[SUMMARY_GOES_HERE]&amp\
 ;p[url]=[URL_GOES_HERE]&amp;p[images[0]=[IMAGE_GOES_HERE]" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.UR\
@@ -373,11 +376,26 @@ g"> &nbsp; {% for each_attr in moduledetails.grade %}{{each_attr|slice:"5:"}}
 <div class="row">
 <div class="col-12 col-md-10">
 
-<h6> Authors : </h6>
+<h6 style="display:inline-block;"> Authors : 
+
+
+
+ </h6>
+ {% for user in leaduser %}
+<h6> {{user}}
+</h6>
+{% endfor %}
+ {% for user in userdata %}
+<p class="user ml-1" style="display:inline-block;">
+{{user}}
+</p>
+{% endfor %}
+
 </div>
 
-<div class="col-12 col-md-2">
-<p> <a href="http://103.36.84.176:8000/5752ad5a2e01310a05dca583/domain/{{moduledetails.subject}}/#team"> read more </a> 
+<div class="col-12 col-md-2 mt-5">
+
+<p> <a class="btn btn-sm" style="background-color:#5088c7;"  href="https://clixoer.tiss.edu/5752ad5a2e01310a05dca583/domain/{{moduledetails.subject}}/#team"> Read more </a> 
 </p>
 </div>
 
@@ -399,43 +417,31 @@ g"> &nbsp; {% for each_attr in moduledetails.grade %}{{each_attr|slice:"5:"}}
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenterLu" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-        <a href="http://www.youtube.com/watch?v=k6mFF3VmVAs" data-toggle="lightbox" data-gallery="mixedgallery" class="col-sm-4">
-          <img src="http://i1.ytimg.com/vi/yP11r5n5RNg/mqdefault.jpg" class="img-fluid">
-      </a>
-    </div>
-    <div class="col-sm-4">
-      <a href="https://unsplash.it/1200/768.jpg?image=257" data-toggle="lightbox" data-gallery="mixedgallery" class="col-sm-4">
-          <img src="https://unsplash.it/600.jpg?image=257" class="img-fluid">
-      </a>
-    </div>
-    <div class="col-sm-4">
 
-      <a href="http://vimeo.com/80629469" data-remote="http://player.vimeo.com/video/80629469" data-toggle="lightbox" data-gallery="mixedgallery" class="col-sm-4">
-          <img src="http://b.vimeocdn.com/ts/458/070/458070637_200.jpg" class="img-fluid">
-      </a>
-    </div>
+<script>
 
-    </div>
-  </div>
-</div>
-            
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+$("a.video").click(function() {
+    var id =$(this).attr("id");
+    console.log("in a.modal_modal click:",id)
+   console.log({{CSRF_COOKIE}})
+    $.ajax({
+      type: "POST",
+                      url: "{% url 'help_videos' group_id %}",
+                      data :{
+                              csrfmiddlewaretoken: "{{csrf_token }}",
+                                      node_id:id,
+                      },
+                      datatype: "html",
+
+                      success: function(data) {
+                      // $('#jar').html(data)
+                      $(".muvideLu").html(data);
+                      $("#exampleModalCenterLu").modal('show');
+
+                      }
+           });
+
+
+});
+
+</script>

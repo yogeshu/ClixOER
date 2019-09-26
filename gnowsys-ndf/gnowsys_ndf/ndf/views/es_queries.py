@@ -25,7 +25,7 @@ from gnowsys_ndf.ndf.gstudio_es.es import *
 from gnowsys_ndf.settings import LANGUAGES,OTHER_COMMON_LANGUAGES,EMAIL_HOST_USER
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from gnowsys_ndf.ndf.models import GSystemType, Group, Node, GSystem, Buddy, Counter  #, Triple
+from gnowsys_ndf.ndf.models import GSystemType, Group, Node, GSystem, Buddy, Counter, hit_counters  #, Triple
 from gnowsys_ndf.ndf.models import node_collection
 
 from gnowsys_ndf.ndf.models import GSystemType
@@ -33,10 +33,11 @@ from gnowsys_ndf.ndf.models import GSystemType
 gfs = HashFS('/data/media/', depth=3, width=1, algorithm='sha256')
 
 def help(request,group_id):
+    banner_pics = ['/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png']
     template = 'ndf/help.html'
-    return render_to_response(template, {'group_id':group_id},
+    return render_to_response(template, {'group_id':group_id,'bannerpics':banner_pics},
                                 context_instance=RequestContext(request))
- 
+
 def help_videos(request,group_id):
     node_id = request.POST.get('node_id')
     print 'inside help_videos',node_id
@@ -44,10 +45,28 @@ def help_videos(request,group_id):
         json_data = json.load(fd)
     nd = get_node_by_id(node_id)
     videos = json_data[nd.name]
-    print "videos:",videos
+    #print "videos:",videos
     template = 'ndf/thehelpmodal.html'
-    return render_to_response(template, {'group_id':group_id , 'videos':videos})
-   
+    return render_to_response(template, {'group_id':group_id , 'videos':videos , 'module_name':nd.name })
+    
+def explore_item(request,group_id):
+    from django.shortcuts import redirect
+    node_id = request.POST.get('node_id')
+    link = request.POST.get('href_link')
+    print "inside explore link",node_id,link
+    nd = get_node_by_id(node_id)
+    results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid']).filter(visitednode_name=nd.name)
+    if len(results) ==0:
+        obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=nd.id,visitednode_name=nd.name,preview_count=0,visit_count=1,download_count=0,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
+        obj.save()
+        print "hit_counter object saved"
+    else:
+        obj1 = results[0]
+        print "else:",obj1.visitednode_name,obj1.visit_count
+        if obj1.visit_count == 0:
+            obj1.visit_count = 1
+            obj1.save()
+    return redirect(link)
 
 def get_file(md5_or_relurl=None):
 
@@ -61,7 +80,7 @@ def get_file(md5_or_relurl=None):
             
     return file_blob
 
-def readDoc(request, id, group_id, file_name=""):
+def readDoc(request, group_id,file_id):
     '''Return Files
     '''
     try:
@@ -69,10 +88,22 @@ def readDoc(request, id, group_id, file_name=""):
     except:
         group_name, group_id = get_group_name_id(group_id)
 
+    print "in readDoc"
+    file_node = get_node_by_id(file_id)
+    print "Session:",request.COOKIES['sessionid']
 
-    file_node = get_node_by_id(id)
-
-
+    results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid']).filter(visitednode_name=file_node.name)
+    if len(results) ==0:
+        obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=file_node.id,visitednode_name=file_node.name,preview_count=0,visit_count=0,download_count=1,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
+        obj.save()
+        print "object saved successfully"
+    else:                                                                                                                                                          
+        #cnt = results[0].download_count                                                                                                                          
+        obj1 = results[0]
+        if obj1.download_count == 0:
+            obj1.download_count = 1                                                                                                                                 
+            obj1.save()
+        
     if file_node is not None:
 
         if file_node.if_file.original.relurl:
@@ -84,8 +115,9 @@ def readDoc(request, id, group_id, file_name=""):
 
 
 def about(request,group_id):
+    banner_pics = ['/static/ndf/Website Banners/About/About1.png','/static/ndf/Website Banners/About/About2.png','/static/ndf/Website Banners/About/About3.png','/static/ndf/Website Banners/About/About4.png']
     template = 'ndf/about.html'
-    return render_to_response(template, {'group_id':group_id},
+    return render_to_response(template, {'group_id':group_id , 'bannerpics':banner_pics},
                                 context_instance=RequestContext(request)   )
 
 
@@ -122,14 +154,15 @@ def domain_help(request,group_id,domain_name):
     print "inside domain help",domain_name
     if domain_name == 'English':
         template = 'ndf/theEDhelp.html'
+        banner_pics = ['/static/ndf/Website Banners/English Domain/eng dnd.png','/static/ndf/Website Banners/English Domain/English2.png','/static/ndf/Website Banners\English Domain/English1.png']
 
     if domain_name == 'Mathematics':
         template = 'ndf/theMDhelp.html'
-
+        banner_pics = ['/static/ndf/Website Banners/Maths Domain/math dnd.png','/static/ndf/Website Banners/Maths Domain/math1.png','/static/ndf/Website Banners/Maths Domain/math2.png']
     if domain_name == 'Science':
         template = 'ndf/theSDhelp.html'
-
-    return render_to_response(template, {'group_id':group_id,'domain_name':domain_name},
+        banner_pics = ['/static/ndf/Website Banners/Science Domain/sci dnd.png','/static/ndf/Website Banners/Science Domain/science1.png','/static/ndf/Website Banners/Science Domain/science2.png']
+    return render_to_response(template, {'bannerpics':banner_pics,'group_id':group_id,'domain_name':domain_name},
                                 context_instance=RequestContext(request)   )
 
 
@@ -137,14 +170,15 @@ def loadDesignDevelopment(request,group_id,domain_name):
     print "inside Design Development:",domain_name
     if domain_name == 'English':
         template = 'ndf/ED.html'
+        banner_pics = ['/static/ndf/Website Banners/English Domain/eng dnd.png','/static/ndf/Website Banners/English Domain/English2.png','/static/ndf/Website Banners\English Domain/English1.png']
        
     if domain_name == 'Mathematics':
         template = 'ndf/MD.html'
-       
+        banner_pics = ['/static/ndf/Website Banners/Maths Domain/math dnd.png','/static/ndf/Website Banners/Maths Domain/math1.png','/static/ndf/Website Banners/Maths Domain/math2.png']
     if domain_name == 'Science':
         template = 'ndf/SD.html'
-    
-    return render_to_response(template, {'group_id':group_id,'domain_name':domain_name},
+        banner_pics = ['/static/ndf/Website Banners/Science Domain/sci dnd.png','/static/ndf/Website Banners/Science Domain/science1.png','/static/ndf/Website Banners/Science Domain/science2.png']
+    return render_to_response(template, {'bannerpics':banner_pics,'group_id':group_id,'domain_name':domain_name},
                                 context_instance=RequestContext(request)   )
 
 
@@ -296,23 +330,35 @@ def domain_page(request,group_id,domain_name):
     import json
     print "es_queries domain page:",domain_name,request.session.session_key
     domain_id = get_name_id_from_type(domain_name,'Group')[1]
-    print "domain id:",domain_id
+    #print "domain id:",domain_id
     domainnd = get_node_by_id(domain_id)
-    print "domain nd:",domainnd
+    #print "domain nd:",domainnd
     
     files = get_nodes_by_ids_list(list(domainnd.collection_set))
     files = sorted(files, key=lambda nd: nd.last_update)
-    print request.META["CSRF_COOKIE"]
+    #print request.META["CSRF_COOKIE"]
     #CSRF_COOKIE = request.META["CSRF_COOKIE"]
+
+    if domainnd.name == 'English':
+        banner_pics = ['/static/ndf/Website Banners/English Domain/eng dnd.png','/static/ndf/Website Banners/English Domain/English2.png','/static/ndf/Website Banners/English Domain/English1.png']
+    elif domainnd.name == 'Mathematics':
+        banner_pics = ['/static/ndf/Website Banners/Maths Domain/math dnd.png','/static/ndf/Website Banners/Maths Domain/math1.png','/static/ndf/Website Banners/Maths Domain/math2.png']
+    else:
+        banner_pics = ['/static/ndf/Website Banners/Science Domain/sci dnd.png','/static/ndf/Website Banners/Science Domain/science1.png','/static/ndf/Website Banners/Science Domain/science2.png']
+
     import os
-    print "re",files,os.getcwd()
+    #print "re",files,os.getcwd()
     with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/employees.json','r') as json_file:
         employeedata = json.load(json_file)
     with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/testimonial.json','r') as json_file:
         testimonydata = json.load(json_file)
+    results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid'],visitednode_name=domainnd.name)
+    if len(results) ==0:
+        obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=domainnd.id,visitednode_name=domainnd.name,preview_count=0,visit_count=1,download_count=0,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
+        obj.save()
     return render_to_response(
             "ndf/domain.html",
-            {"employee":employeedata,"testimony":testimonydata,"files":files,"first_arg":domain_name,"group_id":group_id},context_instance=RequestContext(request)) 
+            {"employee":employeedata,"testimony":testimonydata,"files":files,"first_arg":domain_name,"group_id":group_id,"bannerpics":banner_pics},context_instance=RequestContext(request)) 
     
 def get_module_previewdata(request,group_id):
 
@@ -345,7 +391,7 @@ def get_module_previewdata(request,group_id):
 
     units = get_attribute_value(node_id,'items_sort_list')
     print "unitnds:",units
-    if units == 'None':
+    if units == 'None' or len(units) == 0:
         units = get_nodes_by_ids_list(node_obj.collection_set)
     else:
         units = list(units)
@@ -417,7 +463,7 @@ def get_module_previewdata(request,group_id):
         #print "collection_set:",each.collection_set,each.id
         lessnnds = get_nodes_by_ids_list(list(each.collection_set))
         lessnnds = sorted(lessnnds, key=lambda nd: nd.last_update)
-        print "lessnnds:",lessnnds
+        #print "lessnnds:",lessnnds
         for lessn in lessnnds:
             unitdict = {}
             unitdict['name'] = each.altnames
@@ -426,12 +472,43 @@ def get_module_previewdata(request,group_id):
             unitdict['lessname'] = str(lessn.name).encode('utf-8')
             unitdict['totalactivities'] = len(list(lessn.collection_set))
             module_dict['unitdetails'].append(unitdict) 
-    print "module details:",module_dict
+    #print "module details:",module_dict
+    
+    with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/employees.json','r') as fd:
+        json_data = json.load(fd)
+    if module_dict['subject'] == 'English':
+        authorData = json_data['Team_detail_english']
+    elif module_dict['subject'] == 'Mathematics':
+        authorData = json_data['Team_detail_math']
+    else:
+        authorData = json_data['Team_detail_science']
+    #print "Author data of module:",authorData
+    userdata = []
+    leaduser = []
+    for each in authorData:
+        if each['moduleId'] == module_dict['name']:
+            userdata = each['userIdArray']
+            leaduser = each['u']
+            break
+    print "Author data of module:",userdata
+    
+    results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid']).filter(visitednode_name=module_dict['name'])
+    if len(results) ==0:
+        obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=module_dict['id'],visitednode_name=module_dict['name'],preview_count=1,visit_count=0,download_count=0,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
+        obj.save()
+        print "hit_counter object saved"
+    else:
+        obj1 = results[0]
+        print "else:",obj1.visitednode_name,obj1.visit_count
+        if obj1.preview_count == 0:
+            obj1.preview_count = 1
+            obj1.save()
+
 
     return render_to_response('ndf/Emodule_preview.html',
             {
                 'group_id': group_id, 'groupid': group_id,
-                'moduledetails':module_dict, 'student_docs':student_docs,'teacher_docs':teacher_docs, 'interactivestotal':allinteractives1.count(), 'toolsdata':interactives_data
+                'moduledetails':module_dict, 'student_docs':student_docs,'teacher_docs':teacher_docs, 'interactivestotal':allinteractives1.count(), 'toolsdata':interactives_data, 'userdata':userdata, 'leaduser':leaduser
             },
             context_instance=RequestContext(request))
 
@@ -708,7 +785,7 @@ def get_attribute_value(node_id, attr_name, get_data_type=False, use_cache=True)
             # q = Q('match',name=dict(query='File',type='phrase'))
             s1 = Search(using=es, index='triples',doc_type="triple").query(q)
             s2 = s1.execute()
-            print "s2:",s2,q
+           # print "s2:",s2,q
             if s1.count() > 0:
                 node_attr = s2[0]
                 attr_val = node_attr.object_value
@@ -749,9 +826,9 @@ def get_gst_name_id(gst_name_or_id):
     # q = Q('match',name=dict(query='File',type='phrase'))
     s1 = Search(using=es, index='nodes',doc_type="node").query(q)
     s2 = s1.execute()
-    print "s2",s2
+    #print "s2",s2
     gst_obj = s2[0]
-    print "Object:",gst_obj
+    #print "Object:",gst_obj
     if gst_obj:
         gst_name = gst_obj.name
         gst_id = gst_obj.id
@@ -1056,8 +1133,8 @@ def module_detail(request, group_id, node_id,title=""):
 
     units_sort_list = get_attribute_value(node_id, 'items_sort_list')
     from django.core.cache import cache
-    test = cache.get('5945db6e2c4796014abd1784attribute_valueitems_sort_list')
-    print "test:",test 
+    #test = cache.get('5945db6e2c4796014abd1784attribute_valueitems_sort_list')
+    #print "test:",test 
     if units_sort_list:
         #print "from attribute:",units_sort_list
         context_variable.update({'units_sort_list': units_sort_list})
@@ -1066,7 +1143,7 @@ def module_detail(request, group_id, node_id,title=""):
         context_variable.update({'units_sort_list': list(units_under_module)})
 
     template = 'ndf/module_detail.html'
-    print "units of selected module", units_sort_list
+    #print "units of selected module", units_sort_list
     return render_to_response(
         template,
         context_variable,
@@ -1543,7 +1620,7 @@ def get_relation_value(node_id, grel, return_single_right_subject=False):
                         # print "\n\n grel_val_node, grel_id == ",grel_val_node, grel_id
                         result_dict.update({"grel_id": grel_id, "grel_node": grel_val_node_cur})
                 else:
-                    print "else:",grel
+                    #print "else:",grel
                     # node_grel = triple_collection.one({'_type': "GRelation", "subject": node._id, 'relation_type': relation_type_node._id,'status':"PUBLISHED"})
                     q = Q('bool',must=[Q('match', type = 'GRelation'), Q('match', subject = node_id), Q('match', relation_type = relation_type_node.id)])
                     s1 = Search(using=es, index='triples',doc_type="triple").query(q)
@@ -1570,7 +1647,7 @@ def get_relation_value(node_id, grel, return_single_right_subject=False):
                         
                         # returns right_subject of grelation and GRelation _id
                         result_dict.update({"grel_id": grel_id, "grel_node": grel_val_node, "cursor": False})
-        print "\n\nresult_dict === ",result_dict
+        #print "\n\nresult_dict === ",result_dict
         return result_dict
     except Exception as e:
         print e

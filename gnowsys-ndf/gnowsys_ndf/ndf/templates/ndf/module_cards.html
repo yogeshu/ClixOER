@@ -14,6 +14,22 @@ min-height: 4vh !important;
 
 }
 }
+
+@media (min-width:1000px) and (max-width:1094px){
+
+.content{
+width:370px !important;
+margin:10px !important;
+
+}
+.nav-scroll .nav-link{
+padding: auto !important;
+}
+
+}
+
+
+
 @media only screen and (max-width:340px){
 .card.col-md-offset-2.shadow.mb-3.border-rounded.content {
 margin:0px;
@@ -93,6 +109,7 @@ background: #9693a3 !important;
       ><i class="fa fa-bars"></i
     ></a>
   </h2>
+
   <main>
     <div class="col-md-sm-lg-10  py-2 content-module cards-elibrary">
       <div class="container" id="jar">
@@ -162,12 +179,19 @@ background: #9693a3 !important;
                     <br />
                   </p>
                   <div class="card-footer c-footer   text-center">
-                    <a href="https://demo-clix.tiss.edu/home/module/{{dest.id}}/courses" data-toggle="tooltip" title="Explore Module Online"  target="_blank" >
+<!--
+                    <a href="https://demo-clix.tiss.edu/home/module/{{dest.id}}/courses" data-toggle="tooltip" title="Explore module online"  target="_blank" >
+-->
+
+ <a class="explore" href="https://demo-clix.tiss.edu/home/module/{{dest.id}}/courses"  id="{{dest.id}}"  data-toggle="tooltip" title="Explore module online" \
+ target="_blank" >
+
+
                       <i class="fas fa-rocket    fa-lg"></i></a
                     >
 <div class="dropdown show" style="display:inline-block">
                     <a href="" data-toggle="dropdown" 
-                      ><i class="fas fa-cloud-download-alt  fa-lg"  data-toggle="tooltip" title="Download offline Version" > 
+                      ><i class="fas fa-cloud-download-alt  fa-lg"  data-toggle="tooltip" title="Download offline version" > 
                         <span
                           class="badge "
                           style="font-size:5px; background: #F0578F; color: #fff;"
@@ -222,7 +246,7 @@ background: #9693a3 !important;
                         <div class="dropdown-menu font-share" href="" aria-labelledby="dropdownMenuLink" >
                           <a class="dropdown-item" onclick="CopyLink()"  id="copy">
 <i class="fas fa-copy"> </i>
-Copied to clipboard</a>
+Copy link</a>
                         <!--  <a class="
 dropdown-item"  data-js="facebook-share">Share Facebook</a>
                           <a  class="dropdown-item" data-js="twitter-share" >Share on Twitter</a> -->
@@ -374,6 +398,7 @@ Tweet this</a>
 
   </main>
 </div>
+
 
 <script type="text/javascript"> 
 
@@ -626,6 +651,28 @@ function getPageList(totalPages, page, maxLength) {
     $("#myInput").trigger("focus");
   });
 
+$("a.explore").click(function() {
+    var id =$(this).attr("id");
+    var link = $(this).attr("href");
+    console.log("in a.modal_modal click:",link)
+   console.log({{CSRF_COOKIE}})
+    $.ajax({
+		            type: "POST",
+                      url: "{% url 'explore_link' group_id %}",
+                      data :{
+                              csrfmiddlewaretoken: "{{csrf_token }}",
+                              node_id:id,
+		              href_link : link,
+                      },
+                      datatype: "html",
+                      success: function(data) {
+            console.log("success");
+                      }
+           });
+
+
+});
+
 
 
 $("a.video").click(function(){
@@ -637,7 +684,8 @@ $("a.video").click(function(){
 
 $("a.video").click(function() {
     var id =$(this).attr("id");
-    console.log("in a.modal_modal click:",id)
+    var link = $(this).attr("href");
+    console.log("in a.modal_modal click:",link)
    console.log({{CSRF_COOKIE}})
     $.ajax({
                       type: "POST",
@@ -645,6 +693,7 @@ $("a.video").click(function() {
                       data :{
                               csrfmiddlewaretoken: "{{csrf_token }}",
                                       node_id:id,
+		              href_link:link,
                       },
                       datatype: "html",
 

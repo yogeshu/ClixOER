@@ -1,3 +1,47 @@
+      <style>
+.some > ul {
+float:right !important;
+margin-bottom:100px !important;
+color:#000 !important;
+
+}
+.some > ul li a {
+
+color:#000 !important;
+font-size:1.25rem !important;
+}
+@media only screen and (max-width: 440px) {
+ .some > ul{
+  float:left !important;
+  margin-left:10% !important;
+  color:#000 !important;
+}
+ li {
+ list-style: none !important;
+}
+.footer-li{
+margin-left:0px !important;
+}
+
+
+.tiss{
+width:30% important;
+}
+
+.mitl{
+width:180px !important;
+margin-top:-60% !important;
+margin-left: 40% !important;
+
+}
+
+
+
+      </style>
+
+
+
+
 
 <div class="contatiner-fluid">
 <!--
@@ -7,32 +51,35 @@
 
 <footer class="mainfooter footer-pix" role="contentinfo" style="background:#F8F9FA; color:#000 !important;">
         <div class="footer-middle">
+<!--
            <h5 class="text-center py-2" style="color:#000;">Led By </h5>
+-->
         <div class="container-fluid">
           <div class="row">
          
             <div class="col-12 col-md-3 col-sm-6">
               <!--Column1-->
               <div class="footer-pad">
-                <a href="http://tatatrusts.org">
+                <a href="http://tatatrusts.org" target="_blank" target="_blank"   >
               
- <img  src="/static/ndf/images/footer-svg/tata_trusts.svg" style="display:margin-left:140px;">
+ <img  src="/static/ndf/images/footer-svg/tata_trusts.svg" style="display:margin-left:140px; width:230px;" >
 </a>
               </div>
             </div>
             <div class="col-12 col-md-3 col-sm-6">
               <!--Column1-->
               <div class="footer-pad">
-<a href="http://www.tiss.edu">
+                  <p class="text-center py-2" style="color:#000;font-size:12px;font-family:Cambria;  ">Led By </p>  
+<a href="http://www.tiss.edu" target="_blank">
                 
-<img src="/static/ndf/images/footer-svg/tiss.svg" style="width:40%;">
+<img class="tiss" src="/static/ndf/images/footer-svg/tiss.svg" style="width:40%; margin-top:-8%">
 </a>              </div>
             </div>
             <div class="col-12 col-md-3 col-sm-6">
               <!--Column1-->
               <div class="footer-pad">
-<a href="http://www.mit.edu"> 
-            <img src="/static/ndf/images/footer-svg/mit.svg" style="margin-left=-80px;">
+<a href="http://www.mit.edu" target="_blank"> 
+            <img src="/static/ndf/images/footer-svg/mit.svg" style="width:240px; margin-top:10%; margin-left:-25%;" class="mitl">
 </a>             
  </div>
             </div>
@@ -45,44 +92,50 @@
               </div> -->
       
        
-              <div class="col-md-3" style="color:#000;">
-                  <ul id="some"> 
+              <div class="col-md-3" style="color:#000;font-size:1.25rem;">
+                  <ul id="some" style="list-style:none !important;"> 
 
-                    <li> About </li>
-                    <li> Credits</li>
-                    <li> Terms Of Service </li>
-
-                <li>Privacy Policy </li>
-                <li> Contact Us</li>
+                    <li><a href="{% url 'about' group_id  %}" target="_blank" style="color:#000;font-size:1.25rem;"> About </a>  </li>
+                    <li><a href="https://demo-clix.tiss.edu/credits.html" target="_blank" style="color:#000;font-size:1.25rem;"> Credits </a> </li>
+                    <li><a href="https://demo-clix.tiss.edu/termsofservice.html" target="_blank" style="color:#000;font-size:1.25rem;"> Terms of service </a> </li>
+                    <li><a href="https://demo-clix.tiss.edu/privacypolicy.html" target="_blank" style="color:#000;font-size:1.25rem;"> Privacy policy </a> </li>
+                    <li><a href="https://demo-clix.tiss.edu/contact.html" target="_blank" style="color:#000;font-size:1.25rem;"> Contact us </a>  </li>
           
                   </ul>
               </div>
           </div>
-      
+<hr>      
           <div class="row">
-              <div class="col-md-12 copy " style="color:#000;">
+              <div class="col-12 col-md-8 copy " style="color:#000;">
+<p class="text-start col-12 col-sm-8 col-md-9" >    
+&copy 2019 Tata Institute of Social Sciences and 
 
-<hr>
-
-<p class="text-start col-6 col-sm-8 col-md-8" >    
-
-Massachusetts Instutude of Technology And 
- 
 <!--              &copy
-
+Tata Institute of Social Sciences &copy 2019    
 -->
- Tata Institute of Social Sciences
-  &copy 2019    
+ Massachusetts Institute of Technology
+
 </p>
- 
-<p class="text-start col-12">  
+</div>
+
+<div class="col-12 col-sm-12 col-md-3 footer-li " style="color:#000; margin-left:100px;">
+<p>  Visit our site :<a href="https://clix.tiss.edu/" target="_blank_" style="color:#000;"> clix.tiss.edu </a>
+<br>
+           Contact us:<a href="mailto:contact@clix.tiss.edu" style="color:#000;"> contact@clix.tiss.edu </a>
+</p>
+
+</div>
+
+<div class="col-12">
+<p class="text-start col-12" style="color:#000;">  
    Except where otherwise noted, content on this site is licensed under a <br> Creative Commons Attribution 4.0 International license <a href="https://creativecommons.org/licenses/by/4.0/">  <img src="/static/ndf/images/80x15cclogo.png"/>   
 </a>
 </p>
+</div>
 <!--
 
 <img src="/static/ndf/images/80x15cclogo.png"/> -->
-              </div>
+              
           </div>
       
       
@@ -95,6 +148,7 @@ Massachusetts Instutude of Technology And
 float:right !important;
 margin-bottom:100px !important;
 color:#000 !important;
+
 }
 @media only screen and (max-width: 440px) {
  .some > ul{
@@ -102,6 +156,12 @@ color:#000 !important;
   margin-left:10% !important;
   color:#000 !important;
 }
+ li {
+ list-style: none !important;
+}
+.mitl{
+
+margin-left:40% !important;
 }
       </style>
 

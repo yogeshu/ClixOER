@@ -94,7 +94,9 @@
     color: #fff;
     top: 5px;
 }
-
+body{
+height: 100% !important;
+}
 body p{
 font-size:14px;
 }
@@ -123,15 +125,14 @@ max-width: 100%  !important;
 transition:none !important;
 }
 .card:hover{
-border: 1px solid #000 !important;
+border: 0.5px solid #000 !important;
 }
 
 
      </style>
 </head>
 
-<body data-spy="scroll" data-target="#verticalScrollspy" data-offset="20">
-
+<body data-spy="scroll" data-target="#verticalScrollspy">
   <a id="u-c"></a>
  <a href="javascript:" id="return-to-top" title="Go To Top">  
 <i class="fas fa-chevron-circle-up"></i> </a>
@@ -166,8 +167,13 @@ border: 1px solid #000 !important;
 </div>  
 </body>
 <script>
+$('body').scrollspy({ target: '#verticalScrollspy' })
+$('#verticalScrollspy').scrollspy();
 
 
+ $('[data-spy="scroll"]').each(function () {
+     var $spy = $(this).scrollspy('refresh')
+  });
 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
                 $(this).ekkoLightbox({
@@ -182,6 +188,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
               
             });
             });
+
 $(document).ready(function(){ 
     $(window).scroll(function(){ 
         if ($(this).scrollTop() > 100) { 
@@ -196,8 +203,7 @@ $(document).ready(function(){
     }); 
 });
   
-  
-
+ 
 // ===== Scroll to Top ==== 
 $(window).scroll(function() {
     if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
@@ -232,6 +238,9 @@ $('.navbar-nav .nav-item').click(function(){
     $(this).addClass('active');
 })
 });
+
+$('#verticalScrollspy').scrollspy();
+
 </script>
 
 
