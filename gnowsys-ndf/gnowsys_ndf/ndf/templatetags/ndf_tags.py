@@ -223,11 +223,25 @@ def get_node_type(node):
 @register.assignment_tag
 def get_node(node_id):
     if node_id:
+        from elasticsearch_dsl import *
         obj = node_collection.one({"_id": ObjectId(node_id)})
         if obj:
             return obj
         else:
             return ""
+
+@register.assignment_tag
+def get_unplatformpkg_node(node_id):
+
+    if node_id:
+            
+        q = Q('bool',must=[Q('match_phrase',group_set = node_id ),Q('match_phrase',tags = 'unplatform')])
+        s1 = Search(using=es, index='nodes',doc_type="node").query(q)
+        s2 = s1.execute()
+        print "unplatform pkr url:",s2[0].if_file['original']['relurl']
+        return s2[0].if_file['original']['relurl']
+    else:
+                return ""
 
 
 @get_execution_time

@@ -10,7 +10,6 @@
 
 ],
       "userIdArray":  [
-    
 
  "Amit Dhakulkar",
         "Arati Sudhir Bapat",
@@ -174,13 +173,17 @@
  "u" : [
 "Binoy V.V"
 ],
-      "userIdArray":  [ "Shamin Padalkar",
-        "Rafikh Shaikh           ",
-        "Prayas Sutar           ",
-        "Arunachal Kumar           ",
-         "Sheetal Chopde             ",
-"R. K. Latha            ",
-       "Jayashree Anand           "
+      "userIdArray":  [ "Akhila C M",
+
+"Deepak Verma",
+"Academic support",
+
+"Prof. Bholeshwar Dube",
+
+"Prof. Kishore Panwar",
+
+"Umesh K Chouhan"
+
         ],
       "userId": "Shamin Padalkar",
       "jobTitleName": "Assistant Professor",
@@ -195,13 +198,17 @@
    "u": [
 "Deepak Verma"
 ],
-      "userIdArray":  [ "Shamin Padalkar",
-        "Rafikh Shaikh           ",
-        "Prayas Sutar           ",
-        "Arunachal Kumar           ",
-         "Sheetal Chopde             ",
-"R. K. Latha            ",
-       "Jayashree Anand           "
+      "userIdArray":  [ "Arpita Pandey",
+"Priyanka Saxena",
+"Sayali Chougale",
+"Arvind Sardana",
+
+"Anu Gupta",
+
+"Dr. Ramani Atkuri",
+
+"Dr. Sumit Roy"
+
         ],
       "userId": "Rafikh Shaikh           ",
       "jobTitleName": "Assistant Professor",
@@ -216,13 +223,9 @@
  "u" : [
 "Deepak Verma"
 ],
-      "userIdArray":  [ "Shamin Padalkar",
-        "Rafikh Shaikh           ",
-        "Prayas Sutar           ",
-        "Arunachal Kumar           ",
-         "Sheetal Chopde             ",
-"R. K. Latha            ",
-       "Jayashree Anand           "
+      "userIdArray":  [   
+"Anup Saxena"
+
         ],
       "userId": "Prayas Sutar           ",
       "jobTitleName": "Team Lead & Associate Professor",
@@ -237,13 +240,10 @@
    "u" : [
 "Deepak Verma"
 ],
-      "userIdArray":  [ "Shamin Padalkar",
-        "Rafikh Shaikh           ",
-        "Prayas Sutar           ",
-        "Arunachal Kumar           ",
-         "Sheetal Chopde             ",
-"R. K. Latha            ",
-       "Jayashree Anand           "
+      "userIdArray":  [   " Anish Mokashi",
+"Dinesh Kumar Verma",
+"Honey Singh"
+
         ],
       "userId": "Arunachal Kumar           ",
       "jobTitleName": "Senior Research Associate",
@@ -258,13 +258,13 @@
  "u" : [
  "Deepak Verma"
 ],
-      "userIdArray":  [ "Shamin Padalkar",
-        "Rafikh Shaikh           ",
-        "Prayas Sutar           ",
-        "Arunachal Kumar           ",
-         "Sheetal Chopde             ",
-"R. K. Latha            ",
-       "Jayashree Anand           "
+      "userIdArray":  [
+"Dinesh K Verma",
+"Honey Singh",
+"Judy Perry",
+"Umesh K Chouhan"
+
+
         ],
       "userId": "Sheetal Chopde             ",
       "jobTitleName": "Research Associate",
@@ -280,12 +280,18 @@
  "Shamin Padalkar"
 ],
       "userIdArray":  [ 
-        "Rafikh Shaikh           ",
-        "Prayas Sutar           ",
-        "Arunachal Kumar           ",
-         "Sheetal Chopde             ",
-"R. K. Latha            ",
-       "Jayashree Anand           "
+
+
+"Jaya Mahale",
+"Jayashree Anand",
+
+"Judith Perry",
+"Rafikh Shaikh",
+"Shamin Padalkar",
+
+"Sheetal Chopde",
+"Scot Osterweil"
+
         ]
       
   }

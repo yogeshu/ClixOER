@@ -1,5 +1,4 @@
 
-
 {% load i18n %}
 {% load ndf_tags %}
 {% load get_dict_from_list_of_dicts from simple_filters %}
@@ -189,6 +188,7 @@ background: #9693a3 !important;
 
                       <i class="fas fa-rocket    fa-lg"></i></a
                     >
+{% get_unplatformpkg_node dest.id as pkg_url  %}
 <div class="dropdown show" style="display:inline-block">
                     <a href="" data-toggle="dropdown" 
                       ><i class="fas fa-cloud-download-alt  fa-lg"  data-toggle="tooltip" title="Download offline version" > 
@@ -199,7 +199,9 @@ background: #9693a3 !important;
                         >
                       </i></a
                     >                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkMu">
-                          <a class="dropdown-item " data-toggle="modal" data-target="#unplatformMu">Download Unplatform Version For Windows </a>
+                          <a href="/media/{{pkg_url}}" class="dropdown-item " data-toggle="modal" data-target="#unplatformMu"
+>
+Download Unplatform Version For Windows </a>
                           <a class="  dropdown-item" href="#" data-toggle="modal" data-target="#unplatformMu" >Download Unplatform Version For Debian</a>
                           
                         </div>
