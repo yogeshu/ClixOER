@@ -238,8 +238,8 @@ def get_unplatformpkg_node(node_id):
         q = Q('bool',must=[Q('match_phrase',group_set = node_id ),Q('match_phrase',tags = 'unplatform')])
         s1 = Search(using=es, index='nodes',doc_type="node").query(q)
         s2 = s1.execute()
-        print "unplatform pkr url:",s2[0].if_file['original']['relurl']
-        return s2[0].if_file['original']['relurl']
+        print "unplatform pkr url:",s2[0].id
+        return s2[0].id
     else:
                 return ""
 
