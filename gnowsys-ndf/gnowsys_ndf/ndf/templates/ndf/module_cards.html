@@ -191,16 +191,16 @@ background: #9693a3 !important;
 {% get_unplatformpkg_node dest.id as pkg_url  %}
 <div class="dropdown show" style="display:inline-block">
                     <a href="" data-toggle="dropdown" 
-                      ><i class="fas fa-cloud-download-alt  fa-lg"  data-toggle="tooltip" title="Download offline version" > 
+                      ><i class="fas fa-cloud-download-alt  fa-lg"   data-toggle="tooltip" title="Download offline version" > 
                         <span
                           class="badge "
                           style="font-size:5px; background: #F0578F; color: #fff;"
                           >3</span
                         >
                       </i></a
-                    >                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkMu">
-                          <a href="/media/{{pkg_url}}" class="dropdown-item " data-toggle="modal" data-target="#unplatformMu"
->
+                    >                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkMu" data-toggle="modal" 
+data-target="#unplatformMu" >
+                          <a href="/media/{{pkg_url}}" class="dropdown-item "  data-target="#unplatformMu" download="{{dest.name}}">
 Download Unplatform Version For Windows </a>
                           <a class="  dropdown-item" href="#" data-toggle="modal" data-target="#unplatformMu" >Download Unplatform Version For Debian</a>
                           
@@ -212,19 +212,26 @@ Download Unplatform Version For Windows </a>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Intruction for Installing unplatform</h5>
+
+        <h5 class="modal-title">Installer for Windows 64bit (<name of package>size of file)
+</h5>
+
+
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <p></p>
+      <div class="modal-body" style="text-align:left;">
+ <ul>
+ <h6>For MS Windows operating system: </h6>
+<li>1. Click on the downloaded .exe setup file </li>
+
+
+<li>2. Follow steps and complete the installation</li>
+<li>3. Explore CLIx modules and interactives offline! </li>
+</ul>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-       
-      </div>
-    </div>
+</div>      
   </div>
 </div>
 
@@ -247,7 +254,7 @@ Download Unplatform Version For Windows </a>
                       
                         <div class="dropdown-menu font-share" href="" aria-labelledby="dropdownMenuLink" >
                           <a class="dropdown-item" onclick="CopyLink()"  id="copy">
-<i class="fas fa-copy"> </i>
+<i class="fas fa-copy"  > </i>
 Copy link</a>
                         <!--  <a class="
 dropdown-item"  data-js="facebook-share">Share Facebook</a>
@@ -480,14 +487,6 @@ function CopyLink() {
 
 
 
-
-
-
-
-
-
-
-
  function getPageList(totalPages, page, maxLength) {
     if (maxLength < 5) throw "maxLength must be at least 5";
     function range(start, end) {
@@ -674,6 +673,10 @@ $("a.explore").click(function() {
 
 
 });
+
+
+
+
 
 
 
