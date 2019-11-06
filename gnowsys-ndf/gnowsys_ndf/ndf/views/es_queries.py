@@ -90,11 +90,19 @@ def readDoc(request, group_id,file_id):
 
     print "in readDoc"
     file_node = get_node_by_id(file_id)
+    groupnd = get_node_by_id(group_id)
     print "Session:",request.COOKIES['sessionid']
     print "tags:",file_node.tags
-    results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid']).filter(visitednode_name=file_node.name)
+    if file_node.tags[0].find('unplatform')>=0:
+        results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid']).filter(visitednode_name=groupnd.name)
+    else:
+        results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid']).filter(visitednode_name=file_node.name)
     if len(results) ==0:
-        obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=file_node.id,visitednode_name=file_node.name,preview_count=0,visit_count=0,download_count=1,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
+        if file_node.tags[0].find('unplatform')>=0:
+            obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=file_node.id,visitednode_name=groupnd.name,preview_count=0,visit_count=0,download_count=1,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
+            print "post if creation of unplatfom"
+        else:
+            obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=file_node.id,visitednode_name=file_node.name,preview_count=0,visit_count=0,download_count=1,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
         obj.save()
         print "object saved successfully"
     else:                                                                                                                                                          

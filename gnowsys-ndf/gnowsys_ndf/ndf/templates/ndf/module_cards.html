@@ -200,7 +200,7 @@ background: #9693a3 !important;
                       </i></a
                     >                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkMu" data-toggle="modal" 
 data-target="#unplatformMu" >
-                          <a href="{% url 'read_file' group_id pkg_id  %}" class="dropdown-item "  data-target="#unplatformMu" download="{{dest.name}}">
+                          <a href="{% url 'read_file' dest.id pkg_id  %}" class="dropdown-item "  data-target="#unplatformMu" download="{{dest.name}}">
 Download Unplatform Version For Windows </a>
                           <a class="  dropdown-item" href="#" data-toggle="modal" data-target="#unplatformMu" >Download Unplatform Version For Debian</a>
                           
