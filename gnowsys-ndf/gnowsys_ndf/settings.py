@@ -516,7 +516,7 @@ BROKER_URL = 'amqp://'
 
 INSTALLED_APPS = (
     'gnowsys_ndf.ndf',
-    'hit_count',
+    #'hit_count',
     # 'dlkit',
     'django.contrib.auth',
     'django.contrib.admin',
