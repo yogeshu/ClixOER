@@ -22,7 +22,7 @@ from gnowsys_ndf.ndf.gstudio_es.paginator import Paginator ,EmptyPage, PageNotAn
 from django.core.cache import cache
 from bson import ObjectId
 from gnowsys_ndf.ndf.gstudio_es.es import *
-from gnowsys_ndf.settings import LANGUAGES,OTHER_COMMON_LANGUAGES,EMAIL_HOST_USER
+from gnowsys_ndf.settings import GSTUDIO_SITE_LANDING_PAGE,LANGUAGES,EMAIL_HOST_USER
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from gnowsys_ndf.ndf.models import GSystemType, Group, Node, GSystem, Buddy, Counter, hit_counters  #, Triple
@@ -31,6 +31,36 @@ from gnowsys_ndf.ndf.models import node_collection
 from gnowsys_ndf.ndf.models import GSystemType
 
 gfs = HashFS('/data/media/', depth=3, width=1, algorithm='sha256')
+
+def homepage(request, group_id):
+    print "Entered home.py"
+    #print request,"\n"                                                                                                                                                
+    print request.user,"\n"
+    print request.author
+    if request.user.is_authenticated():
+        print "user name:",request.user.id
+        q = eval("Q('bool', must=[Q('match', type = 'Author'), Q('match',created_by=int(request.user.id))])")
+        # q = Q('match',name=dict(query='File',type='phrase'))                                                                                                         
+        auth1 = Search(using=es, index=index,doc_type="node").query(q)
+        auth2 = auth1.execute()
+        print "auth1:",auth2
+        auth = auth2[0]
+        # This will create user document in Author collection to behave user as a group.                                                                               
+        print GSTUDIO_SITE_LANDING_PAGE, request.user.id
+        if GSTUDIO_SITE_LANDING_PAGE == "home":
+            print "before reverse"
+            return HttpResponseRedirect( reverse('e-library'), kwargs={"group_id": group_id} )
+
+        else:
+            return HttpResponseRedirect( reverse('dashboard', kwargs={"group_id": request.user.id}) )
+
+    else:
+        print "in home:",group_id,GSTUDIO_SITE_LANDING_PAGE
+        if GSTUDIO_SITE_LANDING_PAGE == "home":
+            return HttpResponseRedirect(  reverse('e-library', kwargs={"group_id": group_id} ) )
+
+        else:
+            return HttpResponseRedirect( reverse('groupchange', kwargs={"group_id": group_id}) )
 
 def help(request,group_id):
     banner_pics = ['/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png']
@@ -1556,7 +1586,7 @@ def get_language_tuple(lang):
     if not lang:
         return ('en', 'English')
 
-    all_languages = list(LANGUAGES) + OTHER_COMMON_LANGUAGES
+    all_languages = list(LANGUAGES)# + OTHER_COMMON_LANGUAGES
 
     # check if lang argument itself is a complete, valid tuple that exists in all_languages.
     if (lang in all_languages) or (tuple(lang) in all_languages):
