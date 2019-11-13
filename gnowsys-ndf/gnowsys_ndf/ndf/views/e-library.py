@@ -189,6 +189,18 @@ def resource_list(request, group_id, app_id=None, page_no=1):
                 #obj1 = results[0]
                 #obj1.visit_count += 1
                 #obj1.save()
+        q = Q('bool',must=[Q('match',access_policy='PUBLIC'), Q('match_phrase',tags='unplatform-exe')])
+        allpckgs = {}
+        all_pckgs = (Search(using=es,index = index,doc_type=doc_type).query(q))
+        all_pckgs1 = all_pckgs.execute()
+        for each in all_pckgs1[0:all_pckgs.count()]:
+              if each.tags[0].find('english') > 0:
+                   allpckgs['English'] = each.if_file.original.relurl
+              elif each.tags[0].find('mathematics') > 0:
+                   allpckgs['Mathematics']=each.if_file.original.relurl
+              else:
+                   allpckgs['Science']=each.if_file.original.relurl
+        print "pckg urls:",allpckgs
 	return render_to_response("ndf/Elibrary.html",
 								{'title': title, 'app':e_library_GST[0],
 								 'appId':app[0].id, "app_gst": app[0],
@@ -205,7 +217,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 								 'video_pages': allvideos1.count(),
 								 'audio_pages': allaudios1.count(),
 								 'groupid': group_id, 'group_id':group_id,
-								 "datavisual":datavisual, 'bannerpics': banner_pics
+								 "datavisual":datavisual, 'bannerpics': banner_pics,'allpckgs':allpckgs,
 								},
 								context_instance = RequestContext(request))
 
@@ -450,7 +462,7 @@ def resource_list_domainwise(request,group_id, app_id=None, page_no=1):
         print "interactives count:",all_interactives1.count()
         
         #print "query",q
-        files_new = all_modules2[0:24]
+        files_new = all_modules[0:all_modules.count()]
         datavisual.append({"name":"Doc", "count": alldocs1.count()})
         datavisual.append({"name":"Page", "count": educationaluse_stats.get("Pages", 0)})
         datavisual.append({"name":"Image","count": allimages1.count()})
