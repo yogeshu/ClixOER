@@ -66,7 +66,7 @@ GST_JSMOL = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute(
 q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='Module')])")
 gst_module = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute()
 
-banner_pics = ['/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png']
+banner_pics = ['/static/ndf/Website Banners/About/About2.png','/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png']
 
 ##############################################################################
 
@@ -77,7 +77,9 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	"""
 	print "inside resource_list of e-library ",group_id
 	is_video = request.GET.get('is_video', "")
+        lang = request.COOKIES['language_code']
         print "request:",request.session.get_expiry_age(),request.session.get_expire_at_browser_close()
+        print "language data from request:",lang,request.session
 	try:
 		group_id = ObjectId(group_id)
 	except:
@@ -115,7 +117,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	for value in lists:
 		strconcat1 = strconcat1+'eval(str("'+ value +'")),'
 
-	q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC')],must_not=[Q('match',attribute_set__educationaluse='ebooks')])
+	q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id]),Q('match',group_set=str(group_id)),Q('match_phrase',language = lang),Q('match',access_policy='PUBLIC')],must_not=[Q('match',attribute_set__educationaluse='ebooks')])
 	
 	allfiles1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
@@ -145,12 +147,13 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 
 	alldocs2 = alldocs1.execute()
         
-        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Tool')])
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',language = lang),Q('match_phrase',tags = 'Tool')])
 
         allinteractives1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({'last_update' : {"order":"asc"}})
 
         allinteractives2 = allinteractives1.execute()
-        #print "interactives count:",allinteractives1.count()
+        
+        print "interactives count:",allinteractives1.count()
         
         domain_set = ['English','Mathematics','Science']
         domain_nds = [get_group_name_id(each)[1] for each in domain_set]
@@ -158,14 +161,15 @@ def resource_list(request, group_id, app_id=None, page_no=1):
         moduleids = []
         for each in domains:
                 moduleids.extend(each.collection_set)
-	q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id = moduleids)])
+        print "moduleids:",moduleids
+	q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id = moduleids),Q('match_phrase',language = lang)])
 
 	all_modules = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
 
 	all_modules2 = all_modules.execute()
-        
+        print "modules:",all_modules.count()
         files_new = all_modules[0:24]
-
+        
         #for each in files_new:
         #        print each
 
@@ -176,8 +180,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	datavisual.append({"name":"Interactives","count": allinteractives1.count()})
 	datavisual.append({"name":"Audios","count": allaudios1.count()})
 	datavisual.append({"name":"eBooks","count": educationaluse_stats.get("eBooks", 0)})
-	
-        
+	       
         print "Session:",request.COOKIES['sessionid']
         
         results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid'],visitednode_name='home')
