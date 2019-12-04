@@ -400,9 +400,9 @@ class Filehive(DjangoDocument):
         # --- END of storing Filehive JSON in RSC system ---
 
           ########################## ES ##################################
-        if GSTUDIO_ELASTIC_SEARCH_IN_NODE_CLASS == True:
-            print "inside elastic search save"
-            esearch.save_to_es(self)
+       #if GSTUDIO_ELASTIC_SEARCH_IN_NODE_CLASS == True:
+       #print "inside elastic search save"
+       #esearch.save_to_es(self)
 
 
 

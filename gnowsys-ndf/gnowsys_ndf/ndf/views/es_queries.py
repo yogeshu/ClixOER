@@ -532,7 +532,7 @@ def upload_using_save_file(request,group_id):
     
     usrid = 1
     name  = request.POST.get('name')
-
+    
     #from gnowsys_ndf.ndf.views.filehive import write_files
     #is_user_gstaff = check_is_gstaff(group_obj._id, request.user)
     content_org = request.POST.get('content_org', '')
@@ -555,7 +555,7 @@ def upload_using_save_file(request,group_id):
         group_object = node_collection.one({'_id': ObjectId(group_id)})
         
         each_gs_file.save()
-        save_node_es(each_gs_file)
+        save_node_to_es(each_gs_file)
         #create_gattribute(each_gs_file._id, discussion_enable_at, True)
         #return_status = create_thread_for_node(request,group_obj._id, each_gs_file)
 
@@ -586,7 +586,7 @@ def write_files(request, group_id, make_collection=False, unique_gs_per_file=Tru
 
         language = request.POST.get('language')
         language = get_language_tuple(language)
-
+        
         group_set = [ObjectId(group_id),ObjectId(author_obj_id)]
 
         if name and not first_obj and (name != 'untitled'):
