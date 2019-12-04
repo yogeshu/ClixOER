@@ -1,4 +1,6 @@
-{% extends "ndf/base.html" %} {% block content %}
+{% extends "ndf/base.html" %} 
+{% load i18n %}
+ {% block content %}
 <style> 
 
 #uslider  p {
@@ -38,14 +40,15 @@ color:#fff !important;
             <li class="breadcrumb-item  " aria-current="page">
 <a   href="{% url 'e-library' group_id %}"
  <i class="ml-2 fas fa-home fa-lg" ></i> </a> </li>
- <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i>  Domain </li> 
- <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" href="{% url 'domain_page' group_id 'English'  %}"> </i> English </li> </a>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i> {% trans 'Domain' %}  </li> 
+ <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" href="{% url 'domain_page' group_id 'English'  %}"> </i>   {% trans   'English' %} </li> </a>
 <!--
   <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" >  Design And Developement </li> </a>
 -->
 
             <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> --> 
-            <li class="breadcrumb-item ml-n2 " aria-current="page"> <i class=" fas  fa-lg"></i> Design And Development-English</li>
+            <li class="breadcrumb-item ml-n2 " aria-current="page"> <i class=" fas  fa-lg"></i>  {% trans 'Design And Development-English' %}
+</li>
             <!-- <li class="breadcrumb-item " aria-current="page"> Math</li> -->
 
        

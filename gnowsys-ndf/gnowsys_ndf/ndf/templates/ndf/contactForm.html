@@ -1,6 +1,8 @@
 
 
-<h1 class="text-center py-5"> Contact Us </h1>
+{% load i18n %}
+
+<h1 class="text-center py-5">  {% trans   'Contact Us' %} </h1>
 <!--<p  class="text-center " >Hope you enjoyed and found our modules useful. For any further queries or feedback, please write to:  </p> -->
 {% for message in messages %}
   <div class="alert {{ message.tags }} alert-dismissible" role="alert">

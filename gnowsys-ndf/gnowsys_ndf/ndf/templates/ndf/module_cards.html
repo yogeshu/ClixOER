@@ -154,7 +154,7 @@ background: #9693a3 !important;
                   </div>
 
                   <h6 class="card-title mt-2">
-                    <span class="badge badge-secondary subject"  id="uu" data-toggle="tooltip" title="Subject"
+                    <span class="badge badge-secondary subject"  id="uu" data-toggle="tooltip" title="{% trans "Subject" %}"
 			  > {% if node_attrs.educationalsubject == "English" %}
 <i class="fa fa-language fa-sm"></i>
 {% elif node_attrs.educationalsubject == "Mathematics" %}
@@ -166,7 +166,7 @@ background: #9693a3 !important;
 
 {{ node_attrs.educationalsubject }} 
                     </span>
-                    <span class="badge badge-secondary"   data-toggle="tooltip" title="Grade"                      ><i class="fas fa-user-graduate fa-sm"></i>
+                    <span class="badge badge-secondary"   data-toggle="tooltip" title="{% trans  "Grade" %}" ><i class="fas fa-user-graduate fa-sm"></i>
 		      {% for each_attr in node_attrs.educationallevel %}{{each_attr|slice:"5:"}}
 		      {% if not forloop.last %}, {%endif %} 
 		      {% endfor %}</span
@@ -183,11 +183,13 @@ background: #9693a3 !important;
 {% get_attribute_value dest.id 'educationalsubject' as domain %}
 
 {% if request.LANGUAGE_CODE == 'en' or domain == 'English' %}
-      <a class="explore" href="https://demo-clix.tiss.edu/home/module/{{dest.id}}/courses"  id="{{dest.id}}"  data-toggle="tooltip" title="Explore module online" \
+      <a class="explore" href="https://demo-clix.tiss.edu/home/module/{{dest.id}}/courses"  id="{{dest.id}}"  data-toggle="tooltip" 
+  title="{% trans "Explore module online" %}" \
  target="_blank" >
 {% else %}
   {% get_translated_node dest.id as trnsid %}
-       <a class="explore" href="https://demo-clix.tiss.edu/home/module/{{trnsid}}/courses"  id="{{dest.id}}"  data-toggle="tooltip" title="Explore module online" target="_blank" >
+       <a class="explore" href="https://demo-clix.tiss.edu/home/module/{{trnsid}}/courses"  id="{{dest.id}}"  data-toggle="tooltip" 
+  title="{% trans "Explore module online" %}" target="_blank" >
 {% endif %}
 
                       <i class="fas fa-rocket    fa-lg"></i></a >
@@ -196,7 +198,7 @@ background: #9693a3 !important;
 
 <div class="dropdown show" style="display:inline-block">
                     <a href="" data-toggle="dropdown" 
-                      ><i class="fas fa-cloud-download-alt  fa-lg"   data-toggle="tooltip" title="Download offline version" > 
+                      ><i class="fas fa-cloud-download-alt  fa-lg"   data-toggle="tooltip" title="{% trans "Download offline version" %}"  > 
                         <span
                           class="badge "
                           style="font-size:5px; background: #F0578F; color: #fff;"
@@ -245,14 +247,14 @@ Download Unplatform Version For Windows </a>
 </div>
 
 <a class="video" style="color:#0778FA;"    id="{{dest.id}}"   style="display:inline-block" > <i class="fas fa-video" data-toggle="tooltip"
- title="Help videos"  ></i> </a>
+ title="{% trans "Help videos" %}"  ></i> </a>
 
 
 
 
                     <div class="dropdown show" style="display:inline-block;" href="">  
    <a class=""     href=""   role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                            <i data-toggle="tooltip" title="Share" class="fas fa-share-alt  fa-lg"></i
+                            <i data-toggle="tooltip" title="{% trans "Share" %}"  class="fas fa-share-alt  fa-lg"></i
                               >
                               <span id="output"
                         class="badge"
@@ -292,7 +294,7 @@ Tweet this</a>
 <!--
 <a class="video show-modaltrue" style="color:#0778FA;"  onclick="modalhelpvi()"   title="Help Video" style="display:inline-block" > <i class="fas fa-video "></i> </a>
 -->
-                    <a class="modal_modal domain_modal "  title="Preview the module content" data-toggle="tooltip"   id="{{dest.id}}" style="color:#3333ff
+                    <a class="modal_modal domain_modal "  title="{% trans  "Preview the module content" %}"    data-toggle="tooltip"   id="{{dest.id}}" style="color:#3333ff
 ;">
                  
    

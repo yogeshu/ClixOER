@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="surrounding-color">
   <div class=" surrounding-color  ">
   <section class=" py-2">
@@ -19,7 +21,8 @@ TISS offers MOOCs and SPOCs through our own Course Management platform TISSx. Th
  </p>
               <!--    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                -->
-                    <button class="btn btn-primary "> <a  href="https://www.tissx.tiss.edu" target="_blank" title="Explore teacher courses on TiSSx website" style="color:#fff;"> Explore more </a></button>
+                    <button class="btn btn-primary "> <a  href="https://www.tissx.tiss.edu" target="_blank"
+ title="{% trans  "Explore teacher courses on TiSSx website" %}" style="color:#fff;"> {% trans    'Explore more' %} </a></button>
                   
                 </div>
               </div>
