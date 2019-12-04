@@ -28,7 +28,16 @@
 
 
     <div class="">
-        {% include "ndf/Oer_teacher_courses.html" %}  
+
+ {% if request.LANGUAGE_CODE == 'en' %}
+               {% include "ndf/Oer_teacher_courses.html"  %}
+            {% elif request.LANGUAGE_CODE == 'hi' %}
+               {% include "ndf/Oer_teacher_coursesHindi.html" %}
+            {% else %}
+               {% include "ndf/Oer_teacher_coursesTelgu.html" %}
+            {% endif %}
+
+      
   </div>
 </div>
     {%  endblock  %}

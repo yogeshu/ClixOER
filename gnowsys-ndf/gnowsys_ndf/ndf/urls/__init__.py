@@ -239,7 +239,7 @@ if settings.DEBUG:
 from gnowsys_ndf.ndf.views.es_queries import homepage
 urlpatterns += patterns('gnowsys_ndf.ndf.views.es_queries',
                         url(r'^$', homepage, {"group_id": "home"}, name="homepage"),
-                        (r'^(?P<group_id>[^/]+)/e-library', include('gnowsys_ndf.ndf.urls.e-library')),
+                        url(r'^(?P<group_id>[^/]+)/e-library', include('gnowsys_ndf.ndf.urls.e-library')),
                         url(r'^(?P<group_id>[^/]+)/module/(?P<node_id>[\w-]+)/(?P<title>[^/]+)/?$', 'module_detail', name='module_detail'),
                         url(r'^(?P<group_id>[^/]+)/course/save_course_page/$', 'save_course_page', name='save_course_page'),
                         #url(r'^(?P<group_id>[^/]+)/course/content/$', 'course_content', name='course_content'),
@@ -261,4 +261,10 @@ urlpatterns += patterns('gnowsys_ndf.ndf.views.es_queries',
                         url(r'^(?P<group_id>[^/]+)/help/$', 'help', name='help'),
                         url(r'^(?P<group_id>[^/]+)/ajax/module/help_videos/$', 'help_videos', name='help_videos'),
                         url(r'^(?P<group_id>[^/]+)/ajax/explore/$', 'explore_item', name='explore_link'),
-                       )
+                        url(r'^(?P<group_id>[^/]+)/ajax/module/lang$', 'fetch_modules_of_language', name='language_modules'),
+                        url(r'^(?P<group_id>[^/]+)/create/module/$','create_lang_module',name='create_module'),
+                        url(r'^(?P<group_id>[^/]+)/create/unit/$','create_lang_unit',name='create_unit'),
+                        url(r'^(?P<group_id>[^/]+)/node/create/(?P<member_of>[\w-]+)/(?P<detail_url_name>[\w-]+)/?$', 'node_create_edit', {'node_type': 'GSystem', 'node_id': None}, name='node_create'),
+                        url(r'^(?P<group_id>[^/]+)/node/edit/(?P<node_id>[\w-]+)/$', 'node_name_content_edit', name='node_edit'),
+                        url(r'^(?P<group_id>[^/]+)/upload_using_save_file/', 'upload_using_save_file', name='upload_using_save_file')
+                        )

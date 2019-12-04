@@ -1,4 +1,8 @@
+
+{% load i18n %}
 <style>
+
+
 a#classofv{
 
  text-decoration:none;
@@ -16,7 +20,7 @@ color:#000;
 <div class="clixInclass  " >
 <!--<p>Design And Developement  </p> -->
       <div class="jumbotron some-dark py-5" style="background:#fff; color:#000;">
-            <h1 class="h1-responsive mt-n2">Design and Development  Process</h1>
+            <h1 class="h1-responsive mt-n2">   Design and Development  Process</h1>
 
 
 <!--
@@ -39,8 +43,7 @@ Relevant research literature relating to the topics were drawn upon while creati
             <p>It uses utility classes for typography and spacing to space content out within the larger
                 container.
             </p> -->
-
-            <a class="btn btn-primary btn-sm" href="{% url 'designDev' group_id first_arg%}" role="button"  target="_blank">Read more</a>
+   <a class="btn btn-primary btn-sm" href="{% url 'designDev' group_id first_arg%}" role="button"  target="_blank"> {% trans 'Read more' %} </a>
         </div>
 </div>
 <!--

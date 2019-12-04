@@ -1,11 +1,33 @@
 {% extends "ndf/base.html" %}
 
+{% load i18n %}
+
 {% block content %}
+<style>
+.breadcrumb li {
+background: #9693a3 !important;
+color:#fff !important;
+}
+.breadcrumb li a {
+color:#fff !important;
+
+}
+.breadcrumb li i {
+color:#fff !important;
+}
+#EHelp a{
+text-align: center;
+}
+ .nav-tabs a {
+font-size:14px;
+}
+
+</style>
 
 
 
 <div class="jumbotron">
-  <h1 class="display-4">Coming Soon!</h1>
+  
 <!--  
 <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
   <hr class="my-4">
@@ -13,6 +35,197 @@
   <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
 
 -->
+
+<ul class="nav nav-tabs " id="myTab"  role="tablist" style="text-align:center !important;">
+  <li class="nav-item ">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"> {% trans 'English' %}  </a>
+  </li>
+  <li class="nav-item text-center">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"> {% trans  'Mathematics' %} </a>
+  </li>
+  <li class="nav-item text-center">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">{% trans   'Science' %}</a>
+  </li>
+</ul>
+
+<div class="tab-content text-center" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+
+
+
+
+
+
+<div class="row justify-content-center" >
+    
+
+
+
+
+    <h1> {% trans  'Help Videos - English' %}  </h1>
+        <div class="col-12 col-sm-4 col-md-10 py-5" id="EHelp">
+            <div class="row">
+                <a href="https://www.youtube.com/embed/7RVdncvy-cc" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img  src="https://img.youtube.com/vi/7RVdncvy-cc/0.jpg" class="rounded img-fluid">
+                    <h6>  Tips to Pair Students in the CLix English Classroom </h6>
+                </a>
+                <a href="https://www.youtube.com/embed/j2MT9eFV_MM" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/j2MT9eFV_MM/0.jpg" class="img-fluid">
+                 <h6> Communicative English from CLIx</h6>
+                </a>
+                <a href="https://www.youtube.com/embed/zbeV_ICx7xI" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/zbeV_ICx7xI/0.jpg" class="img-fluid">
+<h6> Tips to Foaster Collabration in the CLIx in English Classroom </h6>
+               
+                </a>
+            </div>
+
+
+<div class="row pt-5"  >
+                <a href="https://www.youtube.com/embed/v-UT7JLyBfE" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img  src="https://img.youtube.com/vi/v-UT7JLyBfE/0.jpg" class="rounded img-fluid">
+              <h6> A Open story </h6>
+                </a>
+                <a href="https://www.youtube.com/embed/kTf9Wyes2Y4" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/kTf9Wyes2Y4/0.jpg" class="img-fluid">
+             <h6> Creating safe Places For Learning </h6>
+                </a>
+                <a href="https://www.youtube.com/embed/lA5s3whsCzQ" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4 text-center">
+                    <img src="https://img.youtube.com/vi/lA5s3whsCzQ/0.jpg" class="img-fluid">
+                       <h4> Open Story Help Video </h4>
+                </a>
+            </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+
+
+<div class="row justify-content-center" >
+    
+
+<!--
+    <h1>  Help Video - Mathematics Team </h1>
+-->
+        <div class="col-md-10 py-5">
+    <h1>   {% trans   'Help Videos - Mathematics' %}  </h1>
+
+            <div class="row">
+                <a href="https://www.youtube.com/embed/Y996EhVrbb4" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img  src="https://img.youtube.com/vi/Y996EhVrbb4/0.jpg" class="rounded img-fluid">
+<h6 class="text-center">Fractions as tools for proportional reasoning</h6>
+                </a>
+                <a href="https://www.youtube.com/embed/AIzj0ntxtuM" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/AIzj0ntxtuM/0.jpg" class="img-fluid">
+<h6 class="text-center">How to develop proportional reasoning among students?</h6>
+                </a>
+                <a href="https://www.youtube.com/embed/aes71wbjbiM" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/aes71wbjbiM/0.jpg" class="img-fluid">
+<h6 class="text-center">What is Proportional Reasoning - Difference between additive and proportional thinking
+</h6>
+                </a>
+            </div>    
+
+</div>
+
+
+
+
+ <div class="col-md-10 py-3">
+            <div class="row">
+                <a href="https://www.youtube.com/embed/6m1YP5wElCc" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img  src="https://img.youtube.com/vi/6m1YP5wElCc/0.jpg" class="rounded img-fluid">
+<h6 class="text-center">Introduction to CLIx Proportional Reasoning Module</h6>
+                </a>
+                <a href="https://www.youtube.com/embed/QL_DDuFf-WM" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/QL_DDuFf-WM/0.jpg" class="img-fluid">
+<h6 class="text-center">What is a chunking strategy for proportional reasoning and how it can develop?</h6>
+                </a>
+                <a href="https://www.youtube.com/embed/O8CuiyLOhwk" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/O8CuiyLOhwk/0.jpg" class="img-fluid">
+<h6 class="text-center">Real Life Situations Which are Proportional</h6>
+                </a>
+            </div>
+
+</div>
+
+
+
+
+
+ <div class="col-md-10 py-5">
+            <div class="row">
+                <a href="https://www.youtube.com/embed/gJgNjipBR6E" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img  src="https://img.youtube.com/vi/gJgNjipBR6E/0.jpg" class="rounded img-fluid">
+<h6 class="text-center">Approximately Proportional Situations</h6>
+                </a>
+                <a href="https://www.youtube.com/embed/imbEXrWl8lw" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/imbEXrWl8lw/0.jpg" class="img-fluid">
+<h6 class="text-center">Affine Proportional Relationships</h6>
+                </a>
+                <a href="https://www.youtube.com/embed/TO9me6evzNI" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
+                    <img src="https://img.youtube.com/vi/TO9me6evzNI/0.jpg" class="img-fluid">
+<h6 class="text-center">Module Design - CLIx Math Geometric Reasoning </h6>
+                </a>
+            </div>
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"> <h1> {% trans  'Coming Soon!' %}   </h1> </div>
+
+
+</div>
+
 </div>
 
 {% endblock %}

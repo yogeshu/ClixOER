@@ -1,4 +1,7 @@
+
 {% extends 'ndf/base.html' %}
+{% load i18n %}
+
 <!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
 -->
@@ -30,10 +33,10 @@ text-align: center;
             <li class="breadcrumb-item  " aria-current="page">
 <a   href="{% url 'e-library' group_id %}"
  <i class="ml-2 fas fa-home fa-lg" ></i> </a> </li>
- <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i>  Domain </li>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i> {% trans  'Domain' %} </li>
  <li class="breadcrumb-item " aria-current="page" style="color:#000;">
- <a style="color:#fff;" href="{% url 'domain_page' group_id 'English' %}">  English </li> </a>
-            <li class="breadcrumb-item ml-n2 " aria-current="page"> <i class=" fas  fa-lg"></i> Help Videos -English</li>
+ <a style="color:#fff;" href="{% url 'domain_page' group_id 'English' %}"> {% trans  'English' %} </li> </a>
+            <li class="breadcrumb-item ml-n2 " aria-current="page"> <i class=" fas  fa-lg"></i> {% trans 'Help Videos -English' %}</li>
           </ol>
         </nav>
 
@@ -42,8 +45,8 @@ text-align: center;
 
 
 
-
-    <h1>  Help Videos - English  </h1>
+                      
+    <h1> {% trans  'Help Videos - English' %}  </h1>
         <div class="col-12 col-sm-4 col-md-10 py-5" id="EHelp">
             <div class="row">
                 <a href="https://www.youtube.com/embed/7RVdncvy-cc" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
@@ -73,7 +76,7 @@ text-align: center;
                 </a>
                 <a href="https://www.youtube.com/embed/lA5s3whsCzQ" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4 text-center">
                     <img src="https://img.youtube.com/vi/lA5s3whsCzQ/0.jpg" class="img-fluid">
-                       <h4> Open Story Help Video </h4>
+                       <h6> Open Story Help Video </h6>
                 </a>
             </div>
 
@@ -121,7 +124,8 @@ text-align: center;
 </div>
 </div>
 <script>
-/*  $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+/*
+  $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 event.preventDefault();
 $(this).ekkoLightbox();
             });

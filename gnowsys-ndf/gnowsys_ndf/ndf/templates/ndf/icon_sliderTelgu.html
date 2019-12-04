@@ -1,0 +1,82 @@
+{% load i18n %}
+
+<style>
+.ur-team {
+background:#fff;
+color:#000;
+}
+ .thenewRoom ,
+.thenewRoom:hover{
+   
+ color:#000;
+  text-decoration: none;
+   
+}
+.some-dark{
+background: #fff !important;
+}
+.clixInclass {
+color:#000 !important ;
+background: #fff !important;
+}
+</style>
+<!--
+<a class="thenewRoom" href="{% url 'domainHelp' group_id first_arg%}">                                                                           -->                
+
+<div class="clixInclass ">
+<!--<p> CLix In The ClassRoom </p>--> 
+      <div class="jumbotron some-dark py-5 "  >
+            <h1 class="h1-responsive mt-n2">CLIx తరగతిలో CLIx 
+          {% if first_arg == 'Mathematics' %}
+	      {% trans  'Math'  %}
+	  {% elif first_arg == 'English' %}
+	      {% trans   'English' %}
+	  {% else %}
+	      {% trans  'Science' %}
+{% endif %}
+</h1>
+<!--
+</h2>
+-->
+
+<p style="text-align:justify;">      విద్యార్థి మాడ్యూళ్లు డిజిటల్ మరియు నాన్-డిజిటల్ సాధనాల సంయోగంతో ఉంటుంది మరియు తక్కువ ఖర్చు, ల్యాబ్ కార్యకలాపాల కొరకు స్థానికంగా అందుబాటులో ఉండే మెటీరియల్స్‌ని విద్యార్థులు కంటెంట్ ఉపయోగించడానికి మాత్రమే కాకుండా తయారు చేయడానికి వీలు కల్పిస్తుంది. మాడ్యూళ్ళ యొక్క అంశాలు నేషనల్ కరికులం ఫ్రేమ్‌వర్క్(జాతీయ పాఠ్య ప్రణాళికా చట్రం) NCF 2005 ద్వారా , రాష్ట్ర కరికులం మరియు రాష్ట్ర ఆధారిత హార్డ్-స్పాట్స్(క్లిష్టమైన అంశాలు) బట్టి మార్గదర్శకం చేయబడతాయి కన్స్‌ట్రక్టివిజం(constructivism) మరియు కన్‌స్ట్రక్షనిజం(constructionism) యొక్క తత్వాల ద్వారా మార్గదర్శకం చేయబడి, CLIxOERs జ్ఞానాన్ని క్రియాత్మక మార్గాలలో నిర్మించడానికి పనిచేయడానికి సిద్దమైన పద్ధతిలో అవకాశాలను అందిస్తుంది. కంటెంట్లు తయారు చేస్తున్నప్పుడు అంశాలకు సంబంధించిన సముచిత పరిశోధన వ్యాసాలు తీసుకోబడినాయి. నాణ్యతా భరోసా కొరకు కంటెంట్లు అధికారికంగా వ్రాయబడి మరియు సమీక్షించడానికి ముందు ఉపాధ్యాయుల మరియు విషయ నిపుణుల నుండి అభిప్రాయం కోరబడినది. ఇది వాస్తవ సమయంలో ఉపాధ్యాయుల నుండి అభిప్రాయంతో మద్దతు ఇవ్వబడింది, ఇది ఉపాధ్యాయుని ద్వారా నిరూపితమైనా గానీ లేదా చిన్నపాటిగా టీచర్ల ద్వారా గానీ  ఉపయోగించడానికి ట్రెండ్ల నుండి ఒక ప్రత్యేకమైన ఉదాహరణలో మార్పుగా ఉంది.
+    <br>
+    అన్ని CLIx ఓపెన్ ఎడ్యుకేషనల్ రిసోర్సెస్ (OERs) క్రియేటివ్ కామన్స్ లైసెన్స్(పరిమితి) 4.0. కింద విడుదల చేయబడినాయి కావున ఈ వనరులను మళ్ళీ ఉపయోగించవచ్చు, సవరించవచ్చు మరియు మారుతున్న సందర్భాలకు అనుసరించవచ్చు. ఈ ప్రక్రియలో, మేము పూర్తి ఉచితంగా ఉండాలని - అందులో స్వేచ్ఛాయుత భావనతో సృష్టించడానికి, నేర్చుకోవడనికి మరియు పెరుగుదల ఉండాలని నిర్వచిస్తున్నాము!
+</p>
+<p>ఈ OERs సందర్భానుసారంగా చేయడానికి కొత్త వ్యూహాలను సృష్టించి మరియు ముందుకు రావాలని మేము ఉపాధ్యాయాలును ప్రోత్సహిస్తాము.
+
+</p>
+ <hr class="mt-2">
+ CLIx OERs కొరకు మరియు తరగతి సమీకృత వ్యూహాలను కొరకు తెలుసుకోవడానికి మరింత చదవండి
+
+            <!--
+            <p>It uses utility classes for typography and spacing to space content out within the larger
+                container.
+            </p> 
+-->
+            <a class="btn btn-primary btn-sm" href="{% url 'domainHelp' group_id first_arg%}" role="button" target="_blank" >
+
+     {% trans  'Explore more' %}   </a>
+        </div>
+</div>
+<!--
+</a>
+    -->
+    <style>
+        a:hover  .some-dark {
+ text-decoration : none;
+ color:#00;
+}
+        .some-dark {
+            -webkit-box-shadow: -2px 1px 13px 0px rgba(0,0,0,0.44);
+-moz-box-shadow: -2px 1px 13px 0px rgba(0,0,0,0.44);
+box-shadow: -2px 1px 13px 0px rgba(0,0,0,0.44);
+        }
+        
+        
+        </style>
+<!--
+        <div class="py-5">
+        <h1 class="text-center py-5">Clix In The Classroom</h1>
+        
+      

@@ -1,3 +1,5 @@
+{% load i18n %}
+{% load ndf_tags %}
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 <!--
  <ol class="carousel-indicators">
@@ -171,7 +173,7 @@ Khalifa Prize</p\
 </li>
 -->
   <li class="nav-item first-fliter-search">
-        <a class="nav-link py-3 home fun-name" href="{% url 'e-library' group_id  %}" data-toggle="tooltip"  title="E-library for open educational resources"> <i class="fas fa-book solid"></i> E-library <span class="sr-only">(current)</span></a>
+        <a class="nav-link py-3 home fun-name" href="{% url 'e-library' group_id  %}" data-toggle="tooltip"  title="E-library for open educational resources"> <i class="fas fa-book solid"></i>{% trans 'E-library' %} <span class="sr-only">(current)</span></a>
            </li>
 <!--     
  <div class="form-group">
@@ -187,7 +189,6 @@ Khalifa Prize</p\
      
 -->
 
-
        <li class="nav-item dropdown">
         <a class="nav-link py-3 dropdown-toggle ml-3 fun-name" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
@@ -196,13 +197,13 @@ Khalifa Prize</p\
 <i class="fas fa-globe solid"  data-toggle="tooltip" title="Select a subject domain">
  </i>
 {% if first_arg == 'Mathematics' %} 
-Math 
+{% trans  'Math'  %}
 {% elif first_arg == 'English' %}
-English 
+{% trans   'English' %}
 {% elif first_arg == 'Science' %}
-Science
+{% trans  'Science' %}
 {% else %}
-Domain 
+{% trans  'Domain' %}
 {% endif %}
  </a> 
 <!--
@@ -224,25 +225,27 @@ Domain
 
 <!--          <a href="{% url 'domain_page' group_id 'Mathematics' %}" id="maths" class="dropdown-item domain_name" >Math</a>
 -->  
-          <a href="{% url 'domain_page' group_id 'English' %}" id="english" class="dropdown-item domain_name " ><i class="fas fa-font" > </i> English</a>
+          <a href="{% url 'domain_page' group_id 'English' %}" id="english" class="dropdown-item domain_name " ><i class="fas fa-font" > </i>{% trans 'English' %} </a>
 
           <a href="{% url 'domain_page' group_id 'Mathematics' %}" id="maths" class="dropdown-item domain_name" ><i class="fas fa-calculator" >
-</i> Math</a>
+</i>{% trans 'Math' %}  </a>
 
-          <a href="{% url 'domain_page' group_id 'Science' %}" id="science" class="dropdown-item domain_name"  > <i class="fas fa-flask"> </i> Science</a>
+          <a href="{% url 'domain_page' group_id 'Science' %}" id="science" class="dropdown-item domain_name"  > <i class="fas fa-flask"> </i>{% trans 'Science' %} </a>
         </div>
       </li>
       <li class="nav-item ">
 	
-        <a class="nav-link ml-3 py-3 fun-name" href="{% url 'about' group_id  %}"> <i class="fas fa-info-circle" data-toggle="tooltip" title="Know about CLIx OERs"></i>  About</a>
+        <a class="nav-link ml-3 py-3 fun-name" href="{% url 'about' group_id  %}"> <i class="fas fa-info-circle" data-toggle="tooltip" title="Know about CLIx OERs"></i> {% trans 'About' %}</a>
       </li>
       <li class="nav-item ">
-          <a class="nav-link ml-2 py-3 fun-name" href="{% url 'help' group_id %}" title="Help"> <i data-toggle="tooltip" class=" far fa-question-circle" title="Explore help material"></i>  Help</a>
+          <a class="nav-link ml-2 py-3 fun-name" href="{% url 'help' group_id %}" title="Help"> <i data-toggle="tooltip" class=" far fa-question-circle" title="Explore help material"></i> {% trans 'Help' %} </a>
         </li>
    <!--    <form class="form-inline my-2 my-md-0 ml-3  fun-name">
       <input class="form-control searchTerm" type="text" placeholder="Search">
     </form> 
  <    -->
+<!--
+
  <li class="nav-item dropdown" title="English is default language, content in other languages will be available soon u"  data-content="English is default Language, content in other languages will be available soon! " >
         <a class="nav-link py-3 dropdown-toggle ml-3 fun-name"   href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-language"></i> En</a>
         <div class="dropdown-menu" aria-labelledby="dropdown04" >
@@ -251,6 +254,71 @@ Domain
           <a class="dropdown-item" href="#">Te</a>
         </div>
       </li>
+<li> 
+<form>
+ <div class="form-group">
+    <label for="exampleFormControlSelect1"></label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>En</option>
+      <option>Hi</option>
+      <option>Te</option>
+      <option>4</option>
+      
+    </select>
+</form>
+  </div>
+
+</li>
+-->
+<div class="dropdown show py-3  fun-name">
+  <a class=" dropdown-toggle"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{request.LANGUAGE_CODE|get_header_lang}}    
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+{% get_site_variables as site %}
+
+ {% for lang in site.HEADER_LANGUAGES %}
+                      <li>
+                                <form action="/i18n/setlang/" method="POST" id="c" >
+                                {% csrf_token %}
+                                <input  name="url" type="hidden" value="{{request.get_full_path}}"/>
+                                <input  type="hidden" name="language" value="{{ lang.0 }}" />
+
+                                <input id="submit"  type="submit"   class="dropdown-item"   value="{{ lang.1 }}"/>
+
+
+                                
+</form>
+                            </li>
+                        {% endfor %}
+
+
+ 
+</div>
+</div>
+<!--
+<li  data-toggle="dropdown1">
+<a href="#">
+<i class="fa fa-globe" aria-hidden="true"></i>
+                    {{request.LANGUAGE_CODE|get_header_lang}}
+                    </a>
+                    <ul class="dropdown-menu" >
+                        {% for lang in site.HEADER_LANGUAGES %}
+                            <li >
+                                <form action="/i18n/setlang/" method="POST">
+                                {% csrf_token %}
+                                <input  name="url" type="hidden" value="{{request.get_full_path}}"/>
+                                <input  type="hidden" name="language" value="{{ lang.0 }}">
+                                <input class="downdrop-item" type="submit" class="button expand secondary" value="{{ lang.1 }}"/>
+                                </form>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+-->
+
        <!-- <li class="nav-item ">
         <a class="nav-link py-3 ml-3 home fun-name" href="#"> <i class="fas fa-sign-in-alt"></i> Login <span class="sr-only">(current)</span></a>
       </li> -->
@@ -341,6 +409,8 @@ $(document).ready(function () {
         }
     });
 });
+
+
 var shiftWindow = function() { scrollBy(0, -110) };
 if (location.hash) shiftWindow();
 window.addEventListener("hashchange", shiftWindow);
@@ -349,4 +419,9 @@ $('.navbar-nav .nav-link a').click(function(){
     $('.navbar-nav .nav-link a').removeClass('active');
     $(this).addClass('active');
 })
+
+
+</script>
+<script>
+
 </script>

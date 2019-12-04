@@ -1,7 +1,15 @@
+{% load ndf_tags %}
 {% load get_relation_value  from ndf_tags %}
 <style>
 a:hover  {
 cursor: pointer;
+}
+
+.modal-header{
+display: inline-block !important;
+}
+.modal-header .close {
+margin: -3rem -1rem -1rem auto;
 }
   i {
   
@@ -10,6 +18,7 @@ overflow:hidden;
   ul > i{
  
 }
+
 table {
   width: 100%;
 font-size: 12px;
@@ -165,7 +174,7 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
               </button>
 </div>   -->         
 
-<div class="modal-header">
+<div class="modal-header" >
 <div class="row">
 <div class="col-12 col-sm-5 col-md-5">
        <h5 class="modal-title ml-2 " id="exampleModalLongTitle" class="col-12  col-md-5  col-sm-10" style="font-weight:bold; font-size:
@@ -196,8 +205,14 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
         
         
         <div class="" style="display:inline-block;">         
- <a href="https://demo-clix.tiss.edu/home/module/{{moduledetails.id}}/courses" data-toggle="tooltip" title="Explore Module Online" \
- target="_blank" >
+{% if request.LANGUAGE_CODE == 'en' or domain == 'English' %}
+      <a class="explore" href="https://demo-clix.tiss.edu/home/module/{{moduledetails.id}}/courses"  data-toggle="tooltip" title="Explore module online" target="_blank" >
+{% else %}
+  {% get_translated_node moduledetails.id as trnsid %}
+       <a class="explore" href="https://demo-clix.tiss.edu/home/module/{{trnsid}}/courses"  data-toggle="tooltip" title="Explore module online" target="_blank" >
+{% endif %}
+
+
 
             <i style="color: #5088c7;"  class="fas fa-rocket ml-4 fa-lg"></i> </a> 
                     </div>
@@ -216,9 +231,12 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
  
                     
 <div class="dropdown show" style="display:inline-block;">
+  {% for k,v in student_docs.items %}
+       <a  href="{{v}}" title="Student Handbook" target="_blank">
+   
+         <i style="color:#5088c7;" class="fas fa-user-graduate ml-4 fa-lg"></i></a> {% endfor %} 
+<!--
 
-       <a   data-toggle="dropdown" href="" title="Student Handbook" id="dropdownMenuLink">
-            <i style="color:#5088c7;" class="fas fa-user-graduate ml-4 fa-lg"></i></a> 
 <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
 
 
@@ -226,12 +244,16 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 <a class="dropdown-item" href="{{student_docs.Hindi}}" download="{{moduledetails.name}}-Hindi">Hindi </a>
 <a class="dropdown-item" href="{{student_docs.English}}  "  download="{{moduledetails.name}}"> English </a>
 </div>
+
+-->
 </div>
 
   <div class="dropdown show" style="display:inline-block;">
-         <a data-toggle="dropdown" title="Teacher Handbook"  href="" id="dropdownMenuLinkTeacher">
+{% for k,v in teacher_docs.items %}
+         <a  title="Teacher Handbook"  href="{{v}}"  target="_blank"  >
             <i style="color: #5088c7;" class="fas  fa-chalkboard-teacher ml-4 fa-lg"></i></a> 
-
+{% endfor %}
+<!--
 <div class="dropdown-menu"  aria-labelledby="dropdownMenuLinkTeacher">
 
 
@@ -239,6 +261,7 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 <a class="dropdown-item" href="{{teacher_docs.Hindi}}" download="{{moduledetails.name}}-Hindi">Hindi </a>
 <a class="dropdown-item" href="{{teacher_docs.English}}"  download="{{moduledetails.name}}"> English </a>
 </div>
+-->
 </div>
 
 <div style="display:inline-block;" class="video-modal">                                                                                       
@@ -311,7 +334,7 @@ g"> &nbsp; {% for each_attr in moduledetails.grade %}{{each_attr|slice:"5:"}}
         
                 <div class="container-fluid">
                   <div class="row">
-                      <div class="col-md-12" style="text-align: justify;">
+                      <div class="col-md-12" >
                                              {{moduledetails.content|default:'No description added yet.'|safe}}
 <br>                  
 <br>

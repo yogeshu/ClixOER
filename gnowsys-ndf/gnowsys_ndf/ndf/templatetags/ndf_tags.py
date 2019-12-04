@@ -218,7 +218,18 @@ def get_node_type(node):
    else:
       return ""
 
-
+@register.assignment_tag
+def get_download_preview_cnt(ndname):
+   from django.db.models import *
+   if ndname:
+        objs = hit_counters.objects.values('visitednode_name').annotate(total_downloadcnt = Sum('download_count')).annotate(total_previewcnt = Sum('preview_count')).annotate(total_visitcnt = Sum('visit_count'))
+        obj = [nd for nd in objs if nd['visitednode_name'] == ndname]
+        if obj:
+                return obj[0]
+        else:
+                return ""
+   else:
+        return ""
 @get_execution_time
 @register.assignment_tag
 def get_node(node_id):
@@ -238,8 +249,32 @@ def get_unplatformpkg_node(node_id):
         q = Q('bool',must=[Q('match_phrase',group_set = node_id ),Q('match_phrase',tags = 'unplatform')])
         s1 = Search(using=es, index='nodes',doc_type="node").query(q)
         s2 = s1.execute()
-        print "unplatform pkr url:",s2[0].id
-        return s2[0].id
+        #print "unplatform pkr url:",s2[0].id
+        if s1.count() > 0:
+                return s2[0].id
+        else:
+                return ""
+    else:
+                return ""
+
+
+@register.assignment_tag
+def get_translated_node(node_id):
+    print node_id
+    if node_id:
+        q = Q('bool',must=[Q('match',id = node_id )])
+        s1 = Search(using=es, index='nodes',doc_type="node").query(q)
+        s2 = s1.execute()
+        #print "unplatform pkr url:",s2[0].id                                                                                                                           
+        if s1.count() > 0:
+                print "trns id:",s2[0].relation_set
+                for each in list(s2[0].relation_set):
+                        print type(each)
+                        for k,v in (each.to_dict()).items():
+                                if k == 'translation_of':
+                                        return v
+        else:
+                return ""
     else:
                 return ""
 
@@ -295,7 +330,7 @@ def get_schema(node):
 
 @register.filter
 def get_item(dictionary, key):
-    print "dictionary,key",dictionary,key
+    #print "dictionary,key",dictionary,key
     return dictionary.get(key)
 
 
@@ -598,7 +633,7 @@ def get_all_replies(parent):
 @register.assignment_tag
 def get_all_possible_languages():
 	language = list(LANGUAGES)
-	all_languages = language + OTHER_COMMON_LANGUAGES
+	all_languages = language# + OTHER_COMMON_LANGUAGES
 	return all_languages
 
 @get_execution_time
@@ -618,30 +653,42 @@ def get_metadata_values(metadata_type=None):
 @get_execution_time
 @register.assignment_tag
 def get_attribute_value(node_id, attr_name, get_data_type=False, use_cache=True):
-    cache_key = str(node_id) + 'attribute_value' + str(attr_name)
-    cache_result = cache.get(cache_key)
-
-    if (cache_key in cache) and not get_data_type and use_cache:
-    	#print "from cache in module detail:", cache_result
-        return cache_result
+    print "in get_attribute_value"
+    # if (cache_key in cache) and not get_data_type and use_cache:                                                                                                     
+    #     #print "from cache in module detail:", cache_result                                                                                                          
+    #     return cache_result                                                                                                                                          
 
     attr_val = ""
     node_attr = data_type = None
     if node_id:
-        # print "\n attr_name: ", attr_name
-        gattr = node_collection.one({'_type': 'AttributeType', 'name': unicode(attr_name) })
+        # print "\n attr_name: ", attr_name                                                                                                                            
+        # gattr = node_collection.one({'_type': 'AttributeType', 'name': unicode(attr_name) })                                                                         
+
+        q = eval("Q('bool',must =[Q('match', type = 'AttributeType'), Q('match', name = attr_name)])")
+
+        # q = Q('match',name=dict(query='File',type='phrase'))                                                                                                         
+        s1 = Search(using=es, index='nodes',doc_type="node").query(q)
+        s2 = s1.execute()
+
+        gattr = s2[0]
+
         if get_data_type:
             data_type = gattr.data_type
-        if gattr: # and node  :
-            node_attr = triple_collection.find_one({'_type': "GAttribute", "subject": ObjectId(node_id), 'attribute_type': gattr._id, 'status': u"PUBLISHED"})
-    if node_attr:
-        attr_val = node_attr.object_value
-        print "\n here: ", attr_name, " : ", type(attr_val), " : ", attr_val
-    if get_data_type:
-        return {'value': attr_val, 'data_type': data_type}
-    cache.set(cache_key, attr_val, 60 * 60)
-    return attr_val
+        if gattr: # and node  :                                                                                                                                        
+            # node_attr = triple_collection.find_one({'_type': "GAttribute", "subject": ObjectId(node_id), 'attribute_type': gattr._id, 'status': u"PUBLISHED"})       
+            print node_id,gattr.id
+            q = eval("Q('bool',must =[Q('match', type = 'GAttribute'), Q('match', subject = str(node_id)), Q('match',attribute_type = str(gattr.id))])")
 
+            # q = Q('match',name=dict(query='File',type='phrase'))                                                                                                     
+            s1 = Search(using=es, index='triples',doc_type="triple").query(q)
+            s2 = s1.execute()
+           # print "s2:",s2,q                                                                                                                                          
+            if s1.count() > 0:
+                node_attr = s2[0]
+                attr_val = node_attr.object_value
+                print "\n here: ", attr_name, " : ", type(attr_val), " : ", attr_val
+                print "node attr:",node_attr
+    return attr_val
 
 @get_execution_time
 @register.assignment_tag

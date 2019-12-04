@@ -7,7 +7,7 @@ import ast
 import string
 import json
 import locale
-
+from sys import getsizeof, exc_info
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.http.request import HttpRequest
@@ -22,15 +22,265 @@ from gnowsys_ndf.ndf.gstudio_es.paginator import Paginator ,EmptyPage, PageNotAn
 from django.core.cache import cache
 from bson import ObjectId
 from gnowsys_ndf.ndf.gstudio_es.es import *
-from gnowsys_ndf.settings import GSTUDIO_SITE_LANDING_PAGE,LANGUAGES,EMAIL_HOST_USER
+from gnowsys_ndf.settings import GSTUDIO_SITE_LANDING_PAGE,LANGUAGES,EMAIL_HOST_USER,GSTUDIO_RESOURCES_LANGUAGES,GSTUDIO_RESOURCES_EDUCATIONAL_SUBJECT,GSTUDIO_RESOURCES_EDUCATIONAL_LEVEL
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from gnowsys_ndf.ndf.models import GSystemType, Group, Node, GSystem, Buddy, Counter, hit_counters  #, Triple
-from gnowsys_ndf.ndf.models import node_collection
+from gnowsys_ndf.ndf.models import GSystemType, Group, Node, GSystem, Author, hit_counters  #, Triple
+from gnowsys_ndf.ndf.models import node_collection,triple_collection
 
 from gnowsys_ndf.ndf.models import GSystemType
 
 gfs = HashFS('/data/media/', depth=3, width=1, algorithm='sha256')
+
+def create_lang_module(request,group_id, module_id=None, cancel_url='e-library'):
+    
+    if request.method == "GET":
+        template = 'ndf/cmspage.html'
+        additional_form_fields = {}
+        module_attrs = ['educationalsubject', 'educationallevel', 'languages', 'node_type']
+        # ma: module attr
+        module_attr_values = {ma: '' for ma in module_attrs}
+
+        if module_id:
+            # existing module.
+            url_name = 'node_edit'
+            url_kwargs={'group_id': group_id, 'node_id': module_id, 'detail_url_name': 'e-library'}
+            # updating module attr dict:
+            module_obj = Node.get_node_by_id(module_id)
+            module_attr_values = module_obj.get_attributes_from_names_list(module_attrs)
+
+        else:
+            # new module
+            url_name = 'node_create'
+            url_kwargs={'group_id': group_id, 'member_of': 'Module', 'detail_url_name': 'e-library'}
+
+    additional_form_fields = {
+            'attribute': {
+                'Subject': {
+                    'name' :'educationalsubject',
+                    'widget': 'dropdown',
+                    'value': module_attr_values['educationalsubject'],
+                    'all_options': GSTUDIO_RESOURCES_EDUCATIONAL_SUBJECT
+                },
+                'Grade': {
+                    'name' :'educationallevel',
+                    'widget': 'dropdown',
+                    'widget_attr': 'multiple',
+                    'value': module_attr_values['educationallevel'],
+                    'all_options': GSTUDIO_RESOURCES_EDUCATIONAL_LEVEL
+                },
+                'languages': {
+                    'name' :'language',
+                    'widget': 'dropdown',
+                    'widget_attr': 'multiple',
+                    'value': module_attr_values['languages'],
+                    'all_options': GSTUDIO_RESOURCES_LANGUAGES
+                },
+            }
+        }
+
+    req_context = RequestContext(request, {
+                                    'title': 'Module', 'node_obj': Node.get_node_by_id(module_id),
+                                    'group_id': group_id, 'groupid': group_id,
+                                    'additional_form_fields': additional_form_fields,
+                                    'post_url': reverse(url_name, kwargs=url_kwargs)
+                                })
+    return render_to_response(template, req_context)
+    
+    '''print "Entered create_lang"
+    template = 'ndf/cmspage.html'
+    return render_to_response(template,{'group_id':group_id })
+    '''
+
+def create_lang_unit(request,group_id, unit_id=None, cancel_url='e-library'):
+
+    if request.method == "GET":
+        template = 'ndf/cmspagec.html'
+        additional_form_fields = {}
+        unit_attrs = ['languages']
+        # ma: module attr                                                                                                                                              
+        unit_attr_values = {ma: '' for ma in unit_attrs}
+
+        if unit_id:
+            # existing module.                                                                                                                                         
+            url_name = 'node_edit'
+            url_kwargs={'group_id': group_id, 'node_id': unit_id, 'detail_url_name': 'e-library'}
+            # updating module attr dict:                                                                                                                               
+            unit_obj = Node.get_node_by_id(unit_id)
+            unit_attr_values = unit_obj.get_attributes_from_names_list(unit_attrs)
+
+        else:
+            # new module                                                                                                                                               
+            url_name = 'node_create'
+            url_kwargs={'group_id': group_id, 'member_of': 'announced_unit', 'detail_url_name': 'e-library'}
+    
+    additional_form_fields = {
+          'attribute':{
+                'languages': {
+                    'name' :'language',
+                    'widget': 'dropdown',
+                    'widget_attr': 'multiple',
+                    'value': unit_attr_values['languages'],
+                    'all_options': GSTUDIO_RESOURCES_LANGUAGES
+                },
+            }
+        }
+    
+    print "additional form fields",additional_form_fields
+    req_context = RequestContext(request, {
+                                    'title': 'Unit', 'node_obj': get_node_by_id(unit_id),
+                                    'group_id': group_id, 'groupid': group_id,
+                                    'additional_form_fields': additional_form_fields,
+                                    'post_url': reverse(url_name, kwargs=url_kwargs)
+                                })
+    return render_to_response(template, req_context)
+
+
+def node_create_edit(request,
+                    group_id=None,
+                    member_of=None,
+                    detail_url_name=None,
+                    node_type='GSystem',
+                    node_id=None):
+    '''
+    creation as well as edit of node
+    '''
+    print "inside node_create_edit"
+    # check for POST method to node update operation
+    if request.method == "POST":
+        '''
+        # put validations
+        if node_type not in node_collection.db.connection._registered_documents.keys():
+            raise ValueError('Improper node_type passed')
+        '''
+        print "inside post method",request.POST
+        
+        kwargs={}
+        group_name, group_id = get_group_name_id(group_id)
+        member_of_name, member_of_id = get_gst_name_id(member_of)
+        
+        if member_of == 'Module': # existing node object
+            if request.POST.get('attribute_educationalsubject') == 'English':
+                domain_name,domain_id = get_group_name_id('English')
+            elif request.POST.get('attribute_educationalsubject') == 'Mathematics':
+                domain_name,domain_id = get_group_name_id('Mathematics')
+            else:
+                domain_name,domain_id = get_group_name_id('Science')
+            kwargs={
+                    'group_set': [group_id,domain_id],
+                    'member_of': member_of_id,
+                    'created_by':1
+                    }
+            node_obj = node_collection.collection[node_type]()
+
+        else: # create new
+            module_id = request.POST.get('module')
+            print "module_id:",module_id
+            kwargs={
+                    'group_set': [group_id,module_id],
+                    'member_of': member_of_id,
+                    'created_by':1
+                    }
+            node_obj = node_collection.collection[node_type]()
+
+        language = get_language_tuple(request.POST.get('attribute_language', None))
+        
+        node_obj.fill_gstystem_values(request=request,
+                                    language=language,
+                                            **kwargs)
+        print "bfr saving",node_obj
+        node_obj.save(group_id=group_id)
+        print "node created:",node_obj
+
+        #document = node_obj.to_json_type()
+        doc = json.dumps(node_obj, cls=NodeJSONEncoder)
+        document = json.loads(doc)
+        print "json document:",document
+        
+        with open("/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/gstudio_configs/req_body.json") as req_body:
+            request_body = json.load(req_body)
+            print "request json",request_body
+
+        if document.get("_id"):
+            document["id"] = document.pop("_id")
+            document["type"] = document.pop("_type")
+
+            print "before indexing"
+            es.index(index='nodes', doc_type='node', id=document["id"], body=document)
+            if member_of == 'Module':
+                print "domain_id",domain_id
+                q = Q('match',id = str(domain_id))
+
+                s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.collection_set.add(params.val)", lang="painless",params={'val':document["id"]})
+            
+                s2 = s1.execute()
+            else:
+                q = Q('match',id = str(module_id))
+
+                s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.collection_set.add(params.val)", lang="painless",params={'val':document["id"]})
+
+                s2 = s1.execute()
+
+        return HttpResponseRedirect(reverse(detail_url_name, kwargs={'group_id': group_id}))
+
+
+def node_name_content_edit(request,group_id,node_id):
+    
+    print "inside node_name_content_edit"
+    
+    if request.method == "GET":
+        
+        req_context = RequestContext(request, {
+                                    'title': 'Node Edit', 'node_obj': get_node_by_id(node_id),
+                                    'group_id': group_id, 'groupid': group_id, 'node_id':node_id
+                                })
+
+    if request.method == "POST":
+        #node_obj = get_node_by_id(node_id)
+        name = request.POST.get('name')
+        altnames = request.POST.get('altnames')
+        content = request.POST.get('content')
+        tags = request.POST.get('tags')
+        print "updated_values:",str(name).encode('utf-8'),str(content).encode('utf-8'),str(altnames).encode('utf-8')
+        
+        q = Q('bool',must = [Q('match',id = node_id)])
+        #f1 = "relation_set." + "translation_of"
+        s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.name = params.val1;ctx._source.altnames = params.val2;ctx._source.content = params.val3;ctx._source.tags.add(params.val4)", lang="painless",params={'val1':name, 'val2':altnames, 'val3': content, 'val4': tags})
+        s2 = s1.execute()
+        req_context = RequestContext(request, {
+                                    'title': 'Node Edit', 'node_obj': get_node_by_id(node_id),
+                                    'group_id': group_id, 'groupid': group_id, 'node_id':node_id
+                                })
+    template = 'ndf/node_edit.html'
+    return render_to_response(template, req_context)
+        
+
+def fetch_modules_of_language(request,group_id):
+    
+    member_of_name, member_of_id = get_gst_name_id('Module')
+    
+    lang = request.POST.get("language")
+    
+    print "inside fetch modules of particular language:",lang
+    domain_set = ['English','Mathematics','Science']
+    domain_nds = [get_group_name_id(each)[1] for each in domain_set]
+    domains = get_nodes_by_ids_list(domain_nds)
+    moduleids = []
+    for each in domains:
+        moduleids.extend(each.collection_set)
+    print "moduleids:",moduleids
+    q= Q('bool', must=[Q('match', member_of = str(member_of_id)), Q('match',status='PUBLISHED'),Q('terms',id = moduleids),Q('match_phrase',language = lang)])
+    
+    s1 = (Search(using=es,index = 'nodes',doc_type='node').query(q)).sort({"last_update" : {"order" : "asc"}})
+    
+    s2 = s1.execute()
+
+
+    modules = {}
+    for each in s1[0:s1.count()]:
+        modules[each.name] = each.id
+    print "Modules:",json.dumps(modules)
+    return HttpResponse(json.dumps(modules), content_type="application/json")
 
 def homepage(request, group_id):
     print "Entered home.py"
@@ -70,11 +320,23 @@ def help(request,group_id):
 
 def help_videos(request,group_id):
     node_id = request.POST.get('node_id')
+    nd = get_node_by_id(node_id)
+    if nd.language[0] != 'en':
+        rel_set = nd.relation_set
+        for each in rel_set:
+            if 'translation_of' in each:
+                engnd_id = each['translation_of']
+                engnd = get_node_by_id(engnd_id)
+                chkname = engnd.name
+                print "chkname:",chkname
+    else:
+        #nd = get_node_by_id(node_id)
+        chkname = nd.name
+
     print 'inside help_videos',node_id
     with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/module.json','r') as fd:
         json_data = json.load(fd)
-    nd = get_node_by_id(node_id)
-    videos = json_data[nd.name]
+    videos = json_data[str(chkname)]
     #print "videos:",videos
     template = 'ndf/thehelpmodal.html'
     return render_to_response(template, {'group_id':group_id , 'videos':videos , 'module_name':nd.name })
@@ -214,14 +476,29 @@ def domain_help(request,group_id,domain_name):
 def loadDesignDevelopment(request,group_id,domain_name):
     print "inside Design Development:",domain_name
     if domain_name == 'English':
-        template = 'ndf/ED.html'
+        if request.LANGUAGE_CODE == 'en':
+            template = 'ndf/ED.html'
+        elif request.LANGUAGE_CODE == 'hi':
+            template = 'ndf/theEDHindi.html'
+        else:
+            template = 'ndf/theEDTelgu.html'
         banner_pics = ['/static/ndf/Website Banners/English Domain/eng dnd.png','/static/ndf/Website Banners/English Domain/English2.png','/static/ndf/Website Banners\English Domain/English1.png']
        
     if domain_name == 'Mathematics':
-        template = 'ndf/MD.html'
+        if request.LANGUAGE_CODE == 'en':
+            template = 'ndf/MD.html'
+        elif request.LANGUAGE_CODE == 'hi':
+            template = 'ndf/theMDHindi.html'
+        else:
+            template = 'ndf/theMDTelgu.html'
         banner_pics = ['/static/ndf/Website Banners/Maths Domain/math dnd.png','/static/ndf/Website Banners/Maths Domain/math1.png','/static/ndf/Website Banners/Maths Domain/math2.png']
     if domain_name == 'Science':
-        template = 'ndf/SD.html'
+        if request.LANGUAGE_CODE == 'en':
+            template = 'ndf/SD.html'
+        elif request.LANGUAGE_CODE == 'hi':
+            template = 'ndf/theSDhindi.html'
+        else:
+            template = 'ndf/theSDTelgu.html'
         banner_pics = ['/static/ndf/Website Banners/Science Domain/sci dnd.png','/static/ndf/Website Banners/Science Domain/science1.png','/static/ndf/Website Banners/Science Domain/science2.png']
     return render_to_response(template, {'bannerpics':banner_pics,'group_id':group_id,'domain_name':domain_name},
                                 context_instance=RequestContext(request)   )
@@ -235,13 +512,14 @@ def uploadDoc(request, group_id):
     print "inside upload doc",group_name,group_id
     
     if request.method == "GET":
-        template = "ndf/cmspage.html"
+        template = "ndf/Upload_docu.html"
 
     variable = RequestContext(request, {'groupid':group_id,'group_id':group_id})
     return render_to_response(template, variable)
 
 
 def upload_using_save_file(request,group_id):
+
     from gnowsys_ndf.ndf.views.file import save_file
     try:
         group_id = ObjectId(group_id)
@@ -252,11 +530,11 @@ def upload_using_save_file(request,group_id):
     title = request.POST.get('context_name','')
     sel_topic = request.POST.get('topic_list','')
     
-    usrid = request.user.id
+    usrid = 1
     name  = request.POST.get('name')
 
-    from gnowsys_ndf.ndf.views.filehive import write_files
-    is_user_gstaff = check_is_gstaff(group_obj._id, request.user)
+    #from gnowsys_ndf.ndf.views.filehive import write_files
+    #is_user_gstaff = check_is_gstaff(group_obj._id, request.user)
     content_org = request.POST.get('content_org', '')
     uploaded_files = request.FILES.getlist('filehive', [])
     # gs_obj_list = write_files(request, group_id)
@@ -267,67 +545,49 @@ def upload_using_save_file(request,group_id):
     fileobj_id = fileobj_list[0]['_id']
     file_node = node_collection.one({'_id': ObjectId(fileobj_id) })
 
-    discussion_enable_at = node_collection.one({"_type": "AttributeType", "name": "discussion_enable"})
+    #discussion_enable_at = node_collection.one({"_type": "AttributeType", "name": "discussion_enable"})
     for each_gs_file in fileobj_list:
         #set interaction-settings
         each_gs_file.status = u"PUBLISHED"
         if usrid not in each_gs_file.contributors:
             each_gs_file.contributors.append(usrid)
 
-        if title == "raw material" or (title == "gallery" and is_user_gstaff):
-            if u'raw@material' not in each_gs_file.tags:
-                each_gs_file.tags.append(u'raw@material')
-
         group_object = node_collection.one({'_id': ObjectId(group_id)})
-        if (group_object.edit_policy == "EDITABLE_MODERATED") and (group_object.moderation_level > 0):
-            from gnowsys_ndf.ndf.views.moderation import get_moderator_group_set
-            # print "\n\n\n\ninside editable moderated block"
-            each_gs_file.group_set = get_moderator_group_set(each_gs_file.group_set, group_object._id)
-            # print "\n\n\npage_node._id",page_node._id
-            each_gs_file.status = u'MODERATION'
-            # print "\n\n\n page_node.status",page_node.status
+        
         each_gs_file.save()
-        create_gattribute(each_gs_file._id, discussion_enable_at, True)
-        return_status = create_thread_for_node(request,group_obj._id, each_gs_file)
+        save_node_es(each_gs_file)
+        #create_gattribute(each_gs_file._id, discussion_enable_at, True)
+        #return_status = create_thread_for_node(request,group_obj._id, each_gs_file)
 
-    if title == "gallery" and not is_user_gstaff:
-        return HttpResponseRedirect(reverse('course_gallery', kwargs={'group_id': group_id}))
-    elif title == "raw material" or (title == "gallery" and is_user_gstaff):
-        return HttpResponseRedirect(reverse('course_raw_material', kwargs={'group_id': group_id}))
-    else:
-        return HttpResponseRedirect( reverse('file_detail', kwargs={"group_id": group_id,'_id':fileobj_id}))
+    return HttpResponseRedirect( reverse('e-library', kwargs={"group_id": group_id}))
     # return HttpResponseRedirect(url_name)
 
 def write_files(request, group_id, make_collection=False, unique_gs_per_file=True, **kwargs):
+    print "in write files"
 
-    user_id = request.user.id
-    try:
-        user_id = Author.extract_userid(request, **kwargs)
-    except Exception as e:
-        pass
-    # print "user_id: ", user_id
+    group_name, group_id = get_group_name_id(str(group_id))
+
+    user_id = 1
 
     # author_obj = node_collection.one({'_type': u'Author', 'created_by': int(user_id)})
     author_obj = Author.get_author_obj_from_name_or_id(user_id)
     author_obj_id = author_obj._id
     kwargs['created_by'] = user_id
 
-    group_name, group_id = get_group_name_id(group_id)
-
     first_obj      = None
     collection_set = []
     uploaded_files = request.FILES.getlist('filehive', [])
     name           = request.POST.get('name')
-
+    print "files:",request.FILES.getlist('filehive', [])
     gs_obj_list    = []
     for each_file in uploaded_files:
 
         gs_obj = node_collection.collection.GSystem()
 
-        language = request.POST.get('language', GSTUDIO_SITE_DEFAULT_LANGUAGE)
+        language = request.POST.get('language')
         language = get_language_tuple(language)
 
-        group_set = [ObjectId(group_id), ObjectId(author_obj_id)]
+        group_set = [ObjectId(group_id),ObjectId(author_obj_id)]
 
         if name and not first_obj and (name != 'untitled'):
             file_name = name
@@ -341,14 +601,17 @@ def write_files(request, group_id, make_collection=False, unique_gs_per_file=Tru
                                     uploaded_file=each_file,
                                     unique_gs_per_file=unique_gs_per_file,
                                     **kwargs)
-        # print "existing_file_gs",existing_file_gs
+        print "existing_file_gs",existing_file_gs
+        q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='File')])")
+        GST_FILE = (Search(using=es,index = 'nodes',doc_type='node').query(q)).execute()
+        gst_file_id = GST_FILE[0].id
         if (gs_obj.get('_id', None) or existing_file_gs.get('_id', None)) and \
            (existing_file_gs.get('_id', None) == gs_obj.get('_id', None)):
             if gst_file_id not in gs_obj.member_of:
-                gs_obj.member_of.append(gst_file_id)
+                gs_obj.member_of.append(ObjectId(gst_file_id))
 
-            gs_obj.save(groupid=group_id,validate=False)
-
+            gs_obj.save(groupid=ObjectId(group_id),validate=False)
+            save_node_to_es(gs_obj)
             if 'video' in gs_obj.if_file.mime_type:
                 convertVideo.delay(user_id, str(gs_obj._id), file_name)
             if not first_obj:
@@ -362,8 +625,9 @@ def write_files(request, group_id, make_collection=False, unique_gs_per_file=Tru
 
     if make_collection and collection_set:
         first_obj.collection_set = collection_set
+        print "first_obj:",first_obj
         first_obj.save()
-
+        save_node_to_es(first_obj)
     return gs_obj_list
 
     # return render_to_response('ndf/filehive.html', {
@@ -378,9 +642,17 @@ def domain_page(request,group_id,domain_name):
     #print "domain id:",domain_id
     domainnd = get_node_by_id(domain_id)
     #print "domain nd:",domainnd
-    
+    lang = request.LANGUAGE_CODE
     files = get_nodes_by_ids_list(list(domainnd.collection_set))
-    files = sorted(files, key=lambda nd: nd.last_update)
+    finalfiles = []
+
+    if domainnd.name =='Mathematics' or domainnd.name == 'Science':
+        for each in files:
+            if each.language[0] == lang:
+                finalfiles.append(each)
+        files = sorted(finalfiles, key=lambda nd: nd.last_update)
+    else:
+        files = sorted(files, key=lambda nd: nd.last_update)
     #print request.META["CSRF_COOKIE"]
     #CSRF_COOKIE = request.META["CSRF_COOKIE"]
 
@@ -453,6 +725,19 @@ def get_module_previewdata(request,group_id):
     module_dict['unitdetails'] = []
     module_dict['id'] = node_obj.id
     module_dict['grade'] = [str(each) for each in module_dict['grade']]
+
+    if node_obj.language[0] != 'en':
+        rel_set = node_obj.relation_set
+        for each in rel_set:
+            if 'translation_of' in each:
+                engnd_id = each['translation_of']
+                engnd = get_node_by_id(engnd_id)
+                chkname = engnd.name
+                print "chkname:",chkname
+    else:
+        chkname = module_dict['name']
+
+
     q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='File')])")
     GST_FILE = (Search(using=es,index = 'nodes',doc_type='node').query(q)).execute()
     
@@ -462,10 +747,12 @@ def get_module_previewdata(request,group_id):
     q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='Jsmol')])")
     GST_JSMOL = (Search(using=es,index = 'nodes',doc_type='node').query(q)).execute()
 
-    q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Handbook'),Q('match_phrase',tags = module_dict['name'].split()[0]),Q('match_phrase',tags = 'Student')])
+    if node_obj.language[0] != 'en':
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',language = node_obj.language[1]),Q('match_phrase',tags = 'Handbook'),Q('match_phrase',tags = chkname.split()[0]),Q('match_phrase',tags = 'Student')])
+    else:
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',language = node_obj.language[1]),Q('match_phrase',tags = 'Handbook'),Q('match_phrase',tags = module_dict['name'].split()[0]),Q('match_phrase',tags = 'Student')])
 
     alldocs1 = (Search(using=es,index = 'nodes',doc_type='node').query(q)).sort({"last_update" : {"order" : "desc"}})
-    
     alldocs2 = alldocs1.execute()
 
     print "document count:",alldocs1.count()
@@ -475,8 +762,11 @@ def get_module_previewdata(request,group_id):
             student_docs[str(each.language[1])]='/media/'+str(each.if_file.original.relurl)
     print "docs:",student_docs
     
-    q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Handbook'),Q('match_phrase',tags = module_dict['name'].split()[0]),Q('match_phrase',tags = 'Teacher')])
-
+    if node_obj.language[0] != 'en':
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',language = node_obj.language[1]),Q('match_phrase',tags = 'Handbook'),Q('match_phrase',tags = chkname.split()[0]),Q('match_phrase',tags = 'Teacher')])
+    else:
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',language = node_obj.language[1]),Q('match_phrase',tags = 'Handbook'),Q('match_phrase',tags = module_dict['name'].split()[0]),Q('match_phrase',tags = 'Teacher')])
+    
     alldocs1 = (Search(using=es,index = 'nodes',doc_type='node').query(q)).sort({"last_update" : {"order" : "desc"}})
     alldocs2 = alldocs1.execute()
     
@@ -487,11 +777,13 @@ def get_module_previewdata(request,group_id):
             teacher_docs[str(each.language[1])]='/media/'+str(each.if_file.original.relurl)
     print "docs:",teacher_docs
     q1 = []
-    for each in str(module_dict['name']).split():
+    for each in str(chkname).split():
         q1.append(Q('match_phrase', tags = each))
+    print node_obj.language[1]
 
-    q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('terms',language = ['english']  ),Q('match_phrase',tags = 'Tool')],should = q1,minimum_should_match=1)
+    q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',language = node_obj.language[1]),Q('match_phrase',tags = 'Tool')],should = q1,minimum_should_match=1)
                 
+    print "interactives query:",q
     allinteractives1 = (Search(using=es,index = 'nodes',doc_type='node').query(q)).sort({"last_update" : {"order" : "desc"}})
 
     allinteractives2 = allinteractives1.execute()
@@ -500,7 +792,8 @@ def get_module_previewdata(request,group_id):
         tooldata = json.load(json_file)
     interactives_data ={}
     for each in allinteractives1:
-        interactives_data[str(each.name)] = [tooldata[str(each.name)]['Interactive_href'],tooldata[str(each.name)]['Interactive_image']]
+        print each.name,each.tags,str(each.altnames).encode('utf-8')
+        interactives_data[str(each.altnames)] = [tooldata[str(each.name)]['Interactive_href'],tooldata[str(each.name)]['Interactive_image']]
 
     print q,allinteractives1.count(),interactives_data
 
@@ -517,7 +810,7 @@ def get_module_previewdata(request,group_id):
             unitdict['lessname'] = str(lessn.name).encode('utf-8')
             unitdict['totalactivities'] = len(list(lessn.collection_set))
             module_dict['unitdetails'].append(unitdict) 
-    #print "module details:",module_dict
+    print "module details:",module_dict
     
     with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/employees.json','r') as fd:
         json_data = json.load(fd)
@@ -530,8 +823,12 @@ def get_module_previewdata(request,group_id):
     #print "Author data of module:",authorData
     userdata = []
     leaduser = []
+    
     for each in authorData:
-        if each['moduleId'] == module_dict['name']:
+        #engnd_id = node_obj.relation_set[0]['translation_of']
+        #print engnd_id
+        if each['moduleId'] == chkname:
+            print "before assigninig user data"
             userdata = each['userIdArray']
             leaduser = each['u']
             break
@@ -544,7 +841,7 @@ def get_module_previewdata(request,group_id):
         print "hit_counter object saved"
     else:
         obj1 = results[0]
-        print "else:",obj1.visitednode_name,obj1.visit_count
+        #print "else:",obj1.visitednode_name,obj1.visit_count
         if obj1.preview_count == 0:
             obj1.preview_count = 1
             obj1.save()
@@ -562,14 +859,14 @@ def get_node_by_id(node_id):
         Takes ObjectId or objectId as string as arg
             and return object
     '''
-    print "node id:",node_id
+    #print "node id:",node_id
     if node_id:
         q = eval("Q('match', id = str(node_id))")
 
         # q = Q('match',name=dict(query='File',type='phrase'))
         s1 = Search(using=es, index='nodes',doc_type="node").query(q)
         s2 = s1.execute()
-        print "get_node_by_id s2",s2,q
+        #print "get_node_by_id s2",s2,q
         return s2[0]
 
         # return node_collection.one({'_id': ObjectId(node_id)})
@@ -894,7 +1191,7 @@ def save_node_to_es(django_document):
     try:
         print "called to save_to_es method of es_queries"
         # node_types = ['GSystemType','MetaType','AttributeType','RelationType','GSystem']
-        with open("/home/docker/code/gstudio/gnowsys-ndf/gnowsys_ndf/gstudio_configs/req_body.json") as req_body:
+        with open("/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/gstudio_configs/req_body.json") as req_body:
             request_body = json.load(req_body)
         
         doc = json.dumps(django_document,cls=NodeJSONEncoder)
@@ -960,7 +1257,7 @@ def save_triple_to_es(django_document):
     try:
         print "called to save_to_es method of es_queries"
         # node_types = ['GSystemType','MetaType','AttributeType','RelationType','GSystem']
-        with open("/home/docker/code/gstudio/gnowsys-ndf/gnowsys_ndf/gstudio_configs/triple.json") as req_body:
+        with open("/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/gstudio_configs/triples.json") as req_body:
             request_body = json.load(req_body)
         
         doc = json.dumps(django_document,cls=NodeJSONEncoder)
@@ -1532,13 +1829,17 @@ def get_course_content_hierarchy(unit_group_obj,lang="en"):
     for each in unit_group_obj.collection_set:
         lesson_dict ={}
         lesson = get_node_by_id(each)
+
         if lesson:
             trans_lesson = get_lang_node(lesson.id,lang)
+            print "lesson:",lesson.name
             if trans_lesson:
-                lesson_dict['label'] = trans_lesson.name
+                print "inside trans"
+                lesson_dict['label'] = str(trans_lesson.name).encode('utf-8')
+                lesson_dict['id'] = trans_lesson.id
             else:
                 lesson_dict['label'] = lesson.name
-            lesson_dict['id'] = lesson.id
+                lesson_dict['id'] = lesson.id
             lesson_dict['type'] = 'unit-name'
             lesson_dict['children'] = []
             if lesson.collection_set:
@@ -1549,27 +1850,32 @@ def get_course_content_hierarchy(unit_group_obj,lang="en"):
                         trans_act_name = get_lang_node(each_act,lang)
                         # activity_dict['label'] = trans_act_name.name or activity.name  
                         if trans_act_name:
-                            activity_dict['label'] = trans_act_name.altnames or trans_act_name.name
+                            activity_dict['label'] =str(trans_act_name.name).encode('utf-8')
+                            activity_dict['id'] = str(trans_act_name.id)
                             print "in side activity loop", trans_act_name.id, "in language", lang
-                            # activity_dict['label'] = trans_act_name.name
+                            #activity_dict['label'] = trans_act_name.name
                         else:
-                            # activity_dict['label'] = activity.name
-                            activity_dict['label'] = activity.altnames or activity.name
+                            activity_dict['label'] = activity.name
+                            activity_dict['id'] = str(activity.id)
+                            #activity_dict['label'] = activity.altnames or activity.name
                         activity_dict['type'] = 'activity-group'
-                        activity_dict['id'] = str(activity.id)
+                        #activity_dict['id'] = str(activity.id)
                         lesson_dict['children'].append(activity_dict)
             unit_structure.append(lesson_dict)
     return unit_structure
 
 def get_lang_node(node_id,lang):
     rel_value = get_relation_value(node_id,"translation_of")
-    print "rel_value node:",rel_value
-    for each in rel_value['grel_node']:
-        if each.language[0] ==  get_language_tuple(lang)[0]:
-            trans_node = each
-            print "in get_lang_node", trans_node.id, "in language", each.language[0]
-            return trans_node
-
+    #print "rel_value node:",rel_value,node_id
+    if 'grel_node' in rel_value:
+        for each in rel_value['grel_node']:
+            if each.language[0] ==  get_language_tuple(lang)[0]:
+                trans_node = each
+                #print "in get_lang_node", trans_node.id, "in language", each.language[0]
+                trnsnd = get_node_by_id(trans_node)
+                return trnsnd
+    else:
+        return ""
 
 def get_language_tuple(lang):
     """
@@ -1622,7 +1928,7 @@ def get_relation_value(node_id, grel, return_single_right_subject=False):
             s1 = Search(using=es, index='nodes',doc_type="node").query(q)
             s2 = s1.execute()
             relation_type_node = s2[0]
-            print "relation_type_node.object_cardinality:",relation_type_node.id
+            #print "relation_type_node.object_cardinality:",relation_type_node.id
             if node and relation_type_node:
                 if relation_type_node.object_cardinality > 1:
                     # node_grel = triple_collection.find({'_type': "GRelation", "subject": node._id, 'relation_type': relation_type_node._id,'status':"PUBLISHED"})
@@ -1737,14 +2043,19 @@ def get_unit_hierarchy(unit_group_obj,lang="en"):
         lesson_dict ={}
         lesson = get_node_by_id(str(each))
         if lesson:
+            print "1 lesson:",lesson.name
             if lang != 'en':
                 trans_lesson = get_lang_node(lesson.id,lang)
                 lesson_dict['name'] = trans_lesson.name
+                lesson_dict['id'] = str(trans_lesson.id)
+                lesson_dict['language'] = trans_lesson.language[0]
+                print "\t 2 trans lesson:",str(trans_lesson.name).encode('utf-8'),trans_lesson.id,trans_lesson.language[0]
             else:
                 lesson_dict['name'] = lesson.name
+                lesson_dict['id'] = str(lesson.id)
             lesson_dict['type'] = 'lesson'
-            lesson_dict['id'] = str(lesson.id)
-            lesson_dict['language'] = lesson.language[0]
+            #lesson_dict['id'] = str(lesson.id)
+            #lesson_dict['language'] = lesson.language[0]
             lesson_dict['activities'] = []
             if lesson.collection_set:
                 for each_act in lesson.collection_set:
@@ -1755,11 +2066,14 @@ def get_unit_hierarchy(unit_group_obj,lang="en"):
                         if trans_act:
                             # activity_dict['name'] = trans_act.name
                             activity_dict['name'] = trans_act.altnames or trans_act.name
+                            activity_dict['id'] = str(trans_act.id)
+                            print "\t \t 3 trans act:",str(trans_act.name).encode('utf-8'),trans_act.id
                         else:
                             # activity_dict['name'] = activity.name
+                            activity_dict['id'] = str(activity.id)
                             activity_dict['name'] = activity.altnames or activity.name
                         activity_dict['type'] = 'activity'
-                        activity_dict['id'] = str(activity.id)
+                        #activity_dict['id'] = str(activity.id)
                         lesson_dict['activities'].append(activity_dict)
             unit_structure.append(lesson_dict)
 
@@ -1996,19 +2310,23 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
 
         def _create_grelation_node(subject_id, relation_type_node, right_subject_id_or_list, relation_type_text, triple_scope_val=None):
             # Code for creating GRelation node
+            print "inside _create_grelation"
             gr_node = triple_collection.collection.GRelation()
-
-            gr_node.subject = subject_id
-            gr_node.relation_type = relation_type_node.id
-            gr_node.right_subject = right_subject_id_or_list
+            print "gr_node",gr_node
+            gr_node.subject = ObjectId(subject_id)
+            gr_node.relation_type = ObjectId(relation_type_node.id)
+            gr_node.right_subject = ObjectId(right_subject_id_or_list)
             # gr_node.relation_type_scope = relation_type_scope
             gr_node.language = language
             gr_node.status = u"PUBLISHED"
+            print "post assiging:",gr_node
             gr_node.save()
+            print "saved"
             save_triple_to_es(gr_node)
             # gr_node.save(triple_node=relation_type_node, triple_id=relation_type_node._id)
 
             gr_node_name = gr_node.name
+            #print "post save:",gr_node_name
             info_message = "%(relation_type_text)s: GRelation (%(gr_node_name)s) " % locals() \
                 + "created successfully.\n"
 
@@ -2019,15 +2337,15 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
             #     "_id": subject_id,
             #     "relation_set." + relation_type_node_name: {"$exists": True}
             # })
-
-            q = Q('bool',must = [Q('match',id = subject_id),Q('exists',field = "relation_set." + relation_type_node_name)])
+            print "post saving"
+            q = Q('bool',must = [Q('match',id = str(subject_id)),Q('exists',field = "relation_set." + relation_type_node_name)])
             s1 = Search(using=es, index='nodes',doc_type="node").query(q)
-            s2 = s1.execute()
-            left_subject = s2[0]
+            left_subject = s1.execute()
+        
             if triple_scope_val:
                 gr_node = update_scope_of_triple(gr_node,relation_type_node, triple_scope_val, is_grel=True)
 
-            if left_subject:
+            if s1.count() > 0:
                                 # Update value of grelation in existing as key-value pair value in
                                 # given node's "relation_set" field
                 # node_collection.collection.update({
@@ -2038,14 +2356,16 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
                 # },
                 #     upsert=False, multi=False
                 # )
-                q = Q('bool',must = [Q('match',id = subject_id),Q('exists',field = "relation_set." + relation_type_node_name)])
+                print "in if of left subject"
+                q = Q('bool',must = [Q('match',id = str(subject_id)),Q('exists',field = "relation_set." + relation_type_node_name)])
                 f1 = "relation_set." + relation_type_node_name
-                s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.f1.add(params.val)", lang="painless",params={'val':right_subject_id_or_list})
+                s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.f1.add(params.val)", lang="painless",params={'val':str(right_subject_id_or_list)})
                 s2 = s1.execute()
                 # left_subject = s2[0]
 
 
             else:
+                print "in else of left subject"
                 # Add grelation as new key-value pair value in given node's
                 # relation_set field
                 # node_collection.collection.update({
@@ -2056,9 +2376,8 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
                 #     upsert=False, multi=False
                 # )
 
-                q = Q('bool',must = [Q('match',id = subject_id)])
-                f1 = "relation_set." + relation_type_node_name
-                s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.f1.add(params.val)", lang="painless",params={'val':right_subject_id_or_list})
+                q = Q('bool',must = [Q('match',id = str(subject_id))])
+                s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.relation_set.add(params.val)", lang="painless",params={'val':{relation_type_node_name:[str(right_subject_id_or_list)]}})
                 s2 = s1.execute()
 
             # right_subject = node_collection.one({
@@ -2067,14 +2386,13 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
             # }, {
             #     'relation_set': 1
             # })
-
-            q = Q('bool',must = [Q('match',id = right_subject_id_or_list),Q('exists',field = "relation_set." + relation_type_node_inverse_name)])
-            # f1 = "relation_set." + relation_type_node_name
+            
+            q = Q('bool',must = [Q('match',id = str(right_subject_id_or_list)),Q('exists',field = "relation_set." + relation_type_node_inverse_name)])
             s1 = Search(using=es, index='nodes',doc_type="node").query(q)
-            s2 = s1.execute()
-            right_subject = s2[0]
-
-            if right_subject:
+            right_subject = s1.execute()
+    
+            
+            if s1.count() > 0:
                 # Update value of grelation in existing as key-value pair value in
                 # given node's "relation_set" field
                 # node_collection.collection.update({
@@ -2084,10 +2402,11 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
                 # },
                 #     upsert=False, multi=False
                 # )
-
-                q = Q('bool',must = [Q('match',id = right_subject_id_or_list),Q('exists',field = "relation_set." + relation_type_node_inverse_name)])
+                print "inside right_subject if loop inside the create_gattribute"
+                q = Q('bool',must = [Q('match',id = str(right_subject_id_or_list)),Q('exists',field = "relation_set." + relation_type_node_inverse_name)])
                 f1 = "relation_set." + relation_type_node_inverse_name
-                s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.f1.add(params.val)", lang="painless",params={'val':subject_id})
+                s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.f1.add(params.val)", lang="painless",params={'val':str(subject_id)})
+                print "query",q
                 s2 = s1.execute()
 
             else:
@@ -2100,10 +2419,9 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
                 # },
                 #     upsert=False, multi=False
                 # )
-
-                q = Q('bool',must = [Q('match',id = right_subject_id_or_list)])
-                f1 = "relation_set." + relation_type_node_inverse_name
-                s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.f1.add(params.val)", lang="painless",params={'val':subject_id})
+                print "in else of right subject"
+                q = Q('bool',must = [Q('match',id = str(right_subject_id_or_list))])
+                s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.relation_set.add(params.val)", lang="painless",params={'val':{relation_type_node_inverse_name:str(subject_id)}})
                 s2 = s1.execute()
 
             return gr_node
@@ -2160,7 +2478,7 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
             # If object_cardinality value exists and greater than 1 (or eaqual to 100)
             # Then it signifies it's a one to many type of relationship
             # assign multi_relations = True
-            type_of_relationship = relation_type_node.member_of_names_list
+            type_of_relationship = member_of_names_list(relation_type_node)
             if relation_type_node["object_cardinality"] > 1:
                 multi_relations = True
 
@@ -2225,7 +2543,7 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
             #     'relation_type': relation_type_node._id
             # })
 
-            q = Q('bool',must = [Q('match',type = 'GRelation'),Q('match',subject=subject_id),Q('match', relation_type = relation_type_node.id )])
+            q = Q('bool',must = [Q('match',type = 'GRelation'),Q('match',subject=str(subject_id)),Q('match', relation_type = relation_type_node.id )])
             # f1 = "relation_set." + relation_type_node_inverse_name
             s1 = Search(using=es, index='triples',doc_type="triple").query(q)
             nodes = s1.execute()
@@ -2251,7 +2569,7 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
                         #     upsert=False, multi=False
                         # )
 
-                        q = Q('bool',must = [Q('match',id = subject_id),Q('exists',field = "relation_set." + relation_type_node.name)])
+                        q = Q('bool',must = [Q('match',id = str(subject_id)),Q('exists',field = "relation_set." + relation_type_node.name)])
                         f1 = "relation_set." + relation_type_node.name
                         s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.f1.add(params.val)", lang="painless",params={'val':n.right_subject})
                         s2 = s1.execute()
@@ -2269,7 +2587,7 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
                         s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.f1.add(params.val)", lang="painless",params={'val':subject_id})
                         s2 = s1.execute()
 
-                        n.reload()
+                        #n.reload()
 
                 else:
                     # Case: When already existing entry doesn't exists in newly come list of right_subject(s)
@@ -2309,23 +2627,25 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
                     s2 = s1.execute()
 
             if right_subject_id_or_list:
+                print "right subject list",right_subject_id_or_list
                 # If still ObjectId list persists, it means either they are new ones'
                 # or from deleted ones'
                 # For deleted one's, find them and modify their status to PUBLISHED
                 # For newer one's, create them as new document
                 for nid in right_subject_id_or_list:
+                    print "each from list:",nid
                     # gr_node = triple_collection.one({
                     #     '_type': "GRelation", 'subject': subject_id,
                     #     'relation_type': relation_type_node._id, 'right_subject': nid
                     # })
 
-                    q = Q('bool',must = [Q('match',type = 'GRelation'),Q('match',subject = subject_id),Q('match', relation_type = relation_type_node.id),Q('match', right_subject = nid)])
+                    q = Q('bool',must = [Q('match',type = 'GRelation'),Q('match',subject = str(subject_id)),Q('match', relation_type = relation_type_node.id),Q('match', right_subject = str(nid))])
                     # f1 = "relation_set." + relation_type_node_name
                     s1 = Search(using=es, index='triples',doc_type="triple").query(q)
-                    s2 = s1.execute()
-                    gr_node = s2[0]
+                    gr_node = s1.execute()
+                    
 
-                    if gr_node is None:
+                    if s1.count() == 0:
                         # New one found so create it
                         # check for relation_type_scope variable in kwargs and pass
                         gr_node = _create_grelation_node(
@@ -2351,16 +2671,16 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
             # For dealing with single relation (one to one)
             gr_node = None
 
-            relation_type_node_id = relation_type_node._id
+            relation_type_node_id = relation_type_node.id
             relation_type_node_name = relation_type_node.name
             relation_type_node_inverse_name = relation_type_node.inverse_name
-
+            print "in final else to create node:",relation_type_node.name
             # gr_node_cur = triple_collection.find({
             #     "_type": "GRelation", "subject": subject_id,
             #     "relation_type": relation_type_node_id
             # })
 
-            q = Q('bool',must = [Q('match',type = 'GRelation'),Q('match',subject = subject_id),Q('match', right_subject = relation_type_node_id)])
+            q = Q('bool',must = [Q('match',type = 'GRelation'),Q('match',subject = str(subject_id)),Q('match', right_subject = relation_type_node_id)])
             # f1 = "relation_set." + relation_type_node_name
             s1 = Search(using=es, index='triples',doc_type="triple").query(q)
             gr_node_cur = s1.execute()
@@ -2384,13 +2704,13 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
                         if triple_scope_val:
                             node = update_scope_of_triple(node, relation_type_node, triple_scope_val, is_grel=True)
 
-                        node_collection.collection.update({
-                            "_id": subject_id, "relation_set." + relation_type_node_name: {'$exists': True}
-                        }, {
-                            "$addToSet": {"relation_set.$." + relation_type_node_name: node_right_subject}
-                        },
-                            upsert=False, multi=False
-                        )
+                        #node_collection.collection.update({
+                        #    "_id": subject_id, "relation_set." + relation_type_node_name: {'$exists': True}
+                        #}, {
+                        #    "$addToSet": {"relation_set.$." + relation_type_node_name: node_right_subject}
+                        #},
+                        #    upsert=False, multi=False
+                        #)
 
                         q = Q('bool',must = [Q('match',id = subject_id),Q('exists',field = "relation_set." + relation_type_node_name)])
                         f1 = "relation_set." + relation_type_node_name
@@ -2428,13 +2748,13 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
                         save_triple_to_es(node)
                         # node.save(triple_node=relation_type_node, triple_id=relation_type_node._id)
 
-                        node_collection.collection.update({
-                            '_id': subject_id, 'relation_set.' + relation_type_node_name: {'$exists': True}
-                        }, {
-                            '$pull': {'relation_set.$.' + relation_type_node_name: node_right_subject}
-                        },
-                            upsert=False, multi=False
-                        )
+                        #node_collection.collection.update({
+                        #    '_id': subject_id, 'relation_set.' + relation_type_node_name: {'$exists': True}
+                        #}, {
+                        #    '$pull': {'relation_set.$.' + relation_type_node_name: node_right_subject}
+                        #},
+                        #    upsert=False, multi=False
+                        #)
 
                         q = Q('bool',must = [Q('match',id = subject_id),Q('exists',field = "relation_set." + relation_type_node_name)])
                         f1 = "relation_set." + relation_type_node_name
@@ -2452,7 +2772,7 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
 
                         q = Q('bool',must = [Q('match',id = node_right_subject),Q('exists',field = "relation_set." + relation_type_node_inverse_name)])
                         f1 = "relation_set." + relation_type_node_inverse_name
-                        s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.f1.add(params.val)", lang="painless",params={'val':subject_id})
+                        s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.f1.add(params.val)", lang="painless",params={'val':str(subject_id)})
                         s2 = s1.execute()
 
 
@@ -2462,8 +2782,8 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
 
             if gr_node is None:
                 # Code for creation
-                gr_node = _create_grelation_node(
-                    subject_id, relation_type_node, right_subject_id_or_list, "SingleGRelation", triple_scope_val)
+                print "inside if",subject_id, relation_type_node, right_subject_id_or_list, "SingleGRelation", triple_scope_val
+                gr_node = _create_grelation_node(subject_id, relation_type_node, right_subject_id_or_list, "SingleGRelation")
 
             return gr_node
 
@@ -2471,6 +2791,227 @@ def create_grelation(subject_id, relation_type_node, right_subject_id_or_list, *
         error_message = "\n GRelationError (line #" + \
             str(exc_info()[-1].tb_lineno) + "): " + str(e) + "\n"
         raise Exception(error_message)
+
+def create_gattribute(subject_id, attribute_type_node, object_value=None, **kwargs):
+
+    def _update_attr_set(attr_set_list_of_dicts, attr_key, attr_value):
+        temp_attr_dict = get_dict_from_list_of_dicts(attr_set_list_of_dicts)
+        temp_attr_dict.update({unicode(attr_key): attr_value})
+        return [{k:v} for k, v in temp_attr_dict.iteritems()]
+
+    ga_node = None
+    info_message = ""
+    old_object_value = None
+    triple_scope_val = kwargs.get('triple_scope', None)
+    
+    q = Q('bool',must = [Q('match',type = 'GAttribute'),Q('match',subject= subject_id),Q('match',attribute_type= attribute_type_node.id)])
+    # f1 = "relation_set." + relation_type_node_name                                                                                                            
+    s1 = Search(using=es, index='triples',doc_type="triple").query(q)
+    ga_node = s1.execute()
+    
+    '''
+    Example:
+    triple_scope:
+      {
+        attribute_type_scope : {'alt_format': 'mp4', 'alt_size': '720p', 'alt_language': 'hi'},
+        object_scope : unicode,
+        subject_scope : unicode
+      }
+
+    '''
+    if s1.count() == 0:
+        # Code for creation
+        try:
+            ga_node = triple_collection.collection.GAttribute()
+
+            ga_node.subject = ObjectId(subject_id)
+            ga_node.attribute_type = ObjectId(attribute_type_node.id)
+
+            if (not object_value) and type(object_value) != bool:
+                # this is when value of attribute is cleared/empty
+                # in this case attribute will be created with status deleted
+                object_value = u"None"
+                ga_node.status = u"DELETED"
+
+            else:
+                ga_node.status = u"PUBLISHED"
+
+            ga_node.object_value = object_value
+            
+            
+            # ga_node.save(triple_node=attribute_type_node, triple_id=attribute_type_node._id)
+            ga_node.save()
+            
+            print "post saving",ga_node.reload()
+
+            if triple_scope_val:
+                ga_node = update_scope_of_triple(ga_node,attribute_type_node, triple_scope_val, is_grel=False)
+            save_triple_to_es(ga_node)
+            
+            if ga_node.status == u"DELETED":
+                info_message = " GAttribute (" + ga_node.name + \
+                    ") created successfully with status as 'DELETED'!\n"
+
+            else:
+                info_message = " GAttribute (" + \
+                    ga_node.name + ") created successfully.\n"
+
+                # Fetch corresponding document & append into it's attribute_set
+                #node_collection.collection.update({'_id': subject_id},
+                #                                  {'$addToSet': {
+                #                                      'attribute_set': {attribute_type_node.name: object_value}}},
+                #                                  upsert=False, multi=False
+                #                                  )
+                q = Q('bool',must = [Q('match',id = str(subject_id))])
+                #f1 = "relation_set." + relation_type_node_name
+                s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.attribute_set.add(params.val)", lang="painless",params={'val':{attribute_type_node.name: object_value}})
+                s2 = s1.execute()
+            is_ga_node_changed = True
+
+        except Exception as e:
+            error_message = "\n GAttributeCreateError: " + str(e) + "\n"
+            raise Exception(error_message)
+
+    else:
+        # Code for updating existing gattribute
+        is_ga_node_changed = False
+        print "ga node changd",is_ga_node_changed
+        try:
+            if (not object_value) and type(object_value) != bool:
+                # this is when value of attribute is cleared/empty
+                # in this case attribute will be set with status deleted
+                old_object_value = ga_node.object_value
+
+                ga_node.status = u"DELETED"
+                ga_node.save()
+                # ga_node.save(triple_node=attribute_type_node, triple_id=attribute_type_node._id)
+                if triple_scope_val:
+                    ga_node = update_scope_of_triple(ga_node,attribute_type_node, triple_scope_val, is_grel=False)
+                save_triple_to_es(ga_node)
+                info_message = " GAttribute (" + ga_node.name + \
+                    ") status updated from 'PUBLISHED' to 'DELETED' successfully.\n"
+
+                # Fetch corresponding document & update it's attribute_set with
+                # proper value
+                #node_collection.collection.update({'_id': subject_id, 'attribute_set.' + attribute_type_node.name: old_object_value}, {'$pull': {'attribute_set': {attribute_type_node.name: old_object_value}}}, upsert=False, multi=False)
+
+                f1 = 'attribute_set.'+ attribute_type_node.name
+                q = Q('bool',must = [Q('match',id= subject_id),Q('match',f1 = old_object_value)])
+                s1 = UpdateByQuery(using=es, index='nodes',doc_type="node").query(q).script(source="ctx._source.f1.add(params.val)", lang="painless",params={'val':{attribute_type_node.name: old_object_value}})
+                s2 = s1.execute()
+            else:
+                print "inside else"
+                if type(ga_node.object_value) == list:
+                    print "inside list condtn"
+                    if type(ga_node.object_value[0]) == dict:
+                        old_object_value = ga_node.object_value
+
+                        if len(old_object_value) != len(object_value):
+                            ga_node.object_value = object_value
+                            print "changing the ga node changed"
+                            is_ga_node_changed = True
+
+                        else:
+                            #print "Old value and new value:",old_object_value,'\n',object_value
+                            pairs = zip(old_object_value, object_value)
+                            #print "pairs:",pairs
+                            if any(x != y for x, y in pairs):
+                                print "change ga node in else"
+                                ga_node.object_value = object_value
+                                is_ga_node_changed = True
+
+                    elif type(ga_node.object_value[0]) == list:
+                        if ga_node.object_value != object_value:
+                            old_object_value = ga_node.object_value
+                            ga_node.object_value = object_value
+                            is_ga_node_changed = True
+
+                    else:
+                        if set(ga_node.object_value) != set(object_value):
+                            old_object_value = ga_node.object_value
+                            ga_node.object_value = object_value
+                            is_ga_node_changed = True
+
+                elif type(ga_node.object_value) == dict:
+                    if cmp(ga_node.object_value, object_value) != 0:
+                        old_object_value = ga_node.object_value
+                        ga_node.object_value = object_value
+                        is_ga_node_changed = True
+
+                else:
+                    if ga_node.object_value != object_value:
+                        old_object_value = ga_node.object_value
+                        ga_node.object_value = object_value
+                        is_ga_node_changed = True
+
+                if is_ga_node_changed or ga_node.status == u"DELETED":
+                    if ga_node.status == u"DELETED":
+                        ga_node.status = u"PUBLISHED"
+                        ga_node.save()
+                        save_triple_to_es(ga_node)
+                        # ga_node.save(triple_node=attribute_type_node, triple_id=attribute_type_node._id)
+                        if triple_scope_val:
+                            ga_node = update_scope_of_triple(ga_node,attribute_type_node, triple_scope_val, is_grel=False)
+
+
+                        info_message = " GAttribute (" + ga_node.name + \
+                            ") status updated from 'DELETED' to 'PUBLISHED' successfully.\n"
+
+                        # Fetch corresponding document & append into it's
+                        # attribute_set
+                        # node_collection.collection.update({'_id': subject_id},
+                        #                                   {'$addToSet': {
+                        #                                       'attribute_set': {attribute_type_node.name: object_value}}},
+                        #                                   upsert=False, multi=False)
+                        subject_node_obj = get_node_by_id(subject_id)
+                        subject_node_obj.attribute_set = _update_attr_set(
+                                                            subject_node_obj.attribute_set,
+                                                            attribute_type_node.name,
+                                                            object_value
+                                                        )
+                        save_node_to_es(subject_node_obj)
+
+
+                    else:
+                        ga_node.status = u"PUBLISHED"
+                        ga_node.save()
+                        save_triple_to_es(ga_node)
+                        # ga_node.save(triple_node=attribute_type_node, triple_id=attribute_type_node._id)
+                        if triple_scope_val:
+                            ga_node = update_scope_of_triple(ga_node,attribute_type_node, triple_scope_val, is_grel=False)
+
+                        info_message = " GAttribute (" + \
+                            ga_node.name + ") updated successfully.\n"
+
+                        # Fetch corresponding document & update it's
+                        # attribute_set with proper value
+                        # node_collection.collection.update({'_id': subject_id, 'attribute_set.' + attribute_type_node.name: {"$exists": True}},
+                        #                               {'$set': {
+                        #                                   'attribute_set.$.' + attribute_type_node.name: ga_node.object_value}},
+                        #                               upsert=False, multi=False)
+                        subject_node_obj = get_node_by_id(subject_id)
+                        subject_node_obj.attribute_set = _update_attr_set(
+                                                            subject_node_obj.attribute_set,
+                                                            attribute_type_node.name,
+                                                            ga_node.object_value
+                                                        )
+                        save_node_to_es(subject_node_obj)
+                else:
+                    info_message = " GAttribute (" + ga_node.name + \
+                        ") already exists (Nothing updated) !\n"
+
+        except Exception as e:
+            error_message = "\n GAttributeUpdateError: " + str(e) + "\n"
+            raise Exception(error_message)
+
+    if "is_changed" in kwargs:
+        ga_dict = {}
+        ga_dict["is_changed"] = is_ga_node_changed
+        ga_dict["node"] = ga_node
+        ga_dict["before_obj_value"] = old_object_value
+        return ga_dict
+    else:
+        return ga_node
 
 
 def get_group_resources(request, group_id, res_type="Page"):

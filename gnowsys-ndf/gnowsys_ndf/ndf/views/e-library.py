@@ -77,7 +77,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	"""
 	print "inside resource_list of e-library ",group_id
 	is_video = request.GET.get('is_video', "")
-        lang = request.COOKIES['language_code']
+        lang = request.LANGUAGE_CODE
         print "request:",request.session.get_expiry_age(),request.session.get_expire_at_browser_close()
         print "language data from request:",lang,request.session
 	try:
@@ -141,7 +141,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 
 	allaudios2 = allaudios1.execute()
 
-        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Handbook')])
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',language = lang),Q('match_phrase',tags = 'Handbook')])
 
 	alldocs1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
@@ -159,12 +159,16 @@ def resource_list(request, group_id, app_id=None, page_no=1):
         domain_nds = [get_group_name_id(each)[1] for each in domain_set]
         domains = get_nodes_by_ids_list(domain_nds)
         moduleids = []
+        english_mod_ids=[]
         for each in domains:
+                if each.name == 'English':
+                        english_mod_ids.extend(each.collection_set)
                 moduleids.extend(each.collection_set)
-        print "moduleids:",moduleids
-	q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id = moduleids),Q('match_phrase',language = lang)])
-
-	all_modules = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
+        print "moduleids:",moduleids,english_mod_ids
+	q1= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id = moduleids),Q('match_phrase',language = lang)])
+        q2 = Q('bool',must=[Q('terms',id = english_mod_ids)])
+        q3 = Q('bool',should=[q1,q2])
+	all_modules = (Search(using=es,index = index,doc_type=doc_type).query(q3)).sort({"last_update" : {"order" : "asc"}})
 
 	all_modules2 = all_modules.execute()
         print "modules:",all_modules.count()
@@ -233,6 +237,7 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
         domain_name = request.POST.getlist("domain_name")
         domain_selected = request.POST.getlist("domain_selected")
         print 'dsfadf',domain_name,domain_selected
+        lang = request.COOKIES['language_code']
         #print "cookie values:",request.COOKIES['English'],request.COOKIES['Mathematics'],request.COOKIES['Science']
 	if request.is_ajax() and request.method == "POST":
                 if len(domain_selected) == 0:
@@ -248,21 +253,28 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
                                 if filetype == 'document':
                                         template = 'ndf/player_handbook.html'
                                         print "in Document elif"
-                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Handbook')])
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Handbook'),Q('match_phrase',language = lang)])
                                 elif filetype == 'interactives':
                                         print "in interactives"
                                         template = "ndf/player_interactive.html"
-                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Tool')])
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Tool'),Q('match_phrase',language = lang)])
                                 else:
-                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = filetype)])
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = filetype),Q('match_phrase',language = lang)])
                         else:
                                 domain_set = ['English','Mathematics','Science']
                                 domain_nds = [get_group_name_id(each)[1] for each in domain_set]
                                 domains = get_nodes_by_ids_list(domain_nds)
                                 moduleids = []
+                                english_mod_ids = []
                                 for each in domains:
+                                        if each.name == 'English':
+                                                english_mod_ids.extend(each.collection_set)
                                         moduleids.extend(each.collection_set)
-                                q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id = moduleids)])
+                                        print "moduleids:",moduleids,english_mod_ids
+                                q1= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id = moduleids),Q('match_phrase',language = lang)])
+                                q2 = Q('bool',must=[Q('terms',id = english_mod_ids)])
+                                q = Q('bool',should=[q1,q2])
+
                         
                         allfiletypes1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
                                 
@@ -286,7 +298,10 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
                         print "domain nds:",domain_nds
                         unitnds = []
                         modules = []
+                        eng_mods = []
                         for eachnd in domain_nds:
+                                if eachnd.name == 'English':
+                                        eng_mods.extend(eachnd.collection_set)
                                 modulends = get_nodes_by_ids_list(eachnd.collection_set)
                                 for eachmod in modulends:
                                         modules.append(eachmod.id)
@@ -303,7 +318,7 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
                                                 q1.append(Q('match_phrase',tags = str(each)))
                                         print q1
 
-                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Handbook')],should = q1,minimum_should_match=1)
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Handbook'), Q('match_phrase',language = lang)],should = q1,minimum_should_match=1)
                                 elif filetype == 'interactives':
                                         template = "ndf/player_interactive.html"
                                         domain_selected = [str(each).title() for each in domain_selected]
@@ -313,12 +328,17 @@ def elib_paged_file_objs(request, group_id, filetype, page_no):
                                                 q1.append(Q('match_phrase',tags = str(each)))
                                         print q1
 
-                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Tool')],should=q1,minimum_should_match=1)
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Tool'),Q('match_phrase',language = lang)],should=q1,minimum_should_match=1)
                                 else:
-                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = filetype),Q('terms',group_set = unitsnds)])
+                                        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',group_set=str(group_id)),Q('match',access_policy='PUBLIC'),Q('match_phrase',if_file__mime_type = filetype),Q('terms',group_set = unitsnds),Q('match_phrase',language = lang)])
                         else:
                                 print "module ids",modules
-                                q= Q('bool', must=[Q('match', member_of = gst_module[0].id),Q('terms',id = modules), Q('match',status='PUBLISHED')])
+                                q1= Q('bool', must=[Q('match', member_of = gst_module[0].id),Q('terms',id = modules),Q('match_phrase',language = lang),Q('match',status='PUBLISHED')])
+                                if eng_mods:
+                                        q2 = Q('bool',must=[Q('terms',id = eng_mods)])
+                                        q = Q('bool',should=[q1,q2])
+                                else:
+                                        q = q1
                         allfiletypes1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
                         
                         allfiletypes2 = allfiletypes1.execute()
@@ -359,6 +379,7 @@ def resource_list_domainwise(request,group_id, app_id=None, page_no=1):
         * Renders a list of all 'Resources' available within the database (except eBooks).
         """
         print "home group id:",group_id
+        lang = request.COOKIES['language_code']
         domain_name = request.POST.getlist("domain_name")
         print "inside resource_list_domainwise of e-library ",domain_name
         try:
@@ -390,7 +411,10 @@ def resource_list_domainwise(request,group_id, app_id=None, page_no=1):
         domainds = get_nodes_by_ids_list(domain_set)
         print "domain nds:",domainds
         idlist = []
+        eng_mods = []
         for each in domainds:
+                if each.name == 'English':
+                        eng_mods.extend(each.collection_set)
                 idlist.extend(each.collection_set)
         print "modules:",idlist
         idnds = get_nodes_by_ids_list(idlist)
@@ -406,7 +430,7 @@ def resource_list_domainwise(request,group_id, app_id=None, page_no=1):
         datavisual = []
         no_of_objs_pp = 5
         domain_set = [str(each) for each in domain_set]
-        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id]),Q('terms',group_set=domain_set),Q('match',access_policy='PUBLIC')],must_not=[Q('match',attribute_set__educationaluse='ebooks')])
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id]),Q('terms',group_set=domain_set),Q('match',access_policy='PUBLIC'),Q('match_phrase',language = lang)],must_not=[Q('match',attribute_set__educationaluse='ebooks')])
 
         allfiles1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
@@ -435,13 +459,18 @@ def resource_list_domainwise(request,group_id, app_id=None, page_no=1):
                 q1.append(Q('match_phrase',tags = str(each)))
         print q1
                                         
-        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match_phrase',tags = 'Handbook')],should = q1,minimum_should_match=1)
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match_phrase',tags = 'Handbook'),Q('match_phrase',language = lang)],should = q1,minimum_should_match=1)
 
         alldocs1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "desc"}})
 
         alldocs2 = alldocs1.execute()
-
-        q= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id=idlist)])
+        
+        q1= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id=idlist),Q('match_phrase',language = lang)])
+        if eng_mods:
+                q2 = Q('bool',must=[Q('terms',id = eng_mods)])
+                q = Q('bool',should=[q1,q2])
+        else:
+                q = q1
 
         all_modules = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
 
@@ -454,7 +483,7 @@ def resource_list_domainwise(request,group_id, app_id=None, page_no=1):
                 q1.append(Q('match_phrase',tags = str(each)))
         print q1
         
-        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Tool')],should=q1,minimum_should_match=1)
+        q = Q('bool',must=[Q('terms',member_of=[GST_FILE[0].id,GST_JSMOL[0].id,GST_PAGE[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags = 'Tool'),Q('match_phrase',language = lang)],should=q1,minimum_should_match=1)
        
         print "interactive query:",q
 

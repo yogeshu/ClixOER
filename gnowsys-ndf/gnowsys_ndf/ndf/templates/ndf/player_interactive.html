@@ -93,10 +93,14 @@ opacity:0.7;
     <div class="front  imageHolder" style="background-image:url({{json_data.Interactive_image}} )">
 <div class="caption"> 
       <h6 class="text-shadow">{{dest.altnames}}</h6>
- <h6><span class="badge badge-primary ">{% for each_attr in dest.tags %}{{each_attr}}
-                      {% if not forloop.last %}, {%endif %}
+ <h6><span class="badge badge-primary ">
+     {% if dest.language.0 == 'hi' or dest.language.0 == 'te' %}
+         {{dest.tags.3}}
+     {% else %}
+        {% for each_attr in dest.tags|slice:"0:2" %}{{each_attr}}
+                      {% if not forloop.last %}, {% endif %}
                       {% endfor %}</span> </h6>
-
+     {% endif %}
        </div>
     </div>
     <div class="back">

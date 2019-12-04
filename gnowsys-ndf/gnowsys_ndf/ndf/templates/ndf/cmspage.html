@@ -1,11 +1,15 @@
 {% extends "ndf/base.html" %}
+{% load i18n %}
 {% block content %}
 <!-- <script src="../node_modules/ckeditor/ckeditor.js">
 </script> -->
+<script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
 
 <link rel="stylesheet" href="../static/node_modules/ckeditor/samples/toolbarconfigurator/css/fontello.css">
+<!--
 <form>
   <div class="container">
+
         <div class="row">
             <div class="col-12 col-sm-8 col-md-8 col-lg-10 text-center">
      
@@ -31,6 +35,7 @@
             </div>
         
                  <!-- Example single danger button -->
+<!--
                  <div class="col col-sm-4 col-md-4 col-lg-4 text-center">
     <div class="btn-group">
             <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,7 +51,12 @@
      
         
              
-                <!-- Button trigger modal -->
+    
+
+            <!-- Button trigger modal -->
+
+
+<!--
     <button type="button" class="btn btn-primary ml-5 example" data-toggle="modal" data-target="#exampleModal">
           choose template 
           </button>
@@ -73,11 +83,17 @@
               </div>
             </div>
           </div> -->
+<!--
           </div>
     
       {% include "ndf/html_editor.html" %}
         </div>
       </form>
+
+
+
+
+
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -95,6 +111,102 @@
             </div>
           </div>
     </div>
+-->
+<!-- New Template --->
+
+<div class="container" >
+
+<form enctype="multipart/form-data" method="post" action="{{post_url}}" class="m-5">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="formGroupExampleInput">Title</label>
+    <input type="text" class="form-control" id="formGroupExampleInput" name="name" placeholder="Title" value="{{node_obj.name|safe}}" required >
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Display Name</label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" name="altnames " placeholder="Display Name" value="{{node_obj.altnames}}" required>
+  </div>
+ <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description</label>
+    <textarea class="form-control" name="content"   id="exampleFormControlTextarea1" rows="3" value="{{node_obj.content}}"  required></textarea>
+  </div>
+<hr>
+{% comment %}
+ <div class="form-group">
+    <label for="exampleFormControlSelect1"> select grade</label>
+    <select class="form-control" id="exampleFormControlSelect1" required>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+     
+    </select>
+  </div>
+
+ <div class="form-group">
+    <label for="exampleFormControlSelect1"> select language</label>
+    <select class="form-control" id="exampleFormControlSelect1" >
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+     
+    </select>
+  </div>
+<button class="btn  btn-dark" type="submit"> sumbit </button>
+{% endcomment %}
+
+{% for k, v in additional_form_fields.attribute.iteritems %}
+                <div class=" course_creator_header">
+                    <div class="left course_heading">
+                    <h5>{{k}}</h5>
+                    </div>
+                    <div class="form-group right course_heading_unit">
+                         <select class="form-control" id="exampleFormControlSelect1"  name="attribute_{{v.name}}" {{v.widget_attr}}>                            <option value=''>{% trans "Choose" %} {{k}}</option>
+                            {% for each_opt in v.all_options %}                             <option {% if each_opt in v.value %} selected {% endif %}>
+                                        {{each_opt}}
+                                    </option>
+
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+            {% endfor %}
+            <div class="row" style="margin-left: 2px;">
+                <input type="submit" class="btn btn-dark  button-save-new" value="Save" style="m\
+argin:20px 0px 20px 0px;"/>
+
+                {% if cancel_url %}
+                    <button class="button-cancel-new">
+                        <a href="{{cancel_url}}"> <i class="fa fa-times" aria-hidd\
+en="true"></i> {% trans "Cancel" %}</a>
+                    </button>
+                {% endif %}
+
+
+</form>
+
+</div>
+
+
+
+<script>
+                        CKEDITOR.replace( 'content' );
+                </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
 <script>
 

@@ -45,6 +45,7 @@ HEADER_LANGUAGES = (('en', 'English'), ('hi', u'\u0939\u093f\u0902\u0926\u0940')
 GSTUDIO_DEFAULT_LANGUAGE = ('en', 'English')
 GSTUDIO_WORKSPACE_INSTANCE = False
 GSTUDIO_IMPLICIT_ENROLL = False
+'''
 OTHER_COMMON_LANGUAGES = [
     ('mr', 'Marathi'), ('mni','Manipuri'), ('ori','Oriya'),
     ('pi','Pali'), ('raj','Rajasthani'), ('gu','Gujarati'),
@@ -249,13 +250,13 @@ EXTRA_LANG_INFO = {
         'name_local': 'Malayalam'
     },
 }
-
+'''
 
 # Add custom languages not provided by Django
-import django.conf.locale
+'''import django.conf.locale
 LANG_INFO = dict(django.conf.locale.LANG_INFO.items() + EXTRA_LANG_INFO.items())
 django.conf.locale.LANG_INFO = LANG_INFO
-
+'''
 # Languages using BiDi (right-to-left) layout
 # LANGUAGES_BIDI = global_settings.LANGUAGES_BIDI + ("mni",)
 
@@ -760,7 +761,7 @@ GSTUDIO_RESOURCES_AUDIENCE = ["Teachers", "Students", "Teacher educators"]
 
 GSTUDIO_RESOURCES_TEXT_COMPLEXITY = ["Easy", "Moderately Easy", "Intermediate", "Moderately Hard", "Hard"]
 
-GSTUDIO_RESOURCES_LANGUAGES = ["English", "Gujarati", "Hindi", "Manipuri", "Marathi", "Mizo", "Telugu"]
+GSTUDIO_RESOURCES_LANGUAGES = ["English","Hindi", "Telugu"]
 
 GSTUDIO_RESOURCES_AGE_RANGE = ["5-10", "11-20", "21-30", "31-40", "41 and above"]
 

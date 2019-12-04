@@ -1,7 +1,36 @@
+
+
+
 {
   "Team_detail_math": [
+
+
+  {
+     "moduleId": "आनुपातिक तर्क ",
+        "moduleimg": "/media/4/c/1/50c06aa9b61ddc1f4f83a74fe8f69ab6b4d913a84e20ee23b2f7ecc9b8723.jpg",
+     "u": [
+"Arindam Bose" ,
+
+"Ruchi S. Kumar"
+
+],
+      "userIdArray":  [
+
+ "Amit Dhakulkar",
+        "Arati Sudhir Bapat",
+        "Jeenat Rahman",
+        "Suchismita Srinavsas",
+        "Sumegh Paltiwale",
+
+"Saurabh Thakur"
+
+        ]
+},
+
+
       { 
-     "moduleId": "Proportional Reasoning",
+
+     "moduleId": "అనుపాత రీజనింగ్ ",
 	"moduleimg": "/media/4/c/1/50c06aa9b61ddc1f4f83a74fe8f69ab6b4d913a84e20ee23b2f7ecc9b8723.jpg",
      "u": [
 "Arindam Bose" ,
@@ -21,6 +50,81 @@
 
         ]
 },
+{ 
+
+        "moduleId": "Proportional Reasoning",
+           "moduleimg": "/media/4/c/1/50c06aa9b61ddc1f4f83a74fe8f69ab6b4d913a84e20ee23b2f7ecc9b8723.jpg",
+        "u": [
+   "Arindam Bose" ,
+   
+   "Ruchi S. Kumar"
+   
+   ],
+         "userIdArray":  [
+   
+    "Amit Dhakulkar",
+           "Arati Sudhir Bapat",
+           "Jeenat Rahman",
+           "Suchismita Srinavsas",
+           "Sumegh Paltiwale",
+   
+   "Saurabh Thakur"
+   
+           ]
+   },
+
+
+{
+       "moduleId": "ज्यामितीय तर्क भाग I",
+    "moduleimg" : "/media/e/d/8/92da0a56be88ffcd0efefc474458d075eb688d82f8e45d00657b755108386.jpg",
+        "u": [
+   "Arindam Bose",
+	    "Suchismita Srinavsas"
+
+],
+      "userIdArray":  [
+
+
+ "Amit Dhakulkar",
+        "Arati Sudhir Bapat",
+
+        "Jeenat Rahman",
+
+	  "Sumegh Paltiwale",
+"Ruchi S. Kumar",
+
+
+"Saurabh Thakur"
+
+        ]
+},
+
+
+{
+        "moduleId": "రేఖాగణిత రీజనింగ్ పార్ట్ I ",
+         "moduleimg" : "/media/e/d/8/92da0a56be88ffcd0efefc474458d075eb688d82f8e45d00657b755108386.jpg",
+         "u": [
+    "Arindam Bose",
+         "Suchismita Srinavsas"
+ 
+ ],
+       "userIdArray":  [
+ 
+ 
+  "Amit Dhakulkar",
+         "Arati Sudhir Bapat",
+      
+         "Jeenat Rahman",
+     
+         "Sumegh Paltiwale",
+ "Ruchi S. Kumar",
+ 
+ 
+ "Saurabh Thakur"
+ 
+         ]
+ },
+
       
     {
        "moduleId": "Geometric Reasoning Part I",
@@ -47,6 +151,60 @@
         ]
 },
       
+ {
+          "moduleId": "ज्यामितीय तर्क भाग II ",
+     "moduleimg":"/media/2/c/6/0ddc842a39a2c166d5a1a50bf258aa84e3ed8be39586eb5b55bb1f65fc252.jpg",
+  "u": [
+   "Arindam Bose",
+      "Suchismita Srinavsas"
+
+],
+      "userIdArray":  [
+
+
+
+ "Amit Dhakulkar",
+        "Arati Sudhir Bapat",
+
+        "Jeenat Rahman",
+
+	  "Sumegh Paltiwale",
+"Ruchi S. Kumar",
+
+
+"Saurabh Thakur"
+
+        ]
+
+},
+{ 
+        "moduleId": "రేఖాగణిత రీజనింగ్ పార్ట్ II ",
+      "moduleimg":"/media/2/c/6/0ddc842a39a2c166d5a1a50bf258aa84e3ed8be39586eb5b55bb1f65fc252.jpg",
+"u": [
+ "Arindam Bose",
+      "Suchismita Srinavsas"
+
+],
+    "userIdArray":  [
+     
+
+
+"Amit Dhakulkar",
+      "Arati Sudhir Bapat",
+   
+      "Jeenat Rahman",
+    
+      "Sumegh Paltiwale",
+"Ruchi S. Kumar",
+
+
+"Saurabh Thakur"
+
+      ]
+
+},      
+              
+
     { 
           "moduleId": "Geometric Reasoning Part II",
 	"moduleimg":"/media/2/c/6/0ddc842a39a2c166d5a1a50bf258aa84e3ed8be39586eb5b55bb1f65fc252.jpg",
@@ -73,6 +231,53 @@
         ]
 
 },      
+
+
+ {
+"moduleId": "रैखिक समीकरण",
+"moduleimg":"/media/b/7/9/7240200b808aa2b3e57ee4a80567fa3781eee1f852f3f55274ce44e8980ef.png",
+"u" : [
+"Amit Dhakulkar"
+],
+      "userIdArray":  [
+	  "Arati Sudhir Bapat",
+	  "Arindam Bose",
+	  "Jeenat Rahman",
+	  "Suchismita Srinavsas",
+	  "Sumegh Paltiwale",
+"Ruchi S. Kumar",
+
+
+"Saurabh Thakur"
+
+	  ]
+
+
+},
+
+{
+        "moduleId": "సరళ సమీకరణాలు ",
+        "moduleimg":"/media/b/7/9/7240200b808aa2b3e57ee4a80567fa3781eee1f852f3f55274ce44e8980ef.png",
+        "u" : [
+        "Amit Dhakulkar"
+        ],
+              "userIdArray":  [
+                "Arati Sudhir Bapat",
+                "Arindam Bose",
+                "Jeenat Rahman",
+                "Suchismita Srinavsas",
+                "Sumegh Paltiwale",
+        "Ruchi S. Kumar",
+        
+        
+        "Saurabh Thakur"
+        
+                ]
+        
+        
+        }    ,
+
+
     {
 "moduleId": "Linear Equations",
 "moduleimg":"/media/b/7/9/7240200b808aa2b3e57ee4a80567fa3781eee1f852f3f55274ce44e8980ef.png",
@@ -92,7 +297,12 @@
 
         ]
 
+
 }    
+
+
+
+
  ],
   "Team_detail_english": [
     {  
@@ -167,6 +377,54 @@
   ],
 
   "Team_detail_science": [
+
+
+        {
+                "moduleId": "पारितंत्र ",
+                "moduleimg":"/media/3/b/7/3e479aea268e8051ae6cfaa736d3e8a7ae5ec4b3684f9d892c5bfffed8bf4.jpg",
+         "u" : [
+        "Binoy V.V"
+        ],
+              "userIdArray":  [ "Akhila C M",
+        
+        "Deepak Verma",
+        "Academic support",
+        
+        "Prof. Bholeshwar Dube",
+        
+        "Prof. Kishore Panwar",
+        
+        "Umesh K Chouhan"
+        
+                ],
+              "userId": "Shamin Padalkar",
+              "jobTitleName": "Assistant Professor",
+              "employeeDetails": "I am a researcher in science and mathematics education. My special interest areas include graphicacy and the use of graphs, as well as the history and philosophy of science. My work includes developing educational activities involving graphs and the handling of real-world data. I enjoy exploring the use of technology to design and change learning experiences in science and mathematics. In CLIx, I am also a part of the Mathematics team.",
+              "twitter": "408-1234567",
+              "emailAddress": "romin.k.irani@gmail.com",
+              "education": "Ph.D. current, Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Designing learning contexts for graphicacy in science education. M.Sc (2005), Department of Physics, University of Pune. Physics B.Sc (2001), Fergusson College, Pune. Physics"
+            },
+
+            {
+                "moduleId": "పర్యావరణం",
+                "moduleimg":"/media/3/b/7/3e479aea268e8051ae6cfaa736d3e8a7ae5ec4b3684f9d892c5bfffed8bf4.jpg",
+         "u" : [
+        "Binoy V.V"
+        ],
+              "userIdArray":  [ "Akhila C M",
+        "Deepak Verma",
+        "Academic support",
+        "Prof. Bholeshwar Dube",
+        "Prof. Kishore Panwar",
+        "Umesh K Chouhan"
+                ],
+              "userId": "Shamin Padalkar",
+              "jobTitleName": "Assistant Professor",
+              "employeeDetails": "I am a researcher in science and mathematics education. My special interest areas include graphicacy and the use of graphs, as well as the history and philosophy of science. My work includes developing educational activities involving graphs and the handling of real-world data. I enjoy exploring the use of technology to design and change learning experiences in science and mathematics. In CLIx, I am also a part of the Mathematics team.",
+              "twitter": "408-1234567",
+              "emailAddress": "romin.k.irani@gmail.com",
+              "education": "Ph.D. current, Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Designing learning contexts for graphicacy in science education. M.Sc (2005), Department of Physics, University of Pune. Physics B.Sc (2001), Fergusson College, Pune. Physics"
+            },
     {
         "moduleId": "Ecosystem",
 	"moduleimg":"/media/3/b/7/3e479aea268e8051ae6cfaa736d3e8a7ae5ec4b3684f9d892c5bfffed8bf4.jpg",
@@ -174,16 +432,11 @@
 "Binoy V.V"
 ],
       "userIdArray":  [ "Akhila C M",
-
 "Deepak Verma",
 "Academic support",
-
 "Prof. Bholeshwar Dube",
-
 "Prof. Kishore Panwar",
-
 "Umesh K Chouhan"
-
         ],
       "userId": "Shamin Padalkar",
       "jobTitleName": "Assistant Professor",
@@ -192,6 +445,56 @@
       "emailAddress": "romin.k.irani@gmail.com",
       "education": "Ph.D. current, Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Designing learning contexts for graphicacy in science education. M.Sc (2005), Department of Physics, University of Pune. Physics B.Sc (2001), Fergusson College, Pune. Physics"
     },
+    {
+        "moduleId": "स्वास्थ्य और रोग",
+         "moduleimg":"/media/8/3/3/16651de50f167a76911ac2a127cc5d80ac8b9eb447231432f062a705dae12.jpg",
+    "u": [
+ "Deepak Verma"
+ ],
+       "userIdArray":  [ "Arpita Pandey",
+ "Priyanka Saxena",
+ "Sayali Chougale",
+ "Arvind Sardana",
+ 
+ "Anu Gupta",
+ 
+ "Dr. Ramani Atkuri",
+ 
+ "Dr. Sumit Roy"
+ 
+         ],
+       "userId": "Rafikh Shaikh           ",
+       "jobTitleName": "Assistant Professor",
+       "employeeDetails": "I have been working in the field of education for the past 9 years, engaging with both- the students and teachers. My primary responsibilities in CLIx are developing content for Mathematics modules, designing professional development courses for teachers and conducting workshops for teachers. Research in the areas of students’ learning and classroom interactions were some of my other focus areas in CLIx. I have previously worked with Homi Bhabha Centre for Science Education, TIFR, Mumbai and Azim Premji Foundation, Bangalore.",
+       "twitter": "408-1234567",
+       "emailAddress": "romin.k.irani@gmail.com",
+       "education": "M.A. Elementary Education (2017), Tata Institute of Social Sciences, Mumbai.M.Sc. Physics (2008), University of Mumbai."
+     },
+     {
+        "moduleId": "ఆరోగ్యం మరియు వ్యాధులు",
+         "moduleimg":"/media/8/3/3/16651de50f167a76911ac2a127cc5d80ac8b9eb447231432f062a705dae12.jpg",
+    "u": [
+ "Deepak Verma"
+ ],
+       "userIdArray":  [ "Arpita Pandey",
+ "Priyanka Saxena",
+ "Sayali Chougale",
+ "Arvind Sardana",
+ 
+ "Anu Gupta",
+ 
+ "Dr. Ramani Atkuri",
+ 
+ "Dr. Sumit Roy"
+ 
+         ],
+       "userId": "Rafikh Shaikh           ",
+       "jobTitleName": "Assistant Professor",
+       "employeeDetails": "I have been working in the field of education for the past 9 years, engaging with both- the students and teachers. My primary responsibilities in CLIx are developing content for Mathematics modules, designing professional development courses for teachers and conducting workshops for teachers. Research in the areas of students’ learning and classroom interactions were some of my other focus areas in CLIx. I have previously worked with Homi Bhabha Centre for Science Education, TIFR, Mumbai and Azim Premji Foundation, Bangalore.",
+       "twitter": "408-1234567",
+       "emailAddress": "romin.k.irani@gmail.com",
+       "education": "M.A. Elementary Education (2017), Tata Institute of Social Sciences, Mumbai.M.Sc. Physics (2008), University of Mumbai."
+     },
     {
        "moduleId": "Health and Disease",
 	"moduleimg":"/media/8/3/3/16651de50f167a76911ac2a127cc5d80ac8b9eb447231432f062a705dae12.jpg",
@@ -217,6 +520,45 @@
       "emailAddress": "romin.k.irani@gmail.com",
       "education": "M.A. Elementary Education (2017), Tata Institute of Social Sciences, Mumbai.M.Sc. Physics (2008), University of Mumbai."
     },
+
+
+
+  
+
+{ 
+        "moduleId": "परमाणु संरचना ",
+       "moduleimg":"/media/9/2/0/8c2156744968de70d88fa88bb1f0334bb75e1b06132e067507feba6a21b2d.jpg",
+"u" : [
+"Deepak Verma"
+],
+  "userIdArray":  [   
+"Anup Saxena"
+
+    ],
+  "userId": "Prayas Sutar           ",
+  "jobTitleName": "Team Lead & Associate Professor",
+  "employeeDetails": "I have taught Mathematics at the undergraduate level in Patna University for 5 years (2002-2007), during which period I was a member of the Mathematics focus group of the Bihar Curriculum Framework 2006 for school education. I was also part of the Bihar Governor’s Core Committee for recommending and rejuvenating higher education in Bihar. In CLIx, I oversee Mathematics Team’s overall task domain including module vision and creation, teachers’ professional development workshops and module implementation. My key interests include sociology of (mathematics) education, language diversity and math learning, and ethnomathematics.            ",
+  "twitter": "408-1234567",
+  "emailAddress": "romin.k.irani@gmail.com",
+  "education": "Post Doc (2016), University of South Africa (UNISA), South Africa Ph.D. (2015), Mathematics Education, HBCSE, Tata Institute of Fundamental Research (TIFR) Deemed University MSc (2002), Mathematics, University of Pune BSc (1999), Mathematics (Honours), Patna University"
+},
+{ 
+        "moduleId": "పరమాణు నిర్మాణం ",
+       "moduleimg":"/media/9/2/0/8c2156744968de70d88fa88bb1f0334bb75e1b06132e067507feba6a21b2d.jpg",
+"u" : [
+"Deepak Verma"
+],
+  "userIdArray":  [   
+"Anup Saxena"
+
+    ],
+  "userId": "Prayas Sutar           ",
+  "jobTitleName": "Team Lead & Associate Professor",
+  "employeeDetails": "I have taught Mathematics at the undergraduate level in Patna University for 5 years (2002-2007), during which period I was a member of the Mathematics focus group of the Bihar Curriculum Framework 2006 for school education. I was also part of the Bihar Governor’s Core Committee for recommending and rejuvenating higher education in Bihar. In CLIx, I oversee Mathematics Team’s overall task domain including module vision and creation, teachers’ professional development workshops and module implementation. My key interests include sociology of (mathematics) education, language diversity and math learning, and ethnomathematics.            ",
+  "twitter": "408-1234567",
+  "emailAddress": "romin.k.irani@gmail.com",
+  "education": "Post Doc (2016), University of South Africa (UNISA), South Africa Ph.D. (2015), Mathematics Education, HBCSE, Tata Institute of Fundamental Research (TIFR) Deemed University MSc (2002), Mathematics, University of Pune BSc (1999), Mathematics (Honours), Patna University"
+},
     { 
             "moduleId": "Atomic Structure",
 	   "moduleimg":"/media/9/2/0/8c2156744968de70d88fa88bb1f0334bb75e1b06132e067507feba6a21b2d.jpg",
@@ -235,23 +577,103 @@
       "education": "Post Doc (2016), University of South Africa (UNISA), South Africa Ph.D. (2015), Mathematics Education, HBCSE, Tata Institute of Fundamental Research (TIFR) Deemed University MSc (2002), Mathematics, University of Pune BSc (1999), Mathematics (Honours), Patna University"
     },
     {  
-         "moduleId": "Sound",
-	"moduleimg":"/media/f/c/9/d278a8fcd43b9a91df02c301cc5c3dc236d218d3bc1f5a5d0ab99ecc53874.png",
+        "moduleId": "ధ్వని",
+       "moduleimg":"/media/f/c/9/d278a8fcd43b9a91df02c301cc5c3dc236d218d3bc1f5a5d0ab99ecc53874.png",
    "u" : [
+   "Deepak Verma"
+   ],
+     "userIdArray":  [   " Anish Mokashi",
+   "Dinesh Kumar Verma",
+   "Honey Singh"
+   
+       ],
+     "userId": "Arunachal Kumar           ",
+     "jobTitleName": "Senior Research Associate",
+     "employeeDetails": "I have been engaged with Mathematics education and Cognitive Science research work for more than 5 years now. My Ph.D. work is on students’ conceptions of area measurement. As a Senior Research Associate within the CLIx Mathematics team, I was involved in developing content, doing field trials, supporting the teacher training, facilitating the implementation of modules, collecting and analyzing field data and writing research reports for the same.              ",
+     "twitter": "408-1234567",
+     "emailAddress": "romin.k.irani@gmail.com",
+     "education": "Ph.D. (pursuing), Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Mathematics Education and Cognition.M. Sc (2009), Bengal Engineering and Science University, Shibpur. Applied Mathematics. B. Sc (2007), University of North Bengal. Mathematics."
+   },
+   {  
+        "moduleId": "Sound",
+       "moduleimg":"/media/f/c/9/d278a8fcd43b9a91df02c301cc5c3dc236d218d3bc1f5a5d0ab99ecc53874.png",
+   "u" : [
+   "Deepak Verma"
+   ],
+     "userIdArray":  [   " Anish Mokashi",
+   "Dinesh Kumar Verma",
+   "Honey Singh"
+   
+       ],
+     "userId": "Arunachal Kumar           ",
+     "jobTitleName": "Senior Research Associate",
+     "employeeDetails": "I have been engaged with Mathematics education and Cognitive Science research work for more than 5 years now. My Ph.D. work is on students’ conceptions of area measurement. As a Senior Research Associate within the CLIx Mathematics team, I was involved in developing content, doing field trials, supporting the teacher training, facilitating the implementation of modules, collecting and analyzing field data and writing research reports for the same.              ",
+     "twitter": "408-1234567",
+     "emailAddress": "romin.k.irani@gmail.com",
+     "education": "Ph.D. (pursuing), Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Mathematics Education and Cognition.M. Sc (2009), Bengal Engineering and Science University, Shibpur. Applied Mathematics. B. Sc (2007), University of North Bengal. Mathematics."
+   },
+    {  
+        "moduleId": "ध्वनि ",
+       "moduleimg":"/media/f/c/9/d278a8fcd43b9a91df02c301cc5c3dc236d218d3bc1f5a5d0ab99ecc53874.png",
+  "u" : [
 "Deepak Verma"
 ],
-      "userIdArray":  [   " Anish Mokashi",
+     "userIdArray":  [   " Anish Mokashi",
 "Dinesh Kumar Verma",
 "Honey Singh"
 
-        ],
-      "userId": "Arunachal Kumar           ",
-      "jobTitleName": "Senior Research Associate",
-      "employeeDetails": "I have been engaged with Mathematics education and Cognitive Science research work for more than 5 years now. My Ph.D. work is on students’ conceptions of area measurement. As a Senior Research Associate within the CLIx Mathematics team, I was involved in developing content, doing field trials, supporting the teacher training, facilitating the implementation of modules, collecting and analyzing field data and writing research reports for the same.              ",
-      "twitter": "408-1234567",
-      "emailAddress": "romin.k.irani@gmail.com",
-      "education": "Ph.D. (pursuing), Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Mathematics Education and Cognition.M. Sc (2009), Bengal Engineering and Science University, Shibpur. Applied Mathematics. B. Sc (2007), University of North Bengal. Mathematics."
-    },
+       ],
+     "userId": "Arunachal Kumar           ",
+     "jobTitleName": "Senior Research Associate",
+     "employeeDetails": "I have been engaged with Mathematics education and Cognitive Science research work for more than 5 years now. My Ph.D. work is on students’ conceptions of area measurement. As a Senior Research Associate within the CLIx Mathematics team, I was involved in developing content, doing field trials, supporting the teacher training, facilitating the implementation of modules, collecting and analyzing field data and writing research reports for the same.              ",
+     "twitter": "408-1234567",
+     "emailAddress": "romin.k.irani@gmail.com",
+     "education": "Ph.D. (pursuing), Homi Bhabha Centre for Science Education, Tata Institute of Fundamental Research. Mathematics Education and Cognition.M. Sc (2009), Bengal Engineering and Science University, Shibpur. Applied Mathematics. B. Sc (2007), University of North Bengal. Mathematics."
+   },
+    
+
+    { 
+        "moduleId": "गति ",
+             "moduleimg":"/media/c/5/6/f8c3a0688f5953cdd8b65a5da36b72d6fe6c771f3bbe4710c74d253721db7.jpg",
+      "u" : [
+      "Deepak Verma"
+     ],
+           "userIdArray":  [
+     "Dinesh K Verma",
+     "Honey Singh",
+     "Judy Perry",
+     "Umesh K Chouhan"
+     
+     
+             ],
+           "userId": "Sheetal Chopde             ",
+           "jobTitleName": "Research Associate",
+           "employeeDetails": "I have been working in education for 6 years now. As part of the TFI fellowship, I taught primary grade students in a Municipal Corporation school in Delhi. I worked in the Teacher Education space with APF, Uttarakhand, designing curriculum and engagements. At CLIx, I am involved with the design and development of secondary level Mathematics content for ICT based student learning modules and online Teacher Professional Development courses. My interest areas are instructional design, ICT for Mathematics learning, Math Education Research and Teacher Professional Development.            ",
+           "twitter": "408-1234567",
+           "emailAddress": "romin.k.irani@gmail.com",
+           "education": "M.A. Education (Elementary) (pursuing), Tata Institute of Social Sciences, Mumbai M.Sc. (Tech.) Information Systems (2011), Birla Institute of Technology and Science, Pilani"
+         },
+         { 
+                "moduleId": "గమనము ",
+                     "moduleimg":"/media/c/5/6/f8c3a0688f5953cdd8b65a5da36b72d6fe6c771f3bbe4710c74d253721db7.jpg",
+              "u" : [
+              "Deepak Verma"
+             ],
+                   "userIdArray":  [
+             "Dinesh K Verma",
+             "Honey Singh",
+             "Judy Perry",
+             "Umesh K Chouhan"
+             
+             
+                     ],
+                   "userId": "Sheetal Chopde             ",
+                   "jobTitleName": "Research Associate",
+                   "employeeDetails": "I have been working in education for 6 years now. As part of the TFI fellowship, I taught primary grade students in a Municipal Corporation school in Delhi. I worked in the Teacher Education space with APF, Uttarakhand, designing curriculum and engagements. At CLIx, I am involved with the design and development of secondary level Mathematics content for ICT based student learning modules and online Teacher Professional Development courses. My interest areas are instructional design, ICT for Mathematics learning, Math Education Research and Teacher Professional Development.            ",
+                   "twitter": "408-1234567",
+                   "emailAddress": "romin.k.irani@gmail.com",
+                   "education": "M.A. Education (Elementary) (pursuing), Tata Institute of Social Sciences, Mumbai M.Sc. (Tech.) Information Systems (2011), Birla Institute of Technology and Science, Pilani"
+                 },
     { 
    "moduleId": "Understanding Motion",
 	"moduleimg":"/media/c/5/6/f8c3a0688f5953cdd8b65a5da36b72d6fe6c771f3bbe4710c74d253721db7.jpg",
@@ -274,7 +696,7 @@
       "education": "M.A. Education (Elementary) (pursuing), Tata Institute of Social Sciences, Mumbai M.Sc. (Tech.) Information Systems (2011), Birla Institute of Technology and Science, Pilani"
     },
     { 
-"moduleId": "Basic Astronomy",
+"moduleId": "बुनायादी खगोलविज्ञान ",
 "moduleimg":"/media/7/7/0/566b77c1c118edf1423c3ae5422bfd0f265bafe6658859862a06a4d0bacbf.jpg",
  "u": [
  "Shamin Padalkar"
@@ -295,6 +717,51 @@
         ]
       
   }
+,
+{ 
+        "moduleId": "ప్రాథమిక ఖగోళ శాస్త్రం ",
+        "moduleimg":"/media/7/7/0/566b77c1c118edf1423c3ae5422bfd0f265bafe6658859862a06a4d0bacbf.jpg",
+         "u": [
+         "Shamin Padalkar"
+        ],
+              "userIdArray":  [ 
+        
+        
+        "Jaya Mahale",
+        "Jayashree Anand",
+        
+        "Judith Perry",
+        "Rafikh Shaikh",
+        "Shamin Padalkar",
+        
+        "Sheetal Chopde",
+        "Scot Osterweil"
+        
+                ]
+              
+          },
+  { 
+        "moduleId": "Basic Astronomy",
+        "moduleimg":"/media/7/7/0/566b77c1c118edf1423c3ae5422bfd0f265bafe6658859862a06a4d0bacbf.jpg",
+         "u": [
+         "Shamin Padalkar"
+        ],
+              "userIdArray":  [ 
+        
+        
+        "Jaya Mahale",
+        "Jayashree Anand",
+        
+        "Judith Perry",
+        "Rafikh Shaikh",
+        "Shamin Padalkar",
+        
+        "Sheetal Chopde",
+        "Scot Osterweil"
+        
+                ]
+              
+          }
 ]
 }
 

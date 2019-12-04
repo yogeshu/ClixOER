@@ -1,6 +1,8 @@
+
 {% extends "ndf/base.html" %}
 
 <link href="../static/multislider.js">
+{% load i18n %}
 {{csrf_token}}
 {% block content %}
 <body>
@@ -13,8 +15,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb ml-2">
             <li class="breadcrumb-item ml-n3" aria-current="page" > <a style="color:#fff;" href="{% url 'e-library' group_id  %}"> <i class=" fas fa-home fa-lg "></i> </a> </li>
- <li class="breadcrumb-item" style="background:#7c777c;"> <a style="color:#fff;"><i class="ml-n2 fas fa-globe fa-lg"></i></a>Domain </li>
-<li class="breadcrumb-item pl-n2 " style="">{{ first_arg }}</li>
+ <li class="breadcrumb-item" style="background:#7c777c;"> <a style="color:#fff;"><i class="ml-n2 fas fa-globe fa-lg"></i></a>
+ {% trans 'Domain' %} </li>
+<li class="breadcrumb-item pl-n2 " style=""> {% trans  first_arg  %}</li>
 
            </ol>
         </nav>
@@ -32,22 +35,27 @@
     <div class="row">
       <nav class="col-12 col-sm-12 col-md-2" id="verticalScrollspy">
         <ul class="nav flex-column nav-pills nav-scroll">
-          <li class="nav-item "><a title="Click to see all modules" class="nav-link active" href="#dogs"> <img src="/static/ndf/modules.png" class="img-fluid" style="width:25px; height:25px;"> Modules</a></li>
+          <li class="nav-item "><a title="Click to see all modules" class="nav-link active" href="#dogs"> <img src="/static/ndf/modules.png" class="img-fluid" style="width:25px; height:25px;"> {% trans 'Modules' %} </a></li>
           <li class="nav-item"><a class="nav-link"  title="Testimonials of student and teachers" href="#alpacas" ><img src="/static/ndf/voices from the field.png" class="img-fluid" 
-style="width:25px; height:25px;">Voices From The Field</a></li>
+style="width:25px; height:25px;">{% trans 'Voices From The Field' %} </a></li>
           <li class="nav-item"><a class="nav-link" title="Support material to integrate CLIx OERs in the classroom" href="#cats">
 <img src="/static/ndf/clix in the classroom.png" class="img-fluid"
 style="width:25px; height:25px;">
-CLIx in the Classroom </a></li>
+{% trans 'CLIx in the Classroom' %}
+ </a></li>
           <li class="nav-item"><a class="nav-link" title="Know about the design and development details of CLIx OERs" href="#penguins">
 <img src="/static/ndf/design and development.png" class="img-fluid"
 style="width:25px; height:25px;">
-  Design and<span class=" py-1">
-Development Process </span> </a></li>
+{% trans 'Design and Development Process' %}  
+<!--
+<span class=" py-1">
+</span>
+-->
+ </a></li>
           <li class="nav-item"><a class="nav-link" title="Know our team" href="#team"><img src="/static/ndf/team.png" class="img-fluid"
-style="width:25px; height:25px;"> Team Details  </a></li>
+style="width:25px; height:25px;">{% trans 'Team Details' %}   </a></li>
 
-     <li class="nav-item"><a class="nav-link" title="Connect with us"  href="#rabbits"><i class="fas fa-comments"></i> Contact us </a></li>
+     <li class="nav-item"><a class="nav-link" title="Connect with us"  href="#rabbits"><i class="fas fa-comments"></i>{% trans 'Contact us' %}    </a></li>
         </ul>
       </nav>
       <div class="col-12 col-md-10 col-lg-10">
@@ -60,18 +68,28 @@ style="width:25px; height:25px;"> Team Details  </a></li>
 
  <div id="alpacas" class="container-fluid" class="mb-5  mt-5">
            <!-- <h1 class="text-center">Testimonials</h1>   -->
-                <h1 class="text-center mt-4"> Voices from the Field</h1>
+                <h1 class="text-center mt-4"> {% trans   ' Voices from the Field ' %}  </h1>
 {% include "ndf/oer_testimonials.html" %}
           </div>
 
 
           <div id="cats" class="container-fluid">
-         
-            {% include "ndf/icon_slider.html" %}
+            {% if request.LANGUAGE_CODE == 'en' %}
+               {% include "ndf/icon_slider.html" %}
+	    {% elif request.LANGUAGE_CODE == 'hi' %}
+	       {% include "ndf/icon_sliderHindi.html" %}
+	    {% else %}
+	       {% include "ndf/icon_sliderTelgu.html" %}
+	    {% endif %}
           </div>
   <div id="penguins" class="container-fluid">
+{% if request.LANGUAGE_CODE == 'en' %}   
            {% include "ndf/devlopementanwork.html" %}
-
+{% elif request.LANGUAGE_CODE == 'hi' %} 
+          {% include "ndf/devlopementanworkHindi.html" %}
+{% else %}
+      {% include "ndf/devlopementanworkTelgu.html" %}
+ {% endif %}
           </div>
 
           <div id="team" class="container-fluipd mt-5">

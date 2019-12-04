@@ -1,4 +1,5 @@
 {% extends "ndf/base.html" %}
+{% load i18n %}
 <style> 
 h1{
 
@@ -83,14 +84,14 @@ color:#fff !important;
             <li class="breadcrumb-item  " aria-current="page">
 <a href="{% url 'e-library' group_id %}">
  <i class="ml-2 fas fa-home fa-lg"></i> </a> </li>
- <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i>  Domain </li>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i>{% trans  'Domain' %} </li>
  <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;" href="{% url 'domain_page' group_id 'Mathematic\
 \                                                                                                                                             
 s'  \                                                                                                                                        \
                                                                                                                                               
-%}"> </i> Mathematics </li> </a>
+%}"> </i> {% trans 'Mathematics' %} </li> </a>
 
-            <li class="breadcrumb-item  " aria-current="page"> <i class=" fas  fa-lg"></i> Help Videos - Mathemactics</li>
+            <li class="breadcrumb-item  " aria-current="page"> <i class=" fas  fa-lg"></i> {%  trans  'Help Videos - Mathemactics' %}  </li>
           </ol>
         </nav>
 
@@ -105,7 +106,7 @@ s'  \                                                                           
     <h1>  Help Video - Mathematics Team </h1>
 -->
         <div class="col-md-10 py-5">
-    <h1>  Help Videos - Mathematics  </h1>
+    <h1>  {% trans   'Help Videos - Mathematics' %}  </h1>
 
             <div class="row">
                 <a href="https://www.youtube.com/embed/Y996EhVrbb4" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">

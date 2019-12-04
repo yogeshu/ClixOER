@@ -1,0 +1,60 @@
+{% extends "ndf/base.html" %}
+{% block content %}
+<div class="container">
+
+
+
+  <form  enctype="multipart/form-data" method="post" action="{% url 'upload_using_save_file' group_id %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleFormControlFile1">  Upload File</label>       
+      <input type="file" class="form-control-file" name="filehive" multiple/>  
+    </div>
+
+
+
+    <div class="form-group">
+      <lable for="fromExampleInput"> Title of File </lable>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Title of FIle "
+        required
+      />
+    </div>
+    
+
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Language Select </label>
+      <select class="form-control" id="exampleFormControlSelect1">
+        <option>English</option>
+        <option>Hindi</option>
+        <option>Telgu</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <lable for="fromExampleInput">Tags  </lable>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Tags"
+        required
+      />
+      <button class="btn btn-white"> Add Tags </button>
+    </div>
+
+    <div class="form-group">
+      <lable for="formExampleTextarea"> Add Description </lable>
+      <textarea class="form-control" name="content" rows="3" value="" required>
+      </textarea>
+    </div>
+    <button  type="submit"> Submit</button>
+  </form>
+</div>
+
+<script>
+  CKEDITOR.replace("content");
+</script>
+
+{% endblock %}

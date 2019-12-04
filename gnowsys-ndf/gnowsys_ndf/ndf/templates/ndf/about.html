@@ -1,6 +1,8 @@
 
 
 {% extends "ndf/base.html" %}
+{% load i18n %}
+
  {% block content %}
 
 
@@ -22,20 +24,28 @@ overflow-y:auto;
  fa-home fa-lg  ml-n4"></i> </a> </li>
  
 
-        <li class="breadcrumb-item " aria-current="page"><i class="fas fa-user-friends"></i> About</li>
+        <li class="breadcrumb-item " aria-current="page"><i class="fas fa-user-friends"></i> {% trans 'About' %}  </li>
 <!--
-      <li class="breadcrumb-item " aria-current="page">The Design And Development </li>
+       <li class="breadcrumb-item " aria-current="page">The Design And Development </li>
 -->
     </ol>
   </nav>
+  
 
+{% if request.LANGUAGE_CODE == 'en' %}
 
-{% include "ndf/panel.html" %}
+           {% include "ndf/panel.html" %}
+{% elif request.LANGUAGE_CODE == 'hi' %}
+          {% include "ndf/panelHindi.html" %}
+{% else %}
+      {% include "ndf/panelTelgu.html" %}
+ {% endif %}
+
 
 
 <div class="py-5 text-center">
 
-<h1>  Integrate CLIxOER in your classroom </h1>
+<h1>  {% trans   'Integrate CLIxOER in your classroom' %} </h1>
 <img class="img-fluid" src="/static/ndf/about page section.png" width="65%"/>
 </div>
 <!--
@@ -43,18 +53,30 @@ overflow-y:auto;
        
 
 </div>  -->
-<h1 class="text-center py-2"> Research </h1>
+<h1 class="text-center py-2"> {% trans   'Research' %} </h1>
 <div class="text-center ">
 {% include "ndf/theLearningpage.html" %}
 </div>
 <div class="text-center">
-<h1> CLIx In  Action </h1>
+<h1> {% trans  'CLIx In  Action' %} </h1>
 <img class="img-fluid" src="/static/ndf/Abtpg2.png"/>
 </div>
-<h1 class="text-center py-2"> Our Collaborators </h1>
+<h1 class="text-center py-2">  {% trans  'Our Collaborators' %} </h1>
 <div class="py-2">
+
+
+{% if request.LANGUAGE_CODE == 'en' %}
+
+           {% include "ndf/thefootericon.html" %}
+{% elif request.LANGUAGE_CODE == 'hi' %}
+                    {% include "ndf/thefootericonHindi.html" %}
+
+{% else %}
+                 {% include "ndf/thefootericonTelgu.html" %}
+
+ {% endif %}
  
-{% include "ndf/thefootericon.html" %}
+
 </div>
 
 

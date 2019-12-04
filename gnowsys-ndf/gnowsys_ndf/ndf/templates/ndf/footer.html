@@ -1,3 +1,5 @@
+{% load i18n %}
+
       <style>
 .some > ul {
 float:right !important;
@@ -69,7 +71,7 @@ margin-left: 40% !important;
             <div class="col-12 col-md-3 col-sm-6">
               <!--Column1-->
               <div class="footer-pad">
-                  <p class="text-center py-2" style="color:#000;font-size:12px;font-family:Cambria;  ">Led By </p>  
+                  <p class="text-center py-2" style="color:#000;font-size:12px;font-family:Cambria;  "> {% trans   'Led By' %} </p>  
 <a href="http://www.tiss.edu" target="_blank">
                 
 <img class="tiss" src="/static/ndf/images/footer-svg/tiss.svg" style="width:40%; margin-top:-8%">
@@ -92,14 +94,14 @@ margin-left: 40% !important;
               </div> -->
       
        
-              <div class="col-md-3" style="color:#000;font-size:1.25rem;">
+              <div class="col-md-3" style="color:#000;font-size:1rem;">
                   <ul id="some" style="list-style:none !important;"> 
 
-                    <li><a href="{% url 'about' group_id  %}" target="_blank" style="color:#000;font-size:1.25rem;"> About </a>  </li>
-                    <li><a href="https://demo-clix.tiss.edu/credits.html" target="_blank" style="color:#000;font-size:1.25rem;"> Credits </a> </li>
-                    <li><a href="https://demo-clix.tiss.edu/termsofservice.html" target="_blank" style="color:#000;font-size:1.25rem;"> Terms of service </a> </li>
-                    <li><a href="https://demo-clix.tiss.edu/privacypolicy.html" target="_blank" style="color:#000;font-size:1.25rem;"> Privacy policy </a> </li>
-                    <li><a href="https://demo-clix.tiss.edu/contact.html" target="_blank" style="color:#000;font-size:1.25rem;"> Contact us </a>  </li>
+                    <li><a href="{% url 'about' group_id  %}" target="_blank" style="color:#000;font-size:1rem;"> {% trans  'About' %} </a>  </li>
+                    <li><a href="https://demo-clix.tiss.edu/credits.html" target="_blank" style="color:#000;font-size:1rem;"> {% trans  'Credits' %}  </a> </li>
+                    <li><a href="https://demo-clix.tiss.edu/termsofservice.html" target="_blank" style="color:#000;font-size:1rem;"> {% trans 'Terms of service' %} </a> </li>
+                    <li><a href="https://demo-clix.tiss.edu/privacypolicy.html" target="_blank" style="color:#000;font-size:1rem;"> {% trans   'Privacy policy' %} </a> </li>
+                    <li><a href="https://demo-clix.tiss.edu/contact.html" target="_blank" style="color:#000;font-size:1rem;"> {% trans 'Contact us' %} </a>  </li>
           
                   </ul>
               </div>
@@ -108,20 +110,15 @@ margin-left: 40% !important;
           <div class="row">
               <div class="col-12 col-md-8 copy " style="color:#000;">
 <p class="text-start col-12 col-sm-8 col-md-9" >    
-&copy 2019 Tata Institute of Social Sciences and 
-
-<!--              &copy
-Tata Institute of Social Sciences &copy 2019    
--->
- Massachusetts Institute of Technology
+&copy {% trans  '2019 Tata Institute of Social Sciences and Massachusetts Institute of Technology' %}
 
 </p>
 </div>
 
 <div class="col-12 col-sm-12 col-md-3 footer-li " style="color:#000; margin-left:100px;">
-<p>  Visit our site :<a href="https://clix.tiss.edu/" target="_blank_" style="color:#000;"> clix.tiss.edu </a>
+<p> {% trans  'Visit our site'   %} : <a href="https://clix.tiss.edu/" target="_blank_" style="color:#000;"> clix.tiss.edu </a>
 <br>
-           Contact us:<a href="mailto:contact@clix.tiss.edu" style="color:#000;"> contact@clix.tiss.edu </a>
+    {% trans  'Contact us' %} :  <a href="mailto:contact@clix.tiss.edu" style="color:#000;"> contact@clix.tiss.edu </a>
 </p>
 
 </div>

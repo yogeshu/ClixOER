@@ -28,17 +28,16 @@
     -->  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
   
      <script src="/static/ndf/js/eclipse.js"></script>
-     <script src="/static/node_modules/ckeditor/ckeditor.js">
+<!--     <script src="/static/node_modules/ckeditor/ckeditor.js"> -->
 
 </script>
 <!-- <script src="../static/node_modules/ckeditor/samples/js/sample.js"></script> -->
   </script>
-  
+<!--  
   <script src="/static/node_modules/ckeditor/ckeditor-config.js"></script>
-
-
+-->
      </script> 
-     
+   
       <link href="https://fonts.googleapis.com/css?family=Poppins:400,700i&display=swap" rel="stylesheet">
 
      <!-- <script src="../static/config.js"></script> -->
@@ -97,8 +96,8 @@
 body{
 height: 100% !important;
 }
-body p{
-font-size:14px;
+body   {
+
 }
 @media only screen and (max-width:900px){
 
@@ -132,7 +131,9 @@ border: 0.5px solid #000 !important;
      </style>
 </head>
 
-<body data-spy="scroll" data-target="#verticalScrollspy">
+<body data-spy="scroll" data-target="#verticalScrollspy" data-offset="89"  
+
+>
   <a id="u-c"></a>
  <a href="javascript:" id="return-to-top" title="Go To Top">  
 <i class="fas fa-chevron-circle-up"></i> </a>
@@ -167,14 +168,35 @@ border: 0.5px solid #000 !important;
 </div>  
 </body>
 <script>
-$('body').scrollspy({ target: '#verticalScrollspy' })
-$('#verticalScrollspy').scrollspy();
 
-
- $('[data-spy="scroll"]').each(function () {
-     var $spy = $(this).scrollspy('refresh')
-  });
 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+event.preventDefault();
+$(this).ekkoLightbox({
+alwaysShowClose: true,
+loadingMessage:  true,
+onShown: function() {
+                    console.log('Checking our the events huh?');
+                },
+                onNavigate: function(direction, itemIndex){
+                    console.log('Navigating '+direction+'. Current item: '+itemIndex);
+                }
+
+            });
+            });
+
+$("body").attr({
+    "data-spy": "scroll",
+    "data-target": "#verticalScrollspy"
+  }).scrollspy({
+    offset: 150
+  });
+/*
+$('body').scrollspy({ target: '#verticalScrollspy' });
+$('body').scrollspy({
+   offset: offsetHeight
+});
+*/
+ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
                 $(this).ekkoLightbox({
                 alwaysShowClose: true,
@@ -198,7 +220,7 @@ $(document).ready(function(){
         } 
     }); 
     $('#scroll').click(function(){ 
-        $("html, body").animate({ scrollTop: 0 }, 600); 
+        $('html, body').animate({ scrollTop: 0 }, 600); 
         return false; 
     }); 
 });
@@ -209,7 +231,7 @@ $(window).scroll(function() {
     if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
         $('#return-to-top').fadeIn(200);    // Fade in the arrow
     } else {
-        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+        $('return-to-top').fadeOut(200);   // Else fade out the arrow
     }
 });
 $('#return-to-top').click(function() {      // When arrow is clicked
@@ -217,6 +239,8 @@ $('#return-to-top').click(function() {      // When arrow is clicked
         scrollTop : 0                       // Scroll to top of body
     }, 500);
 });
+
+
 /*
 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
@@ -241,8 +265,12 @@ $('.navbar-nav .nav-item').click(function(){
 
 $('#verticalScrollspy').scrollspy();
 
+
+
+
+(function(){
+    new Clipboard('#copy');
+})();
 </script>
-
-
 
 </html>

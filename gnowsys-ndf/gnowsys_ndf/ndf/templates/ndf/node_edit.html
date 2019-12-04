@@ -1,0 +1,74 @@
+{% extends "ndf/base.html" %}
+{% load i18n %}
+{% block content %}
+
+<script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+
+<div class="container">
+  <form enctype="multipart/form-data" method="post" action="{% url 'node_edit' group_id  node_id%}" >
+    {% csrf_token %}
+    <div class="form-group">
+      <lable for="fromExampleInput"> Unique Name </lable>
+      <input
+        class="form-control"
+        type="text"
+	name = "name"
+        placeholder="Unique Name" value="{{node_obj.name|safe}}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <lable for="fromExampleInput"> Display Name </lable>
+      <input
+        class="form-control"
+        type="text"
+	name = "altnames"
+        placeholder="Display Name" value = "{{node_obj.altnames}}"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Language Select </label>
+      <select class="form-control" id="exampleFormControlSelect1" name = "language">
+	{% get_language_info_list for LANGUAGES as languages %}
+         {% for language in languages %}
+          {% if node_obj.language.0 == language.code %}
+            <option selected data-sub-lang="{{ language.name }}" data-sub-code="{{ language.code }}">
+          {{ language.name }}
+          {% else %}
+            <option data-sub-lang="{{ language.name }}" data-sub-code="{{ language.code }}">
+          {{ language.name }}
+            </option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <lable for="fromExampleInput">Tags  </lable>
+      <input
+        class="form-control"
+        type="text"
+	name = "tags"
+        placeholder="Tags" value = "{{node_obj.tags}}"
+      />
+      <button class="btn btn-white"> Add Tags </button>
+    </div>
+
+    <div class="form-group">
+      <lable for="formExampleTextarea"> Description </lable>
+      <textarea class="form-control" name="content" rows="3" value="{{node_obj.content|safe}}" required>
+	{{node_obj.content}}
+      </textarea>
+    </div>
+    <button  type="submit"> Submit</button>
+  </form>
+</div>
+
+<script>
+/*
+  CKEDITOR.replace("content");
+*/
+</script>
+{% endblock %}
