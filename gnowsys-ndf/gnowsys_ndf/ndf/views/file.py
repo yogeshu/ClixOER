@@ -32,7 +32,7 @@ from django.contrib.sites.models import Site
 
 from mongokit import paginator
 
-from gnowsys_ndf.settings import GSTUDIO_SITE_VIDEO, EXTRA_LANG_INFO, GAPPS, MEDIA_ROOT, GSTUDIO_FILE_UPLOAD_FORM
+from gnowsys_ndf.settings import GSTUDIO_SITE_VIDEO, GAPPS, MEDIA_ROOT, GSTUDIO_FILE_UPLOAD_FORM
 # from gnowsys_ndf.settings import WETUBE_USERNAME, WETUBE_PASSWORD
 from gnowsys_ndf.ndf.views.notify import set_notif_val
 # from gnowsys_ndf.ndf.org2any import org2html
@@ -760,7 +760,7 @@ def uploadDoc(request, group_id):
     except:
         group_name, group_id = get_group_name_id(group_id)
 
-    print "inside upload doc",group_name,group_id
+    print "inside upload doc",group_id
     
     if request.method == "GET":
         topic_gst = node_collection.one({'_type': 'GSystemType', 'name': 'Topic'})

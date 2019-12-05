@@ -43,7 +43,7 @@ from django.core.exceptions import PermissionDenied
 ''' -- imports from application folders/files -- '''
 from gnowsys_ndf.settings import META_TYPE, GSTUDIO_NROER_GAPPS, GSTUDIO_IMPLICIT_ENROLL
 from gnowsys_ndf.settings import GSTUDIO_DEFAULT_GAPPS_LIST, GSTUDIO_WORKING_GAPPS, BENCHMARK, GSTUDIO_DEFAULT_LANGUAGE
-from gnowsys_ndf.settings import LANGUAGES, OTHER_COMMON_LANGUAGES, GSTUDIO_BUDDY_LOGIN, DEFAULT_DISCUSSION_LABEL
+from gnowsys_ndf.settings import LANGUAGES, GSTUDIO_BUDDY_LOGIN, DEFAULT_DISCUSSION_LABEL
 # from gnowsys_ndf.ndf.models import db, node_collection, triple_collection, counter_collection
 from gnowsys_ndf.ndf.models import *
 # from gnowsys_ndf.ndf.org2any import org2html
@@ -5301,7 +5301,7 @@ def get_language_tuple(lang):
     if not lang:
         return ('en', 'English')
 
-    all_languages = list(LANGUAGES) + OTHER_COMMON_LANGUAGES
+    all_languages = list(LANGUAGES)# + OTHER_COMMON_LANGUAGES
 
     # check if lang argument itself is a complete, valid tuple that exists in all_languages.
     if (lang in all_languages) or (tuple(lang) in all_languages):
