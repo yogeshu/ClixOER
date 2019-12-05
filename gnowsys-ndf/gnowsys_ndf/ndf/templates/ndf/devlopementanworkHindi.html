@@ -17,7 +17,18 @@ color:#000;
 <div class="clixInclass  " >
 <!--<p>Design And Developement  </p> -->
       <div class="jumbotron some-dark py-5" style="background:#fff; color:#000;">
-            <h1 class="h1-responsive mt-n2">डिजाइन और विकास प्रक्रिया 
+            <h1 class="h1-responsive mt-n2">डिजाइन और विकास प्रक्रिया {% if first_arg == 'Mathematics' %}
+              {% trans  'Math'  %}                                                                                                          
+
+          {% elif first_arg == 'English' %}                                                                                                  
+
+              {% trans   'English' %}                                                                                                        
+          {% else %}                                                                                                                         
+
+              {% trans  'Science' %}                                                                                                        
+
+{% endif %}
+ 
             </h1>
 
 

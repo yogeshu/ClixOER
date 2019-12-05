@@ -19,6 +19,19 @@ color:#000;
 <!--<p>Design And Developement  </p> -->
       <div class="jumbotron some-dark py-5" style="background:#fff; color:#000;">
             <h1 class="h1-responsive mt-n2">రూపకల్పన మరియు అభివృద్ధి ప్రక్రియ (డిజైన్ మరియు డెవలప్మెంట్)
+{% if first_arg == 'Mathematics' %}
+              {% trans  'Math'  %}
+
+          {% elif first_arg == 'English' %}
+
+              {% trans   'English' %}
+          {% else %}
+
+              {% trans  'Science' %}
+
+{% endif %}
+
+
             </h1>
 
 
