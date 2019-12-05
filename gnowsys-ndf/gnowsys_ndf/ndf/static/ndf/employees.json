@@ -4,9 +4,11 @@
 {
   "Team_detail_math": [
 
+      
 
   {
      "moduleId": "आनुपातिक तर्क ",
+     "language" : "hi",
         "moduleimg": "/media/4/c/1/50c06aa9b61ddc1f4f83a74fe8f69ab6b4d913a84e20ee23b2f7ecc9b8723.jpg",
      "u": [
 "Arindam Bose" ,
@@ -31,6 +33,8 @@
       { 
 
      "moduleId": "అనుపాత రీజనింగ్ ",
+     "language" : "te",
+
 	"moduleimg": "/media/4/c/1/50c06aa9b61ddc1f4f83a74fe8f69ab6b4d913a84e20ee23b2f7ecc9b8723.jpg",
      "u": [
 "Arindam Bose" ,
@@ -53,6 +57,8 @@
 { 
 
         "moduleId": "Proportional Reasoning",
+               "language" : "en",
+
            "moduleimg": "/media/4/c/1/50c06aa9b61ddc1f4f83a74fe8f69ab6b4d913a84e20ee23b2f7ecc9b8723.jpg",
         "u": [
    "Arindam Bose" ,
@@ -75,8 +81,11 @@
 
 
 {
-       "moduleId": "ज्यामितीय तर्क भाग I",
-    "moduleimg" : "/media/e/d/8/92da0a56be88ffcd0efefc474458d075eb688d82f8e45d00657b755108386.jpg",
+       "moduleId": "ज्यामितीय तर्क भाग I",         
+
+
+     "language" : "hi",
+     "moduleimg" : "/media/e/d/8/92da0a56be88ffcd0efefc474458d075eb688d82f8e45d00657b755108386.jpg",
         "u": [
    "Arindam Bose",
 	    "Suchismita Srinavsas"
@@ -102,6 +111,8 @@
 
 {
         "moduleId": "రేఖాగణిత రీజనింగ్ పార్ట్ I ",
+      "language" : "te",
+
          "moduleimg" : "/media/e/d/8/92da0a56be88ffcd0efefc474458d075eb688d82f8e45d00657b755108386.jpg",
          "u": [
     "Arindam Bose",
@@ -128,6 +139,8 @@
       
     {
        "moduleId": "Geometric Reasoning Part I",
+         "language" : "en",
+
 	"moduleimg" : "/media/e/d/8/92da0a56be88ffcd0efefc474458d075eb688d82f8e45d00657b755108386.jpg",
         "u": [
    "Arindam Bose",
@@ -153,6 +166,9 @@
       
  {
           "moduleId": "ज्यामितीय तर्क भाग II ",
+      "language" : "hi",
+
+ 
      "moduleimg":"/media/2/c/6/0ddc842a39a2c166d5a1a50bf258aa84e3ed8be39586eb5b55bb1f65fc252.jpg",
   "u": [
    "Arindam Bose",
@@ -179,6 +195,9 @@
 },
 { 
         "moduleId": "రేఖాగణిత రీజనింగ్ పార్ట్ II ",
+      "language" : "te",
+
+ 
       "moduleimg":"/media/2/c/6/0ddc842a39a2c166d5a1a50bf258aa84e3ed8be39586eb5b55bb1f65fc252.jpg",
 "u": [
  "Arindam Bose",
@@ -207,7 +226,10 @@
 
     { 
           "moduleId": "Geometric Reasoning Part II",
-	"moduleimg":"/media/2/c/6/0ddc842a39a2c166d5a1a50bf258aa84e3ed8be39586eb5b55bb1f65fc252.jpg",
+	
+     "language" : "en",
+
+"moduleimg":"/media/2/c/6/0ddc842a39a2c166d5a1a50bf258aa84e3ed8be39586eb5b55bb1f65fc252.jpg",
   "u": [
    "Arindam Bose",
         "Suchismita Srinavsas"
@@ -235,6 +257,9 @@
 
  {
 "moduleId": "रैखिक समीकरण",
+     "language" : "hi",
+               
+
 "moduleimg":"/media/b/7/9/7240200b808aa2b3e57ee4a80567fa3781eee1f852f3f55274ce44e8980ef.png",
 "u" : [
 "Amit Dhakulkar"
@@ -257,6 +282,9 @@
 
 {
         "moduleId": "సరళ సమీకరణాలు ",
+
+           "language" : "te",
+
         "moduleimg":"/media/b/7/9/7240200b808aa2b3e57ee4a80567fa3781eee1f852f3f55274ce44e8980ef.png",
         "u" : [
         "Amit Dhakulkar"
@@ -280,6 +308,8 @@
 
     {
 "moduleId": "Linear Equations",
+     "language" : "en",
+
 "moduleimg":"/media/b/7/9/7240200b808aa2b3e57ee4a80567fa3781eee1f852f3f55274ce44e8980ef.png",
 "u" : [
 "Amit Dhakulkar"
@@ -307,6 +337,7 @@
   "Team_detail_english": [
     {  
      "moduleId": "Communicative English: Level I",
+	"language" : "en",
      "moduleimg":"/media/d/7/f/de17e9b4bd1b9785a02032d61ebf02423357ea62830240da9ee428adc4eb0.png",
     "u" : [
               "Jennifer Thomas"
@@ -332,6 +363,7 @@
     },
     {  
   "moduleId": "Communicative English: Level II",
+  "language": "en",
  "moduleimg": "/media/5/3/f/4660af2d29cc09e2f8c6d6ab34e6d15c6ab5c4d1d92339cc24292c3c50035.png",
 "u" : [
 "Jennifer Thomas"
@@ -350,6 +382,7 @@
         ],
 
       "userId": "Anusha Ramanathan           ",
+       "language": "en",
       "jobTitleName": "Curriculum Consultant, CEIAR, TISS, Mumbai",
       "employeeDetails": "I began my career as a journalist, covering education in The Hindu from 2010 to 2012. Subsequently, I worked on curriculum development with the NGO Selco Foundation and on documenting practices with another NGO, Vidya Mytri trust. At CLIx, I am part of the English team and involved in curriculum development and research.            ",
       "twitter": "408-1234567",
@@ -358,6 +391,7 @@
     },
     {
       "userId": "Nishevita Jayendran       ",
+        "language" : "en",
       "jobTitleName": "Assistant Professor, English Language and Literature, CEIAR, TISS, Mumbai",
       "employeeDetails": " I have served as Visiting Faculty in the English department at Stella Maris College, Chennai and at St. Xavier’s College, Mumbai. I have previously been a Teaching Assistant in English at IIT Bombay and have nearly six years’ experience in teaching English language and literature to students of engineering, arts and the sciences. I enjoy research in art and aesthetic theories, the postmodernist historical novel, culture and representation studies and humanities education              ",
       "twitter": "408-1234567",
@@ -366,6 +400,7 @@
     },
 {
       "userId": "Sujata Bhonsale            ",
+      "language" : "en",
       "jobTitleName": "Research Associate, CEIAR, TISS, Mumbai",
       "employeeDetails": "As a freelance English Language Trainer, I have conducted spoken English workshops, taught English for the IELTS exams and have been a  visiting faculty teaching English to undergraduate B.C.A students. My experience includes three years of teaching English to primary school children in Zilla Parishad schools as part of my work as a teacher and teacher trainer with  a Navi Mumbai based NGO, Manjari Charitable Trust. As Sr. Research Associate with CLIx, my interests include curriculum design and research analysis.            ",
       "twitter": "408-1234567",
@@ -381,6 +416,8 @@
 
         {
                 "moduleId": "पारितंत्र ",
+       "language" : "hi",
+
                 "moduleimg":"/media/3/b/7/3e479aea268e8051ae6cfaa736d3e8a7ae5ec4b3684f9d892c5bfffed8bf4.jpg",
          "u" : [
         "Binoy V.V"
@@ -407,6 +444,8 @@
 
             {
                 "moduleId": "పర్యావరణం",
+      "language" : "te",
+
                 "moduleimg":"/media/3/b/7/3e479aea268e8051ae6cfaa736d3e8a7ae5ec4b3684f9d892c5bfffed8bf4.jpg",
          "u" : [
         "Binoy V.V"
@@ -427,6 +466,8 @@
             },
     {
         "moduleId": "Ecosystem",
+            "language" : "en",
+
 	"moduleimg":"/media/3/b/7/3e479aea268e8051ae6cfaa736d3e8a7ae5ec4b3684f9d892c5bfffed8bf4.jpg",
  "u" : [
 "Binoy V.V"
@@ -447,7 +488,10 @@
     },
     {
         "moduleId": "स्वास्थ्य और रोग",
-         "moduleimg":"/media/8/3/3/16651de50f167a76911ac2a127cc5d80ac8b9eb447231432f062a705dae12.jpg",
+         
+      "language" : "hi",
+
+  "moduleimg":"/media/8/3/3/16651de50f167a76911ac2a127cc5d80ac8b9eb447231432f062a705dae12.jpg",
     "u": [
  "Deepak Verma"
  ],
@@ -472,6 +516,8 @@
      },
      {
         "moduleId": "ఆరోగ్యం మరియు వ్యాధులు",
+      "language" : "te",
+
          "moduleimg":"/media/8/3/3/16651de50f167a76911ac2a127cc5d80ac8b9eb447231432f062a705dae12.jpg",
     "u": [
  "Deepak Verma"
@@ -497,6 +543,9 @@
      },
     {
        "moduleId": "Health and Disease",
+
+      "language" : "en",
+
 	"moduleimg":"/media/8/3/3/16651de50f167a76911ac2a127cc5d80ac8b9eb447231432f062a705dae12.jpg",
    "u": [
 "Deepak Verma"
@@ -527,6 +576,8 @@
 
 { 
         "moduleId": "परमाणु संरचना ",
+       "language" : "hi",
+
        "moduleimg":"/media/9/2/0/8c2156744968de70d88fa88bb1f0334bb75e1b06132e067507feba6a21b2d.jpg",
 "u" : [
 "Deepak Verma"
@@ -544,6 +595,8 @@
 },
 { 
         "moduleId": "పరమాణు నిర్మాణం ",
+      "language" : "te",
+
        "moduleimg":"/media/9/2/0/8c2156744968de70d88fa88bb1f0334bb75e1b06132e067507feba6a21b2d.jpg",
 "u" : [
 "Deepak Verma"
@@ -561,6 +614,8 @@
 },
     { 
             "moduleId": "Atomic Structure",
+       "language" : "en",
+
 	   "moduleimg":"/media/9/2/0/8c2156744968de70d88fa88bb1f0334bb75e1b06132e067507feba6a21b2d.jpg",
  "u" : [
 "Deepak Verma"
@@ -578,6 +633,8 @@
     },
     {  
         "moduleId": "ధ్వని",
+      "language" : "te",
+
        "moduleimg":"/media/f/c/9/d278a8fcd43b9a91df02c301cc5c3dc236d218d3bc1f5a5d0ab99ecc53874.png",
    "u" : [
    "Deepak Verma"
@@ -596,6 +653,9 @@
    },
    {  
         "moduleId": "Sound",
+            "language" : "en",
+
+
        "moduleimg":"/media/f/c/9/d278a8fcd43b9a91df02c301cc5c3dc236d218d3bc1f5a5d0ab99ecc53874.png",
    "u" : [
    "Deepak Verma"
@@ -614,6 +674,8 @@
    },
     {  
         "moduleId": "ध्वनि ",
+      "language" : "hi",
+
        "moduleimg":"/media/f/c/9/d278a8fcd43b9a91df02c301cc5c3dc236d218d3bc1f5a5d0ab99ecc53874.png",
   "u" : [
 "Deepak Verma"
@@ -634,6 +696,9 @@
 
     { 
         "moduleId": "गति ",
+
+       "language" : "hi",
+
              "moduleimg":"/media/c/5/6/f8c3a0688f5953cdd8b65a5da36b72d6fe6c771f3bbe4710c74d253721db7.jpg",
       "u" : [
       "Deepak Verma"
@@ -655,6 +720,8 @@
          },
          { 
                 "moduleId": "గమనము ",
+      "language" : "te",
+
                      "moduleimg":"/media/c/5/6/f8c3a0688f5953cdd8b65a5da36b72d6fe6c771f3bbe4710c74d253721db7.jpg",
               "u" : [
               "Deepak Verma"
@@ -676,6 +743,8 @@
                  },
     { 
    "moduleId": "Understanding Motion",
+     "language" : "en",
+
 	"moduleimg":"/media/c/5/6/f8c3a0688f5953cdd8b65a5da36b72d6fe6c771f3bbe4710c74d253721db7.jpg",
  "u" : [
  "Deepak Verma"
@@ -696,7 +765,9 @@
       "education": "M.A. Education (Elementary) (pursuing), Tata Institute of Social Sciences, Mumbai M.Sc. (Tech.) Information Systems (2011), Birla Institute of Technology and Science, Pilani"
     },
     { 
-"moduleId": "बुनायादी खगोलविज्ञान ",
+"moduleId": "बुनायादी खगोलविज्ञान ",  
+     "language" : "hi",
+
 "moduleimg":"/media/7/7/0/566b77c1c118edf1423c3ae5422bfd0f265bafe6658859862a06a4d0bacbf.jpg",
  "u": [
  "Shamin Padalkar"
@@ -720,6 +791,8 @@
 ,
 { 
         "moduleId": "ప్రాథమిక ఖగోళ శాస్త్రం ",
+       "language" : "te",
+
         "moduleimg":"/media/7/7/0/566b77c1c118edf1423c3ae5422bfd0f265bafe6658859862a06a4d0bacbf.jpg",
          "u": [
          "Shamin Padalkar"
@@ -742,6 +815,8 @@
           },
   { 
         "moduleId": "Basic Astronomy",
+      "language" : "en",
+
         "moduleimg":"/media/7/7/0/566b77c1c118edf1423c3ae5422bfd0f265bafe6658859862a06a4d0bacbf.jpg",
          "u": [
          "Shamin Padalkar"

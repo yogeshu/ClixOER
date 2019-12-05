@@ -22,7 +22,8 @@ The English Team at TISS designs and creates the CLIx English course for student
           <div class="col-11">
             <div class="carousel-team-card" data-flickity='{ "groupCells": 3, "wrapAround": true    }'>
                  {% if first_arg == 'Mathematics' %}             
-                           {% for slide in employee.Team_detail_math %}
+                           {% for slide in employee.Team_detail_math %} 
+                             {% if slide.language == request.LANGUAGE_CODE %}
              <div class="carousel-team-card-cell our-team">
                 <div class="carousel-card-team">
                   <div class="card-team-img" >
@@ -33,10 +34,10 @@ The English Team at TISS designs and creates the CLIx English course for student
                     <h6>{{  slide.moduleId }} </h6>
                     {% for sideu in slide.u %}
 <li style=" font-size:14px;   font-weight:400">{{sideu }}  </li>
-{% endfor %}
+
+                    {% endfor %}
                     {% for side in slide.userIdArray %}
                      <li style="text-align:justify; font-size: 12px; line-height: 1.2rem;">{{ side | truncatechars:20 }}</li>
-
                    {% endfor %}
                    <!-- <span>{{ slide.jobTitleName | truncatechars:255 }}</span> -->
                   </div>
@@ -52,13 +53,14 @@ The English Team at TISS designs and creates the CLIx English course for student
                   </div>
                 </div>
               </div>
+	       {% endif %}
               {% endfor %}
 {% endif %}
 
 
  {% if first_arg == 'Science' %}
                            {% for slide in employee.Team_detail_science %}
-              
+          {% if   slide.language == request.LANGUAGE_CODE  %}  
               <div class="carousel-team-card-cell our-team">
                 <div class="carousel-card-team">
                   <div class="card-team-img">
@@ -69,6 +71,8 @@ The English Team at TISS designs and creates the CLIx English course for student
                     <h6>{{  slide.moduleId }} </h6>
 {% for sideu in slide.u %}
 <li style=" font-size:14px;  font-weight:400">{{sideu }}  </li>
+ 
+
 {% endfor %}
 
              {% for side in slide.userIdArray %}
@@ -91,7 +95,11 @@ The English Team at TISS designs and creates the CLIx English course for student
 -->
                   </div>
                 </div>
-              </div>
+ 
+
+             </div>
+
+{% endif %}
 {% endfor %}
 {% endif %}
 
@@ -99,6 +107,7 @@ The English Team at TISS designs and creates the CLIx English course for student
 
  {% if first_arg == 'English' %}
                            {% for slide in employee.Team_detail_english %}
+                               {% if slide.language == request.LANGUAGE_CODE %}
 
               <div class="carousel-team-card-cell our-team">
                 <div class="carousel-card-team">
@@ -140,6 +149,9 @@ The English Team at TISS designs and creates the CLIx English course for student
                   </div>
                 </div>
               </div>
+
+
+{% endif %}
 {% endfor %} 
 {% endif %}
             <!-- <div class="carousel-team-card-cell our-team ">

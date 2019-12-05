@@ -193,7 +193,7 @@ background: #9693a3 !important;
 {% endif %}
 
                       <i class="fas fa-rocket    fa-lg"></i></a >
-{% get_unplatformpkg_node dest.id as pkg_id  %}
+{% get_unplatformpkg_node dest.id dest.language.0 as pkg %}
 {% get_download_preview_cnt dest.name as cnt_nd%}
 
 <div class="dropdown show" style="display:inline-block">
@@ -207,9 +207,9 @@ background: #9693a3 !important;
                       </i></a
                     >                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkMu" data-toggle="modal" 
 data-target="#unplatformMu" >
-{% if pkg_id.strip %}
-
-                          <a href="{% url 'read_file' dest.id pkg_id  %}" class="dropdown-item "  data-target="#unplatformMu" download="{{dest.name}}">
+{% if pkg.id.strip %}
+                          <a href="{% url 'read_file' dest.id pkg.id  %}" class="dropdown-item "  data-target="#unplatformMu" 
+download="{{pkg.name}}.exe">
 Download Unplatform Version For Windows </a>
 {% else %}
 			   <a href="" class="dropdown-item "  data-target="#unplatformMu" download="{{dest.name}}">
