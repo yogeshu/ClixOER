@@ -253,11 +253,16 @@ def get_unplatformpkg_node(node_id,lang):
                 q = Q('bool',must=[Q('match_phrase',group_set = node_id),Q('match_phrase',tags = 'unplatform')])
         s1 = Search(using=es, index='nodes',doc_type="node").query(q)
         s2 = s1.execute()
-        print "unplatform pkr url:",s2[0].id
+        #prinnplatform pkr url:",s2[0].id
         if s1.count() > 0:
                 return s2[0]
         else:
-                return "",""
+                nd = get_translated_node(node_id)
+                q = Q('bool',must=[Q('match_phrase',group_set = nd),Q('match_phrase',language = 'en'),Q('match_phrase',tags = 'unplatform')])
+                s1 = Search(using=es, index='nodes',doc_type="node").query(q)
+                s2 = s1.execute()
+                print "unplatform pkr url:",s2[0].id
+                return s2[0]
     else:
                 return "",""
 
