@@ -221,19 +221,30 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 
             <i style="color: #5088c7;"  class="fas fa-rocket ml-4 fa-lg"></i> </a> 
                     </div>
+<div class="" style="display: inline-block;">
 
+{% get_unplatformpkg_node moduledetails.id moduledetails.language.0 as pkg %}
+
+{% if pkg.id.strip %}
+
+                          <a href="{% url 'read_file' moduledetails.id pkg.id  %}"
+download="{{pkg.name}}.exe">             <i style="color: #5088c7;" class="fas fa-cloud-download-alt ml-4 fa-lg"></i></a>
+  
+{% else %}
+                           <a href="" download="{{dest.name}}"></a>
+{% endif %}
+
+<!--            <i style="color: #5088c7;" class="fas fa-cloud-download-alt ml-4 fa-lg"></i> </a> -->
+</div>
+{% comment %}
 <div class="dropdown show" style="display:inline-block;">
- <a data-toggle="dropdown" title="{% trans   "Download Offline Version"%}"  href=""  id="dropdownMenuLinKLink">
-            <i style="color: #5088c7;" class="fas fa-cloud-download-alt ml-4 fa-lg"></i></a>
-
 <div class="dropdown-menu"  aria-labelledby="dropdownMenuLinkLink">
-
+<a data-toggle="dropdown" title="{% trans   "Download Offline Version"%}"  href=""  id="dropdownMenuLinKLink">
 <a class="dropdown-item" href="{{student_docs}}">Hindi </a>
 <a class="dropdown-item" href="{{student_docs}}"> English </a>
 </div>
-
-</div>
- 
+{% endcomment %}
+<!-- -->  
                     
 <div class="dropdown show" style="display:inline-block;">
   {% for k,v in student_docs.items %}

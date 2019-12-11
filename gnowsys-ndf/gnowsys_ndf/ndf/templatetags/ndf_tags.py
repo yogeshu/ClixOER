@@ -243,7 +243,7 @@ def get_node(node_id):
 
 @register.assignment_tag
 def get_unplatformpkg_node(node_id,lang):
-
+    print "get unplatform pkg",node_id,lang
     if node_id:
         domain = get_attribute_value(node_id,'educationalsubject')
         print "domain:",domain
@@ -255,6 +255,7 @@ def get_unplatformpkg_node(node_id,lang):
         s2 = s1.execute()
         #prinnplatform pkr url:",s2[0].id
         if s1.count() > 0:
+                print "unplatform pkg url:",s2[0].id
                 return s2[0]
         else:
                 nd = get_translated_node(node_id)
@@ -339,6 +340,7 @@ def get_schema(node):
 
 @register.filter
 def get_item(dictionary, key):
+    print "combined key:",key
     #print "dictionary,key",dictionary,key
     return dictionary.get(key)
 

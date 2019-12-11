@@ -16,12 +16,16 @@
 </button>
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-toggle="modal"
 data-target="#unplatformMu">
-    <a class="dropdown-item"  href="/media/{{allpckgs|get_item:'English'}}" Download="CLIxEnglishModules_v2.4.0-En.exe">
+    <a class="dropdown-item"  href="/media/{{allpckgs|get_item:'English-en'}}" Download="CLIxEnglishModules_v2.4.0-En.exe">
   Download all of CLIxEnglish modules
 </a>
-    <a class="dropdown-item"  href="/media/{{allpckgs|get_item:'Mathematics'}}" Download="CLIxMathModules_v2.4.0-En">Download all of CLIxMathematics modules
+    {% with "Mathematics-"|add:lang as key %}
+    <a class="dropdown-item"  href="/media/{{allpckgs|get_item:key}}" Download="CLIxMathModules_v2.4.0-{{lang}}">Download all of CLIxMathematics modules
+    {% endwith %}
 </a>
-    <a class="dropdown-item" href="/media/{{allpckgs|get_item:'Science'}}" Download="CLIxScienceModules_v2.4.0-En">Download all of CLIxScience modules</a>
+    {% with "Science-"|add:lang as key %}
+    <a class="dropdown-item" href="/media/{{allpckgs|get_item:key}}" Download="CLIxScienceModules_v2.4.0-{{lang}}">Download all of CLIxScience modules</a>
+    {% endwith %}
   </div>
 </div>
     </div>

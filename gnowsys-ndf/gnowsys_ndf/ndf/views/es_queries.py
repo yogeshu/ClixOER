@@ -725,7 +725,7 @@ def get_module_previewdata(request,group_id):
     module_dict['unitdetails'] = []
     module_dict['id'] = node_obj.id
     module_dict['grade'] = [str(each) for each in module_dict['grade']]
-
+    module_dict['language'] = node_obj.language
     if node_obj.language[0] != 'en':
         rel_set = node_obj.relation_set
         for each in rel_set:

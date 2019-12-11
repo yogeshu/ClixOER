@@ -201,12 +201,13 @@ def resource_list(request, group_id, app_id=None, page_no=1):
         all_pckgs = (Search(using=es,index = index,doc_type=doc_type).query(q))
         all_pckgs1 = all_pckgs.execute()
         for each in all_pckgs1[0:all_pckgs.count()]:
-              if each.tags[0].find('english') > 0:
-                   allpckgs['English'] = each.if_file.original.relurl
-              elif each.tags[0].find('mathematics') > 0:
-                   allpckgs['Mathematics']=each.if_file.original.relurl
-              else:
-                   allpckgs['Science']=each.if_file.original.relurl
+                print "tags:",each.tags
+                if each.tags[0].find('english') > 0:
+                        allpckgs['English-'+each.language[0]] = each.if_file.original.relurl
+                elif each.tags[0].find('mathematics') > 0:
+                        allpckgs['Mathematics-'+each.language[0]] = each.if_file.original.relurl
+                else:
+                        allpckgs['Science-'+each.language[0]] = each.if_file.original.relurl
         print "pckg urls:",allpckgs
 	return render_to_response("ndf/Elibrary.html",
 								{'title': title, 'app':e_library_GST[0],
@@ -224,7 +225,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 								 'video_pages': allvideos1.count(),
 								 'audio_pages': allaudios1.count(),
 								 'groupid': group_id, 'group_id':group_id,
-								 "datavisual":datavisual, 'bannerpics': banner_pics,'allpckgs':allpckgs,
+								 "datavisual":datavisual, 'bannerpics': banner_pics,'allpckgs':allpckgs,'lang':request.LANGUAGE_CODE
 								},
 								context_instance = RequestContext(request))
 
