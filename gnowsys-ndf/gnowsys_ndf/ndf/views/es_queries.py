@@ -32,6 +32,31 @@ from gnowsys_ndf.ndf.models import GSystemType
 
 gfs = HashFS('/data/media/', depth=3, width=1, algorithm='sha256')
 
+banner_pics1 = ['/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png']
+def site_contact(request):
+    req_context = RequestContext(request, {
+                                    'title':'Contact','group_id': 'home', 'groupid': 'home','bannerpics':banner_pics1})
+    return render_to_response("ndf/contact.html",req_context)
+
+def site_termsofuse(request):         
+    return render_to_response(
+                                        "ndf/termsofservice.html",
+                                        {
+                                            'title': 'Terms Of Use','group_id': 'home', 'groupid': 'home','bannerpics':banner_pics1,
+                                        },
+                                        context_instance=RequestContext(request)
+                                    )
+
+def site_privacypolicy(request):                                                                                              
+    return render_to_response(
+                                        "ndf/privacypolicy.html",
+                                        {
+                                            'title': 'Privacy Policy','group_id': 'home', 'groupid': 'home','bannerpics':banner_pics1,
+                                        },
+                                        context_instance=RequestContext(request)
+                                    )
+
+
 def create_lang_module(request,group_id, module_id=None, cancel_url='e-library'):
     
     if request.method == "GET":

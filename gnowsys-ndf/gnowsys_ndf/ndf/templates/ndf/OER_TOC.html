@@ -15,7 +15,7 @@
                         <li class="nav-item" id="main-page"> <a class="nav-link collapsed " href="#submenu1" data-toggle="collapse" data-target="#submenu1" data-toggle="tooltip" title="Click to filter by subjects"><i class="fas fa-globe solid"  > </i>{% trans 'Subjects' %}   <i  data-toggle="tooltip" title=" {% trans  "Click to filter by subjects" %}"  class="float-right fas fa-minus-circle fa-lg u"></i></a></li>
                         <div class="collapse show" id="submenu1"   aria-expanded="false">
                             <ul class="flex-column pl-1 nav su">
-                         <li class="nav-item " >
+                         <li class="nav-ite " >
 				<a class="nav-link lu" style="background-image: rgb(131,58,180) !important;
 background-image: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(207,65,174,1) 10%, rgba(186,40,125,1) 74%) !important;
 "><i class="fa fa-language" > </i>{% trans 'English' %} 
@@ -23,13 +23,13 @@ background-image: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(207,65,174,
 					<!--<i class="fas fa-font" > </i>English -->
 				</a>
 			</li>
-                        <li class="nav-item">
+                        <li class="nav-ite">
 				<a class="nav-link lu"   style="background-image: rgb(131,58,180) !important;
 background-image: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(207,65,174,1) 10%, rgba(186,40,125,1) 74%) !important;
 "> <i class="fas fa-calculator"></i>{% trans 'Math' %}   
 					<input id="Mathematics" type="checkbox" value="Mathematics" class="searchfilter"   name="english">
 					<!--   <i class="fas fa-calculator"></i> Math -->			</a></li>
-                                <li class="nav-item " >
+                                <li class="nav-ite " >
 					<a class="nav-link lu" style="background-image: rgb(131,58,180) !important; 
 background-image: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(207,65,174,1) 10%, rgba(186,40,125,1) 74%) !important;"> <i class="fas fa-flask"></i>
 
@@ -83,7 +83,13 @@ $.ajax({
               domain_name : domains,
 	      domain_selected:domains,
             },
+            beforeSend: function() {
+              $("#overlay").show();
+                  },
+
+            
             success: function(data) {
+              $("#overlay").hide();
               $('#jar').html(data)
                
 
@@ -108,7 +114,11 @@ console.log([],domains);
 		    domain_name:domains,
 		    domain_selected:domains,
                     },
+                    beforeSend : function() {
+                         $("#overlay").show();
+                         },
 		    success: function(data) {
+                    $("#overlay").hide();
 		    $('#jar').html(data)
 
 
@@ -151,7 +161,11 @@ console.log([],domains);
                     domain_name:domains,
                     domain_selected:domains,
                     },
+                    beforeSend: function() {
+                       $("#overlay").show();
+                       },
                     success: function(data) {
+                     $("#overlay").hide();
                     $('#jar').html(data)
             }
 
@@ -229,9 +243,15 @@ console.log("==========================")
               domain_name:domain,
 
 	          },
+                beforeSend: function() {
+            $("#overlay").show();
+              
+
+ },
                 success: function(data) {                // alert('it worked');
                  
-                 //$('#sidebar').html('#');
+                 //$('#sidebar').html('#'); 
+                   $("#overlay").hide();
                  $('#x').html(data);
             
 
@@ -266,8 +286,6 @@ $(function(e){
 	      }
    }
 });
-
-
 
 
 </script>

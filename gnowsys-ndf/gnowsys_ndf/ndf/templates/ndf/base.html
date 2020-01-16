@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="Connected Learning Initiative (CLIx) is a bold and innovative intervention, with global relevance for quality teaching & learning in the public education system of India. The overarching goal has been to demonstrate quality at scale through meaningful use of new media and digital technologies. CLIx offers students opportunities to work in a hands-on manner to construct knowledge in active ways, and enhances the prospects of professional development for teachers through the use of ICT. The initiative, conceptualised in 2015, is seeded by Tata Trusts, India and led by Tata Institute of Social Sciences (TISS), Mumbai, India and Massachusetts Institute of Technology (MIT), MA, USA.">
+<meta name="keywords" content="CLIx,OER,CLIxOER,JavaScript,Education,Reasearch,EdOER,Open Education Resources, English,MIT,CLIx Education,Tiss CLIx">
+
     <title>CLIx OER </title>
           <link rel="shortcut icon" href="/static/ndf/images/favicon/clix-favicon.png">
 
@@ -44,9 +47,15 @@
      <link href="https://fonts.googleapis.com/css?family=Poppins:400,700i&display=swap" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+
+   <!-- Meta Tags -->
+
+
+
      <style>
 
- 
+
+
       ul.nav-pills{
          position: sticky;
          top: 20%;
@@ -99,6 +108,7 @@ height: 100% !important;
 body   {
 
 }
+
 @media only screen and (max-width:900px){
 
 .nav-scroll .nav-link {
@@ -127,6 +137,20 @@ transition:none !important;
 border: 0.5px solid #000 !important;
 }
 
+.spinner-wrapper {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #000;
+z-index: 999999;
+}
+.spinner {
+position: absolute;
+top: 48%;
+left: 48%;
+}
 
      </style>
 </head>
@@ -134,9 +158,31 @@ border: 0.5px solid #000 !important;
 <body data-spy="scroll" data-target="#verticalScrollspy" data-offset="89"  
 
 >
+<!--CSS Spinner
+<div class="spinner-wrapper">
+<div class="spinner"></div>
+</div>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- For GO to UP button --> 
+
   <a id="u-c"></a>
  <a href="javascript:" id="return-to-top" title="Go To Top">  
 <i class="fas fa-chevron-circle-up"></i> </a>
+<!-- END FOR GO TO UP BUTTON   -->
     {% include "ndf/navbar.html"  %}
    
     {% block content %}
@@ -165,9 +211,13 @@ border: 0.5px solid #000 !important;
       </div>
     </div>
   </div>
-</div>  
+</div> 
+
+
 </body>
 <script>
+
+
 
 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 event.preventDefault();
@@ -195,6 +245,8 @@ $('body').scrollspy({ target: '#verticalScrollspy' });
 $('body').scrollspy({
    offset: offsetHeight
 });
+
+
 */
  $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
@@ -251,6 +303,8 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 
+
+
 $(function () {
   $('[data-toggle="popover"]').popover()
 })
@@ -263,6 +317,19 @@ $('.navbar-nav .nav-item').click(function(){
 })
 });
 
+
+
+$(document).ready(function() {
+//Preloader
+$(window).on("load", function() {
+preloaderFadeOutTime = 500;
+function hidePreloader() {
+var preloader = $('.spinner-wrapper');
+preloader.fadeOut(preloaderFadeOutTime);
+}
+hidePreloader();
+});
+});
 $('#verticalScrollspy').scrollspy();
 
 
@@ -271,6 +338,9 @@ $('#verticalScrollspy').scrollspy();
 (function(){
     new Clipboard('#copy');
 })();
+
+
+
 </script>
 
 </html>

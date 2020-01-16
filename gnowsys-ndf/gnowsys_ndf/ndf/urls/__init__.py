@@ -266,5 +266,8 @@ urlpatterns += patterns('gnowsys_ndf.ndf.views.es_queries',
                         url(r'^(?P<group_id>[^/]+)/create/unit/$','create_lang_unit',name='create_unit'),
                         url(r'^(?P<group_id>[^/]+)/node/create/(?P<member_of>[\w-]+)/(?P<detail_url_name>[\w-]+)/?$', 'node_create_edit', {'node_type': 'GSystem', 'node_id': None}, name='node_create'),
                         url(r'^(?P<group_id>[^/]+)/node/edit/(?P<node_id>[\w-]+)/$', 'node_name_content_edit', name='node_edit'),
-                        url(r'^(?P<group_id>[^/]+)/upload_using_save_file/', 'upload_using_save_file', name='upload_using_save_file')
+                        url(r'^(?P<group_id>[^/]+)/upload_using_save_file/', 'upload_using_save_file', name='upload_using_save_file'),
+                        url(r'^contact.html/','site_contact',name='site_contact'),
+                        url(r'^termsofservice.html/','site_termsofuse',name='site_termsofuse'),
+                        url(r'^privacypolicy.html/','site_privacypolicy',name='site_privacypolicy')
                         )
