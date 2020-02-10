@@ -54,7 +54,7 @@ Paste==2.0.3
 pyasn1==0.1.9
 pycparser==2.14
 PyInstaller==3.2.1
-pyOpenSSL==16.0.0
+pyOpenSSL==17.5.0
 signit==0.3.0
 six==1.10.0
 sympy==1.0
