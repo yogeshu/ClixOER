@@ -185,7 +185,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	datavisual.append({"name":"Audios","count": allaudios1.count()})
 	datavisual.append({"name":"eBooks","count": educationaluse_stats.get("eBooks", 0)})
 	       
-        print "Session:",request.COOKIES['sessionid']
+        #print "Session:",request.COOKIES['sessionid']
         
         results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid'],visitednode_name='home')
         if len(results) ==0:

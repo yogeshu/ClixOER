@@ -239,6 +239,7 @@ if settings.DEBUG:
 from gnowsys_ndf.ndf.views.es_queries import homepage
 urlpatterns += patterns('gnowsys_ndf.ndf.views.es_queries',
                         url(r'^$', homepage, {"group_id": "home"}, name="homepage"),
+                        url(r'^home$', homepage, {"group_id": "home"}, name="homepage"),
                         url(r'^(?P<group_id>[^/]+)/e-library', include('gnowsys_ndf.ndf.urls.e-library')),
                         url(r'^(?P<group_id>[^/]+)/module/(?P<node_id>[\w-]+)/(?P<title>[^/]+)/?$', 'module_detail', name='module_detail'),
                         url(r'^(?P<group_id>[^/]+)/course/save_course_page/$', 'save_course_page', name='save_course_page'),
