@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="description" content="Connected Learning Initiative (CLIx) is a bold and innovative intervention, with global relevance for quality teaching & learning in the public education system of India. The overarching goal has been to demonstrate quality at scale through meaningful use of new media and digital technologies. CLIx offers students opportunities to work in a hands-on manner to construct knowledge in active ways, and enhances the prospects of professional development for teachers through the use of ICT. The initiative, conceptualised in 2015, is seeded by Tata Trusts, India and led by Tata Institute of Social Sciences (TISS), Mumbai, India and Massachusetts Institute of Technology (MIT), MA, USA.">
-<meta name="keywords" content="CLIx,OER,CLIxOER,JavaScript,Education,Reasearch,EdOER,Open Education Resources, English,MIT,CLIx Education,Tiss CLIx">
+<meta name="description" content="Connected Learning Initiative (CLIx) or clixoer is a bold and innovative intervention, with global relevance for quality teaching & learning in the public education system of India. ">
+<meta property="og:description" content="Connected Learning Initiative (CLIx) or clixoer is a bold and innovative intervention, with global relevance for quality teaching & learning in the public education system of India. ">
+<meta name="google-site-verification" content="9UGqhcIWYPvS5Iv_-e88q12Mgej83bsaRiObLqwMI6k" />
+<meta name="keywords" content="CLIx,OER,CLIx OER,clixoer"
+  <meta property="og:site_name" content="clixoer" />
+<meta property="og:image" content="https://clixoer.tiss.edu/static/ndf/images/Clix_logo.png" />
+
 
     <title>CLIx OER </title>
           <link rel="shortcut icon" href="/static/ndf/images/favicon/clix-favicon.png">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/ndf/css/oer.css">
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="/static/ndf/css/eclipse.css">
    
 <!--     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>   --> 
@@ -19,6 +26,10 @@
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
       
      <script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
      <script src="/static/ndf/js/multislider.js"></script>
@@ -102,6 +113,7 @@
     color: #fff;
     top: 5px;
 }
+
 body{
 height: 100% !important;
 }
@@ -133,8 +145,9 @@ max-width: 100%  !important;
  *:hover{
 transition:none !important;
 }
+
 .card:hover{
-border: 0.5px solid #000 !important;
+border: 0.2px;
 }
 
 .spinner-wrapper {
@@ -280,10 +293,10 @@ $(document).ready(function(){
  
 // ===== Scroll to Top ==== 
 $(window).scroll(function() {
-    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+    if ($(this).scrollTop() >= 150) {        // If page is scrolled more than 50px
         $('#return-to-top').fadeIn(200);    // Fade in the arrow
     } else {
-        $('return-to-top').fadeOut(200);   // Else fade out the arrow
+        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
     }
 });
 $('#return-to-top').click(function() {      // When arrow is clicked
@@ -338,7 +351,6 @@ $('#verticalScrollspy').scrollspy();
 (function(){
     new Clipboard('#copy');
 })();
-
 
 
 </script>
