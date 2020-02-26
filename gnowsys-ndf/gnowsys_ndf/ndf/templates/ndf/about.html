@@ -9,6 +9,7 @@
 <head>
 <title>  
 {% trans  'CLix OER - About' %}
+CLIx OER - About
 </title>
 <head>
 <style>
@@ -17,21 +18,43 @@ img{
 overflow-y:auto;
 }
 </style>
+
+
+
+<div class="container mt-2 mb-4">
+    <div class="row">
+      <div class="col-sm-9">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb ml-2">
+            <li class="breadcrumb-item ml-n3" aria-current="page" > <a style="color:#fff;" href="{% url 'e-library' group_id  %}"> <i class="\
+ fas fa-home fa-lg "></i> </a> </li>
+ <li class="breadcrumb-item" style="background:#7c777c;"> <a style="color:#fff;"><i class="ml-n2 fas fa-globe fa-lg"></i></a>
+ {% trans 'About' %} </li>
+
+           </ol>
+        </nav>
+
+    </div>
+
+
+<!--
   
 <nav aria-label="breadcrumb ml-5 ">
     <ol class="breadcrumb mt-3">
-             <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'e-library' group_id  %}"  > <i style="color:#fff;" class=" fas
- fa-home fa-lg  ml-n4"></i> </a> </li>
+             <li class="breadcrumb-item" >
+          <a class=""  href="{% url 'e-library' group_id  %}"  >
+          <i style="color:#fff;" class=" fas fa-home fa-lg  ml-n4"></i> </a> </li>
  
 
-        <li class="breadcrumb-item " aria-current="page"><i class="fas fa-user-friends"></i> {% trans 'About' %}  </li>
+        <li class="breadcrumb-item " aria-current="page">  <a> </a>   <i class="fas fa-user-friends"></i> {% trans 'About' %}  </li>
 <!--
        <li class="breadcrumb-item " aria-current="page">The Design And Development </li>
 -->
-    </ol>
+<!-- 
+   </ol>
   </nav>
   
-
+-->
 {% if request.LANGUAGE_CODE == 'en' %}
 
            {% include "ndf/panel.html" %}
