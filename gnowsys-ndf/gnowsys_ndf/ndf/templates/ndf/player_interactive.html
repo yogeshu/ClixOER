@@ -56,7 +56,7 @@ opacity:0.7;
     position: absolute;
     bottom: -1px;
 }
-.flip > h6  {
+h6.text-shadow  {
 font-size:0.8rem !important;
 }
 </style>
@@ -101,7 +101,8 @@ font-size:0.8rem !important;
      {% if dest.language.0 == 'hi' or dest.language.0 == 'te' %}
          {{dest.tags.3}}
      {% else %}
-        {% for each_attr in dest.tags|slice:"0:2" %}{{each_attr}}
+        {% for each_attr in dest.tags|slice:"0:2" %}
+
                       {% if not forloop.last %}, {% endif %}
                       {% endfor %}</span> </h6>
      {% endif %}
