@@ -35,7 +35,7 @@
   }
   100% { 
   transform: rotate(359deg); 
-  }
+ }
 }
 
 
@@ -159,7 +159,7 @@ background: #9693a3 !important;
 	   
   {% get_dict_from_list_of_dicts dest.attribute_set as node_attrs %}
 <a  class="module_module" id="{{dest.id}}" >
-            <div 
+            <div  tabindex="7"
             class="card col-md-offset-2 shadow mb-3 border-rounded content"
             style="max-width: 400px; " data="" >
            <div class="row no-gutters ">
@@ -191,8 +191,8 @@ background: #9693a3 !important;
 <!--<a  class="module_module" id="{{dest.id}}" > -->
 
               <div class="col-md-7 col-sm-12 pl-1">
-                <div class="card-body  c-body">
-                  <div class="card-header  c-header"  style="font-size:16px;">
+                <div class="card-body n c-body">
+                  <div class="card-header  c-header" tabindex="7"  style="font-size:16px;">
                     {{ dest.name }} <br />
                   </div>
 
@@ -215,7 +215,7 @@ background: #9693a3 !important;
 		      {% endfor %}</span
                     >
                   </h6>
-                  <p class="card-text" style="text-align:justify;      font-size:11px !important;">
+                  <p class="card-text" style="text-align:justify;     font-size:11px !important;"   tabindex="7" >
                    {{dest.content|default:'No description added yet.'|safe| truncatechars:207}}
                     <br />
                   </p>
@@ -226,12 +226,12 @@ background: #9693a3 !important;
 {% get_attribute_value dest.id 'educationalsubject' as domain %}
 
 {% if request.LANGUAGE_CODE == 'en' or domain == 'English' %}
-      <a class="explore" href="https://demo-clix.tiss.edu/home/module/{{dest.id}}/courses"  id="{{dest.id}}"  data-toggle="tooltip" 
+      <a class="explore" href="https://demo-clix.tiss.edu/home/module/{{dest.id}}/courses" tabindex="7"  id="{{dest.id}}"  data-toggle="tooltip" 
   title="{% trans "Explore module online" %}" \
  target="_blank" >
 {% else %}
   {% get_translated_node dest.id as trnsid %}
-       <a class="explore" href="https://demo-clix.tiss.edu/home/module/{{trnsid}}/courses"  id="{{dest.id}}"  data-toggle="tooltip" 
+       <a class="explore" href="https://demo-clix.tiss.edu/home/module/{{trnsid}}/courses" tabindex="7"  id="{{dest.id}}"  data-toggle="tooltip" 
   title="{% trans "Explore module online" %}" target="_blank" >
 {% endif %}
 
@@ -240,8 +240,8 @@ background: #9693a3 !important;
 {% get_download_preview_cnt dest.name as cnt_nd%}
 
 <div class="dropdown show" style="display:inline-block">
-                    <a href="" data-toggle="dropdown" 
-                      ><i class="fas fa-cloud-download-alt  fa-lg"   data-toggle="tooltip" title="{% trans "Download offline version" %}"  > 
+                    <a href="" data-toggle="dropdown"    
+                      ><i class="fas fa-cloud-download-alt  fa-lg" tabindex="7"   data-toggle="tooltip" title="{% trans "Download offline version" %}"  > 
                         <span
                           class="badge "
                           style="font-size:5px; background: #F0578F; color: #fff;"
@@ -249,19 +249,30 @@ background: #9693a3 !important;
                         >
                       </i></a
                     >                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkMu" data-toggle="modal"  >
+
+
+
 {% if pkg.id.strip %}
-<div data-toggle="modal" data-target="#unplatformMu">
-              <a href="{% url 'read_file' dest.id pkg.id  %}" class="dropdown-item "    data-target="#unplatformMu" 
+
+<div data-toggle="modal" data-target="#{{pkg.name}}">
+              <a href="{% url 'read_file' dest.id pkg.id  %}" class="dropdown-item "  tabindex="7"    data-target="#{{pkg.name}}" 
 download="{{pkg.name}}.exe">
 Download Unplatform Version For Windows </a>
+
 {% else %}
 			   <a href=" "   data-target="#unplatformMu" class="dropdown-item " download="{{dest.name}}">
 Download Unplatform Version For Windows </a>
 {% endif %}
 </div>
-                     <a class="  dropdown-item" href="#" data-toggle="modal" data-target="#mU" >Download Unplatform Version For Debian</a>
+                    <a class="  dropdown-item" href="#" data-toggle="modal" data-target="#mU" >Download Unplatform Version For Debian </a>
                           
                         </div>
+
+
+
+
+
+
                       </div>
 
 
@@ -277,7 +288,7 @@ Download Unplatform Version For Windows </a>
     <div class="modal-content">
       <div class="modal-header">
 
-        <h5 class="modal-title">Installer for Ubuntu  (<name of package>size of file)
+        <h5 class="modal-title">Installer for Linux  (<name of package>size of file)
 </h5>
 
 
@@ -287,7 +298,7 @@ Download Unplatform Version For Windows </a>
       </div>
       <div class="modal-body" style="text-align:left;">
  <ul>
- <h6>For Debian  operating system: </h6>
+ <h6></h6>
 <!--
 <li>1. Click on the downloaded .exe setup file </li>
 <li>2. Follow steps and complete the installation</li>
@@ -305,16 +316,13 @@ Download Unplatform Version For Windows </a>
 
 
 
-
-<div class="modal" tabindex="-1" role="dialog" id="unplatformMu">
+<div class="modal" tabindex="-1" role="dialog" id="{{pkg.name}}">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
 
-	<h5 class="modal-title">Installer for Windows 64bit (<name of package>size of file)
+	<h5 class="modal-title" >Installer for Windows 64bit (<name of package > {{pkg.name}}.exe   size of file)
 </h5>
-
-
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
 	  </button>
@@ -322,9 +330,10 @@ Download Unplatform Version For Windows </a>
       <div class="modal-body" style="text-align:left;">
  <ul>
  <h6>For MS Windows operating system: </h6>
-<li>1. Click on the downloaded .exe setup file </li>
-<li>2. Follow steps and complete the installation</li>
-<li>3. Explore CLIx modules and interactives offline! </li>
+
+<li> <!-- 1. -->  Click on the downloaded .exe setup file </li>
+<li> <!--   2. --> Follow steps and complete the installation</li>
+<li> <!--  3. -->  Explore CLIx modules and interactives offline! </li>
 </ul>
       </div>
 </div>
@@ -336,14 +345,13 @@ Download Unplatform Version For Windows </a>
 
 
 
-
-<a class="video" style="color:#0778FA;"    id="{{dest.id}}"   style="display:inline-block" > <i class="fas fa-video" data-toggle="tooltip"
- title="{% trans "Help videos" %}"  ></i> </a>
-
+<a class="video" style="color:#0778FA;"    id="{{dest.id}}"  style="display:inline-block" > <i class="fas fa-video" data-toggle="tooltip"
+ title="{% trans "Help videos" %}" tabindex="7" ></i> </a>
 
 
 
-                    <div class="dropdown show" style="display:inline-block;" href="">  
+
+                    <div class="dropdown show" style="display:inline-block;" href="" tabindex="7">  
    <a class=""     href=""   role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                             <i data-toggle="tooltip" title="{% trans "Share" %}"  class="fas fa-share-alt  fa-lg"></i
                               >
@@ -367,6 +375,9 @@ Share on Facebook </a>
 <a class="dropdown-item target"  href="http://twitter.com/intent/tweet?url=http://103.36.84.176:8000/5752ad5a2e01310a05dca583/e-library/" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'), '_blank'; data-url="document.URL"return false;" target="_blank">
 <i class="fab fa-twitter"> </i>
 Tweet this</a>
+<a class="twitter-share-button"
+  href="https://twitter.com/intent/tweet/url?url='+encodeURIComponent(window.location.href)">
+Tweet</a>
 <a class="dropdown-item target"  href="javascript:void(window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent(document.title), '_blank'))"> 
     <i class="fab fa-telegram"></i>
     Telegram link
@@ -385,12 +396,11 @@ Tweet this</a>
 <!--
 <a class="video show-modaltrue" style="color:#0778FA;"  onclick="modalhelpvi()"   title="Help Video" style="display:inline-block" > <i class="fas fa-video "></i> </a>
 -->
-                    <a class="modal_modal domain_modal "  title="{% trans  "Preview the module content" %}"    data-toggle="tooltip"   id="{{dest.id}}" style="color:#3333ff
-;">
+                    <a class="modal_modal domain_modal " tabindex="7"     title="{% trans  "Preview the module content" %}"    data-toggle="tooltip"   id="{{dest.id}}" style="color:#3333ff;" >
                  
    
   <i 
-                      
+                     
                         class="fas fa-eye  fa-lg"
                       >
                       <span
@@ -411,6 +421,9 @@ Tweet this</a>
         
  {% endfor %}	 
 
+
+
+
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-lg  modal-dialog-centered" role="document">
                 <div class="modal-content">               
@@ -422,16 +435,16 @@ Tweet this</a>
 <div class="modal fade" id="exampleModalCenterLu" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
           <div class="modal-content muvideLu">
-       
+                 
           </div>
         </div>
-      </div>
-          
+      </div>                                          \
+ 
     </div>
 
   </main>
-</div>
 
+</div>
 
 <script type="text/javascript"> 
 
@@ -511,7 +524,7 @@ function CopyLink() {
 
 
 
- function getPageList(totalPages, page, maxLength) {
+function getPageList(totalPages, page, maxLength) {
     if (maxLength < 5) throw "maxLength must be at least 5";
     function range(start, end) {
       return Array.from(Array(end - start + 1), (_, i) => i + start);
@@ -648,6 +661,12 @@ function getPageList(totalPages, page, maxLength) {
         )
     );
 
+if(currentPage <= 1) { 
+ $('#next-page').addClass('disabled');
+} else {
+ $('#previous-page').removeClass('disabled');
+}
+
     // Show the page links
     $("#jar").show();
     showPage(1);
@@ -668,9 +687,7 @@ function getPageList(totalPages, page, maxLength) {
     $(".pagination").on("click", function() {
       $("html,body").animate({ scrollTop: 0 }, 0);
     });
-  });
-
-
+  });   
   
   $("#myModal").on("shown.bs.modal", function() {
     $("#myInput").trigger("focus");
@@ -745,7 +762,12 @@ $("a.video").click(function() {
                       $(".muvideLu").html(data);
                       $("#exampleModalCenterLu").modal('show');
 
-                      }
+                      },
+                    error: function(){
+                       $("#overlay").hide();
+                     //  $(".muvideLu").html(); 
+                       $("#exampleModalCenterErrorPage").modal('show');
+                     } 
            });
 
 
@@ -781,6 +803,7 @@ $("a.modal_modal").click(function() {
 
           
 });
+ 
 
 
 $("a.module_module").click(function() {
