@@ -11,7 +11,7 @@ opacity:4;
 .
 .rotateslider-container 
  .rotateslider-item.prev {
-opacity:0.1;
+opacity:0.1 !important;
 }
 .rotateslider-container 
  .rotateslider-item.next ,
@@ -27,6 +27,9 @@ font-weight: 300 !important;
 
 .rotateslider-container{
 height: 300px !important;
+}
+.rotateslider-container .rotateslider-item.prev {
+opacity: 0.1 !important;
 }
 </style>
     <div class="jquery-script-center">
@@ -78,7 +81,7 @@ height: 300px !important;
 
   <div class="rotateslider-item">
             <div class='card card-profile text-center'>
-                <img alt='' class='card-img-top' src='/static/ndf/VOICES_340X160._13.09.19.svg'>
+                <img alt='CLIx oer Voices from field' class='card-img-top' src='/static/ndf/VOICES_340X160._13.09.19.svg'>
               <div class="card-img-overlay">
   <button type="button" class="btn btn-dark " style="margin-top:-40px; margin-left:10px;">
                 
@@ -91,7 +94,7 @@ height: 300px !important;
                     </p>
               </div>
   <div class='card-block'>
-                  <img alt='' class='card-img-profile' src='https://previews.123rf.com/images/nexusby/nexusby1810/nexusby181000286/111362910default-avatar-placeholder-profile-icon-male.jpg' style="margin-left:200px;"  width='100px' height='100px'>
+                  <img alt='OER Voices from field' class='card-img-profile' src='https://previews.123rf.com/images/nexusby/nexusby1810/nexusby181000286/111362910default-avatar-placeholder-profile-icon-male.jpg' style="margin-left:200px;"  width='100px' height='100px'>
                   <h4 class='card-title'   style="text-align:left !important; margin-left: 1rem !important;  margin-top:-90px; margin-left:-90px;">
                                          {{ slide.userName }}                 
                   
