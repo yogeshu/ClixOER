@@ -145,11 +145,15 @@ max-width: 100%  !important;
  *:hover{
 transition:none !important;
 }
-
 .card:hover{
-border: 0.2px;
+border:0.2px;
 }
-
+/*
+.card:hover{
+outline: 1px solid #000;
+border: 0.2px solid #000;
+}
+*/
 .spinner-wrapper {
 position: fixed;
 top: 0;
@@ -196,6 +200,10 @@ left: 48%;
  <a href="javascript:" id="return-to-top" title="Go To Top">  
 <i class="fas fa-chevron-circle-up"></i> </a>
 <!-- END FOR GO TO UP BUTTON   -->
+
+
+ 
+
     {% include "ndf/navbar.html"  %}
    
     {% block content %}
@@ -210,7 +218,7 @@ left: 48%;
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Error No Videos Found </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -220,7 +228,7 @@ left: 48%;
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        
       </div>
     </div>
   </div>
@@ -299,6 +307,7 @@ $(window).scroll(function() {
         $('#return-to-top').fadeOut(200);   // Else fade out the arrow
     }
 });
+
 $('#return-to-top').click(function() {      // When arrow is clicked
     $('body,html').animate({
         scrollTop : 0                       // Scroll to top of body
@@ -352,7 +361,7 @@ $('#verticalScrollspy').scrollspy();
     new Clipboard('#copy');
 })();
 
-
+ 
 </script>
 
 </html>
