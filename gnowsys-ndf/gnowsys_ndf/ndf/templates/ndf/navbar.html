@@ -1,6 +1,55 @@
 {% load i18n %}
 {% load ndf_tags %}
-<!-- navbar -->
+<!-- navbar 
+
+<style>
+.changefont{
+    text-align: right;
+    padding: 2px 5px 1px 0px;
+    margin-right: 88px;
+}
+
+.font-minus{
+    font-size: 70%;
+    color: #713558;
+
+}
+.font-normal{
+
+    font-size: 80%;
+    color: #713558;
+}
+
+.font-plus{
+    font-size: 100%;
+    color: #713558;
+}
+</style>     
+ 
+
+  <div id="toolbar" >
+    <div style="width:50%;float: left;">    
+      <div class="datetime">
+        <script type="text/javascript">
+          document.write ('<span id="date-time">', new Date().toLocaleString(), '<\/span>')
+          if (document.getElementById) onload = function () {
+            setInterval ("document.getElementById ('date-time').firstChild.data = new Date().toLocaleString()", 50)
+          }
+        </script>
+      </div>
+    </div>
+     <div style="width:50%;float:right;">
+      <div class="changefont">
+       <div class="fontlist" style="cursor:pointer; color:">
+        <a class="font-button minus font-minus">A-</a> &nbsp;<a class="font-button normal font-normal">A</a>&nbsp;
+ <a class="font-button plus font-plus">A+</a>
+      </div>
+    </div>        
+    </div>   
+ </div>
+
+-->
+
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
   <div class="carousel-inner">
@@ -19,21 +68,17 @@
 </div>
 {% endfor %}
 </div>
-
-
   <a class="carousel-control-prev" href="#carouselExampleIndicators" title="Prev" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
+    <span class="sr-only">Previous</span>   </a>
   <a class="carousel-control-next" href="#carouselExampleIndicators" title="Next"  role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
-  </a>
+   </a>
 </div>
 </div>
-
 <nav class="navbar  navbar-expand-lg sticky-top navbar-light bg-light justify-content-center">
-  <a class="navbar-brand float-left" href="{% url 'e-library' group_id  %}"><img src="/static/ndf/images/Clix_logo.png" class="img-fluid" width="200px"></a>
+  <a class="navbar-brand float-left" href="{% url 'e-library' group_id  %}" tabindex="1"><img src="/static/ndf/images/Clix_logo.png" class="img-fluid" width="200px"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -48,7 +93,7 @@
 </li>
 -->
   <li class="nav-item first-fliter-search">
-        <a class="nav-link py-3 home fun-name" href="{% url 'e-library' group_id  %}" data-toggle="tooltip" 
+        <a class="nav-link py-3 home fun-name" tabindex="2"  href="{% url 'e-library' group_id  %}" data-toggle="tooltip" 
   title="{% trans  "E-library for open educational resources"%}" > <i class="fas fa-book solid"></i>{% trans 'E-library' %} <span class="sr-only">(current)</span></a>
            </li>
 <!--     
@@ -66,7 +111,7 @@
 -->
 
        <li class="nav-item dropdown">
-        <a class="nav-link py-3 dropdown-toggle ml-3 fun-name" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link py-3 dropdown-toggle ml-3 fun-name" tabindex="3" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
 
 
@@ -111,11 +156,11 @@
       </li>
       <li class="nav-item ">
 	
-        <a class="nav-link ml-3 py-3 fun-name" href="{% url 'about' group_id  %}"> <i class="fas fa-info-circle" data-toggle="tooltip"
+        <a class="nav-link ml-3 py-3 fun-name" tabindex="3" href="{% url 'about' group_id  %}"> <i class="fas fa-info-circle" data-toggle="tooltip"
  title="{% trans "Know about CLIx OERs" %}" ></i> {% trans 'About' %}</a>
       </li>
       <li class="nav-item ">
-          <a class="nav-link ml-2 py-3 fun-name" href="{% url 'help' group_id %}" title="Help"> <i data-toggle="tooltip" class=" far fa-question-circle" title="{% trans  "Explore help material" %}">
+          <a class="nav-link ml-2 py-3 fun-name" tabindex="4"  href="{% url 'help' group_id %}" title="Help"> <i data-toggle="tooltip" class=" far fa-question-circle" title="{% trans  "Explore help material" %}">
 </i> {% trans 'Help' %} </a>
         </li>
 <!--       <form class="form-inline my-2 my-md-0 ml-3  fun-name">
@@ -148,8 +193,8 @@
 
 </li>
 -->
-<div class="dropdown show py-3  fun-name" title="{% trans "Choose the Language" %}" >
-  <a class=" dropdown-toggle"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div   class="dropdown show py-3  fun-name" title="{% trans "Choose the Language" %}"  >
+  <a class=" dropdown-toggle"  role="button" id="dropdownMenuLink" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
                     {{request.LANGUAGE_CODE|get_header_lang}}    
   </a>
 
@@ -290,7 +335,6 @@ $(document).ready(function () {
     });
 });
 
-
 var shiftWindow = function() { scrollBy(0, -110) };
 if (location.hash) shiftWindow();
 window.addEventListener("hashchange", shiftWindow);
@@ -300,6 +344,26 @@ $('.navbar-nav .nav-link a').click(function(){
     $(this).addClass('active');
 })
 
+  <script type="text/javascript">
+/*      $(function() {
+        $(".font-button").bind("click", function () {
+          var size = parseInt($('body').css("font-size"));
+          if ($(this).hasClass("plus")) {
+            size = size + 1;
+          } else if ($(this).hasClass("minus")){
+            size = size - 1;
+            if (size <= 10) {
+              size = 10;
+            }}
+            else if ($(this).hasClass("normal")){
+              size = 14;
+            }
+            else {}
+              $('body , a, nav, h1, p, li, h2,h3,h4,span').css("font-size", size);
+          });
+      });
+*/
+    </script>
 
 </script>
 <script>
