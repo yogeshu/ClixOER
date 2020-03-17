@@ -22,7 +22,7 @@ python-memcached==1.58
 django-memcache-admin
 # pandora-client==0.2.197
 django-simple-captcha==0.4.5
-hashfs==0.6.0
+hashfs==0.7.2
 ox>=2.1.651
 celery==3.1.19
 django-celery==3.1.16
