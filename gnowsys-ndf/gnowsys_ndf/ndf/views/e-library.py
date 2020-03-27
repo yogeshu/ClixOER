@@ -66,7 +66,10 @@ GST_JSMOL = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute(
 q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='Module')])")
 gst_module = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute()
 
-banner_pics = ['/static/ndf/Website Banners/About/About2.png','/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png']
+#banner_pics = ['/static/ndf/Website Banners/About/About2.png','/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png']
+
+
+banner_pics = ['/static/ndf/Website Banners/About/About2.png','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-1.jpg','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-2.png','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-3.jpg','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-4.png','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-5.png','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-6.jpg','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-7.png']
 
 ##############################################################################
 
