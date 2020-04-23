@@ -1,12 +1,34 @@
-# ClixOER
-OER 
-CLix OER version
+# CLIxOER
 
-
-gstudio is an implementation of http://www.gnu.org/software/gnowsys/
-which is a Node Description Framework (NDF). It is uses the framework of a graph database for developing user friendly apps for teachers, students and citizens. 
+CLIxOER is a derivative of gstudio which is an implementation of http://www.gnu.org/software/gnowsys/
+which is a Node Description Framework (NDF). In turn, Gnowsys a graph database framework for developing interactive, accessible and user friendly educational apps for teachers, students and citizens. 
 
 The project is released under GNU AGPL v3 license.
+
+Front-end technologies use in CLIxOER
+-------------------------------------
+Bootstrap
+
+Back-end technologies use in CLIxOER
+------------------------------------
+Gnowsys-NDF
+Django-python
+
+Database(s) use in CLIxOER
+--------------------------
+Elasticsearch
+Postgress
+
+Deployment technologies use in CLIxOER
+--------------------------------------
+Docker
+Nginx
+
+Testcase suite
+--------------
+
+
+
 
 Features of gstudio
 -------------------
@@ -19,9 +41,9 @@ enjoy the master branch (more stable) or alpha branch (less stable).
 Live sites using gstudio
 ------------------------
 
-- https://www.metastudio.org/
+- http://clixplatform.tiss.edu/ and several offline instances running in schools (as school servers)
 - http://nroer.gov.in/
-- http://i2c-clix.tiss.edu/ and several offline instances running in schools (as school servers)
+- https://www.metastudio.org/
 - http://studio.tiss.edu/ (archived)
 
 Mailing list
