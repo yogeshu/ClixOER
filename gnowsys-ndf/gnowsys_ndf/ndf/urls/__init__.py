@@ -30,155 +30,6 @@ urlpatterns = patterns('',
     # gstudio admin url's
     (r'^admin/', include('gnowsys_ndf.ndf.urls.gstudio_admin')),
 
-    # --mobwrite-- commented for time being
-    # (r'^raw/(?P<name>.+)/', 'gnowsys_ndf.mobwrite.views.raw'),
-    # (r'^r/(?P<name>.+)/', 'gnowsys_ndf.mobwrite.views.raw'),
-    # (r'^m/(?P<name>.+)/', 'gnowsys_ndf.mobwrite.views.html'),
-    # (r'^t/(?P<name>.+)/', 'gnowsys_ndf.mobwrite.views.text'),
-    # (r'^new/$', 'gnowsys_ndf.mobwrite.views.new'),
-    # (r'^mobwrite/', 'gnowsys_ndf.mobwrite.views.mobwrite'),
-    # --end of mobwrite
-
-    # url(r'^(?P<group_id>[^/]+)/mailclient[/]error[/](?P<error_obj>[\w-]+)$', 'gnowsys_ndf.ndf.views.mailclient.mailclient_error_display', name='mailclient_error_display'),
-
-    #url(r'^$', homepage, {"group_id": "home"}, name="homepage"),
-    #url(r'^welcome/?', landing_page, name="landing_page"),
-
-    #url(r'^captcha/', include('captcha.urls')),
-    #(r'^', include('gnowsys_ndf.ndf.urls.captcha')),
-
-    # all main apps
-    #(r'^(?P<group_id>[^/]+)/mailclient', include('gnowsys_ndf.ndf.urls.mailclient')),
-    #(r'^(?P<group_id>[^/]+)/analytics', include('gnowsys_ndf.ndf.urls.analytics')),
-    #(r'^(?P<group_id>[^/]+)/file', include('gnowsys_ndf.ndf.urls.file')),
-    #(r'^(?P<group_id>[^/]+)/jhapp', include('gnowsys_ndf.ndf.urls.jhapp')),
-    #(r'^(?P<group_id>[^/]+)/filehive', include('gnowsys_ndf.ndf.urls.filehive')),
-    #(r'^(?P<group_id>[^/]+)/image', include('gnowsys_ndf.ndf.urls.image')),
-    #(r'^(?P<group_id>[^/]+)/audio', include('gnowsys_ndf.ndf.urls.audio')),
-    #(r'^(?P<group_id>[^/]+)/video', include('gnowsys_ndf.ndf.urls.video')),
-    #(r'^(?P<group_id>[^/]+)/page', include('gnowsys_ndf.ndf.urls.page')),
-    #(r'^(?P<group_id>[^/]+)/group', include('gnowsys_ndf.ndf.urls.group')),
-    #(r'^(?P<group_id>[^/]+)/partner', include('gnowsys_ndf.ndf.urls.partner')),
-    #(r'^(?P<group_id>[^/]+)/forum', include('gnowsys_ndf.ndf.urls.forum')),
-    #(r'^(?P<group_id>[^/]+)/quiz', include('gnowsys_ndf.ndf.urls.quiz')),
-    #(r'^(?P<group_id>[^/]+)/discussion', include('gnowsys_ndf.ndf.urls.discussion')),
-    #(r'^(?P<group_id>[^/]+)/unit',include('gnowsys_ndf.ndf.urls.unit')),
-    # (r'^api/v1|api',include('gnowsys_ndf.ndf.urls.api')),
-    #(r'^api/v1',include('gnowsys_ndf.ndf.urls.api_v1')),
-    #(r'^api/v2',include('gnowsys_ndf.ndf.urls.api_v2')),
-    
-    # Commented following url for khaal hackathon
-    #(r'^(?P<group_id>[^/]+)/course', include('gnowsys_ndf.ndf.urls.course')),
-
-    # (r'^(?P<group_id>[^/]+)/gcourse', include('gnowsys_ndf.ndf.urls.gcourse')),
-
-    #(r'^(?P<group_id>[^/]+)/program', include('gnowsys_ndf.ndf.urls.program')),
-    #(r'^(?P<group_id>[^/]+)/module', include('gnowsys_ndf.ndf.urls.module')),
-    #(r'^(?P<group_id>[^/]+)/search', include('gnowsys_ndf.ndf.urls.search_urls')),
-    #(r'^(?P<group_name>[^/]+)/task', include('gnowsys_ndf.ndf.urls.task')),
-    #(r'^(?P<group_id>[^/]+)/batch', include('gnowsys_ndf.ndf.urls.batch')),
-    #(r'^(?P<group_id>[^/]+)/ajax/', include('gnowsys_ndf.ndf.urls.ajax-urls')),
-    #(r'^(?P<group_id>[^/]+)/bib_app', include('gnowsys_ndf.ndf.urls.Bib_App')),
-    #(r'^(?P<group_id>[^/]+)/wikidata', include('gnowsys_ndf.ndf.urls.wikidata')),
-    #(r'^(?P<group_id>[^/]+)/', include('gnowsys_ndf.ndf.urls.user')),
-    #(r'^(?P<group_id>[^/]+)/ratings', include('gnowsys_ndf.ndf.urls.ratings')),
-    #(r'^(?P<group_id>[^/]+)/topics', include('gnowsys_ndf.ndf.urls.topics')),
-    #(r'^(?P<group_id>[^/]+)/curriculum', include('gnowsys_ndf.ndf.urls.curriculum')),
-    #(r'^(?P<group_id>[^/]+)/e-library', include('gnowsys_ndf.ndf.urls.e-library')),
-    #(r'^(?P<group_id>[^/]+)/e-book', include('gnowsys_ndf.ndf.urls.e-book')),
-    #(r'^(?P<group_id>[^/]+)/term', include('gnowsys_ndf.ndf.urls.term')),
-    #(r'^(?P<group_id>[^/]+)/event', include('gnowsys_ndf.ndf.urls.event')),
-    #(r'^(?P<group_id>[^/]+)/data-review', include('gnowsys_ndf.ndf.urls.data_review')),
-    #(r'^(?P<group_id>[^/]+)/observation', include('gnowsys_ndf.ndf.urls.observation')),
-    #(r'^(?P<group_id>[^/]+)/compare', include('gnowsys_ndf.ndf.urls.version')),
-    #(r'^(?P<group_id>[^/]+)/moderation', include('gnowsys_ndf.ndf.urls.moderation')),
-    #(r'^(?P<group_id>[^/]+)/feeds', include('gnowsys_ndf.ndf.urls.feeds')),
-    #(r'^(?P<group_id>[^/]+)/trash',include('gnowsys_ndf.ndf.urls.trash')),
-    #(r'^(?P<group_id>[^/]+)/buddy',include('gnowsys_ndf.ndf.urls.buddy')),
-    #(r'^(?P<group_id>[^/]+)/translation',include('gnowsys_ndf.ndf.urls.translation')),
-    #(r'^(?P<group_id>[^/]+)/node',include('gnowsys_ndf.ndf.urls.node')),
-    # needs to decide on asset and it's url(s).
-    # (r'^(?P<group_id>[^/]+)/asset',include('gnowsys_ndf.ndf.urls.asset')),
-
-    #(r'^(?P<group_id>[^/]+)/type_created',include('gnowsys_ndf.ndf.urls.type_created')),
-
-    #url(r'^(?P<group_id>[^/]+)/topic_details/(?P<app_Id>[\w-]+)', 'gnowsys_ndf.ndf.views.topics.topic_detail_view', name='topic_details'),
-
-    # -- django-json-rpc method calls --
-    #url(r'^json/browse/$', 'jsonrpc.views.browse', name='jsonrpc_browser'),
-    #url(r'^json/$', jsonrpc_site.dispatch, name='jsonrpc_mountpoint'),
-    # url for directly calling RPC method from browser
-    #(r'^json/(?P<method>[a-zA-Z0-9.-_]+)$', jsonrpc_site.dispatch),
-    # ---end of django-json-rpc
-
-    # -- mis --
-    #(r'^(?P<group_id>[^/]+)/mis', include('gnowsys_ndf.ndf.urls.mis', namespace='mis'), {'app_name': "MIS"}),
-    #(r'^(?P<group_id>[^/]+)/mis-po', include('gnowsys_ndf.ndf.urls.mis', namespace='mis-po'), {'app_name': "MIS-PO"}),
-    # ---end of mis
-
-    #test url
-    #(r'^dev/', include('gnowsys_ndf.ndf.urls.dev_utils')),
-    #(r'^tools/', include('gnowsys_ndf.ndf.urls.tools')),
-    # meeting app
-    # (r'^online/', include('online_status.urls')),   #for online_users.
-    # url(r'^(?P<group_id>[^/]+)/inviteusers/(?P<meetingid>[^/]+)','gnowsys_ndf.ndf.views.meeting.invite_meeting', name='invite_meeting'),
-    # url(r'^(?P<group_id>[^/]+)/meeting/(?P<meetingid>[^/]+)','gnowsys_ndf.ndf.views.meeting.output', name='newmeeting'),
-    # url(r'^(?P<group_id>[^/]+)/meeting','gnowsys_ndf.ndf.views.meeting.dashb', name='Meeting'),
-    # url(r'^(?P<group_id>[^/]+)/online','gnowsys_ndf.ndf.views.meeting.get_online_users', name='get_online_users'),
-    # following url (name="meeting") kept uncommented to avoid errors
-    #url(r'^(?P<group_id>[^/]+)/meeting','gnowsys_ndf.ndf.views.meeting.dashb', name='meeting'),
-    #url(r'^about.html/','gnowsys_ndf.ndf.views.site.site_about',name='site_about'),    
-    #url(r'^credits.html/','gnowsys_ndf.ndf.views.site.site_credits',name='site_credits'),    
-    #url(r'^contact.html/','gnowsys_ndf.ndf.views.site.site_contact',name='site_contact'),    
-    #url(r'^termsofservice.html/','gnowsys_ndf.ndf.views.site.site_termsofuse',name='site_termsofuse'),    
-    #url(r'^privacypolicy.html/','gnowsys_ndf.ndf.views.site.site_privacypolicy',name='site_privacypolicy'),    
-    # --end meeting app
-
-    # (r'^(?P<group_id>[^/]+)/Observations', include('gnowsys_ndf.ndf.urls.observation')),
-
-    # --discussion--
-    # url(r'^(?P<group_id>[^/]+)/(?P<node_id>[^/]+)/create_discussion$', 'gnowsys_ndf.ndf.views.discussion.create_discussion', name='create_discussion'),
-    # url(r'^(?P<group_id>[^/]+)/(?P<node_id>[^/]+)/discussion_reply$', 'gnowsys_ndf.ndf.views.discussion.discussion_reply', name='discussion_reply'),
-    # url(r'^(?P<group_id>[^/]+)/discussion_delete_reply$', 'gnowsys_ndf.ndf.views.discussion.discussion_delete_reply', name='discussion_delete_reply'),
-    # --end of discussion
-
-    #url(r'^(?P<group_id>[^/]+)/visualize', include('gnowsys_ndf.ndf.urls.visualise_urls')),
-
-    #(r'^explore/', include('gnowsys_ndf.ndf.urls.explore')),
-    #url(r'^help-page/(?P<page_name>[^/]+)$', 'gnowsys_ndf.ndf.views.home.help_page_view', name='help_page_view'),
-    #url(r'^(?P<group_id>[^/]+)/$', 'gnowsys_ndf.ndf.views.group.group_dashboard', name='groupchange'),
-    # ---listing sub partners---
-   # url(r'^(?P<group_id>[^/]+)/partners$', 'gnowsys_ndf.ndf.views.partner.partner_list', name='partnerlist'),
-    # --------end of listing sub partners--------
-    # -- tags --
-    #url(r'^(?P<group_id>[^/]+)/tags$', 'gnowsys_ndf.ndf.views.methods.tag_info', name='tag_info'),
-    #url(r'^(?P<group_id>[^/]+)/tags/(?P<tagname>[^/]+)$', 'gnowsys_ndf.ndf.views.methods.tag_info', name='tag_info'),
-    # ---end of tags
-
-    # -- annotations --
-    # url(r'^(?P<group_id>[^/]+)/annotationlibInSelText$', 'gnowsys_ndf.ndf.views.ajax_views.annotationlibInSelText', name='annotationlibInSelText'),
-    # url(r'^(?P<group_id>[^/]+)/delComment$', 'gnowsys_ndf.ndf.views.ajax_views.delComment', name='delComment'),
-    # ---end of annotations
-
-    # -- custom apps --
-    # (r'^(?P<group_id>[^/]+)/(?P<app_name>[^/]+)', include('gnowsys_ndf.ndf.urls.custom_app')),
-    # url(r'^(?P<group_id>[^/]+)/(?P<app_name>[^/]+)/(?P<app_id>[\w-]+)$', custom_app_view, name='GAPPS'),
-    # url(r'^(?P<group_id>[^/]+)/(?P<app_name>[^/]+)/(?P<app_id>[\w-]+)/(?P<app_set_id>[\w-]+)$', custom_app_view, name='GAPPS_set'),
-    # url(r'^(?P<group_id>[^/]+)/(?P<app_name>[^/]+)/(?P<app_id>[\w-]+)/(?P<app_set_id>[\w-]+)/(?P<app_set_instance_id>[\w-]+)$', custom_app_view, name='GAPPS_set_instance'),
-    # url(r'^(?P<group_id>[^/]+)/(?P<app_name>[^/]+)/(?P<app_id>[\w-]+)/(?P<app_set_id>[\w-]+)/(?P<app_set_instance_id>[\w-]+)/edit/$', custom_app_new_view, name='GAPPS_set_instance_edit'),
-    # url(r'^(?P<group_id>[^/]+)/(?P<app_name>[^/]+)/(?P<app_id>[\w-]+)/(?P<app_set_id>[\w-]+)/new/$', custom_app_new_view, name='GAPPS_set_new_instance'),
-    # --- end of custom apps
-
-    # (r'^home','gnowsys_ndf.ndf.views.group.group_dashboard'),
-    # (r'^home/', 'gnowsys_ndf.ndf.views.home.homepage'),
-
-    #(r'^benchmarker/', include('gnowsys_ndf.benchmarker.urls')),
-
-
-
-    #url(r'^(?P<group_id>[^/]+)/repository/?$', 'gnowsys_ndf.ndf.views.methods.repository', name='repository'),
-    #url(r'^get_gridfs_resource/(?P<gridfs_id>[^/]+)/?$', 'gnowsys_ndf.ndf.views.file.get_gridfs_resource', name='get_gridfs_resource'),
-
     # django-registration
     url(r'^accounts/password/change/done/', auth_views.password_change_done, {'template_name': 'registration/password_change_done.html'}, name='password_change_done'),
     url(r'^accounts/password/change/', auth_views.password_change, {'password_change_form': UserChangeform, 'template_name': 'registration/password_change_form.html'}),
@@ -222,11 +73,7 @@ urlpatterns = patterns('',
    # --end of django-registration
 
    (r'^status/cache/$', 'gnowsys_ndf.ndf.views.cache.cache_status'),
-    # url(r'^Beta/', TemplateView.as_view(template_name= 'gstudio/beta.html'), name="beta"),
-    url(r'^(?P<user_id>[\w-]+)/profile$', 'gnowsys_ndf.ndf.views.userDashboard.save_profile', name='save_user_profile'),
-
 )
-
 if settings.DEBUG:
     urlpatterns += patterns('',
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
@@ -239,18 +86,18 @@ if settings.DEBUG:
 from gnowsys_ndf.ndf.views.es_queries import homepage
 urlpatterns += patterns('gnowsys_ndf.ndf.views.es_queries',
                         url(r'^$', homepage, {"group_id": "home"}, name="homepage"),
-                        url(r'^home$', homepage, {"group_id": "home"}, name="homepage"),
+                        url(r'^(?P<group_id>[^/]+)/?$', homepage, name="homepage1"),
                         url(r'^(?P<group_id>[^/]+)/e-library', include('gnowsys_ndf.ndf.urls.e-library')),
                         url(r'^(?P<group_id>[^/]+)/module/(?P<node_id>[\w-]+)/(?P<title>[^/]+)/?$', 'module_detail', name='module_detail'),
                         url(r'^(?P<group_id>[^/]+)/course/save_course_page/$', 'save_course_page', name='save_course_page'),
                         #url(r'^(?P<group_id>[^/]+)/course/content/$', 'course_content', name='course_content'),
-                        url(r'^(?P<group_id>[^/]+)/course/activities/$', 'course_pages', name='course_pages'),
-                        url(r'^(?P<group_id>[^/]+)/course/activities/page-no=(?P<page_no>\d+)/$', 'course_pages', name='course_pages_paged'),
-                        url(r'^(?P<group_id>[^/]+)/course/activity/detail/(?P<page_id>[\w-]+)$', 'course_pages', name='view_course_page'),
-                        url(r'^(?P<group_id>[^/]+)/course/activity/create$', 'create_edit_course_page', name='create_course_page'),
-                        url(r'^(?P<group_id>[^/]+)/unit/lessons/$', 'unit_detail', name='unit_detail'),
-                        url(r'^(?P<group_id>[^/]+)/unit//lesson/create/?$', 'lesson_create_edit', name='lesson_create_edit'),
-                        url(r'^(?P<group_id>[^/]+)/ajax/get_group_resources/(?P<res_type>[\w-]+)$', 'get_group_resources', name='get_group_resources'),
+                        #url(r'^(?P<group_id>[^/]+)/course/activities/$', 'course_pages', name='course_pages'),
+                        #url(r'^(?P<group_id>[^/]+)/course/activities/page-no=(?P<page_no>\d+)/$', 'course_pages', name='course_pages_paged'),
+                        #url(r'^(?P<group_id>[^/]+)/course/activity/detail/(?P<page_id>[\w-]+)$', 'course_pages', name='view_course_page'),
+                        #url(r'^(?P<group_id>[^/]+)/course/activity/create$', 'create_edit_course_page', name='create_course_page'),
+                        #url(r'^(?P<group_id>[^/]+)/unit/lessons/$', 'unit_detail', name='unit_detail'),
+                        #url(r'^(?P<group_id>[^/]+)/unit//lesson/create/?$', 'lesson_create_edit', name='lesson_create_edit'),
+                        #url(r'^(?P<group_id>[^/]+)/ajax/get_group_resources/(?P<res_type>[\w-]+)$', 'get_group_resources', name='get_group_resources'),
                         url(r'^(?P<group_id>[^/]+)/ajax/module/$', 'get_module_previewdata', name='get_module_previewdata'),
                         url(r'^(?P<group_id>[^/]+)/domain/(?P<domain_name>[^/]+)/$', 'domain_page', name='domain_page'),
                         url(r'^(?P<group_id>[^/]+)/file/uploadDoc/$', 'uploadDoc', name='uploadDoc'),
@@ -263,10 +110,10 @@ urlpatterns += patterns('gnowsys_ndf.ndf.views.es_queries',
                         url(r'^(?P<group_id>[^/]+)/ajax/module/help_videos/$', 'help_videos', name='help_videos'),
                         url(r'^(?P<group_id>[^/]+)/ajax/explore/$', 'explore_item', name='explore_link'),
                         url(r'^(?P<group_id>[^/]+)/ajax/module/lang$', 'fetch_modules_of_language', name='language_modules'),
-                        url(r'^(?P<group_id>[^/]+)/create/module/$','create_lang_module',name='create_module'),
-                        url(r'^(?P<group_id>[^/]+)/create/unit/$','create_lang_unit',name='create_unit'),
-                        url(r'^(?P<group_id>[^/]+)/node/create/(?P<member_of>[\w-]+)/(?P<detail_url_name>[\w-]+)/?$', 'node_create_edit', {'node_type': 'GSystem', 'node_id': None}, name='node_create'),
-                        url(r'^(?P<group_id>[^/]+)/node/edit/(?P<node_id>[\w-]+)/$', 'node_name_content_edit', name='node_edit'),
+                        #url(r'^(?P<group_id>[^/]+)/create/module/$','create_lang_module',name='create_module'),
+                        #url(r'^(?P<group_id>[^/]+)/create/unit/$','create_lang_unit',name='create_unit'),
+                        #url(r'^(?P<group_id>[^/]+)/node/create/(?P<member_of>[\w-]+)/(?P<detail_url_name>[\w-]+)/?$', 'node_create_edit', {'node_type': 'GSystem', 'node_id': None}, name='node_create'),
+                        #url(r'^(?P<group_id>[^/]+)/node/edit/(?P<node_id>[\w-]+)/$', 'node_name_content_edit', name='node_edit'),
                         url(r'^(?P<group_id>[^/]+)/upload_using_save_file/', 'upload_using_save_file', name='upload_using_save_file'),
                         url(r'^contact.html/','site_contact',name='site_contact'),
                         url(r'^termsofservice.html/','site_termsofuse',name='site_termsofuse'),
