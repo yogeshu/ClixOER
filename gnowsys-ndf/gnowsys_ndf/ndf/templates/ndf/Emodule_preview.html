@@ -294,8 +294,8 @@ class="fas fa-video ml-4  fa-lg "></i> </a>
                                            <div class="dropdown-menu" href="" aria-labelledby="dropdownMenuLink" >
                           <a class="dropdown-item" onclick="CopyLink()"  id="copy"> <i class="fas fa-copy">  </i> Copy link </a>
                        
-<a class="dropdown-item" href="http://www.facebook.com/sharer.php?s=100&amp;p[title]=[TITLE_GOES_HERE]&amp;p[summary]=[SUMMARY_GOES_HERE]&amp\
-;p[url]=[URL_GOES_HERE]&amp;p[images[0]=[IMAGE_GOES_HERE]" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.UR\
+<a class="dropdown-item" href="http://www.facebook.com/sharer.php?s=100&amp;p[title]=[TITLE_GOES_HERE]&amp;p[summary]=[SUMMARY_GOES_HERE]&am\
+;p[url]=[URL_GOES_HERE]&amp;p[images[0]=[IMAGE_GOES_HERE]" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.U\
 L, 'facebook-popup', 'height=350,width=600'); return false;"
  target="_blank" > <i class="fab  fa-facebook" > </i>   Share on Facebook</a>
 <a class="dropdown-item" href="http://twitter.com/intent/tweet?text=[learn about Clix]" onclick="window.open(this.href, 'twitterwindow','left\
@@ -471,14 +471,21 @@ $("a.video").click(function() {
                               csrfmiddlewaretoken: "{{csrf_token }}",
                                       node_id:id,
                       },
+                      beforeSend: function(){
+                           
+                          $("#overlay").show(); },
                       datatype: "html",
 
                       success: function(data) {
+                      $("#overlay").hide();
                       // $('#jar').html(data)
                       $(".muvideLu").html(data);
                       $("#exampleModalCenterLu").modal('show');
 
-                      }
+                      },
+                        error: function(){
+                        $("#overlay").hide();
+                         }
            });
 
 
