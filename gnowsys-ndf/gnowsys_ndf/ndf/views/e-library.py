@@ -187,13 +187,13 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	datavisual.append({"name":"Interactives","count": allinteractives1.count()})
 	datavisual.append({"name":"Audios","count": allaudios1.count()})
 	datavisual.append({"name":"eBooks","count": educationaluse_stats.get("eBooks", 0)})
-        if 'sessionid' in request.COOKIES.keys():
-                print "Session:",request.COOKIES['sessionid']
-                
-                results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid'],visitednode_name='home')
-                if len(results) ==0:
-                        obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=group_id,visitednode_name='home',preview_count=0,visit_count=1,download_count=0,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
-                        obj.save()
+        #if 'sessionid' in request.COOKIES.keys():
+        #        print "Session:",request.COOKIES['sessionid']
+        
+        results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid'],visitednode_name='home')
+        if len(results) ==0:
+                obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=group_id,visitednode_name='home',preview_count=0,visit_count=1,download_count=0,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
+                obj.save()
         #else:
                 #cnt = results[0].visit_count
                 #obj1 = results[0]
