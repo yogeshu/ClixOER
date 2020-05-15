@@ -83,9 +83,10 @@ if settings.DEBUG:
             'document_root': settings.STATIC_ROOT,
         }),
 )
-from gnowsys_ndf.ndf.views.es_queries import homepage
+from gnowsys_ndf.ndf.views.es_queries import homepage,coolpage
 urlpatterns += patterns('gnowsys_ndf.ndf.views.es_queries',
                         url(r'^$', homepage, {"group_id": "home"}, name="homepage"),
+                        url(r'^cool/?$',coolpage,name='coolpage'),
                         url(r'^(?P<group_id>[^/]+)/?$', homepage, name="homepage1"),
                         url(r'^(?P<group_id>[^/]+)/e-library', include('gnowsys_ndf.ndf.urls.e-library')),
                         url(r'^(?P<group_id>[^/]+)/module/(?P<node_id>[\w-]+)/(?P<title>[^/]+)/?$', 'module_detail', name='module_detail'),
@@ -110,6 +111,7 @@ urlpatterns += patterns('gnowsys_ndf.ndf.views.es_queries',
                         url(r'^(?P<group_id>[^/]+)/ajax/module/help_videos/$', 'help_videos', name='help_videos'),
                         url(r'^(?P<group_id>[^/]+)/ajax/explore/$', 'explore_item', name='explore_link'),
                         url(r'^(?P<group_id>[^/]+)/ajax/module/lang$', 'fetch_modules_of_language', name='language_modules'),
+                        #url(r'^(?P<group_id>[^/]+)/module/create/?$', 'module_create_edit', {'cancel_url': 'landing_page'}, name='module_create')
                         #url(r'^(?P<group_id>[^/]+)/create/module/$','create_lang_module',name='create_module'),
                         #url(r'^(?P<group_id>[^/]+)/create/unit/$','create_lang_unit',name='create_unit'),
                         #url(r'^(?P<group_id>[^/]+)/node/create/(?P<member_of>[\w-]+)/(?P<detail_url_name>[\w-]+)/?$', 'node_create_edit', {'node_type': 'GSystem', 'node_id': None}, name='node_create'),
