@@ -32,7 +32,7 @@ from gnowsys_ndf.ndf.models import GSystemType
 
 gfs = HashFS('/data/media/', depth=3, width=1, algorithm='sha256')
 
-banner_pics1 = ['/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png']
+banner_pics1 = ['/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png','/static/ndf/Website Banners/COOL-website-slider/COOL_websiteBanner_1200x400px.jpg']
 def site_contact(request):
     req_context = RequestContext(request, {
                                     'title':'Contact','group_id': 'home', 'groupid': 'home','bannerpics':banner_pics1})
@@ -306,6 +306,14 @@ def fetch_modules_of_language(request,group_id):
         modules[each.name] = each.id
     print "Modules:",json.dumps(modules)
     return HttpResponse(json.dumps(modules), content_type="application/json")
+
+def coolpage(request):
+    print "Entered coolpage"
+    #TheCOOL.html
+    banner_pics1 = ['/static/ndf/Website Banners/COOL-website-slider/COOL_websiteBanner_1200x400px.jpg']
+    req_context = RequestContext(request, {
+                                    'title':'COOL','group_id': 'home', 'groupid': 'home','bannerpics':banner_pics1})
+    return render_to_response("ndf/TheCOOL.html",req_context)
 
 def homepage(request, group_id):
     print "Entered home.py"
