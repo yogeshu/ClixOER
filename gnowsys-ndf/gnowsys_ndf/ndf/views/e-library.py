@@ -69,7 +69,7 @@ gst_module = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute
 #banner_pics = ['/static/ndf/Website Banners/About/About2.png','/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png']
 
 
-banner_pics = ['/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-1.jpg','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-2.png','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-3.jpg','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-4.png','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-5.png','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-6.jpg','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-7.png']
+banner_pics = ['/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-1.jpg','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-2.png','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-3.jpg','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-4.png','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-5.png','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-6.jpg','/static/ndf/Website Banners/Landing Page/Revised-eLibrary/eLibrary-7.png','/static/ndf/Website Banners/COOL-website-slider/COOL_websiteBanner_1200x400px.jpg']
 
 ##############################################################################
 
@@ -158,7 +158,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
         
         print "interactives count:",allinteractives1.count()
         
-        domain_set = ['English','Mathematics','Science']
+        domain_set = ['English','Mathematics','Science','Digital Literacy']
         domain_nds = [get_group_name_id(each)[1] for each in domain_set]
         domains = get_nodes_by_ids_list(domain_nds)
         moduleids = []
@@ -167,6 +167,7 @@ def resource_list(request, group_id, app_id=None, page_no=1):
                 if each.name == 'English':
                         english_mod_ids.extend(each.collection_set)
                 moduleids.extend(each.collection_set)
+        #moduleids.append('5a9ff13a69602a0156048cd6')
         print "moduleids:",moduleids,english_mod_ids
 	q1= Q('bool', must=[Q('match', member_of = gst_module[0].id), Q('match',status='PUBLISHED'),Q('terms',id = moduleids),Q('match_phrase',language = lang)])
         q2 = Q('bool',must=[Q('terms',id = english_mod_ids)])
@@ -187,13 +188,13 @@ def resource_list(request, group_id, app_id=None, page_no=1):
 	datavisual.append({"name":"Interactives","count": allinteractives1.count()})
 	datavisual.append({"name":"Audios","count": allaudios1.count()})
 	datavisual.append({"name":"eBooks","count": educationaluse_stats.get("eBooks", 0)})
-        #if 'sessionid' in request.COOKIES.keys():
-        #        print "Session:",request.COOKIES['sessionid']
-        
-        results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid'],visitednode_name='home')
-        if len(results) ==0:
-                obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=group_id,visitednode_name='home',preview_count=0,visit_count=1,download_count=0,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
-                obj.save()
+        if 'sessionid' in request.COOKIES.keys():
+                print "Session:",request.COOKIES['sessionid']
+                
+                results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid'],visitednode_name='home')
+                if len(results) ==0:
+                        obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=group_id,visitednode_name='home',preview_count=0,visit_count=1,download_count=0,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
+                        obj.save()
         #else:
                 #cnt = results[0].visit_count
                 #obj1 = results[0]
