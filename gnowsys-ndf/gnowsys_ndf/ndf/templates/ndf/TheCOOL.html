@@ -1,0 +1,429 @@
+ {% extends "ndf/base.html" %}
+
+{% load i18n %}
+
+{% block content %}  
+
+
+
+<style>
+.jumbotron {
+  background-color: #fff;
+}
+
+.some-dark {
+            -webkit-box-shadow: -2px 1px 13px 0px rgba(0,0,0,0.44);
+-moz-box-shadow: -2px 1px 13px 0px rgba(0,0,0,0.44);
+box-shadow: -2px 1px 13px 0px rgba(0,0,0,0.44);
+        }
+#connective p {
+font-size : 16px !important;
+}
+#connective h1 {
+font-weight: 300;
+}
+#verticalScrollspy > ul > li  > a  {
+font-size: 14px !important;
+}
+</style>
+    <div class="container-fluid hello">
+      <div class="row">
+        <!-- navbar  -->
+        <nav
+          class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 " style="margin-top: 5px;"
+          id="verticalScrollspy"
+         >
+         <ul class="nav flex-column nav-pills nav-scroll" >
+            <li class="nav-item " >
+              <a
+                title=" Click to see all modules"
+                class="nav-link active"
+                href="#section1"
+              >
+                About COOL
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                title="Testimonials of student and teachers"
+                href="#section2"
+              >
+                1.Resources for Teacher Education
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                title="Support material to integrate CLIx OERs in the classroom"
+                href="#section3"
+              >
+                2.Ground Assessment - Research
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                title="Know about the design and development details of CLIx OERs"
+                href="#section4"
+              >
+                3.Multilingual Webinars for school teachers and students by ITE
+                & CLIx
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" title="Know our team" href="#section5">
+              4.OER Repository
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a
+                title=" Click to see all modules"
+                class="nav-link active"
+                href="#section6"
+              >
+              5.Technology for Connected Learning
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                title="Testimonials of student and teachers"
+                href="#section7"
+              >
+               COOL Team
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                title="Support material to integrate CLIx OERs in the classroom"
+                href="#section8"
+              >
+               Contact US
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="col-12 col-sm-12 col-md-10  col-lg-10 col-xl-10" id="connective">
+          <div data-spy="scroll" data-target="#verticalScrollspy">
+            <div id="section1" class="container-fluid py-3">
+              <h1>About COOL</h1>
+              <hr />
+              <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          <img src="..." class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="..." class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="..." class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                  </div> -->
+              <div class="sec-1" tabindex="">
+                <p>
+                  As India faces a disruptive moment in education, teachers and
+                  students have the challenge of continuing to teach and learn
+                  during the lockdown. Technology can be an enabler in this
+                  moment of crisis. We, at the Centre for Education Innovation
+                  and Action Research, bring to you a wide range of resources to
+                  help you continue teaching and learning during this time.
+                </p>
+                <p>
+                  We are committed to offer our expertise and services to help
+                  different stakeholders in education transition to other modes
+                  of teaching and learning. The <strong> Connected Open and Online
+                  Learning </strong> (COOL)  is our response to COVID-19 through which we
+                  hope to reach out to teachers, teacher educators and students.
+                  If you are a teacher in a school or teacher educator or a
+                  student teacher in a Teacher Education Institute (B.Ed./M.Ed.)
+                  you will find useful resources for your class and for your own
+                  professional development. These resources are available in
+                  English and a few modern Indian languages. COOL initiative is
+                  seeded by Tata Trusts and supported by Pandit Madan Mohan
+                  Malviya National Missions for teachers and teaching
+                  (PMMMNMTT).
+                </p>
+              </div>
+            <h4>Our Initiatives under COOL</h4>
+
+            </div>
+     
+            <div id="section2" class="container-fluid ">
+              <div class="jumbotron some-dark  ">
+                <h1 class="h1-responsive mt-n2">
+                  1.Resources for Teacher Education
+                </h1>
+
+                <p class="text-justify">
+                  We are mapping our short term and post-graduate certificate
+                  programmes like Reflective Teaching with ICT courses with the
+                  NCTE curriculum to offer them online to student teachers
+                  (B.Ed.) across the country. Three pedagogy courses (English,
+                  Math and Science) are already hosted on the
+                  <a href="https://www.tissx.tiss.edu/" target="_blank">
+                    TISSx
+                  </a>
+                  platform. Most of the courses will be available in two
+                  languages; Hindi and English. Details of these courses are
+                  also available on the NCTE website. We are mapping other free
+                  open online courses to the
+                  <a href="https://ncte.gov.in/" target="_blank"> NCTE </a>
+                  curriculum to provide a wide range of curated resources.
+                </p>
+
+                <p class="text-justify">
+                  Some of our courses are also mapped to the M.Ed curriculum and
+                  in partnership with Mumbai University we are offering weekly
+                  webinars to teacher educators and M.Ed students under the
+                  <strong>Teaching and Learning Consortium (TALC) 2020.</strong>
+                </p>
+                <hr class="mt-2" />
+                You can watch recordings of the webinars on our
+
+                <a style="color:#FF0000"
+                  href="https://www.youtube.com/channel/UCHeg9vBiapABVkb6TTWBgYA"
+                  role="button"
+                  target="_blank"
+                >
+<span class="pt-4">
+                  <i class="fab fa-youtube fa-4x"> </i> </span>
+                </a>
+                <!-- <div class="text-center border-rounded">
+                <iframe 
+                  width="360"
+                  height="215"
+                  src="https://www.youtube.com/embed/O-wlc52kFYQ"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+                </div> -->
+              </div>
+            </div>
+            <br />
+            <div id="section3" class="container-fluid">
+              <div class="jumbotron some-dark py-5 ">
+                <h1 class="h1-responsive mt-n2">
+                  2. Ground Assessment - Research
+                </h1>
+                 
+                <p class="text-justify"> 
+              <strong> a. Edtech Weekly Podcast: Voices from the ground </strong>  <br>
+
+ 
+                  Understanding the needs of the ground will be a critical
+                  exercise to respond to the current situation. We will gather
+                  information from some of the key stakeholders of school
+                  education. Tune into our weekly
+                  <a href="https://www.youtube.com/watch?v=u2SRff7hdxs">
+                    Podcast segment, EdTech Weekly: Voices from the ground
+                  </a>
+                  to listen to practitioners discuss challenges, interventions
+                  and some innovations.
+                </p>
+
+                <p class="text-justify">
+               <strong>   b. Ground Assessment Study  </strong> <br>
+
+                  We are also gathering primary data from principals, teachers,
+                  parents and students to get a sense of field realities and
+                  plan interventions accordingly. These findings will be posted
+                  on a weekly basis. Please keep visiting to understand the
+                  ground realities.
+                </p>
+              <p class="text-justify">
+
+                 <strong> Reports - </strong>
+
+             <strong>   Assessment of Ground Preparedness for EdTech (Round 1)  </strong> <a herf="" target="_blank">  <Link> </a> <br> 
+
+    <strong>       Are you a teacher or student-teacher? </strong>  If you would like to participate in our survey please click on the link relevant to your work or profile. <br>
+     <strong>  a. Teachers Tool (for teachers, headteachers and teacher educators):  </strong> <br> 
+
+             Hindi -  <a href="https://bit.ly/Tchr-HM-TE-Hindi" target="_blank">    https://bit.ly/Tchr-HM-TE-Hindi
+     </a>  <br>   
+
+               English-  <a href="https://bit.ly/Tchr-HM-TE-Eng" target="_blank">     https://bit.ly/Tchr-HM-TE-Eng
+   </a> <br>
+     <strong>  b. Student Teachers Tool (for students of education studies including B.Ed, M.Ed, MA(Ed)): </strong> <br>  
+      Hindi- <a href="https://bit.ly/StudentT-Hindi" target="_blank">            https://bit.ly/StudentT-Hindi
+      </a> <br>
+       English-<a href="https://bit.ly/StudentT-Eng" target="_blank">   https://bit.ly/StudentT-Eng       </a> <br>
+
+                </p>
+                <hr class="mt-2" />
+                You can watch recordings of the webinars on our
+
+                <a  style="color:#FF0000"
+                  href="https://www.youtube.com/channel/UCHeg9vBiapABVkb6TTWBgYA"
+                  role="button"
+                  target="_blank"
+                >
+<span class="pt-4">
+                  <i class="fab fa-youtube fa-4x"> </i> </span>
+                </a>
+               
+ 
+                </a>
+              </div>
+            </div>
+            <div id="section4" class="container-fluid ">
+              <div class="jumbotron some-dark py-5 ">
+                <h1 class="h1-responsive mt-n2">
+                  3. Multilingual Webinars for school teachers and students by
+                  ITE & CLIx
+                </h1>
+
+                <p class="text-justify">
+                  Integrating Technology in Education (ITE) and Connected
+                  Learning Initiative (CLIx) are the two programmes of the
+                  centre which have been working in educational technology.
+                  Based on the experience and learning of these programmes we
+                  will be conducting weekly webinars for students and teachers
+                  in different languages.These will be interactive sessions
+                  (some conducted by school teachers) and will cover different
+                  aspects such as introducing synchronous and asynchronous
+                  technologies, orientation to computational thinking and other
+                  OERs. There will also be a focus on including hands-on
+                  learning and mental health.
+                </p>
+
+                <hr class="mt-2" />
+                You can watch recordings of the webinars on our
+
+                <a style="color:#FF0000"
+                  href="https://www.youtube.com/channel/UCHeg9vBiapABVkb6TTWBgYA"
+                  role="button"
+                  target="_blank"
+                >
+<span class="pt-4">
+                  <i class="fab fa-youtube fa-4x"> </i> </span>
+                </a>
+ 
+                </a>
+              </div>
+            </div>
+            <div id="section5" class="container-fluid ">
+              <div class="jumbotron some-dark py-5 ">
+                <h1 class="h1-responsive mt-n2">
+                  4. Content Curation and creation- OER Repository
+                </h1>
+
+                <p class="text-justify">
+                  A repository of OER is being designed where free and open
+                  educational resources will be hosted with meta-tagging
+                  fsubjects, grades, languages, type of technology etc. This
+                  page will help teachers, parents, students, educators to
+                  search resources efficiently. Many organizations and
+                  individuals are curating and creating resources, which are
+                  free and may be very useful in diverse contexts. Such
+                  resources will be collated and added to the repository page.
+                  This repository will be hosted on
+                  <a href="https://clixoer.tiss.edu">
+                    https://clixoer.tiss.edu.
+                  </a>
+                  Please visit the webpage for more details and to share OERs
+                  with us. You can also access award winning CLIx resources for
+                  Maths, Science and English for middle and high school students
+                  here.
+                </p>
+                <hr />
+              </div>
+            </div>
+
+            <div id="section6" class="container-fluid ">
+              <div class="jumbotron some-dark py-5 ">
+                <h1 class="h1-responsive mt-n2">
+                  5.Online Course Technology for Connected  for
+                  teachers and educators
+                </h1>
+
+                <p class="text-justify">
+                  We are developing a course on using technology for connected
+                  and distance learning. This will be open for all and is
+                  specifically targeted for school teachers and educators. This
+                  course will provide an understanding of principles of learning
+                  using technology, introduce the learner to synchronous and
+                  asynchronous modes of learning, provide orientation to
+                  different tools of assessments and introduce them to the world
+                  of Open Educational Resources (OERs). This course will be
+                  freely available in two languages (Hindi & English) to help
+                  teachers and educators to plan teaching sessions for their
+                  students using technology. It will importantly orient them on
+                  how technology tools requiring low bandwidth can be used to
+                  connect with their students and continue teaching and
+                  learning. It will be available in English on
+                  <a href="https://www.tissx.tiss.edu/"> TISSx </a> platform
+                  from 11th May 2020 and the Diksha platform (TBD).
+                </p>
+                <hr />  
+   
+       Register yourself for resources in Teacher Education on  <a href=" https://www.tissx.tiss.edu " target="_blank">   https://www.tissx.tiss.edu    </a>
+
+
+<!--                <a
+                  href="https://ncte.gov.in/Website/PDF/OpenEducationResourses.pdf"
+                >
+                  Link
+                </a> 
+                to NCTE curriculum-course details page -->
+              </div>
+    
+           <div id="section7" class="container-fluid py-2">
+ {% include "ndf/TheCOOL_Team_cards.html" %}
+               </div>
+             <div id="section8" class="container-fluid py-2">
+
+{% include "ndf/TheCOOLFM.html" %}
+</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+    <!--  -->
+
+ <link rel="stylesheet" href="https://npmcdn.com/flickity@2/dist/flickity.css">
+        <script src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
+
+    <script>
+       $("#verticalScrollspy").scrollspy();
+
+      (function() {
+        // Your base, I'm in it!
+        var originalAddClassMethod = jQuery.fn.addClass;
+
+        jQuery.fn.addClass = function() {
+          // Execute the original method.
+          var result = originalAddClassMethod.apply(this, arguments);
+
+          // trigger a custom event
+          jQuery(this).trigger("cssClassChanged");
+
+          // return the original result
+          return result;
+        };
+      })();
+
+$(".nav-link").bind('cssClassChanged' , function(e) {
+       $(".nav-item").each( function() {
+            if( $(this).hasClass("active") == true ) {
+       $(this).removeClass("active");
+            }
+        });
+
+       $(this).removeClass("active").parent().addClass("active");
+    });
+        
+
+
+    </script>
+ </body>
+</html>
