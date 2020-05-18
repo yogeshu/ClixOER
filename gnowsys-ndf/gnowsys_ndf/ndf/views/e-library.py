@@ -396,7 +396,7 @@ def resource_list_domainwise(request,group_id, app_id=None, page_no=1):
         
         domain_set = []
         if len(domain_name) == 0:
-                domain_name = ['English','Mathematics','Science']
+                domain_name = ['English','Mathematics','Science','Digital Literacy']
         if len(domain_name) > 1:
 
                 for each in domain_name:
