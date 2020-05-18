@@ -332,8 +332,18 @@ class="fas fa-video  fa-lg "></i> </a>
           <div class="row">
             <div class="col-sm-2 col-md-3">
          <p class="badge badge-secondary " style="padding:5px; font-size:10px; color:#fff !important;">
+{% if moduledetails.subject == "English" %}
+<i class="fa fa-language fa-lg" data-toggle="tooltip" title="{% trans   "Subject" %}" ></i>
+{% elif moduledetails.subject == "Mathematics" %}
+<i class="fa fa-calculator fa-lg" data-toggle="tooltip" title="{% trans   "Subject" %}" ></i>
+{% elif moduledetails.subject == "Science" %}
+<i class="fa fa-flask fa-lg" data-toggle="tooltip" title="{% trans   "Subject" %}" ></i>
+{% elif moduledetails.subject == "Digital Literacy" %}
+
+<i class="fas fa-laptop fa-lg" data-toggle="tooltip" title="{% trans "Subject" %}" > </i>
+ {% endif %}
                                   
-<i data-toggle="tooltip" title="{% trans   "Subject" %}"  class="fas fa-language fa-lg"> &nbsp; {{moduledetails.subject}}</i></p>
+ &nbsp; {{moduledetails.subject}}
 </div>
   <div class="col-sm-2">
       <p class="badge badge-secondary" style="padding:5px;  font-size: 10px; color:#fff !important;"><i data-toggle="tooltip"
