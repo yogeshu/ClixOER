@@ -247,23 +247,26 @@ def get_unplatformpkg_node(node_id,lang):
     if node_id:
         domain = get_attribute_value(node_id,'educationalsubject')
         print "domain:",domain
-        if domain != 'English':
-                q = Q('bool',must=[Q('match_phrase',group_set = node_id),Q('match_phrase',language = lang),Q('match_phrase',tags = 'unplatform')])
+        if domain == 'Digital Literacy':
+                return "",""
         else:
-                q = Q('bool',must=[Q('match_phrase',group_set = node_id),Q('match_phrase',tags = 'unplatform')])
-        s1 = Search(using=es, index='nodes',doc_type="node").query(q)
-        s2 = s1.execute()
-        #prinnplatform pkr url:",s2[0].id
-        if s1.count() > 0:
-                print "unplatform pkg url:",s2[0].id
-                return s2[0]
-        else:
-                nd = get_translated_node(node_id)
-                q = Q('bool',must=[Q('match_phrase',group_set = nd),Q('match_phrase',language = 'en'),Q('match_phrase',tags = 'unplatform')])
+                if domain != 'English':
+                        q = Q('bool',must=[Q('match_phrase',group_set = node_id),Q('match_phrase',language = lang),Q('match_phrase',tags = 'unplatform')])
+                else:
+                        q = Q('bool',must=[Q('match_phrase',group_set = node_id),Q('match_phrase',tags = 'unplatform')])
                 s1 = Search(using=es, index='nodes',doc_type="node").query(q)
                 s2 = s1.execute()
-                print "unplatform pkr url:",s2[0].id
-                return s2[0]
+                #prinnplatform pkr url:",s2[0].id
+                if s1.count() > 0:
+                        print "unplatform pkg url:",s2[0].id
+                        return s2[0]
+                else:
+                        nd = get_translated_node(node_id)
+                        q = Q('bool',must=[Q('match_phrase',group_set = nd),Q('match_phrase',language = 'en'),Q('match_phrase',tags = 'unplatform')])
+                        s1 = Search(using=es, index='nodes',doc_type="node").query(q)
+                        s2 = s1.execute()
+                        print "unplatform pkr url:",s2[0].id
+                        return s2[0]
     else:
                 return "",""
 
