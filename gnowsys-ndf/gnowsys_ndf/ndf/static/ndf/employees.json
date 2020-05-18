@@ -837,6 +837,34 @@
                 ]
               
           }
+],
+
+
+"Team_detail_digital": [
+
+
+
+
+
+{
+       "moduleId": "i2C",
+         "language" : "en",
+
+    "moduleimg" : "",
+        "u": [
+   "Amit Dhakulkar"
+],
+      "userIdArray":  [
+
+
+ "Nagarjuna G.",
+"Satej Shende",
+"Louisa Rosenheck",
+"Ulhas Shah"
+ 
+        ]
+}
+
 ]
 }
 

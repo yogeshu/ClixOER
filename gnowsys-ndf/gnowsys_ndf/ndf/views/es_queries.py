@@ -851,6 +851,9 @@ def get_module_previewdata(request,group_id):
         authorData = json_data['Team_detail_english']
     elif module_dict['subject'] == 'Mathematics':
         authorData = json_data['Team_detail_math']
+    elif module_dict['subject'] == 'Digital Literacy':
+        print json_data['Team_detail_digital']
+        authorData = json_data['Team_detail_digital']
     else:
         authorData = json_data['Team_detail_science']
     #print "Author data of module:",authorData
