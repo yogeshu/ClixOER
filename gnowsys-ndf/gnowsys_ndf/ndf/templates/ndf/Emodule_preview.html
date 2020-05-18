@@ -442,7 +442,7 @@ g"> &nbsp; {% for each_attr in moduledetails.grade %}{{each_attr|slice:"5:"}}
 {% endfor %}
 
 </div>
-{% if moduledetails.name == 'i2C'  %}
+{% if "i2C" in moduledetails.name   %}
 <p> </p>
 {% else %}
 <div class="col-12 col-md-2 mt-5">
