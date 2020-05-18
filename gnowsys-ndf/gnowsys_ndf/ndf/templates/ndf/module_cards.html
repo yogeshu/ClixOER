@@ -5,6 +5,49 @@
 {% load get_relation_value  from ndf_tags %}
 
 <style>
+
+
+
+
+
+
+
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
 /* This is for spinner */
   #overlay{
   position: fixed;
@@ -156,7 +199,7 @@ background: #9693a3 !important;
       <div class="container" id="jar">
         <div class="row" style="">	  
           {% for dest in files %}
-	   
+   
   {% get_dict_from_list_of_dicts dest.attribute_set as node_attrs %}
 <a  class="module_module" id="{{dest.id}}" >
             <div  tabindex="7"
@@ -238,57 +281,85 @@ background: #9693a3 !important;
                       <i class="fas fa-rocket    fa-lg"></i></a >
 {% get_unplatformpkg_node dest.id dest.language.0 as pkg %}
 {% get_download_preview_cnt dest.name as cnt_nd%}
-
+{% if pkg.id.strip == None %}
+<a href="#"> </a>
+{% else %}
 <div class="dropdown show" style="display:inline-block">
                     <a href="" data-toggle="dropdown"    
                       ><i class="fas fa-cloud-download-alt  fa-lg" tabindex="7"   data-toggle="tooltip" title="{% trans "Download offline version" %}"  > 
                         <span
-                          class="badge "
-                          style="font-size:5px; background: #F0578F; color: #fff;"
+                          class=" "
+                          style="font-size:12px; color: black;"
                           >{{cnt_nd.total_downloadcnt}}</span
                         >
                       </i></a
-                    >                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkMu" data-toggle="modal"  >
+                    >            <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkMu"   >
+
+
+
 
 
 
 {% if pkg.id.strip %}
 
-<div data-toggle="modal" data-target="#{{pkg.name}}">
-              <a href="{% url 'read_file' dest.id pkg.id  %}" class="dropdown-item "  tabindex="7"    data-target="#{{pkg.name}}" 
+<div  data-toggle="modal" data-target="#module-{{pkg.name}}">
+              <a href="{% url 'read_file' dest.id pkg.id  %}" class="dropdown-item "  tabindex="7"     
 download="{{pkg.name}}.exe">
 Download Unplatform Version For Windows </a>
 
+</div>
+{% else %} 
+                           <a href="" download="{{dest.name}}"></a>
+
+
+{% endif %}
+{% if pkg.id.strip %}
+
+
+                    <a class="   dropdown-item" href="#mU" data-toggle="modal" data-target="#mU"  rel="modal:open" >Download Unplatform Version For Debian </a>
+                          
+
+
+
 {% else %}
-			   <a href=" "   data-target="#unplatformMu" class="dropdown-item " download="{{dest.name}}">
+
+<a href=""> </a>
+                
+{% endif %}        </div>
+
+
+
+<!--
+<div >
+  {% if pkg.id.strip %}
+
+              <a href="{% url 'read_file' dest.id pkg.id  %}" class="dropdown-item "  tabindex="7"  data-toggle="modal" 
+  data-target="#{{pkg.name}}" download="{{pkg.name}}.exe">
+Download Unplatform Version For Windows </a>
+{% else %} 
+
+   <a href=" "   data-target="#unplatformMu" class="dropdown-item " download="{{dest.name}}">
 Download Unplatform Version For Windows </a>
 {% endif %}
 </div>
-                    <a class="  dropdown-item" href="#" data-toggle="modal" data-target="#mU" >Download Unplatform Version For Debian </a>
-                          
+                    
+   <a class="  dropdown-item" href="#" data-toggle="modal" data-target="#mU" >
+Download Unplatform Version For Linux </a>
+
+                        
                         </div>
+-->
+</div>
 
 
-
-
-
-
-                      </div>
-
-
-
-
-
-
-
-
+{% endif %}
 
 <div class="modal" tabindex="-1" role="dialog" id="mU">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
 
-        <h5 class="modal-title">Installer for Linux  (<name of package>size of file)
+        <h5 class="modal-title">Installer for Linux 
 </h5>
 
 
@@ -316,16 +387,16 @@ Download Unplatform Version For Windows </a>
 
 
 
-<div class="modal" tabindex="-1" role="dialog" id="{{pkg.name}}">
+<div class="modal" tabindex="-1" role="dialog" id="module-{{pkg.name}}" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
 
-	<h5 class="modal-title" >Installer for Windows 64bit (<name of package > {{pkg.name}}.exe   size of file)
+	<h5 class="modal-title" >Installer for Windows 64bit - {{pkg.name}}.exe 
 </h5>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-	  </button>
+	    </button>
       </div>
       <div class="modal-body" style="text-align:left;">
  <ul>
@@ -342,44 +413,46 @@ Download Unplatform Version For Windows </a>
 
 
 
-
-
-
 <a class="video" style="color:#0778FA;"    id="{{dest.id}}"  style="display:inline-block" > <i class="fas fa-video" data-toggle="tooltip"
  title="{% trans "Help videos" %}" tabindex="7" ></i> </a>
 
 
 
 
-                    <div class="dropdown show" style="display:inline-block;" href="" tabindex="7">  
-   <a class=""     href=""   role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                            <i data-toggle="tooltip" title="{% trans "Share" %}"  class="fas fa-share-alt  fa-lg"></i
-                              >
-                              <span id="output"
-                        class="badge"
-                        style="font-size:6px; background: #F0578F; color: #fff;"
-                        >3</span
+                    <div class="dropdown show"  style="display:inline-block;" href="" tabindex="7">  
+   <a class=""     href=""    role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                            <i data-toggle="tooltip" id="{{dest.id}} + 1"  onClick="clickCounter(this)"  title="{% trans "Share" %}"  class="fas fa-share-alt  fa-lg">
+                              <span id="score"
+                        class=""
+                        style="font-size:12px; background: #FFF; color: #000;"
+                        > </span
                       >
-                        </a>
-                      
-                        <div class="dropdown-menu font-share" href="" aria-labelledby="dropdownMenuLink" >
-                          <a class="dropdown-item" onclick="CopyLink()"  id="copy">
-<i class="fas fa-copy"  > </i>
-Copy link</a>
+
+</i
+      >
+                       </a>
+    
+                        <div class="dropdown-menu font-share " href="" aria-labelledby="dropdownMenuLink" >
+                          <a class="dropdown-item" onclick="CopyLink()"  id="copy"  >
+<i class="fas fa-copy "   ></i>
+ Copy Link</a>
                         <!--  <a class="
 dropdown-item"  data-js="facebook-share">Share Facebook</a>
                           <a  class="dropdown-item" data-js="twitter-share" >Share on Twitter</a> -->
-<a class="dropdown-item target" href="http://www.facebook.com/sharer.php?s=100&amp;p[title]=[TITLE_GOES_HERE]&amp;p[summary]=[SUMMARY_GOES_HERE]&amp;p[url]=[URL_GOES_HERE]&amp;p[images[0]=[IMAGE_GOES_HERE]" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup', 'height=350,width=600'); return false;" 
+<a class="dropdown-item target"  data-score="1"   onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'facebook-share-dialog', 'height=350,width=600'); return false;" 
 > <i class="fab fa-facebook"> </i>
 Share on Facebook </a>
-<a class="dropdown-item target"  href="http://twitter.com/intent/tweet?url=http://103.36.84.176:8000/5752ad5a2e01310a05dca583/e-library/" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'), '_blank'; data-url="document.URL"return false;" target="_blank">
+
+
+
+
+<a class="dropdown-item target" data-score="2"  href="http://twitter.com/intent/tweet?url=https://clixoer.tiss.edu/home/e-library/" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'), '_blank'; data-url="document.URL"return false;"      target="_blank" d>
 <i class="fab fa-twitter"> </i>
 Tweet this</a>
 
-<a class="dropdown-item target"  href="javascript:void(window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent(document.title), '_blank'))"> 
+<a class="dropdown-item target" data-score="3"  href="javascript:void(window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent(document.title), '_blank'))"> 
     <i class="fab fa-telegram"></i>
     Telegram link </a>
-
                         </div>
                       </div>
                     <!-- <a href="your link here"
@@ -396,14 +469,13 @@ Tweet this</a>
                     <a class="modal_modal domain_modal " tabindex="7"     title="{% trans  "Preview the module content" %}"    data-toggle="tooltip"   id="{{dest.id}}" style="color:#3333ff;" >
                  
    
-  <i 
-                     
-                        class="fas fa-eye  fa-lg"
-                      >
+  <i   class="fas fa-eye  fa-lg"    >
                       <span
-                        class="badge"
-                        style="font-size:8px; background: rgb(141, 132, 135); color: #fff;"
-                        >{{cnt_nd.total_previewcnt}}</span></i>
+                        class=""
+                        style="font-size:12px; background: rgb(255, 255, 255); color: black;"
+                        >
+
+{{cnt_nd.total_previewcnt}}</span></i>
                     </a>
 
 <!--<a class="video" href="" data-toggle="tooltip" title="Help Video" style="display:inline-block"> <i class="fas fa-video "></i> </a> -->
@@ -415,15 +487,13 @@ Tweet this</a>
             </div>
           </div>
 </a>
-        
+
  {% endfor %}	 
-
-
 
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-lg  modal-dialog-centered" role="document">
-                <div class="modal-content">               
+                <div class="modal-content modal-ui">               
                 </div>
               </div>
             </div>
@@ -432,21 +502,14 @@ Tweet this</a>
 <div class="modal fade" id="exampleModalCenterLu" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
           <div class="modal-content muvideLu">
-                 
           </div>
         </div>
-      </div>                                          \
- 
+      </div>                                         
     </div>
 
   </main>
-
 </div>
-
-
 <script type="text/javascript"> 
-
-
 function copyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
 
@@ -793,7 +856,7 @@ $("a.modal_modal").click(function() {
                     $("#overlay").hide();
 
 		      // $('#jar').html(data)
-		      $(".modal-content").html(data);
+		      $(".modal-ui").html(data);
 		      $("#exampleModalCenter").modal('show');
 
 		      }
@@ -825,7 +888,7 @@ $("a.module_module").click(function() {
                        
         $("#overlay").hide();
     
-                      $(".modal-content").html(data);
+                      $(".modal-ui").html(data);
                       $("#exampleModalCenter").modal('show');
 
                       }
@@ -849,7 +912,7 @@ $("img.module_preview").click(function() {
 
                       success: function(data) {
                       // $('#jar').html(data)
-                      $(".modal-content").html(data);
+                      $(".modal-ui").html(data);
                       $("#exampleModalCenter").modal('show');
 
                       },
@@ -939,25 +1002,12 @@ $(".remove_weight_button").click(function(){
 
 });
 
+   function modalhelpvi(){
+                  $("#exampleModalCenterLu").modal('show');
+                  };
 
 
+	
 
-function modalhelpvi(){
- $("#exampleModalCenterLu").modal('show');
-};
-
-
-
-
-
-$(document).ready(function(){
-  var show_btn=$('.show-modaltrue');
-  var show_btn=$('.show-modaltrue');
-  //$("#testmodal").modal('show');
-  
-    show_btn.click(function(){
-      $("#exampleModalCenterLu").modal('show');
-  })
-});
 
 </script>
