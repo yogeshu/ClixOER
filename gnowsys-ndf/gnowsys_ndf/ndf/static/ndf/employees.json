@@ -863,8 +863,47 @@
 "Ulhas Shah"
  
         ]
+},
+
+{
+       "moduleId": "i2C",
+         "language" : "",
+
+    "moduleimg" : "hi",
+    "u": [
+   "Amit Dhakulkar"
+],
+      "userIdArray":  [
+
+
+ "Nagarjuna G.",
+"Satej Shende",
+"Louisa Rosenheck",
+"Ulhas Shah"
+
+	  ]
+},
+{
+       "moduleId": "i2C",
+         "language" : "te",
+
+    "moduleimg" : "",
+    "u": [
+   "Amit Dhakulkar"
+],
+      "userIdArray":  [
+
+
+ "Nagarjuna G.",
+"Satej Shende",
+"Louisa Rosenheck",
+"Ulhas Shah"
+
+	  ]
 }
 
+
 ]
+
 }
 
