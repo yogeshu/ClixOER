@@ -1,6 +1,6 @@
 
 {% load i18n %}
- <h1 class="text-center py-5 "> Contact US </h1>
+ <h1 class="text-center py-5 "> Contact Us </h1>
 <!--<p  class="text-center " >Hope you enjoyed and found our modules useful. For any further queries or feedback, please write to:  </p> -->
 {% for message in messages %}
   <div class="alert {{ message.tags }} alert-dismissible" role="alert">
@@ -15,9 +15,8 @@
 		<form class="contact100-form validate-form" id="c" action="{% url 'send_message' group_id %} "  method="POST">
   {% csrf_token %}
 			<span class="contact100-form-title" style="text-align:justify;">
-		Please fill this form to register yourself for receiving updates on the above initiates (Courses, Webinars, OERs, Research)
-
-			</span>
+        Hope you found the COOL initiatives and resources useful. Would you like to volunteer or share feedback? Please fill the below form.
+ 			</span>
 
 		<!--	<label class="label-input100" for="first-name">Tell us your name *</label>  -->
                         
