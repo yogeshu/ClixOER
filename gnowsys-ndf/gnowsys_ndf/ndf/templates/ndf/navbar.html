@@ -5,7 +5,6 @@
 
 
 
-
 {% load i18n %}
 {% load ndf_tags %}
 <!-- navbar 
@@ -86,14 +85,14 @@ background-color: none;
   <div class="carousel-inner">
 
 <div class="carousel-item active">
-      <img src="{{bannerpics.0}}" class="d-block w-100" width="1200" height="400"  alt="OER_slider">
+      <img src="{{bannerpics.0}}" class="d-block w-100 "       alt="OER_slider">
 
 </div>
      
 
 {% for banner in bannerpics|slice:"1:" %}
  <div class="carousel-item">
-      <img src="{{banner}}" class="d-block w-100" width="1200" height="400"  alt="OER_slider">
+      <img src="{{banner}}" class="d-block w-100 img-fluid"    alt="OER_slider">
 
  
 </div>
@@ -112,7 +111,7 @@ background-color: none;
   {% if title == 'COOL' %} 
   <a class="navbar-brand float-left" href="{% url 'e-library' group_id  %}" tabindex="1"><img src="/static/ndf/images/COOLLOGO.png" class="img-fluid" width="125px"></a>
 {% else %}
-   <a class="navbar-brand float-left" href="{% url 'e-library' group_id  %}" tabindex="1"><img src="/static/ndf/images/Clix_logo.png" class="img-fluid" width="200px"></a\>
+   <a class="navbar-brand float-left" href="{% url 'e-library' group_id  %}" tabindex="1"><img src="/static/ndf/images/Clix_logo.png" class="img-fluid" width="200px"></a>
 {% endif %}
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
