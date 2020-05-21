@@ -477,7 +477,7 @@ def send_message(request,group_id):
     c = {'email': request.POST['email'],
                  'first_name': request.POST['first_name'],'last_name':request.POST['last_name'],'domain':request.POST['domain'],'message':request.POST['message']}
     email_from = EMAIL_HOST_USER
-    recipient_list = ['satej_shende@tiss.edu']
+    recipient_list = ['contact@clix.tiss.edu']
     html_content = render_to_string('ndf/html_message.html', c)
     msg = EmailMultiAlternatives(subject, message,email_from, recipient_list)
 
