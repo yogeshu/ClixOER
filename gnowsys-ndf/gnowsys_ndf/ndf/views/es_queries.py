@@ -484,7 +484,9 @@ def send_message(request,group_id):
     msg.attach_alternative(html_content, "text/html")
     msg.send(fail_silently=True)
     messages.success(request, 'Your feedback sent successfully!')
-    if domain != 'About':
+    if domain == 'cool':
+        return HttpResponseRedirect( reverse('coolpage') )
+    elif domain != 'About':
         return HttpResponseRedirect( reverse('domain_page', kwargs={"group_id": group_id,"domain_name":request.POST['domain']}) )
     else:
         return HttpResponseRedirect( reverse('about', kwargs={"group_id": group_id}) )
