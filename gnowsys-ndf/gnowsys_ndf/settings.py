@@ -15,7 +15,7 @@ from django.contrib.messages import constants as messages
 #     move_file_or_dirctory)
 
 DEBUG = True
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['103.36.84.176', '127.0.0.1', 'localhost']
 
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
@@ -301,7 +301,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_PORT = 25
 EMAIL_HOST_USER = 'gdswetha@gmail.com'
-EMAIL_HOST_PASSWORD = 'inter15'
+EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # The following email id and password for the email account will be used for sending/receiving SYNCDATA
 SYNCDATA_KEY_PUB = ""
@@ -365,7 +365,7 @@ DATABASES = {
     },
     'mongodb': {
         'ENGINE': 'django_mongokit.mongodb',
-        'NAME': 'studio-dev',
+        'NAME': 'gstudio-mongodb',
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
@@ -655,7 +655,7 @@ GSTUDIO_USER_GAPPS_LIST = ['Page', 'File', 'Task', 'Course', 'Event', 'Quiz']
 GSTUDIO_ORG_NAME = '''<p>
 A project of <a href="http://lab.gnowledge.org/" target="_blank">{% trans "Gnowledge Lab" %}</a> at the <a href="http://www.hbcse.tifr.res.in" target="_blank">Homi Bhabha Centre for Science Education (HBCSE)</a>, <a href="http://www.tifr.res.in" target="_blank">Tata Institute of Fundamental Research (TIFR), India</a>.
 </p>'''
-GSTUDIO_SITE_FAVICON = "/static/ndf/images/favicon/logo.png"
+#GSTUDIO_SITE_FAVICON = "/static/ndf/images/favicon/logo.png"
 GSTUDIO_SITE_LOGO = "/static/ndf/css/themes/metastudio/logo.svg"
 GSTUDIO_SITE_SECONDARY_LOGO = "/static/ndf/css/themes/metastudio/logo.svg"
 GSTUDIO_GIT_REPO = "https://github.com/gnowledge/gstudio"
@@ -1087,10 +1087,10 @@ GLITE_RCS_REPO_DIR = os.path.join('/data/', RCS_REPO_DIRNAME)
 
 GSTUDIO_ELASTIC_SEARCH_INDEX = {
   #"Filehives": ["Filehive"],
-  "Triples": ["Triple"],
+  #"Triples": ["Triple"],
   # "Buddies": ["Buddy"],
   # "Benchmarks": ["Benchmark"],
-  #"Nodes": ["Node"],
+  "Nodes": ["Node"],
   # "Counters": ["Counter"]
 }
 
