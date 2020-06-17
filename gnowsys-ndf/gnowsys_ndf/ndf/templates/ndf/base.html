@@ -7,9 +7,12 @@
 <meta name="description" content="Connected Learning Initiative (CLIx) or clixoer is a bold and innovative intervention, with global relevance for quality teaching & learning in the public education system of India. ">
 <meta property="og:description" content="Connected Learning Initiative (CLIx) or clixoer is a bold and innovative intervention, with global relevance for quality teaching & learning in the public education system of India. ">
 <meta name="google-site-verification" content="9UGqhcIWYPvS5Iv_-e88q12Mgej83bsaRiObLqwMI6k" />
-<meta name="keywords" content="CLIx,OER,CLIx OER,clixoer"
+<meta name="keywords" content="CLIx,OER,CLIx OER,clixoer,COOL"
   <meta property="og:site_name" content="clixoer" />
 <meta property="og:image" content="https://clixoer.tiss.edu/static/ndf/images/Clix_logo.png" />
+{% if title == 'COOL_OER' %}
+<meta property="og:image" content="https://clixoer.tiss.edu/static/ndf/images/COOLLOGO.png" />
+{% endif %}
 <input type="hidden" name="csrf_token" class="csrf_token" value="{{csrf_token}}">
 
     <title>CLIx OER </title>
@@ -149,9 +152,12 @@ max-width: 100%  !important;
  *:hover{
 transition:none !important;
 }
+
 .card:hover{
 border:0.2px;
 }
+
+*/
 /*
 .card:hover{
 outline: 1px solid #000;
@@ -233,8 +239,11 @@ left: 48%;
     {% block content %}
 
     {% endblock %}
-   {% if title = 'COOL' %}
+   {% if title = 'COOL'  %}
       {% include "ndf/TheCOOL_Footer.html" %}
+     {% elif title = 'COOL-OER'  %}
+       {% include "ndf/TheCOOL_Footer.html" %}
+
   {% else %}
      {% include "ndf/footer.html" %}
    {% endif %}
@@ -361,10 +370,9 @@ $(function () {
   $('[data-toggle="popover"]').popover()
 })
 
-
 $(document).ready(function(){
-$('.navbar-nav .nav-item').click(function(){
-    $('.navbar-nav .nav-item').removeClass('active');
+$(' .navbar-nav .nav-item').click(function(){
+    $(' .navbar-nav .nav-item').removeClass('active');
     $(this).addClass('active');
 })
 });
