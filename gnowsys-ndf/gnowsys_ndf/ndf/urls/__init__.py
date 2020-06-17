@@ -87,6 +87,8 @@ from gnowsys_ndf.ndf.views.es_queries import homepage,coolpage
 urlpatterns += patterns('gnowsys_ndf.ndf.views.es_queries',
                         url(r'^$', homepage, {"group_id": "home"}, name="homepage"),
                         url(r'^cool/?$',coolpage,name='coolpage'),
+                        url(r'^cool/oer/?$','cool_resourcelist',name='cooloers'),
+                        url(r'^cool/oer/(?P<node_id>[\w-]+)/?$','cool_oer_preview',name='cooloerpreview'),
                         url(r'^(?P<group_id>[^/]+)/?$', homepage, name="homepage1"),
                         url(r'^(?P<group_id>[^/]+)/e-library', include('gnowsys_ndf.ndf.urls.e-library')),
                         url(r'^(?P<group_id>[^/]+)/module/(?P<node_id>[\w-]+)/(?P<title>[^/]+)/?$', 'module_detail', name='module_detail'),

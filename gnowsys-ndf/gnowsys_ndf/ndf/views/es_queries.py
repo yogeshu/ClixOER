@@ -33,6 +33,57 @@ from gnowsys_ndf.ndf.models import GSystemType
 gfs = HashFS('/data/media/', depth=3, width=1, algorithm='sha256')
 
 banner_pics1 = ['/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png','/static/ndf/COOL_website_Banner_Banner_1200-300.png']
+
+def cool_resourcelist(request):
+    print "in cool resource list"
+    index = 'nodes'
+    doc_type = 'node'
+    q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='cool_resource')])")
+    gst_cool_resource = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute()
+    q = Q('bool',must=[Q('terms',member_of=[gst_cool_resource[0].id]),Q('match',status='PUBLISHED'),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags='Knowledge')])
+    cooloers1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
+    cooloers2 = cooloers1.execute()
+    koers = cooloers1[0:cooloers1.count()]
+
+    q = Q('bool',must=[Q('terms',member_of=[gst_cool_resource[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags='Creativity')])
+    cooloers1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
+    cooloers2 = cooloers1.execute()
+    coers = cooloers1[0:cooloers1.count()]
+
+    q = Q('bool',must=[Q('terms',member_of=[gst_cool_resource[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags='Tinkering')])
+    cooloers1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
+    cooloers2 = cooloers1.execute()
+    toers = cooloers1[0:cooloers1.count()]
+
+    with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/cool_resources_details.json','r') as json_file:
+                        coolresourcedata = json.load(json_file)
+    req_context = RequestContext(request, {
+                                    'title':'COOL-OER','coolresourcedata':coolresourcedata,'groupid':'home','group_id':'home','bannerpics':banner_pics1,'k_oers':koers,'c_oers':coers,'t_oers':toers})
+    return render_to_response("ndf/TheCOOL_OER.html",req_context)
+
+def cool_oer_preview(request,node_id):
+    print "in cool oer preview"
+    index = 'nodes'
+    doc_type = 'node'
+    nd = get_node_by_id(node_id)
+    with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/cool_resources_details.json','r') as json_file:
+                        coolresourcedata = json.load(json_file)
+    req_context = RequestContext(request, {
+                                    'title':'COOL-OER','coolresourcedata':coolresourcedata,'groupid':'home','group_id':'home','bannerpics':banner_pics1,'nd':nd})
+    results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid']).filter(visitednode_name=nd.name)
+    if len(results) ==0:
+        obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=nd.id,visitednode_name=nd.name,preview_count=1,visit_count=0,download_count=0,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
+        obj.save()
+        print "hit_counter object saved"
+    else:
+        obj1 = results[0]
+        #print "else:",obj1.visitednode_name,obj1.visit_count                                                                                                          
+        if obj1.preview_count == 0:
+            obj1.preview_count = 1
+            obj1.save()
+    return render_to_response("ndf/cool_preview.html",req_context)
+
+
 def site_contact(request):
     req_context = RequestContext(request, {
                                     'title':'Contact','group_id': 'home', 'groupid': 'home','bannerpics':banner_pics1})

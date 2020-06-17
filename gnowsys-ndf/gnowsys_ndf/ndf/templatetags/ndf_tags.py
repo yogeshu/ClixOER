@@ -343,10 +343,31 @@ def get_schema(node):
 
 @register.filter
 def get_item(dictionary, key):
-    print "combined key:",key
-    #print "dictionary,key",dictionary,key
+    #print "combined key:",key,dictionary.get(key)
     return dictionary.get(key)
 
+
+@register.filter
+def get_key(li, key):
+    #print "combined key:",key
+    #print "dictionary,key",li, key                                                                                                                            
+    for each in li:
+            if isinstance(each, AttrDict):
+                    print "inside if", 
+                    d = each.to_dict()
+                    if d.has_key(key):
+                            if key == 'educationallevel':
+                                    st = d.get(key)[0]
+                                    #print st
+                                    return st
+                            #print "key:value",key,d.get(key)
+                            return d.get(key)
+
+@register.filter
+def get_date_format(val):
+    dt = datetime.datetime.strptime(val, '%d/%m/%Y %H:%M:%S:%f')
+    frmtDt = dt.strftime("%d %B %Y")
+    return frmtDt
 
 @get_execution_time
 @register.filter
