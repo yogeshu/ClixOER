@@ -12,6 +12,8 @@
   background-color: #fff;
 }
 
+
+
 .some-dark {
             -webkit-box-shadow: -2px 1px 13px 0px rgba(0,0,0,0.44);
 -moz-box-shadow: -2px 1px 13px 0px rgba(0,0,0,0.44);
@@ -23,11 +25,43 @@ font-size : 16px !important;
 #connective h1 {
 font-weight: 300;
 }
+
+
+
+.breadcrumb li {
+background: #9693a3 !important;
+color:#fff !important;
+}
+.breadcrumb li a {
+color:#fff !important;
+text-decoration: none;
+
+}
+.breadcrumb li i {
+color:#fff !important;
+}
+
 #verticalScrollspy > ul > li  > a  {
 font-size: 14px !important;
 }
+
+
+
+
 </style>
     <div class="container-fluid hello">
+<nav aria-label="breadcrumb ">
+          <ol class="breadcrumb ml-n5 mt-3">
+            <li class="breadcrumb-item  " aria-current="page">
+<a   href="{% url 'e-library' group_id %}"
+ <i class="ml-2 fas fa-home fa-lg" ></i> </a> </li>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i> {% trans 'TISS_COOL' %}  </li> 
+
+       
+          </ol>
+        </nav>
+        
+
       <div class="row">
         <!-- navbar  -->
         <nav
@@ -88,7 +122,7 @@ font-size: 14px !important;
             <li class="nav-item">
               <a
                 class="nav-link"
-                title="Testimonials of student and teachers"
+                title=""
                 href="#section7"
               >
                COOL Team
@@ -334,6 +368,7 @@ font-size: 14px !important;
                   here.
                 </p>
                 <hr />
+		<a class="btn btn-primary" href="{% url 'cooloers' %}"> Know More </a>
               </div>
             </div>
 
@@ -379,6 +414,7 @@ font-size: 14px !important;
  {% include "ndf/TheCOOL_Team_cards.html" %}
                 </div> 
              <div id="section8" class="container-fluid py-2">
+ <h1 class="text-center py-5 "> Contact Us </h1>
 
 {% include "ndf/TheCOOLFM.html" %}
 </div>
@@ -413,7 +449,7 @@ font-size: 14px !important;
         };
       })();
 
-$(".nav-link").bind('cssClassChanged' , function(e) {
+  $(".nav-link").bind('cssClassChanged' , function(e) {
        $(".nav-item").each( function() {
             if( $(this).hasClass("active") == true ) {
        $(this).removeClass("active");
