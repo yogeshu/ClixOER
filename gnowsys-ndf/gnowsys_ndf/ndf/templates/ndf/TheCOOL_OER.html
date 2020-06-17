@@ -1,0 +1,1057 @@
+
+{% extends "ndf/base.html" %}
+
+{% load ndf_tags %}
+{% load i18n %}
+
+{% block content %}
+<style>
+table {
+font-size: 16px;
+}
+#oer_oer p {
+font-size : 16px !important;
+margin-bottom : 0px;
+}
+#oer_oer h1{
+font-weight: 300;
+}
+.card-cool i { 
+font-size: 12px;
+}
+#verticalScrollspy > ul > li  > a  {
+font-size: 14px !important;
+}
+a.cool{
+color: inherit
+}
+#more {display: none;}
+
+.card:hover {
+    box-shadow: 4px 8px 12px 0 rgba(0,0,0,0.3);
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+
+  }
+.ribbon3 {
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 15px;
+  position: absolute;
+  left: -8px;
+  top: 20px;
+  background: #59324C;
+}
+.ribbon3:before, .ribbon3:after {
+  content: "";
+  position: absolute;
+}
+.ribbon3:before {
+  height: 0;
+  width: 0;
+  top: -8.5px;
+  left: 0.1px;
+  border-bottom: 9px solid black;
+  border-left: 9px solid transparent;
+}
+.ribbon3:after {
+  height: 0;
+  width: 0;
+  right: -14.5px;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-left: 15px solid #59324C;
+}
+.ribbonFake {
+  position: absolute;
+  top: 15px;
+  padding: 8px 10px;
+  background: #00B3ED;
+  box-shadow: -1px 2px 3px rgba(0,0,0,.3);
+}
+.ribbonFake:before, .ribbon4:after {
+  content: "";
+  position: absolute;
+}
+.ribbonFake:before {
+  width: 7px;
+  height: 100%;
+  top: 0;
+  left: -6.5px;
+  padding: 0 0 7px;
+  background: inherit;
+  border-radius: 5px 0 0 5px;
+}
+.ribbonFake:after {
+  width: 5px;
+  height: 5px;
+  bottom: -5px;
+  left: -4.5px;
+  background: lightblue;
+  border-radius: 5px 0 0 5px;
+ }
+
+  .breadcrumb li {
+background: #9693a3 !important;
+color:#fff !important;
+}
+.breadcrumb li a {
+color:#fff !important;
+text-decoration: none;
+
+}
+
+.box {
+  width: 400px;
+  height: 600px;
+  margin: 50px auto;
+  background: #fff;
+  border-radius: 3px;
+}
+
+[class^="ribbon-"] {
+  position: relative;
+}
+[class^="ribbon-"]:before, [class^="ribbon-"]:after {
+  content: "";
+  position: absolute;
+}
+
+.ribbon-2 {
+  
+  width:67%;
+  height: 25px;
+  background: #21749a;
+  left: -8px;
+ margin-top: 10px;
+}
+.ribbon-2:before {
+  height: 0;
+  width: 0;
+  border-bottom: 8px solid #14455b;
+  border-left: 8px solid transparent;
+  top: -8px;
+}
+.ribbon-2:after {
+  height: 0;
+  width: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 15px solid #21749a;
+  right: -15px;
+}
+.fake-link, .fake-link:hover{
+
+text-decoration: none;
+color:inherit;
+}
+
+.ribbon-content {
+  height: inherit;
+  margin-bottom: 0;
+  background: #37b7c7;
+  z-index: 100;
+}
+.ribbon-content:before {
+  height: 0;
+  width: 0;
+  border-top: 10px solid #26808b;
+  border-left: 10px solid transparent;
+  bottom: -10px;
+}
+.ribbon-content:after {
+  height: 0;
+  width: 0;
+  border-top: 10px solid #26808b;
+  border-right: 10px solid transparent;
+  right: 0;
+  bottom: -10px;
+}
+
+</style>
+  
+    <div class="container-fluid hello">
+<nav aria-label="breadcrumb ">
+          <ol class="breadcrumb ml-n5 mt-3">
+            <li class="breadcrumb-item  " aria-current="page">
+<a   href="{% url  'e-library' group_id %}  ">
+ <i class="ml-2 fas fa-home fa-lg" ></i> </a> </li>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i><a href="{% url 'coolpage' %}" style="color:#fff;"> {% trans 'TISS-COOL' %}</a>  </li>
+ <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;"
+> </i>   {% trans   'COOL-OER' %} </li> </a>
+          
+          </ol>
+        </nav>
+
+      <div class="row">
+        <!-- navbar  -->
+        <nav
+          class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"          id="verticalScrollspy">
+          <ul class="nav flex-column nav-pills nav-scroll" tabindex="5">
+            <li class="nav-item" >
+              <a
+                title=" About-COOL-OER"
+                class="nav-link active "
+                href="#section1"
+             >
+                About COOL-OER
+              </a>
+            </li>
+          <!--  <li class="nav-item">
+              <a
+                class="nav-link"
+                title="Testimonials of student and teachers"
+                href="#section-2"
+              >
+                Online webinar
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                title=""
+                href="#section2"
+              >
+                Knowledge Deepening
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                title=""
+                href="#section3"
+              >
+                Creativity and 21st century skills
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                title=""
+                href="#section4"
+              >
+                  Tinkering and making              
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                title=""
+                href="#section5"
+              >
+               Share your story 
+              </a>
+            </li>
+      
+ <li class="nav-item" >
+              <a
+                title=" "
+                class="nav-link active "
+                href="#section6"
+             >
+               Contact Us
+              </a>
+            </li>
+
+
+    </ul>
+        </nav>
+
+        <div class="col-12 col-sm-12 col-md-10  col-lg col-xl"  id="oer_oer">
+          <div data-spy="scroll" data-target="#verticalScrollspy">
+            <div id="section1" class="container-fluid py-2">
+              <h1>About COOL-OER  </h1>
+              <hr />
+              <div class="sec-11">
+                <p  class="text-justify" tabindex="6">
+               
+Connect Open Online Learning - Open Educational Resources (COOL-OER) is a repository of carefully curated OERs that are relevant to Indian context and hence can be adopted/adapted by schools. In times when humongous kinds of resources are being shared on the internet and social media this is an attempt to assist teachers, educators, parents and students find a thoughtfully curated list of open educational resources that can be meaningfully integrated in the teaching-learning process especially during distance learning. The thrust has been to showcase OERs that foster <strong> active learning</strong> , are multilingual - support Indian languages, <strong> accessible </strong>  and <strong> adaptable. </strong>
+
+ <span id="dots"> .. </span>
+</p>
+<span  id="more" >
+<p class="text-justify" tabinde="6"> A range of resources - with and without digital technology - and across various types - eBooks, multimedia repositories, simulations, tools, hands-on - have been curated and are available in multiple languages. 
+The selection and curation of OERs has been guided by a six point rubric:
+</p>
+<br>
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="table-danger">
+
+      <th scope="col">Rubric</th>
+      <th scope="col">Details</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"> R1. Learning/ pedagogical approach</th>
+      <td>
+
+Resources that foster active learning through interactivity, engagement and affordances for knowledge construction. Moreover, the resource should allow it to be contextualised to Indian school context.
+
+</td>
+
+     
+    </tr>
+    <tr>
+      <th scope="row">R2. Knowledge theme</th>
+      <td>
+1. Knowledge deepening - resources and tools that help develop conceptual clarity, widen the knowledge and better understanding of subject matters and also help learners appreciate multidisciplinarity of fields.
+
+
+<hr>
+
+2. Creativity and 21st century skills - resources and tools that help foster creative expression and skills such as storymaking, designing, coding, computational thinking and digital agency.
+<hr>
+
+3. Tinkering & making - resources and tools that enable hands-on minds-on engagement and cultivate learning by doing, tinkering and making habits.
+
+</td>
+   
+    </tr>
+    <tr>
+      <th scope="row">R3. Curricular alignment</th>
+           <td>
+Have direct curricular alignment with NCERT/CBSE/NCTE.
+Our resources should be such that they can be easily aligned to Indian school curriculum guided by NCF 2005.
+</td>
+    </tr>
+ 
+    <tr>
+      <th scope="row">
+R4. Grade alignment
+ </th>
+      <td>
+
+The resources should have a demonstrable relevance to below grade levels:
+K-5/6-8/9-12/D.El.Ed/B.Ed/M.Ed/Teachers
+
+      </td>
+    </tr>
+
+  <tr>
+      <th scope="row">  
+R5. License
+ </th>
+      <td>
+1. Released under <a href="https://choosealicense.com/" target="_blank"> an open license </a>
+<hr>
+2. Free to access and share
+      </td>
+    </tr>
+  <tr>
+      <th scope="row">   
+R6. Affordances
+ </th>
+      <td>
+
+1. Active Knowledge Making: If the resource allows engagement and interactivity features/controls for learners so that the learner does not become a passive receiver rather be able to actively manipulate and work with the resource exercising the learner agency.
+<hr>
+2. Multimodal Meaning: If the resource offers knowledge representation in multiple ways such as audio-visual, multi-dimensional, multiple-formats.
+<hr>
+3. Collaboration: If the resource expressly fosters or has features for collaboration, sharing and co-construction of knowledge.
+
+
+<hr>
+4. Accessibility: If the resource is inclusive and offers accessibility features such as screen reader, keyboard-only input etectera to help people with learning disability.
+<hr>
+5. Adaptability: If the resource lends itself to be easily remixed and adapted so that it can be used in a different context setting; which also depends on the modularity (ability of a resource to be broken in smaller activities and repurposed)
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+<p class="text-justify">
+
+For each of the resources relevant metaData details as well as key affordances have been indicated. The 5Affordance model to review an educational resource has been adapted from UNESCO-s report <a href="https://unesdoc.unesco.org/ark:/48223/pf0000372786" target="_blank">  Rethinking Pedagogy: Exploring the Potential of Digital Technology in Achieving Quality. </a>  Due care has been taken to present the information objectively, however, if you find any inaccuracy/objectionable thing we encourage you to report to us. The COOL initiative and the OER curation process has been possible due to a large pool of volunteers who immensely contributed along with TISS staff.
+
+</p>
+
+
+ <h6>  Disclaimer </h6>
+<p class="text-justify">
+COOL INITIATIVE AND THE COOL-OER REPOSITORY ARE NON-PROFIT ENDEAVORS AS AN EDUCATIONAL RESPONSE TO COVID-19. LINKS TO THIRD-PARTY WEBSITES ARE PROVIDED FOR YOUR CONVENIENCE ONLY AND DO NOT CONSTITUTE OUR ENDORSEMENT, SPONSORSHIP, WARRANTY OR APPROVAL OF SUCH LINKED WEBSITES OR ANY PRODUCT, SERVICE OR CONTENT OFFERED ON SUCH LINKED WEBSITES. WE DO NOT OWN OR CONTROL SUCH LINKED WEBSITES AND DOES NOT WARRANT OR GUARANTEE THAT ANY PRODUCT, SERVICE OR CONTENT OFFERED ON SUCH LINKED WEBSITES WILL BE SUITABLE FOR YOU. YOU ACCESS AND USE SUCH LINKED WEBSITES ENTIRELY AT YOUR OWN RISK. WE ENCOURAGE YOU TO DO YOUR OWN RESEARCH AND USE DISCRETION TO USE OR ADOPT ANY RESOURCE, PRODUCT, SERVICE. 
+<br>
+THE CLIxOER SITE AND ANY INFORMATION, CONTENT OR SERVICES MADE AVAILABLE ON OR THROUGH THE CLIxOER SITE ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF ANY KIND (EXPRESS, IMPLIED OR OTHERWISE), INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT, EXCEPT INSOFAR AS ANY SUCH IMPLIED WARRANTIES MAY NOT BE DISCLAIMED UNDER APPLICABLE LAW.
+<br>
+YOU CAN READ THE COMPLETE CLIxOER HONOR CODE HERE.
+
+</p>
+</span>
+<p class="cool">
+
+<span    class="text-italic  text-primary h5"  onclick="mytoggle()"  id="myBtn"   >  Read more  </span>
+</p>
+<!--
+ <a tabindex="6"  href="#" class="btn btn-primary ">
+                  Know More
+                </a> 
+         --> 
+    </div>
+            </div>
+
+
+            <div id="section2" class="container-fluid  mt-5" >
+              <h1 tabindex="7">                 Knowledge Deepening
+</h1> 
+<p class="text-justify">
+ resources and tools that help develop conceptual clarity, widen the knowledge and better understanding of subject matters and also help learners appreciate multidisciplinarity of fields.
+
+</p>
+<br>
+<hr>
+
+              <div class="row card-cool fake-cool" >
+ {% for each in k_oers %}
+<a href="{% url 'cooloerpreview'  each.id  %}" target="_blank" class="fake-link">
+                 <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3  mt-5"  id="{{each.id}}">
+
+                  <div class="card shadow border-rounded " tabindex="7" style="width: 16rem;">
+<div class="ribbon-2"  data-toggle="tooltip" title="Resource Type" > 
+<span class="  m-2  text-white"   > 
+ <img src="/static/ndf/noun_atom_954768.png" style="width:14%" class="img-fluid">   {{each.attribute_set | get_key:'resource_type'}}  </span>
+</div>
+		      {% get_relation_value each.id 'has_banner_pic' as grel_dict %}
+                      {% if not grel_dict.cursor and grel_dict.grel_node and grel_dict.grel_node.if_file.original.relurl %}
+		     
+
+                     <div class="text-center">
+                        <img
+                          src="/media/{{grel_dict.grel_node.if_file.original.relurl}}"
+                          class="card-img-top text-center mx-auto" alt="{{each.altnames}}"
+                         style="width:150px; height: 150px; text-align:center;"
+                        />
+</div>
+		      {% endif %}
+
+          
+                        <div class="card-body">
+                          <h6 class="card-title border-bottom-1"  tabindex="7">
+                           {{  each.altnames }}
+                          </h6>
+                          <hr />
+
+                          <div class="mb-1" tabindex="7"> 
+                              <span  data-toggle="tooltip" title="Subject">
+                                <i class="fas fa-book-open ">   </i> Subject: {{each.attribute_set | get_key:'educationalsubject'}}
+                              </span>
+<br>
+                              <span  data-toggle="tooltip" title="Grade">
+                                <i class="fas fa-user-graduate "> </i>  Grade: {{each.attribute_set | get_key:'educationallevel'}}
+                              </span>
+                            </div>
+  
+                          <p tabindex="7">
+                               <img src="/static/ndf/noun_Language_3091153.png" style="width:40px; height:44px;">
+			      
+                            <span class="badge badge-light"   data-toggle="tooltip" title="Languages">   Languages:  {{each.language.1}} </span>
+                          </p>
+                          <p  tabindex="7"  data-toggle="tooltip" title="Tags">
+
+              <img src="/static/ndf/noun_Tag_887310.png               
+			" style="width:20px; height:24px;">
+  
+	      Tags: 
+			    {% for each_attr in each.tags %}
+                             <span class="badge badge-pill badge-info" >     {{each_attr}}
+		</span>	           {% if not forloop.last %} {% endif %}
+			    {% endfor %}
+                          </p>
+                          <div class="card-footer c-footer">
+
+                            <div class="row">
+                              <div class="col-4" >
+                                <span  tabindex="7" >
+
+<a  href="{% url 'cooloerpreview'  each.id  %}"  target="_blank"    data-toggle="tooltip" title="Preview"  class="stretched-link" >      
+
+                                  <i class="fa fa-eye fa-lg"   data-toggle="modal" data-target="#{{each.id}}"> </i>  </a>
+                                </span>
+                              </div>
+                              <div class="col-4" tabindex="7" data-toggle="tooltip" title="Explore Online">
+
+				{% with name=each.name %}
+				{% with json_data=coolresourcedata|get_item:name %}                                <span>
+<a href="{{json_data.oer_url}}" target="_blank">
+                                  <i class="fas fa-rocket fa-lg"></i>
+</a>
+{% endwith %}
+{% endwith %}
+                                </span>
+                              </div>
+
+                    <div class="dropdown show col-4"  style="display:inline-block;" href="" tabindex="7">  
+   <a class=""     href=""    role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                            <i data-toggle="tooltip" id="{{dest.id}} + 1"  onClick="clickCounter(this)"  title="{% trans "Share" %}"  class="                                  fa fa-share-alt fa-lg"  >
+                              <span id="score"
+                        class=""
+                        style="font-size:12px; background: #FFF; color: #000;"
+                        > </span
+                      >
+
+</i
+      >
+                       </a>
+    
+                        <div class="dropdown-menu font-share " href="" aria-labelledby="dropdownMenuLink" >
+                          <a class="dropdown-item" onclick="CopyLink()"  id="copy"  >
+<i class="fas fa-copy  "   ></i>
+ Copy Link</a>
+                        <!--  <a class="
+dropdown-item"  data-js="facebook-share">Share Facebook</a>
+                          <a  class="dropdown-item" data-js="twitter-share" >Share on Twitter</a> -->
+<a class="dropdown-item target"  data-score="1"   onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'facebook-share-dialog', 'height=350,width=600'); return false;" 
+> <i class="fab fa-facebook"> </i>
+Share on Facebook </a>
+
+
+
+
+<a class="dropdown-item target" data-score="2"  href="http://twitter.com/intent/tweet?url=https://clixoer.tiss.edu/home/e-library/" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'), '_blank'; data-url="document.URL"return false;"      target="_blank" d>
+<i class="fab fa-twitter"> </i>
+Tweet this</a>
+
+<a class="dropdown-item target" data-score="3"  href="javascript:void(window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent(document.title), '_blank'))"> 
+    <i class="fab fa-telegram"></i>
+    Telegram link </a>
+                        </div>
+                      </div>
+    <!--                          <div class="col-4" tabindex="7">
+                                <span>    <i class="fa fa-share-alt"  >0 </i>   </span>
+                              </div> 
+-->
+                            </div>
+                          </div>
+                        </div>
+                      
+
+                  </div>
+
+                </div>
+
+
+
+<div class="modal fade" id="{{each.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable bd-example-modal-lg modal-lg" role="document">
+    <div class="modal-content ">
+  
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">{{nd.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+</a>
+{% endfor %}
+              
+
+
+                  
+              </div>
+            </div>
+
+ <div id="section3" class="container-fluid  mt-5">
+              <h1>Creativity and 21st century skills </h1>
+ <p class="text-justify">
+ resources and tools that help foster creative expression and skills such as storymaking, designing, coding, computational thinking and digital agency.
+</p>
+            <br>
+                    <hr>
+		                  <div class="row card-cool fake-cool">
+ {% for each in c_oers %}
+<a href="{% url 'cooloerpreview'  each.id  %}" target="_blank" class="fake-link">
+                 <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3  mt-5"  id="{{each.id}}">
+
+                  <div class="card shadow border-rounded " tabindex="7" style="width: 16rem;">
+<div class="ribbon-2"  data-toggle="tooltip" title="Resource Type">
+<span class="  m-2  text-white">  <img src="/static/ndf/noun_atom_954768.png" style="width:14%" class="img-fluid">   {{each.attribute_set | get_key:'resource_type'}}  
+</span>
+</div>
+                      {% get_relation_value each.id 'has_banner_pic' as grel_dict %}
+                      {% if not grel_dict.cursor and grel_dict.grel_node and grel_dict.grel_node.if_file.original.relurl %}
+
+                     <div class="text-center">
+                        <img
+                          src="/media/{{grel_dict.grel_node.if_file.original.relurl}}"
+                          class="card-img-top text-center mx-auto" alt="{{each.altnames}}"
+                         style="width:150px; height: 150px; text-align:center;"
+                        />
+</div>
+                      {% endif %}
+
+
+                        <div class="card-body">
+                          <h6 class="card-title border-bottom-1"  tabindex="7">
+                           {{  each.altnames }}
+                          </h6>
+                          <hr />
+
+                          <div class="mb-1" tabindex="7">
+                              <span     data-toggle="tooltip" title="Subjects">
+                                <i class="fas fa-book-open ">   </i> Subject: {{each.attribute_set | get_key:'educationalsubject'}}
+</span>
+<br>
+                              <span    data-toggle="tooltip" title="Grade">
+                                <i class="fas fa-user-graduate "> </i>  Grade: {{each.attribute_set | get_key:'educationallevel'}}
+                              </span>
+                            </div>
+
+                          <p tabindex="7">
+                               <img src="/static/ndf/noun_Language_3091153.png" style="width:40px; height:44px;">
+
+                            <span class="badge badge-light"    data-toggle="tooltip" title="Languages">   Languages:  {{each.language.1}} </span>
+                          </p>
+                          <p  tabindex="7">
+
+              <img src="/static/ndf/noun_Tag_887310.png                                                                                                                 
+                        " style="width:20px; height:24px;">
+
+              Tags:
+                            {% for each_attr in each.tags %}
+                             <span class="badge badge-pill badge-info"    data-toggle="tooltip" title="Tags">     {{each_attr}}
+                </span>            {% if not forloop.last %} {% endif %}
+                            {% endfor %}
+                          </p>
+                          <div class="card-footer c-footer">
+
+                            <div class="row">
+                              <div class="col-4">
+                                <span  tabindex="7">
+
+<a  href="{% url 'cooloerpreview'  each.id  %}" target="_blank"   data-toggle="tooltip" title="Preview"  class="stretched-link">
+
+                                  <i class="fa fa-eye fa-lg"   data-toggle="modal" data-target="#{{each.id}}"> </i>  </a>
+                                </span>
+                              </div>
+                              <div class="col-4" tabindex="7"     data-toggle="tooltip" title="Explore Online">
+
+                                {% with name=each.name %}
+                                {% with json_data=coolresourcedata|get_item:name %}                                <span>
+<a href="{{json_data.oer_url}}" target="_blank">
+                                  <i class="fas fa-rocket fa-lg"> </i>
+</a>
+{% endwith %}
+{% endwith %}
+                                </span>
+                              </div>
+
+                    <div class="dropdown show col-4"  style="display:inline-block;" href="" tabindex="7">
+   <a class=""     href=""    role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                            <i data-toggle="tooltip" id="{{dest.id}} + 1"  onClick="clickCounter(this)"  title="{% trans "Share" %}"  class="                          \
+        fa fa-share-alt fa-lg"  >
+                              <span id="score"
+                        class=""
+                        style="font-size:12px; background: #FFF; color: #000;"
+                        > </span
+                      >
+
+</i
+      >
+                       </a>
+
+                        <div class="dropdown-menu font-share " href="" aria-labelledby="dropdownMenuLink" >
+                          <a class="dropdown-item" onclick="CopyLink()"  id="copy"  >
+<i class="fas fa-copy "   ></i>
+ Copy Link</a>
+                        <!--  <a class="                                                                                                                                
+dropdown-item"  data-js="facebook-share">Share Facebook</a>                                                                                                             
+                          <a  class="dropdown-item" data-js="twitter-share" >Share on Twitter</a> -->
+<a class="dropdown-item target"  data-score="1"   onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'facebook-shar\
+e-dialog', 'height=350,width=600'); return false;"
+> <i class="fab fa-facebook"> </i>
+Share on Facebook </a>
+
+
+
+
+<a class="dropdown-item target" data-score="2"  href="http://twitter.com/intent/tweet?url=https://clixoer.tiss.edu/home/e-library/" onclick="window.open(this.href, 'tw\
+itterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'), '_blank'; data-url="document.URL"return false;"      target="_blank" d>
+<i class="fab fa-twitter"> </i>
+Tweet this</a>
+
+<a class="dropdown-item target" data-score="3"  href="javascript:void(window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href)+'&text='+encod\
+eURIComponent(document.title), '_blank'))">
+    <i class="fab fa-telegram"></i>
+    Telegram link </a>
+                        </div>
+                      </div>
+    <!--                          <div class="col-4" tabindex="7">                                                                                                      
+                                <span>    <i class="fa fa-share-alt"  >0 </i>   </span>                                                                                 
+                              </div>                                                                                                                                    
+-->
+                            </div>
+                          </div>
+			  </div>
+
+
+                  </div>
+
+		  </div>
+
+
+
+<div class="modal fade" id="{{each.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable bd-example-modal-lg modal-lg" role="document">
+    <div class="modal-content ">
+
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">{{nd.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+ </button>
+      </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+</a>
+{% endfor %}
+
+
+
+
+              </div>
+          </div>
+
+
+           <div id="section4" class="container-fluid  mt-5">
+             <h1>Tinkering and making</h1>
+  <p class="text-justify">
+  resources and tools that enable hands-on minds-on engagement and cultivate learning by doing, tinkering and making habits.
+     </p> 
+            <br>
+                    <hr>
+		    
+              <div class="row card-cool fake-cool">
+ {% for each in t_oers %}
+<a href="{% url 'cooloerpreview'  each.id  %}" target="_blank" class="fake-link">
+                 <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3  mt-5"  id="{{each.id}}">
+
+                  <div class="card shadow border-rounded " tabindex="7" style="width: 16rem;">
+<div class="ribbon-2"   data-toggle="tooltip" title="Resource Type" >
+<span class="  m-2  text-white">  <img src="/static/ndf/noun_atom_954768.png" style="width:14%" class="img-fluid">   {{each.attribute_set | get_key:'resource_type'}}  
+</span>
+</div>
+                      {% get_relation_value each.id 'has_banner_pic' as grel_dict %}
+                      {% if not grel_dict.cursor and grel_dict.grel_node and grel_dict.grel_node.if_file.original.relurl %}
+
+                     <div class="text-center">
+                        <img
+                          src="/media/{{grel_dict.grel_node.if_file.original.relurl}}"
+                          class="card-img-top text-center mx-auto" alt="{{each.altnames}}"
+                         style="width:150px; height: 150px; text-align:center;"
+                        />
+</div>
+                      {% endif %}
+
+
+                        <div class="card-body">
+                          <h6 class="card-title border-bottom-1"  tabindex="7">
+                           {{  each.altnames }}
+                          </h6>
+                          <hr />
+
+                          <div class="mb-1" tabindex="7"        data-toggle="tooltip" title="Subject">
+                              <span>
+                                <i class="fas fa-book-open "    >   </i> Subject: {{each.attribute_set | get_key:'educationalsubject'}}
+</span>
+<br>
+                              <span data-toggle="tooltip" title="Gradep">
+                                <i class="fas fa-user-graduate "    > </i>  Grade: {{each.attribute_set | get_key:'educationallevel'}}
+                              </span>
+                            </div>
+
+                          <p tabindex="7">
+                               <img src="/static/ndf/noun_Language_3091153.png" style="width:40px; height:44px;">
+
+                            <span class="badge badge-light"    data-toggle="tooltip" title="Languages">   Languages:  {{each.language.1}} </span>
+                          </p>
+                          <p  tabindex="7">
+
+              <img src="/static/ndf/noun_Tag_887310.png                                                                                                                 
+                        " style="width:20px; height:24px;">
+
+              Tags:
+                            {% for each_attr in each.tags %}
+                             <span class="badge badge-pill badge-info"   data-toggle="tooltip"   title="Tags"  >     {{each_attr}}
+                </span>            {% if not forloop.last %} {% endif %}
+                            {% endfor %}
+                          </p>
+                          <div class="card-footer c-footer">
+
+                            <div class="row">
+                              <div class="col-4" >
+                                <span  tabindex="7">
+
+<a  href="{% url 'cooloerpreview'  each.id  %}"  target="_blank"   data-toggle="tooltip" title="Preview"  class="stretched-link">
+
+                                  <i class="fa fa-eye fa-lg"   data-toggle="modal" data-target="#{{each.id}}">  </i>  </a>
+                                </span>
+                              </div>
+                              <div class="col-4" tabindex="7"     data-toggle="tooltip" title="Explore Online">
+
+                                {% with name=each.name %}
+                                {% with json_data=coolresourcedata|get_item:name %}                                <span>
+<a href="{{json_data.oer_url}}" target="_blank">
+                                  <i class="fas fa-rocket fa-lg"> </i>
+</a>
+{% endwith %}
+{% endwith %}
+                                </span>
+                              </div>
+
+                    <div class="dropdown show col-4"  style="display:inline-block;" href="" tabindex="7">
+   <a class=""     href=""    role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                            <i data-toggle="tooltip" id="{{dest.id}} + 1"  onClick="clickCounter(this)"  title="{% trans "Share" %}"  class="fa fa-share-alt fa-lg"  >
+                              <span id="score"
+                        class=""
+                        style="font-size:12px; background: #FFF; color: #000;"
+                        > </span
+                      >
+
+</i
+      >
+                       </a>
+
+                        <div class="dropdown-menu font-share " href="" aria-labelledby="dropdownMenuLink" >
+                          <a class="dropdown-item" onclick="CopyLink()"  id="copy"  >
+<i class="fas fa-copy "   ></i>
+ Copy Link</a>
+                        <!--  <a class="                                                                                                                               
+dropdown-item"  data-js="facebook-share">Share Facebook</a>                                                                                                            
+                          <a  class="dropdown-item" data-js="twitter-share" >Share on Twitter</a> -->
+<a class="dropdown-item target"  data-score="1"   onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'facebook-share-dialog', 'height=350,width=600'); return false;"
+> <i class="fab fa-facebook"> </i>
+Share on Facebook </a>
+
+
+
+
+<a class="dropdown-item target" data-score="2"  href="http://twitter.com/intent/tweet?url=https://clixoer.tiss.edu/home/e-library/" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'), '_blank'; data-url="document.URL"return false;"      target="_blank" d>
+<i class="fab fa-twitter"> </i>
+Tweet this</a>
+
+<a class="dropdown-item target" data-score="3"  href="javascript:void(window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent(document.title), '_blank'))">
+    <i class="fab fa-telegram"></i>
+    Telegram link </a>
+                        </div>
+                      </div>
+    <!--                          <div class="col-4" tabindex="7">                                                                                                     
+                                <span>    <i class="fa fa-share-alt"  >0 </i>   </span>                                                                                
+                              </div>                                                                                                                                   
+-->
+                            </div>
+                          </div>
+			  </div>
+
+
+                  </div>
+
+		  </div>
+
+
+
+<div class="modal fade" id="{{each.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable bd-example-modal-lg modal-lg" role="document">
+    <div class="modal-content ">
+
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">{{nd.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+ </button>
+      </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+</a>
+{% endfor %}
+
+
+
+
+              </div>
+          </div>
+<!--      <div id="section5" class="container-fluid  mt-5">
+              <h1>Share your story </h1>
+
+            <br>
+                    <hr>
+
+		          <div class="row">
+              </div>
+          </div>
+ -->
+
+   <div id="section6" class="container-fluid mt-5">
+ <h1> Contact Us </h1>
+<br> 
+<hr>
+{% include "ndf/TheCOOLFM.html" %}
+</div>
+
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+<script>
+function copyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+
+  //
+  // *** This styling is an extra step which is likely not required. ***
+  //
+  // Why is it here? To ensure:
+  // 1. the element is able to have focus and selection.
+  // 2. if element was to flash render it has minimal visual impact.
+  // 3. less flakyness with selection and copying which **might** occur if
+  //    the textarea element is not visible.
+  //
+  // The likelihood is the element won't even render, not even a flash,
+  // so some of these are just precautions. However in IE the element
+  // is visible whilst the popup box asking the user for permission for
+  // the web page to copy to the clipboard.
+  //
+
+  // Place in top-left corner of screen regardless of scroll position.
+  textArea.style.position = 'fixed';
+  textArea.style.top = 0;
+  textArea.style.left = 0;
+
+  // Ensure it has a small width and height. Setting to 1px / 1em
+  // doesn't work as this gives a negative w/h on some browsers.
+  textArea.style.width = '2em';
+  textArea.style.height = '2em';
+
+  // We don't need padding, reducing the size if it does flash render.
+  textArea.style.padding = 0;
+
+  // Clean up any borders.
+  textArea.style.border = 'none';
+  textArea.style.outline = 'none';
+  textArea.style.boxShadow = 'none';
+
+  // Avoid flash of white box if rendered for any reason.
+  textArea.style.background = 'transparent';
+
+
+  textArea.value = text;
+
+  document.body.appendChild(textArea);
+
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+
+  document.body.removeChild(textArea);
+}
+
+function CopyLink() {
+  copyTextToClipboard(location.href);
+}
+function CopyLink() {
+  copyTextToClipboard(location.href);
+
+
+};
+
+</script>
+<script>
+
+function mytoggle() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more"; 
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less"; 
+    moreText.style.display = "inline";
+  }
+}
+</script>
+
+<script>
+ 
+
+      $('#verticalScrollspy').scrollspy();
+
+      (function() {
+        // Your base, I'm in it!
+        var originalAddClassMethod = jQuery.fn.addClass;
+
+        jQuery.fn.aTpppppddClass = function() {
+          // Execute the original method.
+          var result = originalAddClassMethod.apply(this, arguments);
+
+          // trigger a custom event
+          jQuery(this).trigger("cssClassChanged");
+
+          // return the original result
+          return result;
+        };
+      })();
+
+
+   $(".nav-item").bind('cssClassChanged' , function(e) {
+       $(".nav-link").each( function() {
+            if( $(this).hasClass("active") == true ) {
+       $(this).removeClass("active");
+            }
+        });
+
+       $(this).removeClass("active").parent().addClass("active");
+    });
+
+
+
+    </script>   
+
+
+  
+{% endblock %}

@@ -1,0 +1,598 @@
+
+{% extends "ndf/base.html" %}
+{% load ndf_tags %}
+{% load i18n %}
+{% block content %}
+
+
+<style>
+.icon-badge{
+position:relative;
+
+}
+
+.icon-badge i{
+ position: absolute;
+  top: 25px;
+  right: -5%;
+  font-size:100%; 
+}
+p,tr {
+font-size: 16px;
+
+}
+p.meta-data{
+font-size: 18px;
+font-weight: 300;
+}
+table , td {
+padding:.12rem !important;
+overflow: hidden;
+}
+.fake{
+border-left: 1px solid black ;
+}
+
+
+
+
+ .breadcrumb li {
+background: #9693a3 !important;
+color:#fff !important;
+}
+.breadcrumb li a {
+color:#fff !important;
+text-decoration: none;
+
+}
+
+[class^="ribbon-"] {
+  position: relative;
+}
+[class^="ribbon-"]:before, [class^="ribbon-"]:after {
+  content: "";
+  position: absolute;
+}
+
+.ribbon-2 {
+  width: 37%;
+  height: 25px;
+  background: #21749a;
+  left: -8px;
+ margin-top: 10px;
+}
+.ribbon-2:before {
+  height: 0;
+  width: 0;
+  border-bottom: 8px solid #14455b;
+  border-left: 8px solid transparent;
+  top: -8px;
+}
+.ribbon-2:after {
+  height: 0;
+  width: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 15px solid #21749a;
+  right: -15px;
+}
+
+
+</style>
+<div class="container " style="padding-left:10%;overflow:hidden;  padding-right:10%;">
+<nav aria-label="breadcrumb ">
+          <ol class="breadcrumb ml-n5 mt-3">
+            <li class="breadcrumb-item  " aria-current="page">
+<a   href="{% url  'e-library' group_id %}  ">
+ <i class="ml-2 fas fa-home fa-lg" ></i> </a> </li>
+ <li class="breadcrumb-item "  aria-current="page" style="color:#000;">  <i class="ml-n2 fa fa-globe "></i><a href="{% url 'coolpage' %}" sty\
+le="color:#fff;"> {% trans 'TISS-COOL' %}</a>  </li>
+ <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a    style="color:#fff;"
+  href="{% url 'cooloers' %} " > </i>   {% trans   'COOL-OER' %}  </a> </li>
+
+ <li class="breadcrumb-item " aria-current="page" style="color:#000;"> <a style="color:#fff;"
+> </i>  {{nd.altnames}}                                                                                                                             
+  </a> </li>
+
+          </ol>
+        </nav>
+ 
+<div class="container">
+  
+  
+  <div class="row">
+
+ <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
+
+<div class="ribbon-2" data-toggle="tooltip" title="Resource Type">
+<span class="m-2 text-white" > <img src="/static/ndf/noun_atom_954768.png" style="width:13%" class="img-fluid">  {{nd.attribute_set | get_key:'resource_type'}} </span>
+</div>
+
+<div class="text-center">
+
+      {% get_relation_value nd.id 'has_banner_pic' as grel_dict %}
+  {% if not grel_dict.cursor and grel_dict.grel_node and grel_dict.grel_node.if_file.original.relurl %}
+
+
+
+   <img  class="img-fluid text-center mb-5 "
+        src="/media/{{grel_dict.grel_node.if_file.original.relurl}}" style="width:200px; height:150px"/>
+
+  {% endif %}
+</div>
+<div class="col-12 ">
+
+
+         <span  class=""  data-toggle="tooltip"  title="Explore Online">  <a href="{{json_data.oer_url}}" class="btn btn-primary" target="_blank">  <i class="fas fa-rocket fa-lg"></i>    Explore Online  </a>  </span>
+
+
+
+
+
+ <div class="dropdown show"  style="display:inline-block"   >
+
+<button class="btn btn-primary" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span   data-toggle="tooltip" title="Share"  > <i class="fas fa-share-alt fa-lg"  ></i>  Share </span>
+        </button>
+<div class="dropdown-menu font-share" href="" aria-labelledby="dropdownMenuLink">
+
+   
+
+<a class="dropdown-item" onclick="CopyLink()" id="copy">
+
+<i class="fas fa-copy"> </i>Copy </a>
+<a class="dropdown-item target"  data-score="1" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'facebook-share-dialog', 'height=350,width=600'); return false;"> <i class="fab fa-facebook"> </i>
+Share on Facebook </a>
+<a class="dropdown-item target" data-score="2"  href="http://twitter.com/intent/tweet?url=https://clixoer.tiss.edu/home/e-library/" onclick="\
+\                                                                                                                                             
+window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'), '_blank'; data-url="document.URL"return \
+\                                                                                                                                             
+false;"      target="_blank" >
+<i class="fab fa-twitter"> </i>
+Tweet this</a>
+
+<a class="dropdown-item target" data-score="3"  href="javascript:void(window.open('https://t.me/share/url?url='+encodeURIComponent(window.loc\
+\                                                                                                                                             
+ation.href)+'&text='+encodeURIComponent(document.title), '_blank'))">
+    <i class="fab fa-telegram"></i>
+    Telegram link </a>
+                        </div>
+                      </div>
+<button   class="btn btn-primary"   title="Help Material">
+          <span  data-toggle="tooltip" title="Help Material"  target="#Help_C">   <i class="fas fa-info-circle fa-lg"></i>  Help Material  </button>
+
+
+    </span>
+
+</div>
+<!--
+<div class="col-12">
+ <h5> Affordances: </h5>
+</div> 
+
+-->
+<div class="col-12 py-2">
+<h2>                                                                                                                                          
+{{nd.altnames}}                                                                                                                               
+</h2>
+</div>
+
+
+<div class="col-12 py-5">
+  <h5> Affordances: </h5>
+<span class="icon-badge"> 
+{% with actvindi=nd.attribute_set|get_key:'active_knowledge_making_indicator'|lower %}
+   {% if actvindi == 'true' %}
+<img src="/static/ndf/ACTIVE-KNOWLEDGE.svg" class="img-fluid" style="width:15%; height: ;" />   <i class="fas fa-info-circle"  title="1. Active Knowledge Making:"  data-toggle="popover" data-content="If the resource allows engagement and interactivity features/controls for learners so that the learner does not become a passive receiver rather be able to actively manipulate and work with the resource exercising the learner agency.
+"  data-placement="bottom"> </i> 
+   {% endif %}
+{% endwith %}
+</span>
+<span class="icon-badge">
+
+{% with multiindi=nd.attribute_set|get_key:'multimodal_meaning_indicator'|lower %}
+    {% if multiindi == 'true' %}
+<img src="/static/ndf/MULTIMODAL.svg" class="img-fluid" style="width: 15% ; height: ;" /> <i class="fas fa-info-circle" title="2. Multimodal Meaning:" data-toggle="popover" data-content="If the resource offers knowledge representation in multiple ways such as audio-visual, multi-dimensional, multiple-formats." data-placement="bottom"> </i>
+    {% endif %}
+{% endwith %}
+</span>
+<span class="icon-badge">
+
+{% with collabindi=nd.attribute_set|get_key:'collaboration_indicator'|lower %}
+     {% if collabindi == 'true' %}
+<img src="/static/ndf/COLLABORATION.svg" class="img-fluid" style="width: 15% ; height: ;" /> <i class="fas fa-info-circle"  title="3. Collaboration:" data-toggle="popover" 
+data-content="  If the resource expressly fosters or has features for collaboration, sharing and co-construction of knowledge.
+" data-placement="bottom"> </i>
+     {% endif %}
+{% endwith %}
+</span>
+<span class="icon-badge">
+
+{% with accessindi=nd.attribute_set|get_key:'accessibility_indicator'|lower %}
+      {% if accessindi == 'true' %}
+<img src="/static/ndf/ACCESSIBILITY.svg" class="img-fluid" style="width: 15% ; height: ;" />  <i class="fas fa-info-circle"
+  title="4. Accessibility:"   data-toggle="popover"
+ data-content="If the resource is inclusive and offers accessibility features such as screen reader, keyboard-only input etectera to help people with learning disability." data-placement="bottom"> </i>
+      {% endif %}
+{% endwith %}
+</span>
+<span class="icon-badge">
+
+{% with adapindi=nd.attribute_set|get_key:'adaptability_indicator'|lower %}
+     {% if adapindi == 'true' %}
+<img src="/static/ndf/ADAPTABILITY.svg" class="img-fluid" style="width:15%; height:;"> <i class="fas fa-info-circle"  title="5. Adaptability:"   data-toggle="popover" data-content="  If the resource lends itself to be easily remixed and adapted so that it can be used in a different context setting; which also depends on the modularity (ability of a resource to be broken in smaller activities and repurposed)." data-placement="bottom"> </i>
+     {% endif %}
+{% endwith %}
+</span>
+</div>
+
+    </div>
+<div class="col-12 col-sm-12 col-md-6 col-lg-6  fake">
+
+<table class="table table-borderless">
+
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+<p class="meta-data">     MetaData- </p >
+      <td data-toggle="tooltip" title="Website"> <img src="/static/ndf/noun_website_3237546.png                                                                                     
+" style="width:40px; height:44px;">    Website-              {% with name=nd.name %}
+                                {% with json_data=coolresourcedata|get_item:name %}
+                                      <a href="{{json_data.oer_url}}" target="_blank">{{json_data.oer_url}}</a>
+                                {% endwith %}
+                                {% endwith %}
+ </td>
+         </tr>
+
+ <tr  >
+
+      <td data-toggle="tooltip" title="Subject">   
+  <img src="/static/ndf/noun_open book_1548000(1).png" style="width:40px; height:44px;">
+
+Subject: {{nd.attribute_set | get_key:'educationalsubject'}}    </td>
+         </tr>
+   <tr>
+
+      <td data-toggle="tooltip" title="Grade">
+  <img src="/static/ndf/noun_student_670918(1).png" style="width: 40px; height:44px;">
+Grade: {{nd.attribute_set | get_key:'educationallevel'}}     </td>
+         </tr>
+
+ <tr>
+    <td data-toggle="tooltip" title="Curriculum">  <img src="/static/ndf/noun_Book collection_2238039.png                                                                              
+" style="width:40px; height:44px;">  Curriculum: {{nd.attribute_set | get_key:'curriculum'}}     </td>
+         </tr>
+  <tr>
+
+      <td data-toggle="tooltip" title="Language Support">
+<img src="/static/ndf/noun_Language_3091153.png" style="width:40px; height:44px;">
+Language Support: {{nd.attribute_set | get_key:'language_support'  }}     </td>
+         </tr>
+
+  <tr>
+
+      <td data-toggle="tooltip" title="Device Compatibility"> <img src="/static/ndf/noun_platform_195844.png" style="width:40px; height:44px;">
+  Device Compatibility: {{nd.attribute_set | get_key:'device_compatability'}}     </td>
+         </tr>
+
+ <tr>
+      <td data-toggle="tooltip" title="Offline Access"> <img src="/static/ndf/noun_offline_2806022.png" style="width:40px; height:44px;">
+  Offline Access: {{nd.attribute_set | get_key:'offline_access'}}     </td>
+         </tr>
+
+  <tr>
+
+      <td data-toggle="tooltip" title="OS Compatibility"> <img src="/static/ndf/noun_Operating System Layout_112838.png" style="width:40px; height:44px;">
+  OS Compatibility: {{nd.attribute_set | get_key:'os_compatability'}}     </td>
+         </tr>  <tr>
+
+      <td data-toggle="tooltip" title="Accessibility"> <img src="/static/ndf/noun_Accessibility_975764.svg" style="width:40px; height:44px;">
+  Accessibility: {{nd.attribute_set | get_key:'accessibility'}}     </td>
+         </tr> 
+  <tr>
+
+      <td data-toggle="tooltip" title="License">
+<img src="/static/ndf/noun_copyright_62294.png" style="width:40px; height:44px;">
+
+
+   License: {{nd.attribute_set | get_key:'license'}}    </td>
+         </tr>  <tr>
+
+      <td data-toggle="tooltip" title="Topics">
+
+ <img src="/static/ndf/noun_Tag_887310.png                                                                                                    
+" style="width:40px; height:44px;">
+Topics: {% for each_attr in nd.tags %}
+        {{each_attr}}
+        {% if not forloop.last %},
+        {% endif %}
+                    {% endfor %}    </td>
+         </tr>
+    
+   <tr>
+
+      <td data-toggle="tooltip" title="Curator"><img src="/static/ndf/noun_Work_2413136.png" style="width:40px; height:44px;">
+  Curator: {{nd.attribute_set | get_key:'curated_by'}}     </td>
+         </tr>
+  <tr> 
+
+         <td data-toggle="tooltip" title="Updated"> 
+ <i class="fas fa-calendar-alt fa-lg  m-2" >  </i>
+        Updated: 1 May 2020
+   </td>
+ </tr> 
+  <td > 
+</table>
+ 
+
+
+    </div>
+</div>
+</div>
+<div class="container" style="overflow:hidden;" >
+<div class="row">
+  <div class="col-12 text-justify mt-5">
+ <h5  class="text-primary"> This curation is also available in : Hindi, English , Telugu , Tamil  </h5>  
+<p  class="text-justify">
+    {{nd.content}}
+</p>
+       </div>
+</div>
+<!--    
+    <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+      <div class="row">
+<div class="col-12  col-sm-10 col-md-4 col-lg-4">
+  {% get_relation_value nd.id 'has_banner_pic' as grel_dict %}
+  {% if not grel_dict.cursor and grel_dict.grel_node and grel_dict.grel_node.if_file.original.relurl %}
+   <img  class="img-fluid "         
+        src="/media/{{grel_dict.grel_node.if_file.original.relurl}}" style="width:200px; height:150px"/>
+  {% endif %}
+</div>
+        <div class="col-12  col-sm-10 col-md-12 col-lg-12  mt-5">
+         <span  class="m-2" >  <a href="{{json_data.oer_url}}" target="_blank">  <i class="fas fa-rocket fa-lg"></i>    Explore Online  </a>  </span>
+ <div class="dropdown show"  style="display:inline-block" >
+<a class="" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+         <span class="m-2"  > <i class="fas fa-share-alt fa-lg"></i>  Share </span>
+        </a>
+<div class="dropdown-menu font-share" href="" aria-labelledby="dropdownMenuLink">
+
+<a class="dropdown-item" onclick="CopyLink()" id="copy">
+
+<i class="fas fa-copy"> </i>Copy </a>
+<a class="dropdown-item target"  data-score="1"
+ onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(loc\ation.href),'facebook-share-dialog', 'height=350,width=600'); return false;"
+> <i class="fab fa-facebook"> </i>
+Share on Facebook </a>
+<a class="dropdown-item target" data-score="2"  href="http://twitter.com/intent/tweet?url=https://clixoer.tiss.edu/home/e-library/" onclick="\
+window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'), '_blank'; data-url="document.URL"return \
+false;"      target="_blank" >
+<i class="fab fa-twitter"> </i>
+Tweet this</a>
+
+<a class="dropdown-item target" data-score="3"  href="javascript:void(window.open('https://t.me/share/url?url='+encodeURIComponent(window.loc\
+ation.href)+'&text='+encodeURIComponent(document.title), '_blank'))">
+    <i class="fab fa-telegram"></i>
+    Telegram link </a>
+                        </div>
+                      </div>
+
+
+
+         <span> <i class="fas fa-info-circle fa-lg"></i> Help Material </span>
+
+        </div>
+      </div>
+<div class="col-12">
+<h5> {{nd.altnames}}  
+</h5>
+
+</div>
+     <div class="col-12 text-justify mt-5">
+<p  class="text-justify">
+    {{nd.content}}
+</p>
+       </div>
+    </div>
+    <div class="col-12 col-sm-12  col-md-4 col-lg-4">
+<table class="table table-borderless">
+
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+    MetaData- 
+      <td> <img src="/static/ndf/noun_website_3237546.png
+" style="width:40px; height:44px;">    Website-              {% with name=nd.name %}                                                                                                                                          {% with json_data=coolresourcedata|get_item:name %}
+	                              <a href="{{json_data.oer_url}}" target="_blank">{{json_data.oer_url}}</a>
+				{% endwith %}
+				{% endwith %}   
+ </td>
+         </tr>
+   
+  <tr>
+
+      <td>
+<i class="fas fa-book-open fa-lg"> </i>
+Subject- {{nd.attribute_set | get_key:'educationalsubject'}}    </td>
+         </tr>
+
+  <tr>
+
+      <td> 
+ <i class="fas fa-user-graduate fa-lg"> </i>
+Grade  - {{nd.attribute_set | get_key:'educationallevel'}}     </td>
+         </tr>
+
+
+  <tr>
+    <td>  <img src="/static/ndf/noun_Book collection_2238039.png
+" style="width:40px; height:44px;">  Curriculum - {{nd.attribute_set | get_key:'curriculum'}}     </td>
+         </tr>
+  <tr>
+
+      <td> 
+<img src="/static/ndf/noun_Language_3091153.png" style="width:40px; height:44px;">
+Language Support  - {{nd.attribute_set | get_key:'language_support'}}     </td>
+         </tr>
+  <tr>
+      <td> <img src="/static/ndf/noun_offline_2806022.png" style="width:40px; height:44px;">
+  Offline Access  - {{nd.attribute_set | get_key:'offline_access'}}     </td>
+         </tr>
+
+  <tr>
+
+      <td> <img src="/static/ndf/noun_platform_195844.png" style="width:40px; height:44px;">
+  Device Compatibility  - {{nd.attribute_set | get_key:'device_compatability'}}     </td>
+         </tr>
+
+
+  <tr>
+
+      <td> <img src="/static/ndf/noun_Operating System Layout_112838.png" style="width:40px; height:44px;">
+  OS Compatibility  - {{nd.attribute_set | get_key:'os_compatability'}}     </td>
+         </tr>  <tr>
+
+      <td> <img src="/static/ndf/noun_Accessibility_975764.svg" style="width:40px; height:44px;">
+  Accessibility  - {{nd.attribute_set | get_key:'accessibility'}}     </td>
+         </tr>  <tr>
+
+      <td>
+<img src="/static/ndf/noun_copyright_62294.png" style="width:40px; height:44px;">
+
+
+   License  - {{nd.attribute_set | get_key:'license'}}    </td>
+         </tr>  <tr>
+
+      <td>
+
+ <img src="/static/ndf/noun_Tag_887310.png      
+" style="width:40px; height:44px;"> 
+Topics  - {% for each_attr in nd.tags %} 
+	               {{each_attr}} 
+	               {% if not forloop.last %}, 
+	               {% endif %}
+                    {% endfor %}    </td>
+         </tr>  <tr>
+
+      <td><img src="/static/ndf/noun_Work_2413136.png" style="width:40px; height:44px;">
+  Curator  - {{nd.attribute_set | get_key:'curated_by'}}     </td>
+         </tr>
+  
+  </tbody>
+</table>    </div>
+
+  </div>
+-->      
+
+
+<div class="modal" id="Help_C" tabindex="-1">
+<div class="modal-dialog">
+            <div class="modal-header"  >
+              <h5 class="modal-title" id="exampleModalScrollableTitle">  Hi </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+    <div class="container">
+      <div class="row"> 
+
+        <div class="col-12 col-sm-4 " style="margin-top:10px;">
+            <a href="" data-toggle="lightbox" data-gallery="mixedgallery" class="col-sm-4">
+              <img src="" class="img-fluid">
+
+          </a>
+New video will Here
+        </div>
+	
+
+<h1> No video found </h1> 
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+      </div>
+
+</div>
+
+<script>
+function copyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+
+  //
+  // *** This styling is an extra step which is likely not required. ***
+  //
+  // Why is it here? To ensure:
+  // 1. the element is able to have focus and selection.
+  // 2. if element was to flash render it has minimal visual impact.
+  // 3. less flakyness with selection and copying which **might** occur if
+  //    the textarea element is not visible.
+  //
+  // The likelihood is the element won't even render, not even a flash,
+  // so some of these are just precautions. However in IE the element
+  // is visible whilst the popup box asking the user for permission for
+  // the web page to copy to the clipboard.
+  //
+
+  // Place in top-left corner of screen regardless of scroll position.
+  textArea.style.position = 'fixed';
+  textArea.style.top = 0;
+  textArea.style.left = 0;
+
+  // Ensure it has a small width and height. Setting to 1px / 1em
+  // doesn't work as this gives a negative w/h on some browsers.
+  textArea.style.width = '2em';
+  textArea.style.height = '2em';
+
+  // We don't need padding, reducing the size if it does flash render.
+  textArea.style.padding = 0;
+
+  // Clean up any borders.
+  textArea.style.border = 'none';
+  textArea.style.outline = 'none';
+  textArea.style.boxShadow = 'none';
+
+  // Avoid flash of white box if rendered for any reason.
+  textArea.style.background = 'transparent';
+
+
+  textArea.value = text;
+
+  document.body.appendChild(textArea);
+
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+
+  document.body.removeChild(textArea);
+}
+
+function CopyLink() {
+  copyTextToClipboard(location.href);
+}
+
+function CopyLink() {
+  copyTextToClipboard(location.href);
+}
+
+$(function () {
+  $('[data-toggle="popover"]').popover(
+   {
+  trigger: 'hover'
+})
+})
+</script>
+{% endblock %}
