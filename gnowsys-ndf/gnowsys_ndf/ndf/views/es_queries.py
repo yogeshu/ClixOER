@@ -35,6 +35,7 @@ gfs = HashFS('/data/media/', depth=3, width=1, algorithm='sha256')
 banner_pics1 = ['/static/ndf/Website Banners/Landing Page/elibrary1.png','/static/ndf/Website Banners/Landing Page/elibrary2.png','/static/ndf/elibrary 6.1.png','/static/ndf/Website Banners/Landing Page/elibrary4.png','/static/ndf/Website Banners/Landing Page/elibrary5.png','/static/ndf/Website Banners/Landing Page/elibrary6.png','/static/ndf/COOL_website_Banner_Banner_1200-300.png']
 
 def cool_resourcelist(request):
+    banner_pics1 = ['/static/ndf/OER_1200_300_Slider_1.jpg','/static/ndf/OER_1200_300_Slider_2.jpg','/static/ndf/OER_1200_300_Slider_3.jpg','/static/ndf/OER_1200_300_Slider_4.jpg','/static/ndf/OER_1200_300_Slider_5.jpg','/static/ndf/COOL_website_Banner_Banner_1200-300.png']
     print "in cool resource list"
     index = 'nodes'
     doc_type = 'node'
@@ -65,6 +66,7 @@ def cool_oer_preview(request,node_id):
     print "in cool oer preview"
     index = 'nodes'
     doc_type = 'node'
+    banner_pics1 = ['/static/ndf/OER_1200_300_Slider_1.jpg','/static/ndf/OER_1200_300_Slider_2.jpg','/static/ndf/OER_1200_300_Slider_3.jpg','/static/ndf/OER_1200_300_Slider_4.jpg','/static/ndf/OER_1200_300_Slider_5.jpg','/static/ndf/COOL_website_Banner_Banner_1200-300.png']
     nd = get_node_by_id(node_id)
     with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/cool_resources_details.json','r') as json_file:
                         coolresourcedata = json.load(json_file)
