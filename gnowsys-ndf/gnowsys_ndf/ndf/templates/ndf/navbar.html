@@ -92,7 +92,7 @@ background-color: none;
 
 {% for banner in bannerpics|slice:"1:" %}
  <div class="carousel-item">
-      <img src="{{banner}}" class="d-block w-100 img-fluid"    alt="OER_slider">
+      <img src="{{banner}}" class="d-block w-100"    alt="OER_slider">
 
  
 </div>
@@ -110,6 +110,11 @@ background-color: none;
 <nav class="navbar  navbar-expand-lg sticky-top navbar-light bg-light justify-content-center" id="navbar">
   {% if title == 'COOL' %} 
   <a class="navbar-brand float-left" href="{% url 'e-library' group_id  %}" tabindex="1"><img src="/static/ndf/images/COOLLOGO.png" class="img-fluid" width="125px"></a>
+
+ {% elif title == 'COOL-OER' %}
+  <a class="navbar-brand float-left" href="{% url 'e-library' group_id  %}" tabindex="1"><img src="/static/ndf/images/COOLLOGO.png" class="im\
+g-fluid" width="125px"></a>
+
 {% else %}
    <a class="navbar-brand float-left" href="{% url 'e-library' group_id  %}" tabindex="1"><img src="/static/ndf/images/Clix_logo.png" class="img-fluid" width="200px"></a>
 {% endif %}
@@ -117,7 +122,7 @@ background-color: none;
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse justify-content-end" id="navbarsExample04">
+  <div class="collapse navbar-collapse justify-content-end" id="navbarsExample04" >
 
     <ul class="navbar-nav  " >
 <!--
@@ -145,11 +150,20 @@ background-color: none;
 -->
 
 
-  <li class="nav-item ">
+  <li class="nav-item first-filter-search">
 
-        <a class="nav-link ml-3 py-3 fun-name" tabindex="3" href="{% url 'coolpage' %}" style="position: relative;">
+        <a class="nav-link ml-3 py-3 fun-name" tabindex="3" href="{% url 'coolpage' %}" style="position: relative;"  data-toggle="tooltip"
+title="{% trans "Connected Open Online Learning - A TISS response to COVID-19" %}" >
  <i class="fas fa-laptop-house solid" data-toggle="tooltip" 
 title="{% trans "Connected Open Online Learning - A TISS response to COVID-19" %}" ></i> {% trans 'TISS-COOL' %}<span class="blink "> New</span>  </a>
+      </li>
+ <li class="nav-item ">
+
+        <a class="nav-link ml-3 py-3 fun-name" tabindex="3" href="{% url 'cooloers' %}" style="position: relative;" data-toggle="tooltip"
+title="{% trans "Open Education Resources" %}">
+ <i class="fas fa-laptop-house " data-toggle="tooltip"
+title="{% trans "Open Education Resources" %}" ></i> {% trans 'COOL-OER' %}<span class="blink "> New</sp\
+an>  </a>
       </li>
 
        <li class="nav-item dropdown">
@@ -355,21 +369,22 @@ title="{% trans "Connected Open Online Learning - A TISS response to COVID-19" %
 if (location.hash) shiftWindow();
 window.addEventListener("hashchange", shiftWindow);
 */
+/*
 $('.nav li').click(function(){
 $('.nav li').removeClass('active');
 $(this).addClass('active');
 })
 
+*/
 
-
-
+/*
 $('.navbar-nav .nav-link  .fun-name').each(function(){
     if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
     {
     $(this).addClass('active').siblings().removeClass('active');
     }
 });
-
+*/
 
 var shiftWindow = function() { scrollBy(0, -110) };
 if (location.hash) shiftWindow();
@@ -381,6 +396,16 @@ $('.navbar-nav .nav-link  ').click(function(){
     $(this).addClass('active');
 })
 */
+
+
+/*
+$( '#navbar .navbar-nav a' ).on( 'click', function () {
+$( '#navbar .navbar-nav nav-item' ).find( 'active' ).removeClass( 'active' );
+$( this ).parent( 'li' ).addClass( 'active' );
+});
+
+*/
+
 $(document).ready(function() {
     $.each($('#navbar').find('li'), function() {
         $(this).toggleClass('active', 
