@@ -122,9 +122,12 @@ le="color:#fff;"> {% trans 'TISS-COOL' %}</a>  </li>
 </div>
 <div class="col-12 ">
 
-
+    {% with name=nd.name %}
+                                {% with json_data=coolresourcedata|get_item:name %}    
          <span  class=""  data-toggle="tooltip"  title="Explore Online">  <a href="{{json_data.oer_url}}" class="btn btn-primary" target="_blank">  <i class="fas fa-rocket fa-lg"></i>    Explore Online  </a>  </span>
 
+ {% endwith %}
+ {% endwith %}
 
 
 
@@ -158,7 +161,7 @@ ation.href)+'&text='+encodeURIComponent(document.title), '_blank'))">
     Telegram link </a>
                         </div>
                       </div>
-<button   class="btn btn-primary"   title="Help Material">
+<button   class="btn btn-primary" data-toggle="modal" data-target="#helpmodalc">
           <span  data-toggle="tooltip" title="Help Material"  target="#Help_C">   <i class="fas fa-info-circle fa-lg"></i>  Help Material  </button>
 
 
@@ -486,11 +489,13 @@ Topics  - {% for each_attr in nd.tags %}
   </div>
 -->      
 
-<!--
-<div class="modal" id="Help_C" tabindex="-1">
-<div class="modal-dialog">
+
+<div class="modal fade" id="helpmodalc" tabindex="-1">
+
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
             <div class="modal-header"  >
-              <h5 class="modal-title" id="exampleModalScrollableTitle">  Hi </h5>
+              <h5 class="modal-title" id="exampleModalScrollableTitle">  {{nd.name}} </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -504,20 +509,18 @@ Topics  - {% for each_attr in nd.tags %}
               <img src="" class="img-fluid">
 
           </a>
-New video will Here
+
         </div>
 	
-
-<h1> No video found </h1> 
-
-
 
 
 
         </div>
       </div>
     </div>
--->
+</div>
+</div>
+</div>
 
       </div>
 
