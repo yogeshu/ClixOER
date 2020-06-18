@@ -41,7 +41,7 @@ GSTUDIO_DEFAULT_GROUP = u'desk'
 GSTUDIO_EDUCATIONAL_SUBJECTS_AS_GROUPS = False
 
 LANGUAGES = (('en', 'English'), ('hi', 'Hindi'), ('te', 'Telugu'), ('ta','Tamil'))
-HEADER_LANGUAGES = (('en', 'English'), ('hi', u'\u0939\u093f\u0902\u0926\u0940'),('ta', u'\u0ba4\u0bae\u0bbf\u0bb4\u0bcd'))
+HEADER_LANGUAGES = (('en', 'English'), ('hi', u'\u0939\u093f\u0902\u0926\u0940'),('te', u'\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41'))
 GSTUDIO_DEFAULT_LANGUAGE = ('en', 'English')
 GSTUDIO_WORKSPACE_INSTANCE = False
 GSTUDIO_IMPLICIT_ENROLL = False
