@@ -455,9 +455,9 @@ YOU CAN READ THE COMPLETE CLIxOER HONOR CODE HERE.
                           <p  tabindex="7"  data-toggle="tooltip" title="Tags">
 
               <img src="/static/ndf/noun_Tag_887310.png               
-			" style="width:20px; height:24px;">
+			" style="width:20px; height:24px; " >
   
-	      Tags: 
+<span style="font-size:12px;">	      Tags:  </span>
 			    {% for each_attr in each.tags %}
                              <span class="badge badge-pill badge-info" >     {{each_attr}}
 		</span>	           {% if not forloop.last %} {% endif %}
@@ -618,12 +618,13 @@ Tweet this</a>
 
                             <span class="badge badge-light"    data-toggle="tooltip" title="Languages">   Languages:  {{each.language.1}} </span>
                           </p>
-                          <p  tabindex="7">
+                          <p style="font-size:12px;"  tabindex="7" >
 
               <img src="/static/ndf/noun_Tag_887310.png                                                                                                                 
                         " style="width:20px; height:24px;">
-
-              Tags:
+<span style="font-size:12px"> 
+ 
+              Tags:  </span>
                             {% for each_attr in each.tags %}
                              <span class="badge badge-pill badge-info"    data-toggle="tooltip" title="Tags">     {{each_attr}}
                 </span>            {% if not forloop.last %} {% endif %}
@@ -794,8 +795,8 @@ eURIComponent(document.title), '_blank'))">
 
               <img src="/static/ndf/noun_Tag_887310.png                                                                                                                 
                         " style="width:20px; height:24px;">
-
-              Tags:
+<span style="font-size:12px"> 
+              Tags:  </span>
                             {% for each_attr in each.tags %}
                              <span class="badge badge-pill badge-info"   data-toggle="tooltip"   title="Tags"  >     {{each_attr}}
                 </span>            {% if not forloop.last %} {% endif %}
