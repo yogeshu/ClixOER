@@ -41,12 +41,29 @@ def cool_resourcelist(request):
     doc_type = 'node'
     q= eval("Q('bool', must=[Q('match', type = 'GSystemType'), Q('match',name='cool_resource')])")
     gst_cool_resource = (Search(using=es,index = index,doc_type=doc_type).query(q)).execute()
-    q = Q('bool',must=[Q('terms',member_of=[gst_cool_resource[0].id]),Q('match',status='PUBLISHED'),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags='Knowledge')])
+    dt = {u'knowledge_theme': u'Knowledge deepening'}
+    q = Q('bool',must=[Q('terms',member_of=[gst_cool_resource[0].id]),Q('match',status='PUBLISHED'),Q('match',access_policy='PUBLIC')])
     cooloers1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
     cooloers2 = cooloers1.execute()
-    koers = cooloers1[0:cooloers1.count()]
-
-    q = Q('bool',must=[Q('terms',member_of=[gst_cool_resource[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags='Creativity')])
+    koers=[]
+    coers=[]
+    toers = []
+    for each in cooloers1[0:cooloers1.count()]:
+        print each.attribute_set
+        l = list(each.attribute_set)
+        d = {k:v for element in l for k,v in element.to_dict().items()}
+        if d.has_key('knowledge_theme'):
+            if d['knowledge_theme']=='Knowledge deepening':
+                koers.append(each)
+            elif d['knowledge_theme']=='Creativity and 21st century skills':
+                coers.append(each)
+            else:
+                toers.append(each)
+    print "knowledge oers:", koers
+    koers.sort(key=lambda x: x.name, reverse=False)
+    coers.sort(key=lambda x: x.name, reverse=False)
+    toers.sort(key=lambda x: x.name, reverse=False)
+    '''q = Q('bool',must=[Q('terms',member_of=[gst_cool_resource[0].id]),Q('match',access_policy='PUBLIC'),Q('match_phrase',tags='Creativity')])
     cooloers1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
     cooloers2 = cooloers1.execute()
     coers = cooloers1[0:cooloers1.count()]
@@ -55,7 +72,7 @@ def cool_resourcelist(request):
     cooloers1 = (Search(using=es,index = index,doc_type=doc_type).query(q)).sort({"last_update" : {"order" : "asc"}})
     cooloers2 = cooloers1.execute()
     toers = cooloers1[0:cooloers1.count()]
-
+'''
     with open('/home/docker/code/clixoer/gnowsys-ndf/gnowsys_ndf/ndf/static/ndf/cool_resources_details.json','r') as json_file:
                         coolresourcedata = json.load(json_file)
     req_context = RequestContext(request, {

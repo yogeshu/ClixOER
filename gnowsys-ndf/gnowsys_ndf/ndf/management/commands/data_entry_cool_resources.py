@@ -476,7 +476,7 @@ def parse_data_create_gsystem(json_file_path, file_name):
                                     # print error_message
 
                                     break
-
+                    
 
         except Exception as e:
             error_message = "\n While creating "+gsystem_type_name+"'s GSystem ("+json_document['name']+") got following error...\n " + str(e)
@@ -492,6 +492,7 @@ def create_edit_gsystem(gsystem_type_id, gsystem_type_name, json_document, user_
     and GRelation(s)
     """
     node = None
+    print "inside create"
     if "(" in json_document['name'] or ")" in json_document['name']:
         query = {
             "_type": "GSystem",
@@ -518,12 +519,14 @@ def create_edit_gsystem(gsystem_type_id, gsystem_type_name, json_document, user_
 
     if node is None:
         try:
+            print "inside try block of create_edit_gsystem"
             node = node_collection.collection.GSystem()
             # Save Node first with it's basic attribute fields
             for key in json_document.keys():
                 if node.has_key(key):
                     if key == 'tags' or key == 'language':
                         l = [each for each in json_document[key].split(',')]
+                        print "list of tags:",l
                         node[key] = l
                     else:
                         node[key] = json_document[key]
@@ -551,6 +554,7 @@ def create_edit_gsystem(gsystem_type_id, gsystem_type_name, json_document, user_
 
     else:
         # Code for updation
+        print "inside else",node._id
         is_node_changed = False
 
         global node_repeated
