@@ -5,6 +5,21 @@
     "oer_href": "https://youtu.be/H9rdIl3rPgI "
 
 },
+"Phet-Hindi":{
+    "oer_url" : "https://phet.colorado.edu/",
+    "oer_href": "https://youtu.be/H9rdIl3rPgI "
+
+},
+"Phet-Tamil":{
+    "oer_url" : "https://phet.colorado.edu/",
+    "oer_href": "https://youtu.be/H9rdIl3rPgI "
+
+},
+"Phet-Telugu":{
+    "oer_url" : "https://phet.colorado.edu/",
+    "oer_href": "https://youtu.be/H9rdIl3rPgI "
+},
+
 "ePathshala":{
     "oer_url"  : "http://epathshala.nic.in/",
     "oer_href": "https://www.youtube.com/watch?v=DMNPnQePFyc "
@@ -19,10 +34,17 @@
     "oer_url" : "https://www.geogebra.org",
     "oer_href": "https://www.youtube.com/user/GeoGebraChannel/playlists"
 },
-"PhET-Hindi":{
-    "oer_url" : "https://phet.colorado.edu/",
-    "oer_href": "https://youtu.be/H9rdIl3rPgI"
-
+"GeoGebra-Hindi" : {
+    "oer_url" : "https://www.geogebra.org",
+    "oer_href": "https://www.youtube.com/user/GeoGebraChannel/playlists"
+},
+"GeoGebra-Tamil" : {
+    "oer_url" : "https://www.geogebra.org",
+    "oer_href": "https://www.youtube.com/user/GeoGebraChannel/playlists"
+},
+"GeoGebra-Telugu" : {
+    "oer_url" : "https://www.geogebra.org",
+    "oer_href": "https://www.youtube.com/user/GeoGebraChannel/playlists"
 },
 "Dept of School Education-Tamilnadu":{
     "oer_url" : "http://tnschools.gov.in/textbooks",
@@ -32,6 +54,24 @@
     "oer_url" : "https://scratch.mit.edu/",
     "oer_href" : ["https://www.youtube.com/watch?v=98awWpkx9UM&feature=youtu.be",
                   "https://www.youtube.com/watch?v=ssoRNCtmhVM",                                                                                      
+                  "https://www.youtube.com/watch?v=RSZgqg6USQ4&list=PLpfxVARjkP-_f-E9IU6IHmy5ECj0HqiLB&index=3"]
+},
+"SCRATCH-Hindi":{
+    "oer_url" : "https://scratch.mit.edu/",
+    "oer_href" : ["https://www.youtube.com/watch?v=98awWpkx9UM&feature=youtu.be",
+                  "https://www.youtube.com/watch?v=ssoRNCtmhVM",
+                  "https://www.youtube.com/watch?v=RSZgqg6USQ4&list=PLpfxVARjkP-_f-E9IU6IHmy5ECj0HqiLB&index=3"]
+},
+"SCRATCH-Tamil":{
+    "oer_url" : "https://scratch.mit.edu/",
+    "oer_href" : ["https://www.youtube.com/watch?v=98awWpkx9UM&feature=youtu.be",
+                  "https://www.youtube.com/watch?v=ssoRNCtmhVM",
+                  "https://www.youtube.com/watch?v=RSZgqg6USQ4&list=PLpfxVARjkP-_f-E9IU6IHmy5ECj0HqiLB&index=3"]
+},
+"SCRATCH-Telugu":{
+    "oer_url" : "https://scratch.mit.edu/",
+    "oer_href" : ["https://www.youtube.com/watch?v=98awWpkx9UM&feature=youtu.be",
+                  "https://www.youtube.com/watch?v=ssoRNCtmhVM",
                   "https://www.youtube.com/watch?v=RSZgqg6USQ4&list=PLpfxVARjkP-_f-E9IU6IHmy5ECj0HqiLB&index=3"]
 },
 "NISHTHA":{
@@ -56,6 +96,12 @@
                   "https://www.youtube.com/watch?v=0KEzQ8tiuyU"]
 },
 "Arvind Gupta Toys":{
+    "oer_url" : "http://www.arvindguptatoys.com/",
+    "oer_href" : ["https://www.youtube.com/watch?v=XcxIUkzzz_c",
+                  "https://www.youtube.com/watch?v=YOllmFfELT8",
+                  "https://www.youtube.com/user/arvindguptatoys/playlists"]
+},
+"ArvindGuptaToys-Hindi":{
     "oer_url" : "http://www.arvindguptatoys.com/",
     "oer_href" : ["https://www.youtube.com/watch?v=XcxIUkzzz_c",
                   "https://www.youtube.com/watch?v=YOllmFfELT8",
