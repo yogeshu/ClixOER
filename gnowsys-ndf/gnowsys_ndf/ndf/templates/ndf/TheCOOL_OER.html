@@ -256,9 +256,23 @@ color:inherit;
                Contact Us
               </a>
             </li>
-
+<li class="nav-item">
+<!--<p> Filters Domain </p>
+  <div class="checkbox">
+      <label><input type="checkbox" value="">Option 1</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" value="">Option 2</label>
+    </div>
+    <div class="checkbox disabled">
+      <label><input type="checkbox" value="" disabled>Option 3</label>
+    </div>
+-->
+</li>
 
     </ul>
+
+
         </nav>
 
         <div class="col-12 col-sm-12 col-md-10  col-lg-10 col-xl-10"  id="oer_oer">
@@ -409,8 +423,9 @@ YOU CAN READ THE COMPLETE CLIxOER HONOR CODE HERE.
 
               <div class="row card-cool fake-cool" >
  {% for each in k_oers %}
+
 <a href="{% url 'cooloerpreview'  each.id  %}" target="_blank" class="fake-link">
-                 <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3  mt-5"  id="{{each.id}}">
+                 <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4  mt-5"  id="{{each.id}}">
 
                   <div class="card shadow border-rounded " tabindex="7" style="width: 16rem;">
 <div class="ribbon-2"  data-toggle="tooltip" title="Resource Type" > 
@@ -559,6 +574,7 @@ Tweet this</a>
 <!-- Button trigger modal -->
 <!-- Modal -->
 </a>
+
 {% endfor %}
               
 
@@ -577,7 +593,7 @@ Tweet this</a>
 		                  <div class="row card-cool fake-cool">
  {% for each in c_oers %}
 <a href="{% url 'cooloerpreview'  each.id  %}" target="_blank" class="fake-link">
-                 <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3  mt-5"  id="{{each.id}}">
+                 <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4  mt-5"  id="{{each.id}}">
 
                   <div class="card shadow border-rounded " tabindex="7" style="width: 16rem;">
 <div class="ribbon-2"  data-toggle="tooltip" title="Resource Type">
@@ -594,7 +610,7 @@ Tweet this</a>
                          style="width:150px; height: 150px; text-align:center;"
                         />
 </div>
-                      {% endif %}
+                    {% endif %}
 
 
                         <div class="card-body">
@@ -750,7 +766,7 @@ eURIComponent(document.title), '_blank'))">
               <div class="row card-cool fake-cool">
  {% for each in t_oers %}
 <a href="{% url 'cooloerpreview'  each.id  %}" target="_blank" class="fake-link">
-                 <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3  mt-5"  id="{{each.id}}">
+                 <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4  mt-5"  id="{{each.id}}">
 
                   <div class="card shadow border-rounded " tabindex="7" style="width: 16rem;">
 <div class="ribbon-2"   data-toggle="tooltip" title="Resource Type" >
