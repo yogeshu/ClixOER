@@ -1,110 +1,185 @@
-
 {
-"Phet":{
-    "oer_url" : "https://phet.colorado.edu/",
-    "oer_href": "https://youtu.be/H9rdIl3rPgI "
+    "Phet": {
+	"oer_url": "https://phet.colorado.edu/",
+	"oer_href": {
+	    "https://www.youtube.com/embed/H9rdIl3rPgI": "https://img.youtube.com/vi/H9rdIl3rPgI/0.jpg"
+	    }
 
-},
-"Phet-Hindi":{
-    "oer_url" : "https://phet.colorado.edu/",
-    "oer_href": "https://youtu.be/H9rdIl3rPgI "
 
-},
-"Phet-Tamil":{
-    "oer_url" : "https://phet.colorado.edu/",
-    "oer_href": "https://youtu.be/H9rdIl3rPgI "
 
-},
-"Phet-Telugu":{
-    "oer_url" : "https://phet.colorado.edu/",
-    "oer_href": "https://youtu.be/H9rdIl3rPgI "
-},
+	},
+    "Phet-Hindi": {
+	"oer_url": "https://phet.colorado.edu/",
+	"oer_href": {
+	    "https://www.youtube.com/embed/H9rdIl3rPgI": "https://img.youtube.com/vi/H9rdIl3rPgI/0.jpg"
+	    }
+	},
+    "Phet-Tamil": {
+	"oer_url": "https://phet.colorado.edu/",
+	"oer_href": {
+	    "https://www.youtube.com/embed/H9rdIl3rPgI": "https://img.youtube.com/vi/H9rdIl3rPgI/0.jpg"
+	    }
 
-"ePathshala":{
-    "oer_url"  : "http://epathshala.nic.in/",
-    "oer_href": "https://www.youtube.com/watch?v=DMNPnQePFyc "
+	},
+    "Phet-Telugu": {
+	"oer_url": "https://phet.colorado.edu/",
+	"oer_href": {
+	    "https://www.youtube.com/embed/H9rdIl3rPgI": "https://img.youtube.com/vi/H9rdIl3rPgI/0.jpg"
+	    }
+	},
 
-},
-"Diksha":{
-    "oer_url" : "https://diksha.gov.in/",
-    "oer_href": "https://diksha.gov.in/play/content/do_31290684412435660813273?referrer=utm_source%3Ddiksha_mobile%26utm_content%3Ddo_312796455259144192120443%26utm_campaign%3Dshare_content"
+    "ePathshala": {
+	"oer_url": "http://epathshala.nic.in/",
+	"oer_href": {
+	    "https://www.youtube.com/embed/DMNPnQePFyc ": "https://img.youtube.com/vi/DMNPnQePFyc/0.jpg"
+	    }
 
-},
-"GeoGebra" : { 
-    "oer_url" : "https://www.geogebra.org",
-    "oer_href": "https://www.youtube.com/user/GeoGebraChannel/playlists"
-},
-"GeoGebra-Hindi" : {
-    "oer_url" : "https://www.geogebra.org",
-    "oer_href": "https://www.youtube.com/user/GeoGebraChannel/playlists"
-},
-"GeoGebra-Tamil" : {
-    "oer_url" : "https://www.geogebra.org",
-    "oer_href": "https://www.youtube.com/user/GeoGebraChannel/playlists"
-},
-"GeoGebra-Telugu" : {
-    "oer_url" : "https://www.geogebra.org",
-    "oer_href": "https://www.youtube.com/user/GeoGebraChannel/playlists"
-},
-"Dept of School Education-Tamilnadu":{
-    "oer_url" : "http://tnschools.gov.in/textbooks",
-    "oer_href" : "None"
-},
-"SCRATCH":{
-    "oer_url" : "https://scratch.mit.edu/",
-    "oer_href" : ["https://www.youtube.com/watch?v=98awWpkx9UM&feature=youtu.be",
-                  "https://www.youtube.com/watch?v=ssoRNCtmhVM",                                                                                      
-                  "https://www.youtube.com/watch?v=RSZgqg6USQ4&list=PLpfxVARjkP-_f-E9IU6IHmy5ECj0HqiLB&index=3"]
-},
-"SCRATCH-Hindi":{
-    "oer_url" : "https://scratch.mit.edu/",
-    "oer_href" : ["https://www.youtube.com/watch?v=98awWpkx9UM&feature=youtu.be",
-                  "https://www.youtube.com/watch?v=ssoRNCtmhVM",
-                  "https://www.youtube.com/watch?v=RSZgqg6USQ4&list=PLpfxVARjkP-_f-E9IU6IHmy5ECj0HqiLB&index=3"]
-},
-"SCRATCH-Tamil":{
-    "oer_url" : "https://scratch.mit.edu/",
-    "oer_href" : ["https://www.youtube.com/watch?v=98awWpkx9UM&feature=youtu.be",
-                  "https://www.youtube.com/watch?v=ssoRNCtmhVM",
-                  "https://www.youtube.com/watch?v=RSZgqg6USQ4&list=PLpfxVARjkP-_f-E9IU6IHmy5ECj0HqiLB&index=3"]
-},
-"SCRATCH-Telugu":{
-    "oer_url" : "https://scratch.mit.edu/",
-    "oer_href" : ["https://www.youtube.com/watch?v=98awWpkx9UM&feature=youtu.be",
-                  "https://www.youtube.com/watch?v=ssoRNCtmhVM",
-                  "https://www.youtube.com/watch?v=RSZgqg6USQ4&list=PLpfxVARjkP-_f-E9IU6IHmy5ECj0HqiLB&index=3"]
-},
-"NISHTHA":{
-    "oer_url" : "https://itpd.ncert.gov.in/",
-    "oer_href" : ["https://www.youtube.com/watch?v=Isqw03XWmNo",  
-                  "https://www.youtube.com/watch?v=toBDwLYQLus"]
-},
-"metaStudio.org":{
-    "oer_url" : "https://metastudio.org",
-    "oer_href" : "https://www.youtube.com/watch?v=GK3Gl47smnQ"
-},
-"NROER":{
-    "oer_url" : "https://nroer.gov.in",
-    "oer_href" : ["https://www.youtube.com/watch?v=eDOMcaDslyo",                                                                                          
-                  "https://www.youtube.com/watch?v=ZHkFyjj_1P8"]
-},
-"Storyweaver":{
-    "oer_url" : "https://storyweaver.org.in/",
-    "oer_href" : ["https://www.youtube.com/watch?v=UY8EIfI3qXE",
-                  "https://www.youtube.com/watch?time_continue=116&v=o3513gpzIMw&feature=emb_logo",
-                  "https://www.youtube.com/watch?v=dbzDyQ9oquQ&list=PLjSfYZRuMv2OEsP4FpjL-ZqLpa_9DATm1&index=4",
-                  "https://www.youtube.com/watch?v=0KEzQ8tiuyU"]
-},
-"Arvind Gupta Toys":{
-    "oer_url" : "http://www.arvindguptatoys.com/",
-    "oer_href" : ["https://www.youtube.com/watch?v=XcxIUkzzz_c",
-                  "https://www.youtube.com/watch?v=YOllmFfELT8",
-                  "https://www.youtube.com/user/arvindguptatoys/playlists"]
-},
-"ArvindGuptaToys-Hindi":{
-    "oer_url" : "http://www.arvindguptatoys.com/",
-    "oer_href" : ["https://www.youtube.com/watch?v=XcxIUkzzz_c",
-                  "https://www.youtube.com/watch?v=YOllmFfELT8",
-                  "https://www.youtube.com/user/arvindguptatoys/playlists"]
-}
+	},
+    "Diksha": {
+	"oer_url": "https://diksha.gov.in/",
+	"oer_website": "https://diksha.gov.in/play/content/do_31290684412435660813273?referrer=utm_source%3Ddiksha_mobile%26utm_content%3Ddo_312796455259144192120443%26utm_campaign%3Dshare_content"
+
+	},
+    "GeoGebra": {
+	"oer_url": "https://www.geogebra.org",
+	"oer_href": {"https://youtu.be/whpCnzWECAI" :  "https://img.youtube.com/whpCnzWECAI/0.jpg" ,
+		     "https://www.youtube.com/watch?v=Yoo2qhQ1FAw" :  "https://img.youtube.com/Yoo2qhQ1FAw/0.jpg"}
+	},
+    "GeoGebra-Hindi": {
+	"oer_url": "https://www.geogebra.org",
+	"oer_href": {"https://youtu.be/whpCnzWECAI" :  "https://img.youtube.com/whpCnzWECAI/0.jpg" ,
+		     "https://www.youtube.com/watch?v=Yoo2qhQ1FAw" :  "https://img.youtube.com/Yoo2qhQ1FAw/0.jpg"} 
+	},
+    "GeoGebra-Tamil": {
+	"oer_url": "https://www.geogebra.org",
+	"oer_href": {"https://youtu.be/whpCnzWECAI" :  "https://img.youtube.com/whpCnzWECAI/0.jpg" ,
+		     "https://www.youtube.com/watch?v=Yoo2qhQ1FAw" :  "https://img.youtube.com/Yoo2qhQ1FAw/0.jpg"} 
+	},
+    "GeoGebra-Telugu": {
+	"oer_url": "https://www.geogebra.org",
+	"oer_href": {"https://youtu.be/whpCnzWECAI" :  "https://img.youtube.com/whpCnzWECAI/0.jpg" ,
+		     "https://www.youtube.com/watch?v=Yoo2qhQ1FAw" :  "https://img.youtube.com/Yoo2qhQ1FAw/0.jpg"} 
+	},
+    "Dept of School Education-Tamilnadu": {
+	"oer_url": "http://tnschools.gov.in/textbooks",
+	"oer_href": "None"
+	},
+    "SCRATCH": {
+	"oer_url": "https://scratch.mit.edu/",
+	"oer_href": {
+	    "https://www.youtube.com/embed/98awWpkx9UM": "https://img.youtube.com/vi98awWpkx9UM/0.jpg"
+	    ,
+	    
+	    "https://www.youtube.com/embed/ssoRNCtmhVM": "https://img.youtube.com/vi/ssoRNCtmhVM/0.jpg"
+	    ,
+	    
+	    "hhttps://www.youtube.com/embed/RSZgqg6USQ4": "https://img.youtube.com/vi/RSZgqg6USQ4/0.jpg"
+	    }
+	
+	},
+    "SCRATCH-Hindi": {
+	"oer_url": "https://scratch.mit.edu/",
+	"oer_href": {
+	    "https://www.youtube.com/embed/98awWpkx9UM": "https://img.youtube.com/vi/98awWpkx9UM/0.jpg"
+	    ,
+	    
+	    "https://www.youtube.com/embed/ssoRNCtmhVM": "https://img.youtube.com/vi/ssoRNCtmhVM/0.jpg"
+	    ,
+	    
+	    "hhttps://www.youtube.com/embed/RSZgqg6USQ4": "https://img.youtube.com/vi/RSZgqg6USQ4/0.jpg"
+	    }
+	},
+    "SCRATCH-Tamil": {
+	"oer_url": "https://scratch.mit.edu/",
+	"oer_href": {
+	    "https://www.youtube.com/embed/98awWpkx9UM": "https://img.youtube.com/vi/98awWpkx9UM/0.jpg"
+	    ,
+	    
+	    "https://www.youtube.com/embed/ssoRNCtmhVM": "https://img.youtube.com/vi/ssoRNCtmhVM/0.jpg"
+	    ,
+	    
+	    "hhttps://www.youtube.com/embed/RSZgqg6USQ4": "https://img.youtube.com/vi/RSZgqg6USQ4/0.jpg"
+	    }
+	
+	},
+    "SCRATCH-Telugu": {
+	"oer_url": "https://scratch.mit.edu/",
+
+	"oer_href": {
+	    "https://www.youtube.com/embed/98awWpkx9UM": "https://img.youtube.com/vi/98awWpkx9UM/0.jpg"
+	    ,
+	    
+	    "https://www.youtube.com/embed/ssoRNCtmhVM": "https://img.youtube.com/vi/ssoRNCtmhVM/0.jpg"
+	    ,
+	    
+	    "hhttps://www.youtube.com/embed/RSZgqg6USQ4": "https://img.youtube.com/vi/RSZgqg6USQ4/0.jpg"
+	    }
+	},
+    "NISHTHA": {
+	"oer_url": "https://itpd.ncert.gov.in/",
+	"oer_href": {
+	    "https://www.youtube.com/embed/Isqw03XWmNo": "https://img.youtube.com/vi/Isqw03XWmNo/0.jpg"
+	    ,
+	    
+	    "https://www.youtube.com/embed/toBDwLYQLus": "https://img.youtube.com/vi/toBDwLYQLus/0.jpg"
+	    }
+	
+	},
+    "metaStudio.org": {
+	"oer_url": "https://metastudio.org",
+	"oer_href": {
+	    "https://www.youtube.com/embed/GK3Gl47smnQ": "https://img.youtube.com/vi/GK3Gl47smnQ/0.jpg"
+	    }
+	},
+    "NROER": {
+	"oer_url": "https://nroer.gov.in",
+	"oer_href": {
+	    "https://www.youtube.com/embed/eDOMcaDslyo": "https://img.youtube.com/vi/eDOMcaDslyo/0.jpg"
+	    ,
+	    
+	    "https://www.youtube.com/embed/ZHkFyjj_1P8": "https://img.youtube.com/vi/ZHkFyjj_1P8/0.jpg"
+	    }
+	
+	},
+    "Storyweaver": {
+	"oer_url": "https://storyweaver.org.in/",
+	"oer_href": {
+	    "https://www.youtube.com/embed/UY8EIfI3qXE": "https://img.youtube.com/vi/UY8EIfI3qXE/0.jpg"
+	    ,
+	    
+	    "https://www.youtube.com/embed/o3513gpzIMw": "https://img.youtube.com/vi/o3513gpzIMw/0.jpg"
+	    ,
+	    
+	    "hhttps://www.youtube.com/embed/bzDyQ9oquQ": "https://img.youtube.com/vi/bzDyQ9oquQ/0.jpg"
+	    ,
+	    
+	    "https://www.youtube.com/embed/0KEzQ8tiuyU": "https://img.youtube.com/vi/0KEzQ8tiuyU/0.jpg"
+	    }
+	
+	},
+    "Arvind Gupta Toys": {
+	"oer_url": "http://www.arvindguptatoys.com/",
+	"oer_href": {
+	    "https://www.youtube.com/embed/XcxIUkzzz_c": "https://img.youtube.com/vi/XcxIUkzzz_c/0.jpg"
+	    ,
+	    
+	    "https://www.youtube.com/embed/YOllmFfELT8": "https://img.youtube.com/vi/YOllmFfELT8/0.jpg"
+	    ,
+	    "https://www.youtube.com/watch?v=YkkwJrQ3MDU" : "https://img.youtube.com/vi/YkkwJrQ3MDU/0.jpg"
+	    }
+	
+	},
+    "ArvindGuptaToys-Hindi": {
+	"oer_url": "http://www.arvindguptatoys.com/",
+	"oer_href": {
+	    "https://www.youtube.com/embed/XcxIUkzzz_c": "https://img.youtube.com/vi/XcxIUkzzz_c/0.jpg"
+	    ,
+	    
+	    "https://www.youtube.com/embed/YOllmFfELT8": "https://img.youtube.com/vi/YOllmFfELT8/0.jpg"
+	    ,
+	    "https://www.youtube.com/watch?v=3waWdeY9c4I" : "https://img.youtube.com/vi/3waWdeY9c4I/0.jpg"
+	    }
+	
+	}
+
 }
