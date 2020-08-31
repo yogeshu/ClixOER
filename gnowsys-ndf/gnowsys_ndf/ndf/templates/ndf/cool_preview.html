@@ -505,15 +505,37 @@ Topics  - {% for each_attr in nd.tags %}
             </div>
             <div class="modal-body">
     <div class="container">
-      <div class="row"> 
+      <div class="row">
+	{% with name=nd.name %}
+          {% with json_data=coolresourcedata|get_item:name %}
+	       {% with d=json_data.oer_href %}
+                    {% for key,value in d.items %}
+      <div class="col-12 col-sm-4 " style="margin-top:10px;">
+            <a href="{{key}}" data-toggle="lightbox" data-gallery="mixedgallery" class="col-sm-4">
+              <img src="{{value}}" class="img-fluid">
+          </a>
+        </div>
+        {% endfor %}
+       {% endwith %}
+      {% endwith %}
+      {% endwith %}
 
-        <div class="col-12 col-sm-4 " style="margin-top:10px;">
+<hr>
+
+<div class="col-12 col-sm-12 col-md-12">
+<a href="{{oer_website}}" target="_blank">{{oer_website}}</a>
+</div>
+
+
+
+
+<!--        <div class="col-12 col-sm-4 " style="margin-top:10px;">
             <a href="" data-toggle="lightbox" data-gallery="mixedgallery" class="col-sm-4">
               <img src="" class="img-fluid">
           </a>
     <p>  cooming soon </p>
         </div>
-	
+-->	
 
 
 
