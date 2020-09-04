@@ -102,7 +102,28 @@ def cool_oer_preview(request,node_id):
             obj1.save()
     return render_to_response("ndf/cool_preview.html",req_context)
 
-
+def cool_incr_explorecnt(request):
+    print "in cool oer explr incr cnt"
+    #index = 'nodes'
+    #doc_type = 'node'
+    from django.shortcuts import redirect
+    node_id = request.POST.get('node_id')
+    link = request.POST.get('href_link')
+    print "link:",link
+    nd = get_node_by_id(node_id)
+    results = hit_counters.objects.filter(session_id=request.COOKIES['sessionid']).filter(visitednode_name=nd.name)
+    if len(results) ==0:
+        obj = hit_counters.objects.create(session_id=request.COOKIES['sessionid'],visitednode_id=nd.id,visitednode_name=nd.name,preview_count=0,visit_count=1,download_count=0,created_date=datetime.datetime.now(),last_updated=datetime.datetime.now())
+        obj.save()
+        print "hit_counter object saved"
+    else:
+        obj1 = results[0]
+        #print "else:",obj1.visitednode_name,obj1.visit_count                                                                                                          
+        if obj1.visit_count == 0:
+            obj1.visit_count = 1
+            obj1.save()
+    print ("redirecting to link:",link)
+    return redirect(link)
 def site_contact(request):
     req_context = RequestContext(request, {
                                     'title':'Contact','group_id': 'home', 'groupid': 'home','bannerpics':banner_pics1})

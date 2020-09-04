@@ -1,3 +1,7 @@
+
+
+
+
 {
     "Phet": {
 	"oer_url": "https://phet.colorado.edu/",
@@ -115,6 +119,20 @@
 	    "hhttps://www.youtube.com/embed/RSZgqg6USQ4": "https://img.youtube.com/vi/RSZgqg6USQ4/0.jpg"
 	    }
 	},
+   "SCRATCH-Punjabi": {
+        "oer_url": "https://scratch.mit.edu/",
+
+        "oer_href": {
+            "https://www.youtube.com/embed/98awWpkx9UM": "https://img.youtube.com/vi/98awWpkx9UM/0.jpg"
+            ,
+
+            "https://www.youtube.com/embed/ssoRNCtmhVM": "https://img.youtube.com/vi/ssoRNCtmhVM/0.jpg"
+            ,
+
+            "hhttps://www.youtube.com/embed/RSZgqg6USQ4": "https://img.youtube.com/vi/RSZgqg6USQ4/0.jpg"
+            }
+        },
+
     "NISHTHA": {
 	"oer_url": "https://itpd.ncert.gov.in/",
 	"oer_href": {
@@ -154,9 +172,27 @@
 	    ,
 	    
 	    "https://www.youtube.com/embed/0KEzQ8tiuyU": "https://img.youtube.com/vi/0KEzQ8tiuyU/0.jpg"
-	    }
-	
+	    }	
 	},
+     "Storyweaver-Punjabi": {
+        "oer_url": "https://storyweaver.org.in/",
+  
+       "oer_href": {
+            "https://www.youtube.com/embed/UY8EIfI3qXE": "https://img.youtube.com/vi/UY8EIfI3qXE/0.jpg"
+            ,
+
+            "https://www.youtube.com/embed/o3513gpzIMw": "https://img.youtube.com/vi/o3513gpzIMw/0.jpg"
+            ,
+
+            "hhttps://www.youtube.com/embed/bzDyQ9oquQ": "https://img.youtube.com/vi/bzDyQ9oquQ/0.jpg"
+            ,
+
+            "https://www.youtube.com/embed/0KEzQ8tiuyU": "https://img.youtube.com/vi/0KEzQ8tiuyU/0.jpg"
+            }
+
+        },
+
+
     "Arvind Gupta Toys": {
 	"oer_url": "http://www.arvindguptatoys.com/",
 	"oer_href": {
