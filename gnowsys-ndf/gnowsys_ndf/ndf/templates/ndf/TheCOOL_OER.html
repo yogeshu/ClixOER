@@ -1,4 +1,5 @@
 
+
 {% extends "ndf/base.html" %}
 
 {% load ndf_tags %}
@@ -256,20 +257,112 @@ color:inherit;
                Contact Us
               </a>
             </li>
-<li class="nav-item">
-<!--<p> Filters Domain </p>
+<!--
+<li class="nav-item ">
+
+<div class="collapsed" data-toggle="collapse" data-target="#domain1"  >
+<p class=""> Subject Domain </p> </div>
+
+<hr>
+<div class="collapase show" id="domain1">
   <div class="checkbox">
-      <label><input type="checkbox" value="">Option 1</label>
+      <label><input type="checkbox" value="">Computational Thinking and Coding</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Option 2</label>
+      <label><input type="checkbox" value="">Interdisplinary</label>
     </div>
-    <div class="checkbox disabled">
-      <label><input type="checkbox" value="" disabled>Option 3</label>
+    <div class="checkbox ">
+      <label><input type="checkbox" value="" > Science </label>
     </div>
--->
+ <div class="checkbox">
+      <label><input type="checkbox" value="">Mathematics </label>
+    </div>
+ <div class="checkbox">
+      <label><input type="checkbox" value="">Language Learning</label>
+    </div>
+ <div class="checkbox">
+      <label><input type="checkbox" value="">Social Science </label>
+    </div>
+</div>
 </li>
 
+<li class="nav-item">
+<div class="collapsed" data-toggle="collapse" data-target="#domain2"  >
+
+<p> Resource Type  </p>                                                
+</div>
+<div class="collaspe show" id="domain2">                                                                   
+  <div class="checkbox">                                                                                                                      
+      <label><input type="checkbox" value=""> Courses</label>   
+    </div>                                                                                                                                      
+    <div class="checkbox">                                                                                                                    
+      <label><input type="checkbox" value="">E-Textbooks</label>                                                                                 
+    </div>                                                                                                                                    
+    <div class="checkbox ">                                                                                                           
+      <label><input type="checkbox" value="" >Forum</label>                                                                        
+    </div>                                                                                                                                     <div class="checkbox">
+      <label><input type="checkbox" value="">Game</label>
+    </div>
+
+ <div class="checkbox">
+      <label><input type="checkbox" value="">Simulation </label>
+    </div>
+ <div class="checkbox">
+      <label><input type="checkbox" value="">Repository</label>
+    </div>
+ <div class="checkbox">
+      <label><input type="checkbox" value="">Tool</label>
+    </div>
+</div>
+</li>
+<li class="nav-item">
+<div class="collapsed" data-toggle="collapse" data-target="#domain3"  >
+
+<p> Language Support  </p>                                        
+</div> 
+ <div class="collaspe show" id="domain3">                                                                           
+  <div class="checkbox">                                                                                                                      
+      <label><input type="checkbox" value="">English (cnt) </label>       
+                  </div>                                                                                                                                    
+    <div class="checkbox">                                                                                                                    
+      <label><input type="checkbox" value="">Hindi</label>                                                                                 
+    </div>                                                                                                                                   
+    <div class="checkbox">                                                                                                           
+      <label><input type="checkbox" value="" >Marathi</label>                                                                        
+    </div>                                                                                                                                     <div class="checkbox">
+      <label><input type="checkbox" value="">Telugu</label>
+    </div>
+
+ <div class="checkbox">
+      <label><input type="checkbox" value="">Tamil</label>
+    </div>
+ <div class="checkbox">
+      <label><input type="checkbox" value="">Urdu</label>
+    </div>
+ </div>
+</li>
+
+
+<li class="nav-item">
+
+<div class="collapsed" data-toggle="collapse" data-target="#domain4"  >
+
+<p> Grade </p>                                                      
+</div>
+ <div class="collapse show" id="domain4">                                                             
+  <div class="checkbox">                                                                                                                      
+      <label><input type="checkbox" value="">Primary(1-5)</label>                                                                                 
+    </div>                                                                                                                                    
+    <div class="checkbox">                                                                                                                    
+      <label><input type="checkbox" value="">Uppar Primary(6-8)</label>                                                                                 
+    </div>                                                                                                                                    
+    <div class="checkbox ">                                                                                                           
+      <label><input type="checkbox" value="" >Secondary(9-12)</label>                                                                        
+    </div>                                                                                                                                    
+ </div>
+
+</li>
+-->
     </ul>
 
 
@@ -285,7 +378,7 @@ color:inherit;
                
 Connect Open Online Learning - Open Educational Resources (COOL-OER) is a repository of carefully curated OERs that are relevant to Indian context and hence can be adopted/adapted by schools. In times when humongous kinds of resources are being shared on the internet and social media this is an attempt to assist teachers, educators, parents and students find a thoughtfully curated list of open educational resources that can be meaningfully integrated in the teaching-learning process especially during distance learning. The thrust has been to showcase OERs that foster <strong> active learning</strong> , are multilingual - support Indian languages, <strong> accessible </strong>  and <strong> adaptable. </strong>
 
- <span id="dots"> .. </span>
+ <span id="dots"> .. </span>  
 </p>
 <span  id="more" >
 <p class="text-justify" tabinde="6"> A range of resources - with and without digital technology - and across various types - eBooks, multimedia repositories, simulations, tools, hands-on - have been curated and are available in multiple languages. 
@@ -415,7 +508,7 @@ YOU CAN READ THE COMPLETE CLIxOER HONOR CODE HERE.
               <h1 tabindex="7">                 Knowledge Deepening
 </h1> 
 <p class="text-justify">
- resources and tools that help develop conceptual clarity, widen the knowledge and better understanding of subject matters and also help learners appreciate multidisciplinarity of fields.
+ Resources and tools that help develop conceptual clarity, widen the knowledge and better understanding of subject matters and also help learners appreciate multidisciplinarity of fields.
 
 </p>
 <br>
@@ -424,14 +517,16 @@ YOU CAN READ THE COMPLETE CLIxOER HONOR CODE HERE.
               <div class="row card-cool fake-cool" >
  {% for each in k_oers %}
 
-<a href="{% url 'cooloerpreview'  each.id  %}" target="_blank" class="fake-link">
+<a href="{% url 'cooloerpreview'  each.id  %}"  target="_blank" class="fake-link ">
                  <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4  mt-5"  id="{{each.id}}">
 
-                  <div class="card shadow border-rounded " tabindex="7" style="width: 16rem;">
+
+                  <div class="card shadow border-rounded " tabindex="7" style="width: 16rem; ">
 <div class="ribbon-2"  data-toggle="tooltip" title="Resource Type" > 
 <span class="  m-2  text-white"   > 
  <img src="/static/ndf/noun_atom_954768.png" style="width:14%" class="img-fluid">   {{each.attribute_set | get_key:'resource_type'}}  </span>
 </div>
+{% get_download_preview_cnt each.name as cnt_nd%}
 		      {% get_relation_value each.id 'has_banner_pic' as grel_dict %}
                       {% if not grel_dict.cursor and grel_dict.grel_node and grel_dict.grel_node.if_file.original.relurl %}
 		     
@@ -486,16 +581,21 @@ YOU CAN READ THE COMPLETE CLIxOER HONOR CODE HERE.
 
 <a  href="{% url 'cooloerpreview'  each.id  %}"  target="_blank"    data-toggle="tooltip" title="Preview"  class="stretched-link" >      
 
-                                  <i class="fa fa-eye fa-lg"   data-toggle="modal" data-target="#{{each.id}}"> </i>  </a>
+                                  <i class="fa fa-eye fa-lg"   data-toggle="modal" data-target="#{{each.id}}"> </i> 
+ {{cnt_nd.total_previewcnt}}
+
+
+  </a>
                                 </span>
                               </div>
                               <div class="col-4" tabindex="7" data-toggle="tooltip" title="Explore Online">
 
 				{% with name=each.name %}
 				{% with json_data=coolresourcedata|get_item:name %}                                <span>
-<a href="{{json_data.oer_url}}" target="_blank">
-                                  <i class="fas fa-rocket fa-lg"></i>
+<a href="{{json_data.oer_url}}" id="{{each.id}}"  target="_blank" class="explorelink">
+                                  <i class="fas fa-rocket fa-lg"></i> {{cnt_nd.total_visitcnt}}  
 </a>
+
 {% endwith %}
 {% endwith %}
                                 </span>
@@ -586,7 +686,7 @@ Tweet this</a>
  <div id="section3" class="container-fluid  mt-5">
               <h1>Creativity and 21st century skills </h1>
  <p class="text-justify">
- resources and tools that help foster creative expression and skills such as storymaking, designing, coding, computational thinking and digital agency.
+ Resources and tools that help foster creative expression and skills such as storymaking, designing, coding, computational thinking and digital agency.
 </p>
             <br>
                     <hr>
@@ -595,11 +695,12 @@ Tweet this</a>
 <a href="{% url 'cooloerpreview'  each.id  %}" target="_blank" class="fake-link">
                  <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4  mt-5"  id="{{each.id}}">
 
-                  <div class="card shadow border-rounded " tabindex="7" style="width: 16rem;">
+                  <div class="card shadow border-rounded " tabindex="7" style="width: 16rem; ">
 <div class="ribbon-2"  data-toggle="tooltip" title="Resource Type">
 <span class="  m-2  text-white">  <img src="/static/ndf/noun_atom_954768.png" style="width:14%" class="img-fluid">   {{each.attribute_set | get_key:'resource_type'}}  
 </span>
 </div>
+{% get_download_preview_cnt each.name as cnt_nd%}
                       {% get_relation_value each.id 'has_banner_pic' as grel_dict %}
                       {% if not grel_dict.cursor and grel_dict.grel_node and grel_dict.grel_node.if_file.original.relurl %}
 
@@ -654,16 +755,18 @@ Tweet this</a>
 
 <a  href="{% url 'cooloerpreview'  each.id  %}" target="_blank"   data-toggle="tooltip" title="Preview"  class="stretched-link">
 
-                                  <i class="fa fa-eye fa-lg"   data-toggle="modal" data-target="#{{each.id}}"> </i>  </a>
+                                  <i class="fa fa-eye fa-lg"   data-toggle="modal" data-target="#{{each.id}}"> </i> 
+ 
+  {{cnt_nd.total_previewcnt}} 
+ </a>
                                 </span>
                               </div>
                               <div class="col-4" tabindex="7"     data-toggle="tooltip" title="Explore Online">
 
                                 {% with name=each.name %}
                                 {% with json_data=coolresourcedata|get_item:name %}                                <span>
-<a href="{{json_data.oer_url}}" target="_blank">
-                                  <i class="fas fa-rocket fa-lg"> </i>
-</a>
+<a href="{{json_data.oer_url}}" id="{{each.id}}" target="_blank" class="explorelink">
+                                  <i class="fas fa-rocket fa-lg"> </i>    {{cnt_nd.total_visitcnt}}     </a>
 {% endwith %}
 {% endwith %}
                                 </span>
@@ -758,7 +861,7 @@ eURIComponent(document.title), '_blank'))">
            <div id="section4" class="container-fluid  mt-5">
              <h1>Tinkering and making</h1>
   <p class="text-justify">
-  resources and tools that enable hands-on minds-on engagement and cultivate learning by doing, tinkering and making habits.
+  Resources and tools that enable hands-on minds-on engagement and cultivate learning by doing, tinkering and making habits.
      </p> 
             <br>
                     <hr>
@@ -773,6 +876,7 @@ eURIComponent(document.title), '_blank'))">
 <span class="  m-2  text-white">  <img src="/static/ndf/noun_atom_954768.png" style="width:14%" class="img-fluid">   {{each.attribute_set | get_key:'resource_type'}}  
 </span>
 </div>
+{% get_download_preview_cnt each.name as cnt_nd%}
                       {% get_relation_value each.id 'has_banner_pic' as grel_dict %}
                       {% if not grel_dict.cursor and grel_dict.grel_node and grel_dict.grel_node.if_file.original.relurl %}
 
@@ -826,16 +930,19 @@ eURIComponent(document.title), '_blank'))">
 
 <a  href="{% url 'cooloerpreview'  each.id  %}"  target="_blank"   data-toggle="tooltip" title="Preview"  class="stretched-link">
 
-                                  <i class="fa fa-eye fa-lg"   data-toggle="modal" data-target="#{{each.id}}">  </i>  </a>
+                                  <i class="fa fa-eye fa-lg"   data-toggle="modal" data-target="#{{each.id}}">  </i>
+  {{cnt_nd.total_previewcnt}}
+ </a>
                                 </span>
                               </div>
                               <div class="col-4" tabindex="7"     data-toggle="tooltip" title="Explore Online">
 
                                 {% with name=each.name %}
                                 {% with json_data=coolresourcedata|get_item:name %}                                <span>
-<a href="{{json_data.oer_url}}" target="_blank">
-                                  <i class="fas fa-rocket fa-lg"> </i>
-</a>
+<a href="{{json_data.oer_url}}" id="{{each.id}}"  class="explorelink" target="_blank"> 
+                                  <i class="fas fa-rocket fa-lg"> </i>     {{cnt_nd.total_visitcnt}}
+ </a>
+
 {% endwith %}
 {% endwith %}
                                 </span>
@@ -947,6 +1054,8 @@ Tweet this</a>
 
       </div>
     </div>
+
+
 <script>
 function copyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
@@ -1015,6 +1124,8 @@ function CopyLink() {
 };
 
 </script>
+
+
 <script>
 
 function mytoggle() {
@@ -1032,6 +1143,30 @@ function mytoggle() {
     moreText.style.display = "inline";
   }
 }
+</script>
+
+<script>
+$("a.explorelink").click(function() {
+var id = $(this).attr("id");
+console.log(id)
+
+ var href = $(this).attr("href");
+console.log(href)
+$.ajax({                                                                                                                                                              
+                            type: "POST",                                                                                                                              
+                      url: "{% url 'increment_explorecnt' %}",                                                                                                 
+                      data :{                                                                                                                                          
+                              csrfmiddlewaretoken: "{{csrf_token }}",                                                                                                  
+                              href_link : href,
+                              node_id : id
+                      },                                                                                                                                              
+                      datatype: "html",                                                                                                                                
+                      success: function(data) {                                                                                                                        
+            console.log("success");                                                                                                                                    
+                      }                                                                                                                                                
+           });  
+
+});
 </script>
 
 <script>
