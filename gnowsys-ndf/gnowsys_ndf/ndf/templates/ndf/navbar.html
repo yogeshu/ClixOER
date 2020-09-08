@@ -147,16 +147,20 @@ g-fluid" width="125px"></a>
 
         <a class=" ml-3 py-3 nav-link fun-name" tabindex="3" href="{% url 'coolpage' %}" style="position: relative;"  data-toggle="tooltip"
 title="{% trans "Connected Open Online Learning - A TISS response to COVID-19" %}" >
- <i class="fas fa-laptop-house solid" data-toggle="tooltip" 
+ <i class="fas fa-chalkboard-teacher" data-toggle="tooltip" 
 title="{% trans "Connected Open Online Learning - A TISS response to COVID-19" %}" ></i> {% trans 'TISS-COOL' %}<span class="blink "> New</span>  </a>
       </li>
  <li class="nav-item ">
 
         <a class=" ml-3 py-3 nav-link fun-name" tabindex="3" href="{% url 'cooloers' %}" style="position: relative;" data-toggle="tooltip"
 title="{% trans "Open Education Resources" %}">
- <i class="fas fa-laptop-house " data-toggle="tooltip"
-title="{% trans "Open Education Resources" %}" ></i> {% trans 'COOL-OER' %}<span class="blink "> New</sp\
-an>  </a>
+ <i class="fas fa-laptop " data-toggle="tooltip"
+title="{% trans "Open Education Resources" %}" ></i>
+<!--
+<img src="/static/ndf/noun_online education_1619863.svg" width="16" height="15"/>
+-->
+
+ {% trans 'COOL-OER' %}<span class="blink "> New</span>  </a>
       </li>
 
        <li class="nav-item dropdown">
@@ -205,8 +209,11 @@ an>  </a>
       </li>
       <li class="nav-item ">
 	
-        <a class=" ml-3 py-3  nav-link fun-name" tabindex="3" href="{% url 'about' group_id  %}"> <i class="fas fa-info-circle" data-toggle="tooltip"
- title="{% trans "Know about CLIx OERs" %}" ></i> {% trans 'About' %}</a>
+        <a class=" ml-3 py-3  nav-link fun-name" tabindex="3" href="{% url 'about' group_id  %}">
+ <i class="fas fa-info-circle" data-toggle="tooltip"
+ title="{% trans "Know about CLIx OERs" %}" ></i>
+
+ {% trans 'About' %}</a>
       </li>
       <li class="nav-item ">
           <a class=" ml-2 py-3 nav-link fun-name" tabindex="4"  href="{% url 'help' group_id %}" title="Help"> <i data-toggle="tooltip" class=" far fa-question-circle" title="{% trans  "Explore help material" %}">
