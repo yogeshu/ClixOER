@@ -1,3 +1,5 @@
+
+
 {% load i18n %}
 {% load ndf_tags %}
 {% load get_dict_from_list_of_dicts from simple_filters %}
@@ -235,12 +237,25 @@ background: #9693a3 !important;
 
               <div class="col-md-7 col-sm-12 pl-1">
                 <div class="card-body n c-body">
-                  <div class="card-header  c-header" tabindex="7"  style="font-size:16px;">
-                    {{ dest.name }} <br />
+   {% if dest.name == "Geometric Reasoning Part I" %}
+    <div class="card-header  c-header" tabindex="7"  style="font-size:16px;">
+                    Geometric Reasoning <br>  Part I <br />
                   </div>
 
+ 
+  {% elif dest.name == "Geometric Reasoning Part II" %}
+    <div class="card-header  c-header" tabindex="7"  style="font-size:16px;">
+                    Geometric Reasoning <br>  Part II <br />
+                  </div>
+
+ 
+ {% else %}                 <div class="card-header  c-header" tabindex="7"  style="font-size:16px;">
+                    {{ dest.name }} <br />
+                  </div>
+ 
+  {% endif %}
                   <h6 class="card-title mt-2">
-                    <span class="badge badge-secondary subject"  id="uu" data-toggle="tooltip" title="{% trans "Subject" %}"
+                     <span class="badge badge-secondary subject"  id="uu" data-toggle="tooltip" title="{% trans "Subject" %}"
 			  > {% if node_attrs.educationalsubject == "English" %}
 <i class="fa fa-language fa-sm"></i>
 {% elif node_attrs.educationalsubject == "Mathematics" %}
@@ -430,11 +445,8 @@ Download Unplatform Version For Linux </a>
                         style="font-size:12px; background: #FFF; color: #000;"
                         > </span
                       >
-
-</i
-      >
+</i >
                        </a>
-    
                         <div class="dropdown-menu font-share " href="" aria-labelledby="dropdownMenuLink" >
                           <a class="dropdown-item" onclick="CopyLink()"  id="copy"  >
 <i class="fas fa-copy "   ></i>
@@ -445,8 +457,6 @@ dropdown-item"  data-js="facebook-share">Share Facebook</a>
 <a class="dropdown-item target"  data-score="1"   onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'facebook-share-dialog', 'height=350,width=600'); return false;" 
 > <i class="fab fa-facebook"> </i>
 Share on Facebook </a>
-
-
 
 
 <a class="dropdown-item target" data-score="2"  href="http://twitter.com/intent/tweet?url=https://clixoer.tiss.edu/home/e-library/" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'), '_blank'; data-url="document.URL"return false;"      target="_blank" d>
@@ -574,7 +584,7 @@ function CopyLink() {
   copyTextToClipboard(location.href);
 }
 
-
+ 
 
 
 
