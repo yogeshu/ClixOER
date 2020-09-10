@@ -227,9 +227,19 @@ codeURIComponent(document.title), '_blank'))" target="_blank">
 
 {% if pkg.id.strip %}
 
+   {% if pkg.name == "CLIxScienceModules_v2.4.0-Hi.exe" %}
+        <a href="{% url 'read_file' moduledetails.id pkg.id  %}"
+download="{{pkg.name}}">             <i style="color: #5088c7;" class="fas fa-cloud-download-alt ml-4 fa-lg"></i></a>   
+    {% elif pkg.name == "CLIxMathModules_v2.4.0-Hi.exe"  %}
+       <a href="{% url 'read_file' moduledetails.id pkg.id  %}"
+download="{{pkg.name}}">             <i style="color: #5088c7;" class="fas fa-cloud-download-alt ml-4 fa-lg"></i></a>
+{% else %}  
+     
+  
                           <a href="{% url 'read_file' moduledetails.id pkg.id  %}"
 download="{{pkg.name}}.exe">             <i style="color: #5088c7;" class="fas fa-cloud-download-alt ml-4 fa-lg"></i></a>
-  
+
+   {% endif %}  
 {% else %}
                            <a href="" download="{{dest.name}}"></a>
 {% endif %}
