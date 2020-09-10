@@ -319,12 +319,28 @@ background: #9693a3 !important;
 
 
 {% if pkg.id.strip %}
+{% if pkg.name == "CLIxScienceModules_v2.4.0-Hi.exe" %}
+
+<div  data-toggle="modal" data-target="#module-{{pkg.name}}">
+              <a href="{% url 'read_file' dest.id pkg.id  %}" class="dropdown-item "  tabindex="7"
+download="{{pkg.name}}">
+Download Unplatform Version For Windows </a>
+{% elif pkg.name == "CLIxMathModules_v2.4.0-Hi.exe"  %}
+
+<div  data-toggle="modal" data-target="#module-{{pkg.name}}">
+              <a href="{% url 'read_file' dest.id pkg.id  %}" class="dropdown-item "  tabindex="7"
+download="{{pkg.name}}">
+Download Unplatform Version For Windows </a>
+
+
+
+{% else %}
 
 <div  data-toggle="modal" data-target="#module-{{pkg.name}}">
               <a href="{% url 'read_file' dest.id pkg.id  %}" class="dropdown-item "  tabindex="7"     
 download="{{pkg.name}}.exe">
 Download Unplatform Version For Windows </a>
-
+{% endif %}
 </div>
 {% else %} 
                            <a href="" download="{{dest.name}}"></a>
@@ -409,9 +425,23 @@ Download Unplatform Version For Linux </a>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+{% if pkg.name == "CLIxScienceModules_v2.4.0-Hi.exe" %}
+
+	<h5 class="modal-title" >Installer for Windows 64bit - {{pkg.name}}
+</h5>
+  
+   {% elif pkg.name == "CLIxMathModules_v2.4.0-Hi.exe"  %}
+
+	<h5 class="modal-title" >Installer for Windows 64bit - {{pkg.name}}
+</h5>
+ 
+  {% else %}
 
 	<h5 class="modal-title" >Installer for Windows 64bit - {{pkg.name}}.exe 
 </h5>
+   
+ {% endif  %}
+  
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
 	    </button>
@@ -459,7 +489,7 @@ dropdown-item"  data-js="facebook-share">Share Facebook</a>
 Share on Facebook </a>
 
 
-<a class="dropdown-item target" data-score="2"  href="http://twitter.com/intent/tweet?url=https://clixoer.tiss.edu/home/e-library/" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'), '_blank'; data-url="document.URL"return false;"      target="_blank" d>
+<a class="dropdown-item target" data-score="2"  href="https://twitter.com/share?ref_src=twsrc%5Etfw" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'), '_blank'; data-url="document.URL"return false;"      target="_blank" d>
 <i class="fab fa-twitter"> </i>
 Tweet this</a>
 
@@ -734,12 +764,6 @@ function getPageList(totalPages, page, maxLength) {
             .text("Next")
         )
     );
-
-if(currentPage <= 1) { 
- $('#next-page').addClass('disabled');
-} else {
- $('#previous-page').removeClass('disabled');
-}
 
     // Show the page links
     $("#jar").show();
