@@ -5,6 +5,42 @@
 
 {% block content %}  
 
+<script>
+
+
+function my() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("clickBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline-block";
+    btnText.innerHTML = "Read more  <i class='fas fa-chevron-right'></i>";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less  <i class='fas fa-chevron-down'></i> ";
+    moreText.style.display = "inline-block";
+  }
+}
+
+function mytoggle() {
+  var dots = document.getElementById("dotsc");
+  var moreText = document.getElementById("morec");
+  var btnText = document.getElementById("theBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline-block";
+    btnText.innerHTML = "Read more  <i class='fas fa-chevron-right'></i>";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less  <i class='fas fa-chevron-down'></i> ";
+    moreText.style.display = "inline-block";
+  }
+}
+
+</script>
 
 
 <style>
@@ -45,7 +81,15 @@ color:#fff !important;
 font-size: 14px !important;
 }
 
-
+tr,td{
+font-size: 16px;
+}
+.hide{
+color:#ffffff !important;
+}
+#morec,  #more {
+display:none;
+}
 
 
 </style>
@@ -106,7 +150,7 @@ font-size: 14px !important;
             </li>
             <li class="nav-item">
               <a class="nav-link" title="Know our team" href="#section5">
-              4.OER Repository
+              4. Content Curation and creation- OER Repository
               </a>
             </li>
             <li class="nav-item ">
@@ -119,6 +163,16 @@ font-size: 14px !important;
 
               </a>
             </li>
+  <li class="nav-item " >
+              <a
+
+                class="nav-link active"
+		 href="#section9"
+              >
+                COOL NEWSLETTERS 
+              </a>
+            </li>
+
             <li class="nav-item">
               <a
                 class="nav-link"
@@ -208,6 +262,10 @@ font-size: 14px !important;
                   open online courses to the
                   <a href="https://ncte.gov.in/" target="_blank"> NCTE </a>
                   curriculum to provide a wide range of curated resources.
+                  We have mapped 12 resources/courses so far for student-teachers and teacher educators which are hosted on  <a href="https://www.tissx.tiss.edu/" target="_blank">
+                    TISSx
+                  </a>
+  platform and more are in the pipeline. 
                 </p>
 
                 <p class="text-justify">
@@ -215,10 +273,16 @@ font-size: 14px !important;
                   in partnership with Mumbai University we are offering weekly
                   webinars to teacher educators and M.Ed students under the
                   <strong>Teaching and Learning Consortium (TALC) 2020.</strong>
+                <br> 
+                <br>
+
+In partnership with DSERT, Karnataka, we have also conducted weekly bilingual webinar series in Kannada and English for the nodal officers and faculty-in-charge of the District Educational resource Centre project, Karnataka. A summary of the webinar series is available <a href="https://tiss.edu/uploads/files/TISS-DSERT_Blog-converted.pdf" target="_blank">  here.  </a>
+
                 </p>
                 <hr class="mt-2" />
-              <p class="text-justify">  You can watch recordings of the webinars on our
-                <a 
+                    
+              <p class="text-justify"> 
+<!--                <a 
                   href="https://www.youtube.com/channel/UCHeg9vBiapABVkb6TTWBgYA"
                   role="button"
                   target="_blank"
@@ -226,8 +290,279 @@ font-size: 14px !important;
 <span class="pt-4"  style="vertical-align: middle; ">
                   <i class="fab fa-youtube fa-4x" style="color:#FF0000"> </i> </span>
                 </a>
+   -->
+  <a href="https://tiss.edu/view/6/mumbai-campus/centre-for-education-innovation-and-action-researc/placements-10/" target="_blank"> Click here</a>  to see previous webinars 
+<span id="dots"> ... </span>
+<br>
+<p class="text-justifly">
+  Access resources on <a href="https://www.tissx.tiss.edu " target="_blank">  www.tissx.tiss.edu </a>
+<br>
+Watch TALC and DSERT webinar recordings on YouTube
+
+                <a
+                  href="https://www.youtube.com/watch?v=DBAh7HqJkYI&list=PL8bZzoltbMJn_vm2yKN7gZINB6aVbfsQ5"
+                  role="button"
+                  target="_blank"                                                                                                            
+   >  youtube channel
+<span class="pt-4"   style="vertical-align: middle;">                                                                                        
+
+                  <i class="fab fa-youtube fa-4x"  style="color:#FF0000" > </i> </span>                                                      
+
+                </a>                                                                                                                         
+
+               </p>    
 </p>
-               <!-- <div class="text-center border-rounded">
+  
+<a  onclick="my()" id="clickBtn"  class="btn  hide  btn-primary"> Read More  <i class="fas fa-chevron-right"></i>   </a>
+
+
+<div id="more" >     
+<br>
+<p class="text-justify>">
+<strong>                                                                                                                                      
+TALC webinar                                                                                                                                  
+</strong>
+
+</p>
+
+   <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>
+            <strong>Session: 1 </strong>  Perspectives on Pre-service Teacher Education   by Dr.Mythili Ramchand, Professor,
+            CEIAR, TISS
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=kYblVqiG_20&list=PL8bZzoltbMJn_vm2yKN7gZINB6aVbfsQ5&index=5 "
+              target="_blank"
+              >Youtube link
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">2</th>
+          <td>
+            <strong> Session:2 </strong> Cognitive Learning and Development  by Dr.Kamala Mukunda, Centre of
+            Learning,Bengaluru
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=ljzeq7GD7-I&list=PL8bZzoltbMJn_vm2yKN7gZINB6aVbfsQ5&index=4"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>
+            <strong> Session:3 </strong>  Diversity and Diverse Needs of Learners   by Dr. Varsha Gathoo Head, Dept. of
+            Education, AYJNISH
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=sb4EPi9ivMY&list=PL8bZzoltbMJn_vm2yKN7gZINB6aVbfsQ5&index=3"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">4</th>
+          <td>
+            <strong> Session:4 </strong> Approaches to and Inquiry in Curriculum studies  by Dr.Sybil Thomas, Professor, Dept. of
+            Education, MU
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=A2D0QvJuaKI&list=PL8bZzoltbMJn_vm2yKN7gZINB6aVbfsQ5&index=2"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>
+            <strong> Session:5 </strong>  Culture, Politics, Self and Society   by Dr Padma Sarangapani, Professor &
+            Chairperson, CEIAR, TISS
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=DBAh7HqJkYI&list=PL8bZzoltbMJn_vm2yKN7gZINB6aVbfsQ5&index=1"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">6</th>
+          <td>
+            <strong> Session 6: </strong>  Learning from Thinkers in Education   by Alok Mathur, Formerly
+            Director(Teacher Education), Rishi Valley Education Centre
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=te1gzVx0YfM&list=PL8bZzoltbMJn_vm2yKN7gZINB6aVbfsQ5&index=7"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">7</th>
+          <td>
+            <strong> Session 7: </strong> Changing context of education   by Prof. Rohit Dinkar, Azim Premji
+            University
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=RU7q3DV98CU&list=PL8bZzoltbMJn_vm2yKN7gZINB6aVbfsQ5&index=10&t=98s"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">8</th>
+          <td>
+            <strong> Session 8: </strong> The Right to Education-Reading and
+            Implementing Inclusion through Section 12 (1)
+	     By Dr.Vidya K. S.,
+            CEIAR, TISS
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=P7yio-VU8Tk&list=PL8bZzoltbMJn_vm2yKN7gZINB6aVbfsQ5&index=12&t=0s"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">9</th>
+          <td>
+            <strong> Session 9: </strong> Collaborative Leadership for School
+            Improvement By: Dr.Shefali Pandya,
+<br> Professor & Head, Department of
+            Education, University of Mumbai
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=ljzeq7GD7-I&list=PL8bZzoltbMJn_vm2yKN7gZINB6aVbfsQ5&index=4"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<p class="text-justify"> <strong>  DSERT Webinars
+</strong>
+ </p>
+
+<table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>
+            <strong> Session: 1 </strong> Open Educational Resources   by Dr.Mythili Ramchand, Professor,
+            CEIAR, TISS
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=izcJsTn417I"
+              target="_blank"
+              >Youtube link
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">2</th>
+          <td>
+            <strong> Session:2 </strong>   Inclusive Education   by Ms. Manjula Nanjundaiah,
+            Seva-in-action & Ms Brinda VSEI
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=YHF3rvYILpI&t=80s"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>
+            <strong> Session:3 </strong>  Action Research as Reflective Practice   by Dr. C.G. Venkatesha Murthy, Prof &
+            Dean, Research RIE, NCERT Mysore.
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=ynBq6EXjZf0"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">4</th>
+          <td>
+            <strong> Session:4 </strong> Knowledge as constructed in social contexts by Prof. Indira Vijaysimha Professor
+            Azim Premji University
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=shSPINpVld4"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>
+            <strong> Session 5: </strong> Technology Pedagogical and Content
+            Knowledge(TPACK) by Bindu Thirumalai, Assistant Professor, CEIAR,
+            TISS
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=57cYpE0SoLg&list=PL8bZzoltbMJlP7BgcWmV-fzKd6ym78zKr&index=7&t=0s"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>            
+
+
+ 
+                                                                                                                                              
+
+<!--
+<button  onclick="my()" id="clickBtn"  class="btn btn-primary"> Read More  <i class="fas fa-chevron-right"></i>   </span>
+   <!-- <div class="text-center border-rounded">
                 <iframe 
                   width="360"
                   height="215"
@@ -239,44 +574,85 @@ font-size: 14px !important;
                 </div> -->
               </div>
             </div>
+
             <br />
             <div id="section3" class="container-fluid">
               <div class="jumbotron some-dark py-5 ">
                 <h1 class="h1-responsive mt-n2">
                   2. Ground Assessment - Research
                 </h1>
-                 
-                <p class="text-justify"> 
-              <strong> a. Edtech Weekly Podcast: Voices from the ground </strong>  <br>
+    
+   
+ <p class="text-justify">         
+     <strong>   a. Ground Assessment Study  </strong> <br>
+
+                We are also gathering primary data from principals, teachers, parents and students to get a sense of field realities and plan\
+ interventions accordingly.  These findings are posted on a weekly basis on our website for wider access and use. So far we have received dat\
+a from 300 participants from different regions of the country including both rural and urban locations.
+<br>
+<a href="https://tiss.edu/view/6/mumbai-campus/centre-for-education-innovation-and-action-researc/fieldwork-20/" target="_blank">
+Click here </a>  to see previous report
+<span id="dotsc"> ... </span>
+
+</p>
+
+
+   <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row">A</th>
+          <td>
+            Assessment of Ground Preparedness for EdTech (Round 1)
+          </td>
+          <td>
+            <a
+              href="https://tiss.edu/uploads/files/Assessment_of_Ground_Preparedness_for_EdTech_Round_1_-_Key_Findings_Report.pdf"
+              target="_blank"
+              >Report
+            </a>
+          </td>
+        </tr>
 
  
-                  Understanding the needs of the ground will be a critical
-                  exercise to respond to the current situation. We will gather
-                  information from some of the key stakeholders of school
-                  education. Tune into our weekly
-                  <a href="https://www.youtube.com/watch?v=u2SRff7hdxs" target="_blank">
-                    Podcast segment, EdTech Weekly: Voices from the ground
-                  </a>
-                  to listen to practitioners discuss challenges, interventions
-                  and some innovations.
-                </p>
+        <tr>
+          <th scope="row">B</th>
+          <td>
+            Assessment of Ground Preparedness for EdTech (Round 2)
+          </td>
+          <td>
+            <a
+              href="https://drive.google.com/file/d/1q0GnJpr_JYJGEr8e7NAJPbWS0zR1MFo2/view"
+              target="_blank"
+            >
+              Report
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">C</th>
+          <td>
+            Assessment of Ground Preparedness for EdTech (Round 3)
+          </td>
+          <td>
+            <a
+              href="https://tiss.edu/uploads/files/COOL-ground-preparedness-round3.pdf"
+              target="_blank"
+            >
+              Report
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-                <p class="text-justify">
-               <strong>   b. Ground Assessment Study  </strong> <br>
 
-                  We are also gathering primary data from principals, teachers,
-                  parents and students to get a sense of field realities and
-                  plan interventions accordingly. These findings will be posted
-                  on a weekly basis. Please keep visiting to understand the
-                  ground realities.
-                </p>
-              <p class="text-justify">
+<br>
 
-                 <strong> Reports - </strong>
+<p class="text-justify">
 
-             <strong>   Assessment of Ground Preparedness for EdTech (Round 1)  </strong> <a herf="" target="_blank">  <Link> </a> <br> 
 
     <strong>       Are you a teacher or student-teacher? </strong>  If you would like to participate in our survey please click on the link relevant to your work or profile. <br>
+<br>
      <strong>  a. Teachers Tool (for teachers, headteachers and teacher educators):  </strong> <br> 
 
              Hindi -  <a href="https://bit.ly/Tchr-HM-TE-Hindi" target="_blank">    https://bit.ly/Tchr-HM-TE-Hindi
@@ -285,13 +661,222 @@ font-size: 14px !important;
                English-  <a href="https://bit.ly/Tchr-HM-TE-Eng" target="_blank">     https://bit.ly/Tchr-HM-TE-Eng
    </a> <br>
      <strong>  b. Student Teachers Tool (for students of education studies including B.Ed, M.Ed, MA(Ed)): </strong> <br>  
+<br>  
       Hindi- <a href="https://bit.ly/StudentT-Hindi" target="_blank">            https://bit.ly/StudentT-Hindi
       </a> <br>
+      </a> 
+
        English-<a href="https://bit.ly/StudentT-Eng" target="_blank">   https://bit.ly/StudentT-Eng       </a> <br>
 
                 </p>
-                <hr class="mt-2" />
-          <p class="text-justifly">      You can watch recordings of the webinars on our
+                <hr class="mt-2" >
+  </p>
+    
+
+
+             <p class="text-justify"> 
+              <strong> b. Edtech Weekly Podcast: Voices from the ground </strong>  <br>
+
+    
+                Understanding the needs of the ground is a critical exercise to respond to the current situation. Under this initiative, we gather information from some of the key stakeholders of school education. This is hearing voices directly from the field. Weekly one practitioner is interviewed on current education challenges, innovations and interventions happening on the ground, interviews are done in different Indian languages. Till now we have interviewed 8 practitioners from various walks of life eg, teachers, administrators, educational foundations, etc.   
+ <br> 
+ <a href="https://www.youtube.com/watch?v=u2SRff7hdxs&list=PL8bZzoltbMJnz6bFwwMRpBQcyQOWEoGmI&index=2" target="_blank"> Click here </a> To see privous Podcast 
+
+      </p>
+ <div id="morec">
+      <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>
+            Voices from the Ground - Episode -1
+          </td>
+          <td>
+            Annie Thomas
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=kxLWyv8xyAA&list=PL8bZzoltbMJnz6bFwwMRpBQcyQOWEoGmI&index=1"
+              target="_blank"
+              >Youtube link
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">2</th>
+          <td>
+            Voices from the Ground - Episode -2
+          </td>
+          <td>
+            Dhanashree Yeddandi
+          </td>
+
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=u2SRff7hdxs&list=PL8bZzoltbMJnz6bFwwMRpBQcyQOWEoGmI&index=2"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>
+            Voices from the Ground - Episode -3
+          </td>
+          <td>
+            Yogesh Pandey
+          </td>
+
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=HywpFS7IHYc&list=PL8bZzoltbMJnz6bFwwMRpBQcyQOWEoGmI&index=3"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">4</th>
+          <td>
+            Voices from the Ground - Episode -4
+          </td>
+
+          <td>
+            Sujata Naronha
+          </td>
+
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=nHW3JqTwToc&list=PL8bZzoltbMJnz6bFwwMRpBQcyQOWEoGmI&index=4"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>
+            Voices from the Ground - Episode -5
+          </td>
+
+          <td>
+            Manisha Pavi
+          </td>
+
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=01efeuzP0bI&list=PL8bZzoltbMJnz6bFwwMRpBQcyQOWEoGmI&index=6"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">6</th>
+          <td>
+            Voices from the Ground - Episode -6
+          </td>
+
+          <td>
+            Yogesh Sonawane
+          </td>
+
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=ndzIkRHZrbo&list=PL8bZzoltbMJnz6bFwwMRpBQcyQOWEoGmI&index=8"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">7</th>
+          <td>
+            Voices from the Ground - Episode -7
+          </td>
+
+          <td>
+            C Poorna Chandar
+          </td>
+
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=nICp_RrnxNo&list=PL8bZzoltbMJnz6bFwwMRpBQcyQOWEoGmI&index=7"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">8</th>
+          <td>
+            Voices from the Ground - Episode -8
+          </td>
+          <td>
+            Venkatesh Koneghatta
+          </td>
+
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=fATUx76a36Y&list=PL8bZzoltbMJnz6bFwwMRpBQcyQOWEoGmI&index=12&t=1s"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">9</th>
+          <td>
+            Voices from the Ground - Episode -9
+          </td>
+          <td>
+            Chandan Jha
+          </td>
+
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=Ahch3JOY0ow&list=PL8bZzoltbMJnz6bFwwMRpBQcyQOWEoGmI&index=13"
+              target="_blank"
+            >
+              Youtube link
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">1</th>
+          <td>
+            Voices from the Ground - Episode -10
+          </td>
+          <td>
+            Miss Esthar
+          </td>
+          <td>
+            <a
+              href="https://www.youtube.com/watch?v=sXNcGshL_gc&list=PL8bZzoltbMJnz6bFwwMRpBQcyQOWEoGmI&index=11"
+              target="_blank"
+              >Youtube link
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+   </div>
+
+  <br>
+ <a  onclick="mytoggle()" id="theBtn"  class="btn hide  btn-primary"> Read More  <i class="fas fa-chevron-right"></i>   </a>
+
+<!--          <p class="text-justifly">      You can watch recordings of the webinars on our
 
                 <a  
                   href="https://www.youtube.com/channel/UCHeg9vBiapABVkb6TTWBgYA"
@@ -305,7 +890,8 @@ font-size: 14px !important;
                </p>
  
                 </a>
-              </div>
+-->              
+</div>
             </div>
             <div id="section4" class="container-fluid ">
               <div class="jumbotron some-dark py-5 ">
@@ -326,49 +912,41 @@ font-size: 14px !important;
                   technologies, orientation to computational thinking and other
                   OERs. There will also be a focus on including hands-on
                   learning and mental health.
+These are conducted in different Indian languages. 
+
+<br>
+<br>
+We have so far conducted 9 webinars which were attended by 150 (avg) teachers and students from across India and more are coming up
                 </p>
 
                 <hr class="mt-2" />
-    <p class="text-justify">               You can watch recordings of the webinars on our
+    <p class="text-justify">                watch recordings of the webinars on 
  
                 <a 
-                  href="https://www.youtube.com/channel/UCHeg9vBiapABVkb6TTWBgYA"
+                  href="https://www.youtube.com/playlist?list=PL8bZzoltbMJkIo5zvqo2t5SCbF01npcwh"
                   role="button"
                   target="_blank"
-                > youtube channel
+                > Youtube 
 <span class="pt-4"   style="vertical-align: middle;">
                   <i class="fab fa-youtube fa-4x"  style="color:#FF0000"> </i> </span>
                 </a>
  </p>
-                </a>
+               
               </div>
             </div>
             <div id="section5" class="container-fluid ">
               <div class="jumbotron some-dark py-5 ">
                 <h1 class="h1-responsive mt-n2">
-                  4. OER Repository
+                  4. Content Curation and creation- OER Repository  
                 </h1>
 
                 <p class="text-justify">
-                  A repository of OER is being designed where free and open
-                  educational resources will be hosted with meta-tagging
-                  fsubjects, grades, languages, type of technology etc. This
-                  page will help teachers, parents, students, educators to
-                  search resources efficiently. Many organizations and
-                  individuals are curating and creating resources, which are
-                  free and may be very useful in diverse contexts. Such
-                  resources will be collated and added to the repository page.
-                  This repository will be hosted on
-                  <a href="https://clixoer.tiss.edu"  target="_blank">
-                    https://clixoer.tiss.edu.
-                  </a>
-                  Please visit the webpage for more details and to share OERs
-                  with us. You can also access award winning CLIx resources for
-                  Maths, Science and English for middle and high school students
-                  here.
+                   A repository of open educational resources (OER) has been developed where high quality OER have been curated with meta-tagging of subjects, grades, language support, type of technology etc. The COOL-OER will help teachers, parents, students and educators to search high quality resources which are free and open as well as curated with guidance for use and integration. The resources have been selected which foster active learning , are multilingual (support Indian languages), accessible and adaptable. The COOL-OER repository can be accessed at   <a href="https://clixoer.tiss.edu"  target="_blank">  https://clixoer.tiss.edu/cool/oer </a>
+Please visit the webpage for more details. You can also share more OERs with us.
+On the website you can also access award winning multilingual CLIx resources pertaining to Digital literacy, English, Mathematics and Science for middle and high school students.   
                 </p>
                 <hr />
-		<a class="btn btn-primary" href="{% url 'cooloers' %}"> Know More </a>
+		<a class="btn btn-primary" href="{% url 'cooloers' %}"  target="_blank"> Know More <i class="fas fa-external-link-alt"></i> </a>
               </div>
             </div>
 
@@ -380,26 +958,12 @@ font-size: 14px !important;
                 </h1>
 
                 <p class="text-justify">
-                  We are developing a course on using technology for connected
-                  and distance learning. This will be open for all and is
-                  specifically targeted for school teachers and educators. This
-                  course will provide an understanding of principles of learning
-                  using technology, introduce the learner to synchronous and
-                  asynchronous modes of learning, provide orientation to
-                  different tools of assessments and introduce them to the world
-                  of Open Educational Resources (OERs). This course will be
-                  freely available in two languages (Hindi & English) to help
-                  teachers and educators to plan teaching sessions for their
-                  students using technology. It will importantly orient them on
-                  how technology tools requiring low bandwidth can be used to
-                  connect with their students and continue teaching and
-                  learning. It will be available in English on
-                  <a href="https://www.tissx.tiss.edu/" target="_blank"> TISSx </a> platform
-                  from 11th May 2020 and the Diksha platform (TBD).
-                </p>
+		  We have developed a course <a href="https://www.tissx.tiss.edu/courses/course-v1:TISSx-COOL+COOLTOL01+2020_COOL_TOL_EN_01/about" target="_blank">  Technologies for Online Learning in School</a> .  This is open for all and is specifically targeted for school teachers and educators. It provides an understanding of principles of learning using technology, introduces the learner to synchronous and asynchronous modes of learning, provides an orientation to different tools of assessments, and introduces them to the world of Open Educational Resources (OERs). This course is freely available to help teachers and educators to plan teaching sessions for their students using technology. It will importantly orient them on how technology tools requiring low bandwidth can be used to connect with their students and continue teaching and learning. It is available in English on the <a href="https://www.tissx.tiss.edu/" target="_blank">  TISSx </a> platform from 11th May 2020 and will soon be available on the Diksha platform. We also plan to translate the course in multiple Indian languages. So far 1300 teachers have enrolled in this course. We have recently announced digital badges. Learners who will be completing the course will receive 'Course Completer'  digital       badge.      </p>
                 <hr />  
    <p class="text-justifly">
        Register yourself for resources in Teacher Education on  <a href=" https://www.tissx.tiss.edu " target="_blank">   https://www.tissx.tiss.edu    </a>
+<br>
+ Please fill this <a href="https://forms.gle/iUEihksM2wC4jbBH6" target="_blank">  form </a> to register yourself for receiving updates on the above initiates (Courses, Webinars, OERs, Research)
        </p>
 
 <!--                <a
@@ -409,10 +973,112 @@ font-size: 14px !important;
                 </a> 
                 to NCTE curriculum-course details page -->
               </div>
-    
+<div id="section9" class="container-fluid ">
+
+<p class="text-justify">  <h1>  COOL NEWSLETTERS  </strong> </h1>
+ <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>
+            <a
+              href="https://tiss.edu/uploads/files/COOLCEIARNewsletter_30April.pdf"
+              target="_blank"
+            >
+              COOL-CEIAR TISS Newsletter Issue 1
+            </a>
+          </td>
+          <td>
+            30 April 2020
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">2</th>
+          <td>
+            <a
+              href="https://tiss.edu/uploads/files/COOL-CEIAR-TISSNewsletterV2-12May.pdf"
+              target="_blank"
+            >
+              COOL-CEIAR TISS Newsletter Issue 2
+            </a>
+          </td>
+          <td>
+            12 May 2020
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>
+            <a
+              href="https://tiss.edu/uploads/files/COOL-CEIAR-TISSNewsletterV3_22May.pdf"
+              target="_blank"
+            >
+              COOL-CEIAR TISS Newsletter Issue 3
+            </a>
+          </td>
+          <td>
+            22 May 2020
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">4</th>
+          <td>
+            <a
+              href="https://tiss.edu/uploads/files/COOLCEIAR-TISS_newsletter_9June.pdf"
+              target="_blank"
+            >
+              COOL-CEIAR TISS Newsletter Issue 4
+            </a>
+          </td>
+          <td>
+            9 June 2020
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>
+            <a
+              href="https://tiss.edu/uploads/files/COOLCEIARNewsletter_26June.pdf"
+              target="_blank"
+            >
+              COOL-CEIAR TISS Newsletter Issue 5
+            </a>
+          </td>
+          <td>
+            26 June 2020
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<p class="text-justify">
+
+
+Please follow our social media handles for regular updates
+<br>
+Facebook-<a href="https://www.facebook.com/cetei.tiss/?ref=bookmarks" target="_blank"> ceteri.tiss </a>
+<br>
+Twitter - <a href="https://twitter.com/cetei_tiss" target="_blank">  @cetei_tiss </a>
+<br>
+Instagram -<a href="https://instagram.com/cetei_tiss" target="_blank">  cetei_tiss </a>
+
+<br>
+
+   Please subscribe to our Youtube Channel for regular updates on webinar recordings, podcasts and digital announcements for resources
+<br>
+YouTube  - <a href="https://www.youtube.com/channel/UCHeg9vBiapABVkb6TTWBgYA" target="_blank">  CETEI_TISS </a>
+
+</p> 
+</div>
+<!--    
           <div id="section7" class="container-fluid py-2">
- {% include "ndf/TheCOOL_Team_cards.html" %}
+
                 </div> 
+-->
+<div id="section7" class="container-fluid py-2">
+{% include "ndf/TheCOOL_Team_cards.html" %}
+</div>
              <div id="section8" class="container-fluid py-2">
  <h1 class="text-center py-5 "> Contact Us </h1>
 
@@ -429,7 +1095,26 @@ font-size: 14px !important;
 
  <link rel="stylesheet" href="https://npmcdn.com/flickity@2/dist/flickity.css">
         <script src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
+<script>
 
+
+function mytoggle1() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("clickBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline-block";
+    btnText.innerHTML = "Read more";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less";
+    moreText.style.display = "inline-block";
+  }
+}
+  
+</script>
     <script>
        $("#verticalScrollspy").scrollspy();
 
@@ -459,8 +1144,6 @@ font-size: 14px !important;
        $(this).removeClass("active").parent().addClass("active");
     });
         
-
-
     </script>
  </body>
 </html>

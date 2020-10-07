@@ -494,5 +494,13 @@
         "collection_set": "[]", 
         "relation_type_set": "[]", 
         "type_of": "[]"
+    }, 
+    {
+        "attribute_type_set": "[]", 
+        "name": "cool_resource", 
+        "member_of": "[\"GAPP\"]", 
+        "collection_set": "[]", 
+        "relation_type_set": "[]", 
+        "type_of": "[]"
     }
 ]
